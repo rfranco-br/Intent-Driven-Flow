@@ -642,12 +642,120 @@
     letter-spacing: 0.08em;
   }
 
+  /* ── MERMAID DIAGRAMS ── */
+  .mermaid-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-wrap .diagram-label {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .mermaid svg { max-width: 100%; }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    background: rgba(124,92,191,0.08);
+    border: 1px solid rgba(124,92,191,0.25);
+    border-left: 3px solid var(--purple);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 2rem 0;
+    max-width: 760px;
+  }
+  .callout-label {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--purple2);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .callout p { font-size: 14px; color: var(--text2); line-height: 1.7; margin-top: 6px; }
+  .callout strong { color: var(--text); }
+
+  /* ── QUICKSTART SECTION ── */
+  .qs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 32px; max-width: 860px; }
+  .qs-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 24px;
+    position: relative;
+  }
+  .qs-step:not(:last-child) .qs-line {
+    position: absolute;
+    left: 23px;
+    top: 48px;
+    width: 2px;
+    bottom: 0;
+    background: var(--border);
+  }
+  .qs-num {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 2px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--coral);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .qs-body { padding: 10px 0 36px; }
+  .qs-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .qs-desc { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 12px; }
+  .qs-artifact {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.8;
+    white-space: pre;
+  }
+  .qs-artifact-label {
+    font-size: 10px;
+    color: var(--teal2);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  /* ── ESCAPE HATCH ── */
+  .escape-hatch {
+    margin-top: 32px;
+    background: rgba(232,115,74,0.06);
+    border: 1px solid rgba(232,115,74,0.2);
+    border-left: 3px solid var(--coral);
+    border-radius: 8px;
+    padding: 24px 28px;
+    max-width: 860px;
+  }
+  .escape-hatch h3 { font-size: 15px; color: var(--coral2); margin-bottom: 8px; }
+  .escape-hatch p { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 12px; }
+  .escape-hatch ol { padding-left: 20px; }
+  .escape-hatch li { font-size: 13px; color: var(--text2); line-height: 1.8; }
+  .escape-hatch .note { font-size: 12px; color: var(--text3); margin-top: 10px; font-style: italic; }
+
   @media print {
     body { background: white; color: #111; }
     .cover { min-height: auto; padding: 60px; }
     section { break-inside: avoid; }
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { background: '#13131e', primaryColor: '#1a1a2a', primaryTextColor: '#f0ede8', primaryBorderColor: '#3a3a50', lineColor: '#6a6878', edgeLabelBackground: '#13131e', tertiaryColor: '#13131e' } });</script>
 </head>
 <body>
 
@@ -700,6 +808,11 @@
       <h3>Dependencies are surfaced, not scheduled</h3>
       <p>Cross-team coordination happens when a dependency is detected, not at a weekly sync. Speed requires real-time signal flow between teams.</p>
     </div>
+  </div>
+
+  <div class="callout" style="margin-top:48px;">
+    <div class="callout-label">Clarification — Is this AI or rules?</div>
+    <p><strong>Both — and the distinction matters.</strong> APDF has two operating layers. The <strong>deterministic layer</strong> handles intent-to-task mapping, artifact structure, gate criteria, and layer boundary enforcement — these are fixed rules any implementation must follow. The <strong>AI reasoning layer</strong> handles Orchestrator task sequencing, Guardian report synthesis, and ambiguity detection — these benefit from LLM reasoning but can also run on rule-based engines. The artifacts (CLAUDE.md, INTENT_LOG.md, gate reports) are the interface between both layers, meaning the framework works whether your agents are Claude, GPT, a local model, or a scripted automation. The framework is model-agnostic by design.</p>
   </div>
 </section>
 
@@ -1050,6 +1163,19 @@
     </div>
 
   </div>
+
+  <div class="escape-hatch">
+    <h3>When Intent Goes Wrong — The Escape Hatch</h3>
+    <p>Intent misinterpretation is not a failure of the framework — it is an expected event that the framework handles formally. If the PO or a stakeholder signals "that's not what I meant," the following correction path activates:</p>
+    <ol>
+      <li>PO raises an Intent Correction — verbal, written, or via a flag review rejection.</li>
+      <li>Orchestrator halts the current cycle immediately. No further build work proceeds on the misaligned intent.</li>
+      <li>Orchestrator logs the original intent, the correction signal, and the divergence description to DRIFT_REGISTER.md.</li>
+      <li>PO rewrites the intent statement with the corrected framing. The new intent is added to INTENT_LOG.md.</li>
+      <li>A new cycle begins from the Plan step with the corrected intent. Completed work may be reused, discarded, or adapted — at Orchestrator's discretion.</li>
+    </ol>
+    <p class="note">This is not a failure state. An intent correction caught before deployment costs one cycle. An intent misalignment shipped to users costs far more. The Drift Register entry from each correction makes the next intent statement measurably better.</p>
+  </div>
 </section>
 
 <!-- ═══════════════════ ARTIFACTS ═══════════════════ -->
@@ -1064,6 +1190,7 @@
       <h3>Project memory</h3>
       <span class="artifact-filename">CLAUDE.md</span>
       <p>The single file every agent reads at the start of every session. Contains stack, folder structure, run commands, architectural decisions, conventions, and a running log of what was built. Updated by the Orchestrator after every cycle close.</p>
+      <div style="font-size:12px;color:var(--teal2);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);line-height:1.6;"><strong style="color:var(--teal);">State persistence:</strong> CLAUDE.md is committed to the git repository. Between agent sessions, agents load it fresh from the repo — no external database required. For single-team setups this is sufficient. Multi-team or long-lived intent scenarios may benefit from pairing it with a vector store for semantic retrieval, but the file remains the source of truth.</div>
       <div class="artifact-owner">Owner: Orchestrator (writes) · Tech Lead (governs)</div>
     </div>
 
@@ -1223,6 +1350,25 @@
       </div>
     </div>
   </div>
+
+  <div class="mermaid-wrap" style="margin-top:32px;">
+    <div class="diagram-label">Cycle flow — visual</div>
+    <div class="mermaid">
+flowchart LR
+  A([Intent\nStatement]) --> B[Orchestrator\nDecompose]
+  B --> C[Builder\nCode + Tests]
+  C --> D{Guardian\nAuto-Test}
+  D -->|Pass| E[Deploy\nflag OFF]
+  D -->|Fail| B
+  E --> F[PO\nGate Review]
+  F -->|Approve| G[Monitor\nflag ON]
+  F -->|Reject| H([Intent\nCorrection])
+  H --> B
+  G -->|Signal OK| I([Cycle\nComplete])
+  G -->|Prod Fail| J[PO flips OFF\nGuardian logs]
+  J --> B
+    </div>
+  </div>
 </section>
 
 <!-- ═══════════════════ COMMUNICATION ═══════════════════ -->
@@ -1230,6 +1376,25 @@
   <div class="section-label">07 — Communication patterns</div>
   <h2>How layers talk to each other</h2>
   <p style="max-width:640px;">Inter-layer communication is explicit, documented, and async by default. No layer should require a synchronous meeting to receive information from another layer. The defined communication patterns below are what make fast cycles possible without creating noise or missed signals.</p>
+
+  <div class="mermaid-wrap">
+    <div class="diagram-label">Layer communication matrix</div>
+    <div class="mermaid">
+flowchart TD
+  C([Client])
+  S[Strategic Layer]
+  P[Product Layer]
+  E[Execution Layer]
+  D[Dependencies Layer]
+
+  C -->|Signals · CLIENT_SIGNALS.md| P
+  S -->|TRUE_NORTH.md updates| P
+  P -->|Cycle intent statement| E
+  E -->|Gate report| P
+  P -->|Drift · escalation| S
+  D <-->|Dependency alerts| E
+    </div>
+  </div>
 
   <div class="comm-grid">
 
@@ -1304,7 +1469,7 @@
   <div class="axioms">
     <div class="axiom"><span class="axiom-num">A01</span><span class="axiom-text"><strong>Intent, not tasks.</strong> Humans express outcomes. Agents derive tasks. Any human writing a detailed task list is doing the Orchestrator's job and slowing the system down.</span></div>
     <div class="axiom"><span class="axiom-num">A02</span><span class="axiom-text"><strong>Client first, always.</strong> Before any gate is approved, the PO must be able to answer: "How does this serve the client?" If the answer is unclear, the gate fails regardless of technical quality.</span></div>
-    <div class="axiom"><span class="axiom-num">A03</span><span class="axiom-text"><strong>Agents escalate ambiguity, they never resolve it by guessing.</strong> An agent that guesses on unclear intent will be confidently wrong. Escalation to the appropriate human is always the correct response to ambiguity.</span></div>
+    <div class="axiom"><span class="axiom-num">A03</span><span class="axiom-text"><strong>Agents escalate ambiguity, they never resolve it by guessing.</strong> An agent that guesses on unclear intent will be confidently wrong. Escalation to the appropriate human is always the correct response to ambiguity. <em style="color:var(--text3);font-size:12px;">Ambiguity State defined: an intent statement that contains two or more valid but incompatible interpretations. When detected, the Orchestrator surfaces 2–3 interpretations explicitly, assigns a confidence weight to each, and halts task decomposition until the PO selects one. This is not a delay — it is the system preventing a wasted cycle.</em></span></div>
     <div class="axiom"><span class="axiom-num">A04</span><span class="axiom-text"><strong>Every deploy is behind a flag.</strong> No exception. This is the single practice that eliminates rollback anxiety and enables continuous deployment without continuous exposure risk.</span></div>
     <div class="axiom"><span class="axiom-num">A05</span><span class="axiom-text"><strong>The skill library is the institutional memory.</strong> If a convention isn't in a skill file, it doesn't exist for the next agent session. Knowledge that lives only in people's heads creates dependency on those people.</span></div>
     <div class="axiom"><span class="axiom-num">A06</span><span class="axiom-text"><strong>Layer boundaries are hard.</strong> The PO does not write code constraints. Tech Leads do not prioritise features. Stakeholders do not manage cycles. Crossing layer boundaries signals a broken process, not a capable person.</span></div>
@@ -1312,6 +1477,120 @@
     <div class="axiom"><span class="axiom-num">A08</span><span class="axiom-text"><strong>Drift is normal. Undetected drift is failure.</strong> Every system drifts from original intent over time. The framework's job is not to prevent drift — it's to detect it early and correct it before it compounds.</span></div>
     <div class="axiom"><span class="axiom-num">A09</span><span class="axiom-text"><strong>Dependencies are surfaced in real time, not managed in weekly meetings.</strong> The dependency broker operates continuously. By the time a team is blocked, the broker has already initiated resolution.</span></div>
     <div class="axiom"><span class="axiom-num">A10</span><span class="axiom-text"><strong>The Guardian's gate report is the maximum cognitive load the PO should carry per cycle.</strong> If reviewing a cycle requires more than three paragraphs, the Guardian has failed its role, not the PO.</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ QUICKSTART ═══════════════════ -->
+<section>
+  <div class="section-label">09 — Quickstart</div>
+  <h2>Your first intent-driven cycle</h2>
+  <p style="max-width:640px;">Theory without a concrete example is architecture fiction. Below is a complete cycle walkthrough — from writing an intent to monitoring a live flag — using a real scenario: <em>reducing checkout drop-off by simplifying the payment step.</em> End-to-end in five minutes.</p>
+
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">PO writes the intent</div>
+        <div class="qs-desc">The PO translates a client signal ("users are abandoning at the payment step") into a single outcome-framed intent statement and logs it.</div>
+        <div class="qs-artifact-label">INTENT_LOG.md — new entry</div>
+        <div class="qs-artifact">## Cycle 14 — Intent
+Date: 2026-03-24
+Owner: Product Owner
+
+Intent: Reduce checkout abandonment at the payment step by presenting
+        a single-field card input by default, deferring billing address
+        capture to post-purchase confirmation.
+
+Client signal ref: CS-041 (22% drop-off reported at payment screen)
+Success signal: Abandonment rate at payment step drops below 12%.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Orchestrator decomposes into tasks</div>
+        <div class="qs-desc">The Orchestrator reads the intent, CLAUDE.md, and the relevant skill file, then generates a sequenced task list. No human writes a single task.</div>
+        <div class="qs-artifact-label">Task list — generated by Orchestrator</div>
+        <div class="qs-artifact">T1 · Refactor CheckoutPaymentForm to render single-field card input
+    Skill: /skills/forms.md · Flag: checkout_simplified_payment
+T2 · Move billing address fields to PostPurchaseConfirmation component
+    Dependency: none · Flag: checkout_simplified_payment
+T3 · Update order submission API to accept deferred billing address
+    Skill: /skills/api-contracts.md
+T4 · Write integration tests for simplified + deferred flows
+T5 · Update CLIENT_SIGNALS.md with cycle reference</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Builder executes — flag OFF by default</div>
+        <div class="qs-desc">Builder agents execute each task. The feature ships behind a flag. Code and tests are committed as a unit. The PO sees nothing yet.</div>
+        <div class="qs-artifact-label">.flags.json — updated</div>
+        <div class="qs-artifact">{ "checkout_simplified_payment": { "state": "off", "owner": "PO", "cycle": 14, "deployed": "2026-03-24T14:32Z" } }</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Guardian produces the gate report</div>
+        <div class="qs-desc">All auto-tests pass. The Guardian synthesises results into exactly three paragraphs and surfaces them to the PO.</div>
+        <div class="qs-artifact-label">GATE_REPORT_cycle14.md</div>
+        <div class="qs-artifact">**What was built:** Checkout payment form simplified to single card-number
+field. Billing address capture moved to post-purchase confirmation screen.
+Order API updated to accept deferred address. All changes behind flag
+`checkout_simplified_payment` (currently OFF).
+
+**Signals:** 47 tests pass (0 failures). No secrets detected. Bundle delta
++2.1 KB (within budget). Lighthouse performance unchanged at 94. Estimated
+cost delta: negligible. Intent alignment: high — implementation matches
+the stated outcome of reducing friction at payment step.
+
+**Decision:** PASS. Recommend flipping `checkout_simplified_payment` ON
+and monitoring abandonment rate against the 12% target from CS-041.
+Proposed next cycle: add express checkout option (CS-038).</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">PO approves — flag ON</div>
+        <div class="qs-desc">PO reads three paragraphs, confirms client alignment, flips the flag. The feature is now live. Cycle 14 is closed.</div>
+        <div class="qs-artifact-label">.flags.json — updated</div>
+        <div class="qs-artifact">{ "checkout_simplified_payment": { "state": "on", "owner": "PO", "cycle": 14, "activated": "2026-03-24T15:05Z" } }</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">06</div>
+      <div class="qs-body">
+        <div class="qs-title">Monitor — 24 hours of real signals</div>
+        <div class="qs-desc">The PO watches abandonment rate. After 24 hours, the signal is clear: 9.4% abandonment — below the 12% target. The result is logged and feeds the next intent.</div>
+        <div class="qs-artifact-label">CLIENT_SIGNALS.md — new entry</div>
+        <div class="qs-artifact">## CS-041 — Resolution
+Cycle: 14 · Date: 2026-03-25
+Signal: Checkout abandonment at payment step reduced from 22% to 9.4%.
+Target was &lt;12%. Outcome achieved.
+Next opportunity: Express checkout (CS-038) — users still re-entering
+saved card data. Consider one-click payment for returning users.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:40px;padding:20px 24px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);letter-spacing:0.08em;margin-bottom:8px;">THAT'S ONE CYCLE. REPEAT.</div>
+    <p style="font-size:14px;color:var(--text2);line-height:1.7;">Intent → Decompose → Build → Gate → Flag ON → Monitor. No sprint planning, no standups, no story points. The artifacts carry the context. The agents carry the execution. The PO governs the outcome.</p>
   </div>
 </section>
 
