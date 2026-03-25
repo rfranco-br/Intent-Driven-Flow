@@ -97,5 +97,20 @@
       "All metrics sourced from existing artifacts — no new tooling required",
       "A13 added: Measure outcomes, not activity"
     ]
+  },
+  {
+    "version": "4.4",
+    "file": "idf-v4.4.html",
+    "date": "2026-03-25",
+    "title": "Narrative Reflow",
+    "description": "Reorders all sections to match a natural learning arc — principles before mechanics, cycle before structure — without changing any framework content.",
+    "highlights": [
+      "Section order redesigned: Why → Principles → Roles → Cycle → Structure → Rituals → Artifacts → Communication → Measurement",
+      "Axioms promoted to Section 02 — philosophical foundation before mechanics",
+      "Delivery Cycle promoted to Section 04 — see it in action before the supporting system",
+      "Axioms section gains framing intro: 'Before the mechanics, the invariants'",
+      "Structure section intro updated to acknowledge the reader has already seen the cycle",
+      "Reading guide updated: Sections 01–04 are foundation, 05–09 are reference"
+    ]
   }
 ]
