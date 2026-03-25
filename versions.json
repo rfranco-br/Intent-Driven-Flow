@@ -82,5 +82,20 @@
       "Section 03 intro: 'knowledge' → 'decision authority' (consistency with v4.1)",
       "Last Planner reference removed from Dependency Broker body text"
     ]
+  },
+  {
+    "version": "4.3",
+    "file": "idf-v4.3.html",
+    "date": "2026-03-25",
+    "title": "Measurement System",
+    "description": "Adds Section 09 with a minimum metric system: DORA four metrics reframed for IDF's flag-gated cycle model plus three IDF-native signals, all sourced from existing artifacts.",
+    "highlights": [
+      "New Section 09 — Measurement with 7 defined metrics",
+      "DORA four reframed: Cycle throughput, Intent-to-flag time, Flag-OFF response, Escape rate",
+      "IDF-native signals: Gate first-pass rate, Intent clarity rate, PO review time",
+      "Explicit anti-metrics: story points, velocity, burndown excluded by name",
+      "All metrics sourced from existing artifacts — no new tooling required",
+      "A13 added: Measure outcomes, not activity"
+    ]
   }
 ]
