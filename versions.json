@@ -55,5 +55,16 @@
       "Intent Correction and production fail paths shown in visual flow",
       "Last remaining 'Planner' reference fixed in Section 07 comm-card"
     ]
+  },
+  {
+    "version": "4.1",
+    "file": "idf-v4.1.html",
+    "date": "2026-03-25",
+    "title": "Authority vs Knowledge",
+    "description": "Corrects Principle 02 to distinguish layered decision authority from shared knowledge — agents already cross layers freely; what the framework enforces is accountability, not information siloing.",
+    "highlights": [
+      "Principle 02 reframed: 'Authority is layered, knowledge is shared'",
+      "Section 02 intro: 'distinct knowledge' → 'distinct decision authority'"
+    ]
   }
 ]
