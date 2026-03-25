@@ -126,5 +126,21 @@
       "Context Reset ritual: dead flag audit added to required output",
       "Tech Lead gains explicit ownership of dead flag cleanup"
     ]
+  },
+  {
+    "version": "5.0",
+    "file": "idf-v5.html",
+    "date": "2026-03-25",
+    "title": "Governance & Craft",
+    "description": "Promotes the v4.x series to a stable major release: corrected principles, teaching scaffolding, a full measurement system, redesigned narrative arc, and flags as agent context boundaries.",
+    "highlights": [
+      "Principle 02 corrected: authority is layered, knowledge is shared",
+      "Teaching layer: reading guide, role transition table, intent good/bad example",
+      "Section 09 — Measurement: DORA four reframed for IDF + three IDF-native signals",
+      "Narrative reflow: sections ordered as a learning arc (01–04 foundation, 05–09 reference)",
+      "A14: Flags-ON code plus current intent is the complete agent context",
+      "Feature flag lifecycle: Pending-OFF / Live-ON / Dead-OFF with context governance",
+      "14 operating axioms total"
+    ]
   }
 ]
