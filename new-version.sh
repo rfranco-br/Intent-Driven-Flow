@@ -52,10 +52,8 @@ echo "  Creating v${NEXT}.0 from v${LATEST}.0..."
 # ── Copy and update version references ───────────────────────
 cp "$LATEST_FILE" "$NEW_FILE"
 
-# Update version badge (e.g. "IDF · v1.0 · 2026" → "IDF · v2.0 · 2026")
+# Update version references (badge, title, back nav label)
 sed -i "s/IDF · v${LATEST}\.0/IDF · v${NEXT}.0/g" "$NEW_FILE"
-
-# Update <title> tag if it contains version
 sed -i "s/v${LATEST}\.0/v${NEXT}.0/g" "$NEW_FILE"
 
 echo "  Created: $NEW_FILE"
