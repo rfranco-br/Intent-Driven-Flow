@@ -66,5 +66,21 @@
       "Principle 02 reframed: 'Authority is layered, knowledge is shared'",
       "Section 02 intro: 'distinct knowledge' → 'distinct decision authority'"
     ]
+  },
+  {
+    "version": "4.2",
+    "file": "idf-v4.2.html",
+    "date": "2026-03-25",
+    "title": "Didactic Layer",
+    "description": "Adds teaching scaffolding for new adopters and trims verbose role descriptions, making the framework easier to learn without reducing its substance.",
+    "highlights": [
+      "Reading guide callout: learning path (01→03→06→08) and reference sections",
+      "Before-your-first-cycle checklist: 4 required artifacts named explicitly",
+      "Role transition table: current role → IDF role in 5 rows",
+      "Intent good/bad example added to PO card",
+      "Craft Engineer and Quality Advocate paragraphs trimmed to 2 sentences",
+      "Section 03 intro: 'knowledge' → 'decision authority' (consistency with v4.1)",
+      "Last Planner reference removed from Dependency Broker body text"
+    ]
   }
 ]
