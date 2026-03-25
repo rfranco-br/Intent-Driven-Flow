@@ -1,0 +1,30 @@
+[
+  {
+    "version": "1.0",
+    "file": "idf-v1.html",
+    "date": "2026-03-24",
+    "title": "Foundation",
+    "description": "Initial release establishing the core 8-section framework. Covers premise, layers, roles, rituals, artifacts, delivery cycle, communication patterns, and operating principles.",
+    "highlights": [
+      "8-section governance framework",
+      "4-layer model: Strategic, Product, Execution, Dependencies",
+      "10 operating axioms",
+      "Mermaid flow diagrams",
+      "Hello World cycle walkthrough",
+      "Escape Hatch / Intent Correction pattern"
+    ]
+  },
+  {
+    "version": "2.0",
+    "file": "idf-v2.html",
+    "date": "2026-03-25",
+    "title": "Human Craft Layer",
+    "description": "Redefines how developers and QA practitioners contribute in an agent-driven team. Introduces two new human roles that evolve — rather than replace — traditional craft.",
+    "highlights": [
+      "Craft Engineer role: governs how agents write code",
+      "Quality Advocate role: defines what good looks like",
+      "Craft Review ritual: human judgment pre-flag",
+      "Axiom A11: Agents amplify human craft, not replace it"
+    ]
+  }
+]
