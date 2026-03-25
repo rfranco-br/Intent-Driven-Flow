@@ -39,4 +39,4 @@ A static documentation site for the IDF (Intent Driven Flow) framework — a gov
 - Do not modify `index.html`, `nav.js`, or `new-version.sh` during a review cycle
 
 ## Available commands
-- `/review` — Run the Review Agent: reads latest version, critiques it, applies improvements, publishes a new version automatically
+- `/idf-review` — Run the Review Agent: reads latest version, critiques it, applies improvements, publishes a new version automatically
