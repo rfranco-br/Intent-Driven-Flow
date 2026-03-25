@@ -112,5 +112,19 @@
       "Structure section intro updated to acknowledge the reader has already seen the cycle",
       "Reading guide updated: Sections 01–04 are foundation, 05–09 are reference"
     ]
+  },
+  {
+    "version": "4.5",
+    "file": "idf-v4.5.html",
+    "date": "2026-03-25",
+    "title": "Flags as Context",
+    "description": "Formalizes feature flags as agent context boundaries: flags-ON code plus current intent is the complete context agents should reason about; dead flags are context pollution.",
+    "highlights": [
+      "A14: Flags-ON code plus current intent is the complete agent context",
+      "Feature flag registry: three lifecycle states (Pending-OFF, Live-ON, Dead-OFF)",
+      "Feature flag registry: dual purpose — deployment safety + agent context hygiene",
+      "Context Reset ritual: dead flag audit added to required output",
+      "Tech Lead gains explicit ownership of dead flag cleanup"
+    ]
   }
 ]
