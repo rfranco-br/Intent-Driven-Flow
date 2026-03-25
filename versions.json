@@ -42,5 +42,18 @@
       "Craft Review now visible in delivery cycle diagram",
       "Drift check cadence aligned between Section 02 and Section 04"
     ]
+  },
+  {
+    "version": "4.0",
+    "file": "idf-v4.html",
+    "date": "2026-03-25",
+    "title": "Cycle Flow Visual",
+    "description": "Restores the Mermaid cycle flow diagram from v1, updated to include Craft Review, Intent Correction, and production fail paths introduced in v2/v3.",
+    "highlights": [
+      "Mermaid cycle flow diagram restored and updated for v4 role model",
+      "Craft Review step added to cycle flow (Craft Eng + QA before PO gate)",
+      "Intent Correction and production fail paths shown in visual flow",
+      "Last remaining 'Planner' reference fixed in Section 07 comm-card"
+    ]
   }
 ]
