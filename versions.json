@@ -26,5 +26,21 @@
       "Craft Review ritual: human judgment pre-flag",
       "Axiom A11: Agents amplify human craft, not replace it"
     ]
+  },
+  {
+    "version": "3.0",
+    "file": "idf-v3.html",
+    "date": "2026-03-25",
+    "title": "Consistency & Governance",
+    "description": "Fixes naming inconsistencies, closes governance gaps in memory and gate authority, adds Escape Hatch pattern, and clarifies human decision boundaries throughout.",
+    "highlights": [
+      "Fixed Planner/Orchestrator naming inconsistency across all sections",
+      "Added Escape Hatch (intent correction) pattern to delivery cycle",
+      "Added A12: Agents write memory, humans govern it",
+      "Clarified Quality Advocate authority vs PO final gate call",
+      "Added PO backup/delegate guidance to prevent indefinite gate holds",
+      "Craft Review now visible in delivery cycle diagram",
+      "Drift check cadence aligned between Section 02 and Section 04"
+    ]
   }
 ]
