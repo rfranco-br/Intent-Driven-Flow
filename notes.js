@@ -80,8 +80,10 @@
 
   function syncAdminBtn() {
     const b = document.getElementById('idf-n-admin-btn');
-    if (b) b.className = isAdmin() ? 'active' : '';
-    b && (b.title = isAdmin() ? 'Admin mode ON — click to deactivate' : 'Admin access');
+    if (!b) return;
+    b.className = isAdmin() ? 'active' : '';
+    b.textContent = isAdmin() ? 'Admin ✓' : 'Admin';
+    b.title = isAdmin() ? 'Admin mode ON — click to deactivate' : 'Enter admin key to delete any note';
   }
 
   // ── STATE ──────────────────────────────────────────────────────────────────
@@ -327,13 +329,16 @@
 
     /* ── Admin button in panel header ── */
     #idf-n-admin-btn {
-      background:transparent; border:none;
-      color:#3a3a50; font-size:12px; cursor:pointer;
-      padding:0 4px; margin-right:2px; line-height:1;
-      transition:color .15s; flex-shrink:0;
+      background:transparent;
+      border:1px solid #3a3a50;
+      border-radius:4px;
+      color:#6a6878; font-size:10px; cursor:pointer;
+      padding:3px 8px; line-height:1;
+      font-family:'IBM Plex Mono',monospace; letter-spacing:.04em;
+      transition:color .15s, border-color .15s; flex-shrink:0;
     }
-    #idf-n-admin-btn:hover { color:#a8a6b4; }
-    #idf-n-admin-btn.active { color:#e8734a; }
+    #idf-n-admin-btn:hover { color:#a8a6b4; border-color:#6a6878; }
+    #idf-n-admin-btn.active { color:#e8734a; border-color:rgba(232,115,74,.5); }
 
     /* ── Delete button inside panel card ── */
     .idf-n-card-del {
@@ -674,7 +679,7 @@
   panel.innerHTML = `
     <div id="idf-n-panel-hdr">
       <span>Notes</span>
-      <button id="idf-n-admin-btn" title="Admin access">🔑</button>
+      <button id="idf-n-admin-btn" title="Enter admin key to delete any note">Admin</button>
       <button title="Close" id="idf-n-panel-x">✕</button>
     </div>
     <div id="idf-n-hint">
