@@ -142,5 +142,19 @@
       "Feature flag lifecycle: Pending-OFF / Live-ON / Dead-OFF with context governance",
       "14 operating axioms total"
     ]
+  },
+  {
+    "version": "6.0",
+    "file": "idf-v6.html",
+    "date": "2026-03-26",
+    "title": "Technology-Agnostic",
+    "description": "Rewrites IDF as a universal AI methodology: abstracts all tool-specific artifacts, defines roles by decision authority, renames Rituals to Signal Events, and adds a Context Debt Management section.",
+    "highlights": [
+      "Artifact names abstracted: CLAUDE.md → System Memory, .claude/skills/ → Capability Library, .flags.json → Feature Governance Registry",
+      "Roles redefined by decision authority: Orchestrator as Intent Translator/Decomposer, Builder as Execution Entity, Guardian as Automated Quality/Policy Governor",
+      "Section 06 renamed Rituals → Signal Events; Intent Injection and Context Reset formalized as named events",
+      "New Section 10: Context Debt Management — defines context pollution types and mandates audit checklist",
+      "Framework no longer assumes any specific AI toolchain — works with Claude, GPT-4, local LLMs, or custom agent swarms"
+    ]
   }
 ]
