@@ -114,7 +114,7 @@
       // Load notes system on version pages (not the index)
       if (!isIndex) {
         const ns = document.createElement('script');
-        ns.src = basePath + 'notes.js';
+        ns.src = basePath + 'notes.js?nc=' + Date.now();
         document.body.appendChild(ns);
       }
     });
