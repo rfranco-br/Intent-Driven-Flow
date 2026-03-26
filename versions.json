@@ -183,5 +183,19 @@
       "Removed casual language: colloquial time references, first-person plural, emotional framing",
       "manifesto-right color changed from var(--border2) to var(--text3) — readable but clearly secondary"
     ]
+  },
+  {
+    "version": "7.2",
+    "file": "idf-v7.2.html",
+    "date": "2026-03-26",
+    "title": "Values Refinement",
+    "description": "Renames Section 00 to Core Values, removes emojis and the Agile caveat, and rewrites the opening paragraph as a precise professional statement.",
+    "highlights": [
+      "Section 00 renamed from Manifesto to Core Values",
+      "h2 updated: 'What the framework prioritizes — and why it matters'",
+      "Opening paragraph rewritten: explicit value priorities, not aspirational statements",
+      "Emojis removed from all four value cards",
+      "Agile Manifesto caveat removed"
+    ]
   }
 ]
