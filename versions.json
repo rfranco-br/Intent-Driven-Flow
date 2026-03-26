@@ -197,5 +197,19 @@
       "Emojis removed from all four value cards",
       "Agile Manifesto caveat removed"
     ]
+  },
+  {
+    "version": "7.3",
+    "file": "idf-v7.3.html",
+    "date": "2026-03-26",
+    "title": "Redundancy Pass",
+    "description": "Removes repeated concepts across sections — same ideas stated once, in the right place, at the right depth.",
+    "highlights": [
+      "\"Agents execute, humans govern\" cut from Section 01 intro (canonical home: cover tagline + Principle 03)",
+      "Context Debt framing cut from Section 00 Value 2 and Section 07 Capability Library (canonical home: Section 10)",
+      "\"Every deploy behind a flag\" prose cut from Section 07 registry card (canonical home: Axiom A04)",
+      "\"Dead-OFF flags must be removed\" paragraph cut from Section 07 (canonical home: A14 + Section 10 checklist)",
+      "Orchestrator escalation-on-ambiguity explanation cut from Section 08 comm card (canonical home: A03 + Section 03 role card)"
+    ]
   }
 ]
