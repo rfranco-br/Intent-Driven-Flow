@@ -250,10 +250,10 @@
     .idf-n-hint-row {
       display:flex; align-items:center; gap:8px;
       font-family:'IBM Plex Mono',monospace; font-size:10px;
-      color:#3a3a50; line-height:1.5; letter-spacing:.03em;
+      color:#6a6878; line-height:1.5; letter-spacing:.03em;
     }
     .idf-n-hint-row .k {
-      color:#6a6878; flex-shrink:0; min-width:14px; text-align:center;
+      color:#a8a6b4; flex-shrink:0; min-width:14px; text-align:center;
     }
 
     /* ── Admin button in panel header ── */
