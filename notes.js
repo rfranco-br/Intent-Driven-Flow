@@ -92,80 +92,9 @@
   let pendingEl    = null;        // element staged for annotation
   let pendingCtx   = '';          // selected text that triggered the dialog
   let editingId    = null;        // note being edited
-  let activeTooltip = null;       // tooltip DOM node
 
   // ── CSS ────────────────────────────────────────────────────────────────────
   const STYLES = `
-    /* ── Note host ── */
-    .idf-n-host { position: relative !important; }
-
-    /* ── Corner-triangle indicator ── */
-    .idf-n-ind {
-      position: absolute; top: 0; right: 0;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 0 11px 11px 0;
-      border-color: transparent;
-      cursor: pointer;
-      z-index: 20;
-      transition: transform .12s;
-    }
-    .idf-n-ind:hover { transform: scale(1.5); }
-    /* Stack multiple indicators */
-    .idf-n-ind:nth-child(2) { right: 13px; }
-    .idf-n-ind:nth-child(3) { right: 26px; }
-    .idf-n-ind:nth-child(4) { right: 39px; }
-
-    /* ── Tooltip ── */
-    .idf-n-tip {
-      position: absolute; top: 14px; right: 0;
-      min-width: 220px; max-width: 300px;
-      background: #1a1a2a;
-      border: 1px solid #3a3a50;
-      border-radius: 8px;
-      padding: 12px 14px;
-      z-index: 500;
-      box-shadow: 0 8px 32px rgba(0,0,0,.55);
-      animation: idf-n-in .12s ease;
-      pointer-events: auto;
-    }
-    @keyframes idf-n-in {
-      from { opacity:0; transform:translateY(-4px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-    .idf-n-tip-row {
-      display:flex; align-items:center; gap:8px; margin-bottom:8px;
-    }
-    .idf-n-tip-dot {
-      width:8px; height:8px; border-radius:50%; flex-shrink:0;
-    }
-    .idf-n-tip-name {
-      font-family:'IBM Plex Mono',monospace; font-size:11px; color:#a8a6b4; letter-spacing:.04em;
-    }
-    .idf-n-tip-time {
-      font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6a6878; margin-left:auto;
-    }
-    .idf-n-tip-body {
-      font-family:'IBM Plex Sans',sans-serif; font-size:13px; color:#f0ede8;
-      line-height:1.5; white-space:pre-wrap; margin-bottom:6px;
-    }
-    .idf-n-tip-ctx {
-      font-size:11px; color:#6a6878; font-style:italic;
-      border-top:1px solid #2a2a3a; padding-top:6px; margin-top:4px;
-      overflow:hidden; display:-webkit-box;
-      -webkit-line-clamp:2; -webkit-box-orient:vertical; line-height:1.4;
-    }
-    .idf-n-tip-acts { display:flex; gap:6px; margin-top:10px; }
-    .idf-n-tip-btn {
-      font-family:'IBM Plex Mono',monospace; font-size:11px;
-      padding:4px 10px; border-radius:4px;
-      border:1px solid #3a3a50; background:transparent; color:#a8a6b4;
-      cursor:pointer; transition:background .12s, color .12s;
-    }
-    .idf-n-tip-btn:hover { background:#2a2a3a; color:#f0ede8; }
-    .idf-n-tip-btn.del  { border-color:rgba(232,115,74,.4); color:#e8734a; }
-    .idf-n-tip-btn.del:hover { background:rgba(232,115,74,.12); }
-
     /* ── Floating "Add note" button on text selection ── */
     #idf-n-sel-btn {
       position:fixed; display:none;
@@ -437,111 +366,10 @@
 
   // ── RENDER ─────────────────────────────────────────────────────────────────
   function render(notes) {
-    // Tear down previous render
-    document.querySelectorAll('.idf-n-ind').forEach(n => n.remove());
-    document.querySelectorAll('.idf-n-host').forEach(n => {
-      n.classList.remove('idf-n-host');
-      // Restore inline position only if we forced it
-      if (n.dataset.idfForcePos) { n.style.position = ''; delete n.dataset.idfForcePos; }
-    });
-
     allNotes = notes;
     updateBadge(Object.keys(notes).length);
     renderPanel(notes);
-
-    // Group by selector
-    const byEl = {};
-    for (const [id, n] of Object.entries(notes)) {
-      (byEl[n.selector] = byEl[n.selector] || []).push({ id, ...n });
-    }
-
-    for (const [sel, list] of Object.entries(byEl)) {
-      let el;
-      try { el = document.querySelector(sel); } catch (_) { continue; }
-      if (!el) continue;
-
-      el.classList.add('idf-n-host');
-      const cs = getComputedStyle(el).position;
-      if (cs === 'static') { el.style.position = 'relative'; el.dataset.idfForcePos = '1'; }
-
-      list.forEach(n => {
-        const tri = document.createElement('div');
-        tri.className = 'idf-n-ind';
-        tri.style.borderRightColor = n.userColor;
-        tri.title = n.userName + ': ' + n.note.slice(0, 60);
-        tri.dataset.id = n.id;
-        tri.addEventListener('mouseenter', e => showTip(e, n));
-        tri.addEventListener('mouseleave', () => setTimeout(maybeHideTip, 180));
-        tri.addEventListener('click', e => {
-          e.stopPropagation();
-          showTip(e, n, true);
-          if (!panel.classList.contains('open')) {
-            panel.classList.add('open');
-            const b = document.getElementById('idf-n-nav-btn');
-            if (b) b.className = 'on';
-          }
-        });
-        el.appendChild(tri);
-      });
-    }
   }
-
-  // ── TOOLTIP ────────────────────────────────────────────────────────────────
-  function showTip(e, note, sticky) {
-    hideTip();
-    const isOwn = note.userId === ME.id;
-    const tip = document.createElement('div');
-    tip.className = 'idf-n-tip';
-    tip.innerHTML =
-      `<div class="idf-n-tip-row">
-         <div class="idf-n-tip-dot" style="background:${note.userColor}"></div>
-         <span class="idf-n-tip-name">${esc(note.userName)}</span>
-         <span class="idf-n-tip-time">${relTime(note.createdAt)}</span>
-       </div>
-       <div class="idf-n-tip-body">${esc(note.note)}</div>
-       ${note.context ? `<div class="idf-n-tip-ctx">"${esc(note.context)}"</div>` : ''}
-       ${isOwn ? `<div class="idf-n-tip-acts">
-         <button class="idf-n-tip-btn" data-act="edit">Edit</button>
-         <button class="idf-n-tip-btn del" data-act="del">Delete</button>
-       </div>` : ''}`;
-
-    tip.addEventListener('mouseenter', () => { activeTooltip = tip; });
-    tip.addEventListener('mouseleave', () => { activeTooltip = null; hideTip(); });
-    tip.addEventListener('click', ev => {
-      const act = ev.target.dataset.act;
-      if (act === 'del') {
-        if (confirm('Delete this note?')) dbDelete(note.id);
-        hideTip();
-      } else if (act === 'edit') {
-        hideTip();
-        let anchor; try { anchor = document.querySelector(note.selector); } catch (_) {}
-        openDlg(anchor, note.context, note.id, note.note);
-      }
-    });
-
-    const host = e.target.closest('.idf-n-host') || e.target.parentNode;
-    host.appendChild(tip);
-
-    // Flip tooltip left if it overflows viewport right
-    const rect = tip.getBoundingClientRect();
-    if (rect.right > window.innerWidth - 16) {
-      tip.style.right = 'auto';
-      tip.style.left = '0';
-    }
-
-    activeTooltip = sticky ? tip : null;
-  }
-
-  function maybeHideTip() { if (!activeTooltip) hideTip(); }
-
-  function hideTip() {
-    document.querySelectorAll('.idf-n-tip').forEach(t => t.remove());
-    activeTooltip = null;
-  }
-
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.idf-n-tip') && !e.target.classList.contains('idf-n-ind')) hideTip();
-  });
 
   // ── DIALOG ─────────────────────────────────────────────────────────────────
   const dlg = document.createElement('div');
@@ -667,7 +495,7 @@
 
   document.addEventListener('click', e => {
     if (!e.altKey) return;
-    if (e.target.closest('#idf-n-panel,#idf-n-dlg,#idf-n-sel-btn,#idf-nav,.idf-n-ind')) return;
+    if (e.target.closest('#idf-n-panel,#idf-n-dlg,#idf-n-sel-btn,#idf-nav')) return;
     e.preventDefault();
     const el = nearestBlock(e.target);
     if (el) openDlg(el, el.textContent.trim().slice(0, 200));
@@ -685,7 +513,6 @@
     <div id="idf-n-hint">
       <div class="idf-n-hint-row"><span class="k">✏</span> Select any text, then click <strong style="color:#6a6878">Add note</strong></div>
       <div class="idf-n-hint-row"><span class="k">⌥</span> Alt + click any section or card</div>
-      <div class="idf-n-hint-row"><span class="k">▲</span> Click a corner triangle to read or edit</div>
       <div class="idf-n-hint-row"><span class="k">↩</span> Click a note here to scroll to it</div>
     </div>
     <div id="idf-n-panel-list">
