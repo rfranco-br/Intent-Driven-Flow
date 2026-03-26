@@ -56,7 +56,6 @@
   // ── STATE ──────────────────────────────────────────────────────────────────
   let db           = null;
   let allNotes     = {};          // { [noteId]: noteData }
-  let notesShown   = true;        // global visibility toggle
   let pendingEl    = null;        // element staged for annotation
   let pendingCtx   = '';          // selected text that triggered the dialog
   let editingId    = null;        // note being edited
@@ -379,8 +378,6 @@
     updateBadge(Object.keys(notes).length);
     renderPanel(notes);
 
-    if (!notesShown) return;
-
     // Group by selector
     const byEl = {};
     for (const [id, n] of Object.entries(notes)) {
@@ -404,7 +401,15 @@
         tri.dataset.id = n.id;
         tri.addEventListener('mouseenter', e => showTip(e, n));
         tri.addEventListener('mouseleave', () => setTimeout(maybeHideTip, 180));
-        tri.addEventListener('click', e => { e.stopPropagation(); showTip(e, n, true); });
+        tri.addEventListener('click', e => {
+          e.stopPropagation();
+          showTip(e, n, true);
+          if (!panel.classList.contains('open')) {
+            panel.classList.add('open');
+            const b = document.getElementById('idf-n-nav-btn');
+            if (b) b.className = 'on';
+          }
+        });
         el.appendChild(tri);
       });
     }
@@ -649,14 +654,14 @@
   function tryInjectNav() {
     if (document.getElementById('idf-n-nav-btn')) return;
     const inner = document.querySelector('#idf-nav .nav-inner');
-    if (!inner) { setTimeout(tryInjectNav, 80); return; }
+    // Wait until nav.js has finished rendering (brand link is the signal)
+    if (!inner || !inner.querySelector('.nav-brand')) { setTimeout(tryInjectNav, 80); return; }
 
     const btn = document.createElement('button');
     btn.id = 'idf-n-nav-btn';
-    btn.className = notesShown ? 'on' : '';
-    btn.title = 'Toggle notes visibility';
-    btn.innerHTML = (notesShown ? 'Hide notes' : 'Show notes') +
-      ' <span id="idf-n-badge" class="idf-n-nav-badge">0</span>';
+    btn.className = 'on'; // panel starts open
+    btn.title = 'Toggle notes panel';
+    btn.innerHTML = 'Notes <span id="idf-n-badge" class="idf-n-nav-badge">0</span>';
     btn.addEventListener('click', toggleNotes);
     inner.appendChild(btn);
   }
@@ -667,22 +672,13 @@
   }
 
   function toggleNotes() {
-    notesShown = !notesShown;
+    const isOpen = panel.classList.toggle('open');
     const btn = document.getElementById('idf-n-nav-btn');
     if (btn) {
-      btn.className = notesShown ? 'on' : '';
-      // Preserve badge span
+      btn.className = isOpen ? 'on' : '';
       const count = Object.keys(allNotes).length;
-      btn.innerHTML = (notesShown ? 'Hide notes' : 'Show notes') +
-        ` <span id="idf-n-badge" class="idf-n-nav-badge">${count}</span>`;
+      btn.innerHTML = `Notes <span id="idf-n-badge" class="idf-n-nav-badge">${count}</span>`;
       btn.addEventListener('click', toggleNotes);
-    }
-    if (notesShown) {
-      panel.classList.add('open');
-      render(allNotes);
-    } else {
-      panel.classList.remove('open');
-      render(allNotes); // re-render without indicators
     }
   }
 
