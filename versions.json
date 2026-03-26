@@ -171,5 +171,17 @@
       "Responding to better information over following the original plan",
       "Classic Agile caveat preserved; cover origin updated to reference Agile values lineage"
     ]
+  },
+  {
+    "version": "7.1",
+    "file": "idf-v7.1.html",
+    "date": "2026-03-26",
+    "title": "Manifesto Voice",
+    "description": "Rewrites the four manifesto card descriptions to match IDF's authoritative voice; fixes manifesto-right color from near-invisible to readable.",
+    "highlights": [
+      "Manifesto card body text rewritten in IDF's precise, declarative style",
+      "Removed casual language: colloquial time references, first-person plural, emotional framing",
+      "manifesto-right color changed from var(--border2) to var(--text3) — readable but clearly secondary"
+    ]
   }
 ]
