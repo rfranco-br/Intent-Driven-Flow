@@ -703,6 +703,7 @@
 
   // ── BOOT ───────────────────────────────────────────────────────────────────
   tryInjectNav();
+  panel.classList.add('open');
   loadFirebase(database => {
     if (!database) return;
     dbSubscribe(notes => render(notes));
