@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intent Driven Flow Framework v7.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c14;
+    --surface: #13131e;
+    --surface2: #1a1a2a;
+    --border: #2a2a3a;
+    --border2: #3a3a50;
+    --text: #f0ede8;
+    --text2: #a8a6b4;
+    --text3: #6a6878;
+    --coral: #e8734a;
+    --coral2: #f0956e;
+    --purple: #7c5cbf;
+    --purple2: #9b7fd4;
+    --teal: #3a9e78;
+    --teal2: #5bbf95;
+    --blue: #4a7abf;
+    --blue2: #6b99d4;
+    --amber: #bf8f3a;
+    --amber2: #d4a85b;
+    --green: #5a9e4a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,115,74,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,92,191,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text2);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+    width: fit-content;
+  }
+
+  .version-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 700px;
+    margin-bottom: 32px;
+  }
+
+  .cover-title span { color: var(--coral); }
+
+  .cover-tagline {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 64px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+
+  .cover-meta-item label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .cover-meta-item span {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 80px;
+  }
+
+  section {
+    padding: 80px 80px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 16px;
+  }
+
+  p { color: var(--text2); margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── PRINCIPLES ── */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .principle-card {
+    background: var(--surface);
+    padding: 32px 28px;
+    position: relative;
+  }
+
+  .principle-card:nth-child(4),
+  .principle-card:nth-child(5),
+  .principle-card:nth-child(6) {
+    border-top: 2px solid var(--bg);
+  }
+
+  .principle-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--border2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .principle-card h3 { font-size: 15px; margin-bottom: 8px; }
+  .principle-card p { font-size: 13px; line-height: 1.6; }
+
+  /* ── MANIFESTO ── */
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .manifesto-card {
+    background: var(--surface);
+    padding: 32px 28px;
+  }
+  .manifesto-card:nth-child(3),
+  .manifesto-card:nth-child(4) { border-top: 2px solid var(--bg); }
+  .manifesto-emoji { font-size: 22px; margin-bottom: 14px; display: block; }
+  .manifesto-vs {
+    display: flex; align-items: baseline; flex-wrap: wrap;
+    gap: 8px; margin-bottom: 10px;
+  }
+  .manifesto-left {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 600; color: var(--text);
+  }
+  .manifesto-over {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--text3);
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 0 2px;
+  }
+  .manifesto-right {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 600; color: var(--border2);
+  }
+  .manifesto-card p { font-size: 13px; color: var(--text2); line-height: 1.6; margin: 0; }
+  .manifesto-caveat {
+    margin-top: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; color: var(--text3); font-style: italic;
+  }
+
+  /* ── LAYERS ── */
+  .layers-overview {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    gap: 0;
+    position: relative;
+  }
+
+  .layers-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .client-column {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .layer-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 3px;
+  }
+
+  .layer-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface2);
+    border-radius: 6px;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 16px 8px;
+  }
+
+  .layer-label.strategic { color: var(--purple2); border-left: 3px solid var(--purple); }
+  .layer-label.product { color: var(--teal2); border-left: 3px solid var(--teal); }
+  .layer-label.execution { color: var(--blue2); border-left: 3px solid var(--blue); }
+  .layer-label.dependency { color: var(--amber2); border-left: 3px solid var(--amber); }
+
+  .layer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3px;
+  }
+
+  .layer-cell {
+    background: var(--surface);
+    padding: 20px 20px;
+    border-radius: 6px;
+  }
+
+  .layer-cell h4 { margin-bottom: 10px; }
+
+  .layer-cell ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .layer-cell li {
+    font-size: 13px;
+    color: var(--text2);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+
+  .layer-cell li::before {
+    content: '—';
+    color: var(--text3);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .role-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+  }
+
+  .role-tag.human { background: rgba(124,92,191,0.15); color: var(--purple2); border: 1px solid rgba(124,92,191,0.3); }
+  .role-tag.agent { background: rgba(74,122,191,0.15); color: var(--blue2); border: 1px solid rgba(74,122,191,0.3); }
+  .role-tag.artifact { background: rgba(191,143,58,0.15); color: var(--amber2); border: 1px solid rgba(191,143,58,0.3); }
+
+  /* ── ROLES FULL ── */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .role-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .role-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .role-card h3 { margin-bottom: 0; }
+
+  .role-card p { font-size: 14px; margin-bottom: 12px; }
+
+  .role-attribute {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+
+  .role-attribute-key {
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+    min-width: 80px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  .role-attribute-val { color: var(--text2); line-height: 1.5; }
+
+  /* ── RITUALS ── */
+  .rituals-table {
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .rituals-header {
+    display: grid;
+    grid-template-columns: 200px 140px 1fr 1fr;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    gap: 24px;
+  }
+
+  .rituals-header span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  .ritual-row {
+    display: grid;
+    grid-template-columns: 200px 140px 1fr 1fr;
+    padding: 20px 24px;
+    gap: 24px;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .ritual-row:last-child { border-bottom: none; }
+
+  .ritual-name {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .ritual-cadence {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text3);
+    padding-top: 2px;
+  }
+
+  .ritual-trigger, .ritual-output {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .layer-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .dot-strategic { background: var(--purple); }
+  .dot-product { background: var(--teal); }
+  .dot-execution { background: var(--blue); }
+  .dot-dependency { background: var(--amber); }
+  .dot-cross { background: var(--coral); }
+
+  /* ── ARTIFACTS ── */
+  .artifacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3px;
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .artifact-card {
+    background: var(--surface);
+    padding: 28px 24px;
+  }
+
+  .artifact-card h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .artifact-filename {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .artifact-card p { font-size: 13px; line-height: 1.55; }
+
+  .artifact-owner {
+    margin-top: 12px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text3);
+  }
+
+  /* ── SDLC ── */
+  .sdlc-diagram {
+    margin-top: 48px;
+  }
+
+  /* ── FLOW ── */
+  .flow-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+
+  .flow-cell {
+    background: var(--surface);
+    border-radius: 6px;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+
+  .flow-cell .step-name {
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .flow-cell .step-sub {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .flow-cell.highlight-plan { border-top: 2px solid var(--purple); }
+  .flow-cell.highlight-build { border-top: 2px solid var(--blue); }
+  .flow-cell.highlight-test { border-top: 2px solid var(--teal); }
+  .flow-cell.highlight-deploy { border-top: 2px solid var(--amber); }
+  .flow-cell.highlight-monitor { border-top: 2px solid var(--coral); }
+
+  /* ── CLIENT BAR ── */
+  .client-bar {
+    background: linear-gradient(90deg, rgba(232,115,74,0.08) 0%, rgba(232,115,74,0.03) 100%);
+    border: 1px solid rgba(232,115,74,0.2);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .client-bar-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--coral);
+    white-space: nowrap;
+  }
+
+  .client-bar p {
+    font-size: 14px;
+    color: var(--text2);
+    margin: 0;
+  }
+
+  /* ── PRINCIPLES SUMMARY ── */
+  .axioms {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .axiom {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    background: var(--surface);
+    padding: 20px 24px;
+    gap: 16px;
+    align-items: center;
+    border-bottom: 1px solid var(--bg);
+  }
+
+  .axiom:last-child { border-bottom: none; }
+
+  .axiom-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+  }
+
+  .axiom-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .axiom-text strong {
+    color: var(--coral);
+    font-weight: 500;
+  }
+
+  /* ── COMM MATRIX ── */
+  .comm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .comm-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .comm-direction {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .comm-from, .comm-to {
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  .comm-from { background: var(--surface2); color: var(--text2); }
+  .comm-to { background: var(--surface2); color: var(--text2); }
+
+  .comm-arrow {
+    color: var(--coral);
+    font-size: 16px;
+  }
+
+  .comm-card p { font-size: 13px; color: var(--text2); }
+
+  .comm-payload {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--bg);
+    border-radius: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.8;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── MERMAID DIAGRAMS ── */
+  .mermaid-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-wrap .diagram-label {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .mermaid svg { max-width: 100%; }
+
+  @media print {
+    body { background: white; color: #111; }
+    .cover { min-height: auto; padding: 60px; }
+    section { break-inside: avoid; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { background: '#13131e', primaryColor: '#1a1a2a', primaryTextColor: '#f0ede8', primaryBorderColor: '#3a3a50', lineColor: '#6a6878', edgeLabelBackground: '#13131e', tertiaryColor: '#13131e' } });</script>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="cover">
+  <div class="version-badge">IDF · v7.0 · 2026</div>
+  <h1 class="cover-title">Intent<br>Driven<br><span>Flow</span><br>Framework</h1>
+  <p class="cover-tagline">A multi-layer delivery framework for AI-assisted teams where agents execute and humans govern — tool-agnostic, outcome-driven, and built for iteration cycles measured in hours.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Designed for</label><span>Any team using AI-assisted execution</span></div>
+    <div class="cover-meta-item"><label>Cadence</label><span>Hours per cycle, not weeks per sprint</span></div>
+    <div class="cover-meta-item"><label>Origin</label><span>Built on Agile values, redesigned for AI-assisted execution</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MANIFESTO ═══════════════════ -->
+<section>
+  <div class="section-label">00 — Manifesto</div>
+  <h2>Values over process. Always.</h2>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">IDF is built on the same conviction that created Agile: shared values matter more than any process document. These four values are the soul of this framework. Every role, signal event, and artifact that follows is a mechanical answer to the same question — what does it look like, in practice, to honor them?</p>
+
+  <div class="manifesto-grid">
+    <div class="manifesto-card">
+      <span class="manifesto-emoji">🧠</span>
+      <div class="manifesto-vs">
+        <span class="manifesto-left">Human judgment</span>
+        <span class="manifesto-over">over</span>
+        <span class="manifesto-right">automated execution</span>
+      </div>
+      <p>AI is fast, but it has no soul. A human with a great idea is always more important than the tool they use to build it.</p>
+    </div>
+    <div class="manifesto-card">
+      <span class="manifesto-emoji">✅</span>
+      <div class="manifesto-vs">
+        <span class="manifesto-left">Functioning systems and clean context</span>
+        <span class="manifesto-over">over</span>
+        <span class="manifesto-right">comprehensive documentation</span>
+      </div>
+      <p>We want the app to work — and we need to keep the AI sharp. A messy System Memory is a broken team.</p>
+    </div>
+    <div class="manifesto-card">
+      <span class="manifesto-emoji">🤝</span>
+      <div class="manifesto-vs">
+        <span class="manifesto-left">User outcomes</span>
+        <span class="manifesto-over">over</span>
+        <span class="manifesto-right">process compliance</span>
+      </div>
+      <p>Our job is to solve the user's problem, not to win an argument about what we said we'd do three weeks ago.</p>
+    </div>
+    <div class="manifesto-card">
+      <span class="manifesto-emoji">🔄</span>
+      <div class="manifesto-vs">
+        <span class="manifesto-left">Responding to better information</span>
+        <span class="manifesto-over">over</span>
+        <span class="manifesto-right">following the original plan</span>
+      </div>
+      <p>If a better path appears at 2 PM, take it. We don't wait for Monday's meeting to ask permission.</p>
+    </div>
+  </div>
+
+  <p class="manifesto-caveat">That is, while there is value in the items on the right, we value the items on the left more.</p>
+</section>
+
+<!-- ═══════════════════ PREMISE ═══════════════════ -->
+<section>
+  <div class="section-label">01 — Why this exists</div>
+  <h2>Traditional agile was built for human bandwidth. This isn't.</h2>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">Every section that follows is a mechanical answer to the same question: what does it look like, in practice, to honor those four values? Scrum and Kanban are brilliant solutions to specifically human problems: memory decay, context-switching cost, estimation bias, coordination overhead. Strip out the human constraints and the rituals lose their reason. What remains is the <em>intent</em> behind them — shared understanding, quality protection, drift prevention, and fast feedback. IDF preserves that intent while redesigning the mechanisms for a world where agents execute and humans govern.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;">
+    <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.15);border-radius:8px;padding:20px 24px;">
+      <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:10px;letter-spacing:0.08em;">READING ORDER — NEW TO IDF</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.8;"><strong style="color:var(--text);">Sections 01–04</strong> are your foundation: why, principles, roles, and one complete cycle.<br><strong style="color:var(--text);">Sections 05–10</strong> are your reference layer — return when you need them.</div>
+    </div>
+    <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.15);border-radius:8px;padding:20px 24px;">
+      <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:10px;letter-spacing:0.08em;">BEFORE YOUR FIRST CYCLE</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.8;">Four artifacts must exist before you run cycle 1:<br><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral);">SYSTEM_MEMORY · CLIENT_SIGNALS · TRUE_NORTH · FEATURE_GOVERNANCE_REGISTRY</span></div>
+    </div>
+  </div>
+
+  <div class="principles-grid" style="margin-top:32px;">
+    <div class="principle-card">
+      <div class="principle-number">01</div>
+      <h3>Client is the north star</h3>
+      <p>Every decision at every layer must trace a clear line back to a client outcome. Features are not the unit of value — outcomes are.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">02</div>
+      <h3>Authority is layered, knowledge is shared</h3>
+      <p>Strategy, product, and technical decisions belong to separate layers — not because people shouldn't understand other layers, but because diffuse authority creates accountability gaps. Artifacts make every layer's knowledge available to everyone who needs it, human or agent.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">03</div>
+      <h3>Agents execute, humans govern</h3>
+      <p>Agents handle all task decomposition, building, testing, and review synthesis. Humans set direction, approve gates, and resolve ambiguity.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">04</div>
+      <h3>Rhythm is completion-triggered</h3>
+      <p>Cycles end at the gate, not on Friday. Calendar cadence is replaced by event cadence — work flows continuously, not in batches.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">05</div>
+      <h3>Memory is an artifact, not a meeting</h3>
+      <p>Continuity between sessions and between teams lives in maintained files, not in standup summaries or people's heads.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">06</div>
+      <h3>Dependencies are surfaced, not scheduled</h3>
+      <p>Cross-team coordination happens when a dependency is detected, not at a weekly sync. Speed requires real-time signal flow between teams.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ AXIOMS ═══════════════════ -->
+<section>
+  <div class="section-label">02 — Operating principles</div>
+  <h2>The rules that govern everything</h2>
+  <p style="max-width:640px;">Before the mechanics, the invariants. These 14 axioms are the decisions that are not subject to team preference — they are what makes IDF IDF rather than a loose collection of practices. Read them once before going further. Return when something feels wrong; the answer is usually here.</p>
+
+  <div class="axioms">
+    <div class="axiom"><span class="axiom-num">A01</span><span class="axiom-text"><strong>Intent, not tasks.</strong> Humans express outcomes. Agents derive tasks. Any human writing a detailed task list is doing the Orchestrator's job and slowing the system down.</span></div>
+    <div class="axiom"><span class="axiom-num">A02</span><span class="axiom-text"><strong>Client first, always.</strong> Before any gate is approved, the PO must be able to answer: "How does this serve the client?" If the answer is unclear, the gate fails regardless of technical quality.</span></div>
+    <div class="axiom"><span class="axiom-num">A03</span><span class="axiom-text"><strong>Agents escalate ambiguity, they never resolve it by guessing.</strong> An agent that guesses on unclear intent will be confidently wrong. Escalation to the appropriate human is always the correct response to ambiguity.</span></div>
+    <div class="axiom"><span class="axiom-num">A04</span><span class="axiom-text"><strong>Every deploy is behind a flag.</strong> No exception. This is the single practice that eliminates rollback anxiety and enables continuous deployment without continuous exposure risk.</span></div>
+    <div class="axiom"><span class="axiom-num">A05</span><span class="axiom-text"><strong>The Capability Library is the institutional memory.</strong> If a convention isn't in a capability file, it doesn't exist for the next agent session. Knowledge that lives only in people's heads creates dependency on those people.</span></div>
+    <div class="axiom"><span class="axiom-num">A06</span><span class="axiom-text"><strong>Layer boundaries are hard.</strong> The PO does not write code constraints. Tech Leads do not prioritise features. Stakeholders do not manage cycles. Crossing layer boundaries signals a broken process, not a capable person.</span></div>
+    <div class="axiom"><span class="axiom-num">A07</span><span class="axiom-text"><strong>Velocity is features shipped per day, not story points per sprint.</strong> The measure of the framework's health is how frequently value reaches the client — not how accurately the team estimates effort.</span></div>
+    <div class="axiom"><span class="axiom-num">A08</span><span class="axiom-text"><strong>Drift is normal. Undetected drift is failure.</strong> Every system drifts from original intent over time. The framework's job is not to prevent drift — it's to detect it early and correct it before it compounds.</span></div>
+    <div class="axiom"><span class="axiom-num">A09</span><span class="axiom-text"><strong>Dependencies are surfaced in real time, not managed in weekly meetings.</strong> The dependency broker operates continuously. By the time a team is blocked, the broker has already initiated resolution.</span></div>
+    <div class="axiom"><span class="axiom-num">A10</span><span class="axiom-text"><strong>The Guardian's gate report is the maximum cognitive load the PO should carry per cycle.</strong> If reviewing a cycle requires more than three paragraphs, the Guardian has failed its role, not the PO.</span></div>
+    <div class="axiom"><span class="axiom-num">A11</span><span class="axiom-text"><strong>Agents amplify human craft — they don't replace it.</strong> The Craft Engineer's judgment is encoded in capability files. The Quality Advocate's judgment is encoded in gate criteria. When that judgment is absent, agents execute in a vacuum and amplify nothing. The quality of the system's output is a direct function of the quality of the human craft poured into it.</span></div>
+    <div class="axiom"><span class="axiom-num">A12</span><span class="axiom-text"><strong>Agents write memory; humans govern it.</strong> The Orchestrator updates System Memory. The Tech Lead validates it at every Context Reset. An instruction file written and read only by agents, with no human review loop, is ungoverned automation. Governance of memory is as important as governance of deployment.</span></div>
+    <div class="axiom"><span class="axiom-num">A13</span><span class="axiom-text"><strong>Measure outcomes, not activity.</strong> Cycle throughput, intent-to-flag time, and escape rate tell you if the system is healthy. Story points, commit counts, and hours worked do not. Effort is what agents absorb. Value is what the client receives. Only the second one belongs on a dashboard.</span></div>
+    <div class="axiom"><span class="axiom-num">A14</span><span class="axiom-text"><strong>Flags-ON code plus current intent is the complete agent context.</strong> Flags-OFF code is either pending (will be released) or dead (abandoned). It is not part of the system agents should reason about. Dead flags that persist in the codebase and in System Memory silently expand the context surface and increase the probability of agent drift. Pruning dead flags and their memory entries is not housekeeping — it is context governance.</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ROLES ═══════════════════ -->
+<section>
+  <div class="section-label">03 — Roles</div>
+  <h2>Who does what — and why</h2>
+  <p style="max-width:640px;">Roles are defined by the decisions they own, not by the tasks they perform or the tools they use. The critical design principle: no role holds decision authority that belongs to another layer. Developers and QAs don't disappear in IDF — they evolve. Craft Engineers and Quality Advocates are what those roles become when agents handle execution: practitioners who govern quality rather than produce output directly.</p>
+
+  <div style="margin-top:32px;margin-bottom:40px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-bottom:1px solid var(--border);padding:12px 24px;gap:24px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">If you are currently...</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">In IDF you become...</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
+      <span style="font-size:13px;color:var(--text2);">Developer / Engineer</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Craft Engineer</strong> — governs how agents write code</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
+      <span style="font-size:13px;color:var(--text2);">QA Engineer / Tester</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Quality Advocate</strong> — defines what good looks like</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
+      <span style="font-size:13px;color:var(--text2);">Product Manager / PO</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Product Owner</strong> — writes intent, approves gates</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
+      <span style="font-size:13px;color:var(--text2);">Tech Lead / Architect</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Architect</strong> — sets guardrails, owns the Capability Library</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;background:var(--surface);">
+      <span style="font-size:13px;color:var(--text2);">Manager / Director</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Stakeholder</strong> — sets strategic direction, owns True North</span>
+    </div>
+  </div>
+
+  <div class="roles-grid">
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <h3>Stakeholders &amp; Business</h3>
+        <span class="role-tag human">human</span>
+      </div>
+      <p>Hold the portfolio horizon, strategic intent, and investment decisions. Do not manage features or sprints — they set the direction within which product decisions are made.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">True north, portfolio map, cross-team priorities</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Interfaces</span><span class="role-attribute-val">PO (downward), dependency broker (cross-team)</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Touch points</span><span class="role-attribute-val">North star sync, portfolio review, escalations</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <h3>Product Owner</h3>
+        <span class="role-tag human">human</span>
+      </div>
+      <p>The translation layer. Holds simultaneous understanding of client needs, business constraints, and current strategic priorities. The PO's primary output is cycle intent — a clear statement of desired outcome that agents can execute against.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Client signal log, cycle intent, gate approval</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Interfaces</span><span class="role-attribute-val">Stakeholders (up), Orchestrator (down), clients (lateral)</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Writing intent as client outcomes, not feature descriptions</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Intent eg.</span><span class="role-attribute-val"><span style="color:var(--teal2);">Good: "Users can log in and reach their dashboard without friction"</span><br><span style="color:var(--text3);">Not: "Add a login button to the homepage"</span></span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Backup</span><span class="role-attribute-val">A named delegate (in System Memory) holds gate authority when PO is away. No delegate = cycle holds at Deploy.</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <h3>Architects &amp; Tech Leads</h3>
+        <span class="role-tag human">human</span>
+      </div>
+      <p>Define and maintain the technical guardrails that agents work within. They do not build features — they own the conventions, constraints, and capability files that shape how the team builds everything.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Capability Library, System Memory conventions, tech constraints</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Interfaces</span><span class="role-attribute-val">Builder agents (via capabilities), Guardian (via gate criteria)</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Translating architectural decisions into capability files, not tickets</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <div>
+          <h3>Orchestrator</h3>
+          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-top:4px;letter-spacing:0.06em;">Intent Translator / Decomposer</div>
+        </div>
+        <span class="role-tag agent">agent</span>
+      </div>
+      <p>Receives cycle intent from the PO and decomposes it into a sequenced task list. Routes tasks to the correct Builder agents based on domain, tracks in-flight work, and updates System Memory at cycle close.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Reads</span><span class="role-attribute-val">System Memory, Capability Library, cycle intent statement</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Task list, routing decisions, memory updates</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Fails when</span><span class="role-attribute-val">Intent is ambiguous — escalates to PO rather than guessing</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <div>
+          <h3>Builder(s)</h3>
+          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-top:4px;letter-spacing:0.06em;">Execution Entity</div>
+        </div>
+        <span class="role-tag agent">agent</span>
+      </div>
+      <p>Execute individual tasks. Can be a single agent, a swarm of specialized agents, or human-assisted execution — the framework makes no assumption about the underlying AI toolchain. Each Builder reads the relevant capability files before starting, produces code and tests as a single unit, and operates without state between tasks. Multiple Builders can run in parallel on independent tasks within the same cycle.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Reads</span><span class="role-attribute-val">Task brief, domain capability file, System Memory</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Code + tests, wrapped in a feature flag by default</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Constraint</span><span class="role-attribute-val">Stateless — no opinion carried between tasks or cycles</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <div>
+          <h3>Guardian</h3>
+          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-top:4px;letter-spacing:0.06em;">Automated Quality / Policy Governor</div>
+        </div>
+        <span class="role-tag agent">agent</span>
+      </div>
+      <p>Reviews Builder output against the gate criteria before it reaches the PO. Runs security, performance, and cost signals. Produces a short, human-readable gate report with a clear pass / flag / fail signal. The Guardian is what makes the PO's gate review manageable.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Checks</span><span class="role-attribute-val">Tests pass, sec scan clean, perf budget, cost delta, client impact</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Gate report (≤3 paragraphs), next-cycle suggestion</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Escalates</span><span class="role-attribute-val">Architectural concerns to Craft Engineer, dependency conflicts to broker</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <h3>Craft Engineer</h3>
+        <span class="role-tag human">human</span>
+      </div>
+      <p>A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Capability Library quality, agent training, craft standards</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Capability file updates, pattern escalations, craft annotations on gate reports</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Also handles</span><span class="role-attribute-val">Genuinely novel architectural problems and deep environmental issues agents cannot resolve</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Noticing "the Builder keeps solving this wrong" and encoding the fix into a capability file — not fixing it manually each time</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <h3>Quality Advocate</h3>
+        <span class="role-tag human">human</span>
+      </div>
+      <p>A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify — and validates each deploy as a real user before the flag turns ON.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Acceptance criteria, gate criteria, exploratory validation pre-flag</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Gate criteria updates, quality signals to client signal log, flag-ON recommendation</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Catches</span><span class="role-attribute-val">Flows that are technically correct but humanly confusing — the class of problem no automated test finds</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Encoding discovered issues into gate criteria, so the Guardian catches the same class of problem automatically next cycle</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Authority</span><span class="role-attribute-val">Advisory — PO holds final gate authority. PO overrides must be documented. Repeated overrides signal a process problem.</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <h3>Dependency Broker</h3>
+        <span class="role-tag agent">agent</span>
+      </div>
+      <p>Monitors cross-team signals. When a team's Orchestrator detects a cross-team need during decomposition, the broker routes the request, notifies affected POs, and tracks resolution. Escalates to stakeholder level if a blocker persists beyond one cycle.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Monitors</span><span class="role-attribute-val">All Orchestrator task lists and cycle plans across teams in scope</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Dependency alerts, blocker log, handoff checklists</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Key value</span><span class="role-attribute-val">Teams don't wait — they work around while the broker resolves</span></div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <h3>Client</h3>
+        <span class="role-tag human">human</span>
+      </div>
+      <p>Not a workflow participant, but the ultimate measure of all decisions. The PO captures client signals continuously — feedback, usage data, support patterns — and feeds them into the client signal log. Every layer uses this log as a reality check.</p>
+      <div class="role-attribute"><span class="role-attribute-key">Provides</span><span class="role-attribute-val">Real needs, usage signals, feedback, priority by behaviour</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Represented by</span><span class="role-attribute-val">PO (in cycle intent), Guardian (in gate review)</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Validated by</span><span class="role-attribute-val">Feature flag rollout, usage metrics post-deploy</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ SDLC ═══════════════════ -->
+<section>
+  <div class="section-label">04 — The delivery cycle</div>
+  <h2>Plan to monitor — one cycle</h2>
+  <p style="max-width:640px;">Each cycle is a complete, self-contained unit of delivery. A cycle begins with intent and ends with a monitored, flag-controlled release. Cycles are not time-boxed — they are completion-triggered. A simple feature may complete in 2 hours. A complex one may span multiple sub-cycles with intermediate gates.</p>
+
+  <div class="sdlc-diagram">
+    <div class="flow-row" style="margin-bottom:24px;">
+      <div class="flow-cell highlight-plan">
+        <div class="step-name">Plan</div>
+        <div class="step-sub">Orchestrator</div>
+      </div>
+      <div class="flow-cell highlight-build">
+        <div class="step-name">Build</div>
+        <div class="step-sub">Builder(s)</div>
+      </div>
+      <div class="flow-cell highlight-test">
+        <div class="step-name">Auto-test</div>
+        <div class="step-sub">Guardian</div>
+      </div>
+      <div class="flow-cell highlight-deploy">
+        <div class="step-name">Deploy</div>
+        <div class="step-sub">flag OFF</div>
+      </div>
+      <div class="flow-cell highlight-monitor">
+        <div class="step-name">Monitor</div>
+        <div class="step-sub">flag ON</div>
+      </div>
+    </div>
+
+    <!-- Detail rows -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;">
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO intent statement<br>System Memory<br>Capability Library<br>True north doc</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Task from Orchestrator<br>Domain capability file<br>System Memory</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">CHECKS</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Unit + integration tests<br>Lint + type check<br>Secrets scan<br>Bundle budget<br>Lighthouse score<br>Cost delta estimate</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">GATE</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">All checks pass<br>Guardian report ready<br><span style="color:var(--purple2);">Craft Engineer reviews</span><br><span style="color:var(--purple2);">QA Advocate validates</span><br>PO reads + approves<br>Flag stays OFF<br>Live on server</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">SIGNALS</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO flips flag ON<br>Error rates<br>Perf metrics<br>Usage patterns<br>Client feedback<br>Cost actuals</div>
+      </div>
+
+      <!-- output row -->
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Sequenced task list<br>Dependency signals to broker</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Code + tests committed<br>Feature flag created<br>Flag set to OFF</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Gate report (pass/fail)<br>Fix instructions (on fail)<br>Loop back to Builder</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Preview URL for PO<br>Gate report surfaced<br>Awaiting approval</div>
+      </div>
+
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Signals → client log<br>System Memory updated<br>Intent log entry<br>↻ next cycle begins</div>
+      </div>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
+      <div style="background:rgba(232,115,74,0.08);border:1px solid rgba(232,115,74,0.2);border-radius:8px;padding:16px 20px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:6px;letter-spacing:0.08em;">FAIL PATH — auto-test</div>
+        <div style="font-size:13px;color:var(--text2);">Guardian reports failure → Orchestrator re-plans with failure context → Builder fixes → auto-test reruns. PO is not involved.</div>
+      </div>
+      <div style="background:rgba(168,166,180,0.06);border:1px solid rgba(168,166,180,0.15);border-radius:8px;padding:16px 20px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:6px;letter-spacing:0.08em;">FAIL PATH — production</div>
+        <div style="font-size:13px;color:var(--text2);">Issue detected in monitor → PO flips flag OFF instantly → Guardian logs incident → Orchestrator schedules fix cycle. No rollback required.</div>
+      </div>
+      <div style="background:rgba(124,92,191,0.08);border:1px solid rgba(124,92,191,0.2);border-radius:8px;padding:16px 20px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--purple2);margin-bottom:6px;letter-spacing:0.08em;">ESCAPE HATCH — intent correction</div>
+        <div style="font-size:13px;color:var(--text2);">PO realises mid-cycle that the intent was wrong → PO issues a correction statement → Orchestrator abandons current task list, drafts new plan against corrected intent, and logs the correction in the Drift Register. Cycles are cheap. Sunk cost is not a reason to ship wrong.</div>
+      </div>
+      <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-radius:8px;padding:16px 20px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:6px;letter-spacing:0.08em;">GOVERNANCE — memory updates</div>
+        <div style="font-size:13px;color:var(--text2);">Orchestrator writes System Memory updates after every cycle close. These are effective immediately but reviewed by the Tech Lead at every Context Reset. A System Memory entry that has never been reviewed by a human is provisional until then.</div>
+      </div>
+    </div>
+
+    <div class="mermaid-wrap">
+      <div class="diagram-label">Cycle flow — visual</div>
+      <div class="mermaid">
+flowchart LR
+  A([Intent\nStatement]) --> B[Orchestrator\nDecompose]
+  B --> C[Builder\nCode + Tests]
+  C --> D{Guardian\nAuto-Test}
+  D -->|Pass| E[Deploy\nflag OFF]
+  D -->|Fail| B
+  E --> F[Craft Review\nCraft Eng + QA]
+  F -->|Ready| G[PO\nGate Review]
+  F -->|Craft issues| B
+  G -->|Approve| H[Monitor\nflag ON]
+  G -->|Reject — Intent\nCorrection| B
+  H -->|Signal OK| I([Cycle\nComplete])
+  H -->|Prod Fail| J[PO flips OFF\nGuardian logs]
+  J --> B
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LAYERS ═══════════════════ -->
+<section>
+  <div class="section-label">05 — Structure</div>
+  <h2>Four layers, one client thread</h2>
+  <p style="max-width:640px;">You've seen the cycle and the roles. This section shows where they sit. The framework organises work into four concentric layers of concern, each with clear ownership, distinct decision authority, and defined interfaces to the layers above and below. The client is not a layer — it is the vertical thread that runs through all of them.</p>
+
+  <div class="client-bar">
+    <div class="client-bar-label">Client</div>
+    <div style="width:1px;height:40px;background:rgba(232,115,74,0.3);"></div>
+    <p>The client is not a stakeholder in the traditional sense — they are the reason every decision is made. Stakeholders reference client outcomes when setting strategy. The PO translates client signals into cycle intent. Executors validate that built features serve real client needs. The Guardian checks client impact before approving any gate. The client does not attend meetings or write tickets. Their presence is held by the PO and enforced by the framework.</p>
+  </div>
+
+  <div style="margin-top:32px;">
+
+    <!-- STRATEGIC LAYER -->
+    <div style="margin-bottom:3px;">
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:3px;">
+        <div class="layer-label strategic">Strategic</div>
+        <div class="layer-content">
+          <div class="layer-cell">
+            <h4>Roles</h4>
+            <ul>
+              <li><span class="role-tag human">human</span></li>
+              <li>Stakeholders — portfolio, strategy</li>
+              <li>Business owners — goals, investment</li>
+              <li>Strategy agent — horizon synthesis</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Signal Events</h4>
+            <ul>
+              <li>Strategic alignment — monthly/quarterly</li>
+              <li>Portfolio review — cross-team alignment</li>
+              <li>Dependency escalation — as needed</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Artifacts</h4>
+            <ul>
+              <li>True north document</li>
+              <li>Portfolio map</li>
+              <li>Strategic intent log</li>
+              <li>Dependency registry</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT LAYER -->
+    <div style="margin-bottom:3px;">
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:3px;">
+        <div class="layer-label product">Product</div>
+        <div class="layer-content">
+          <div class="layer-cell">
+            <h4>Roles</h4>
+            <ul>
+              <li><span class="role-tag human">human</span></li>
+              <li>Product Owner — client vs business</li>
+              <li>UX/Research — client signal capture</li>
+              <li>Orchestrator agent — intent routing</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Signal Events</h4>
+            <ul>
+              <li>Intent injection — per cycle</li>
+              <li>Client signal review — ongoing</li>
+              <li>Gate review — per deploy</li>
+              <li>Drift check — every 10–20 cycles</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Artifacts</h4>
+            <ul>
+              <li>Client signal log</li>
+              <li>Cycle intent record</li>
+              <li>Gate report (from Guardian)</li>
+              <li>Drift register</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXECUTION LAYER -->
+    <div style="margin-bottom:3px;">
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:3px;">
+        <div class="layer-label execution">Execution</div>
+        <div class="layer-content">
+          <div class="layer-cell">
+            <h4>Roles</h4>
+            <ul>
+              <li><span class="role-tag agent">agents</span></li>
+              <li>Orchestrator — task decomposition</li>
+              <li>Builder — code + tests</li>
+              <li>Guardian — review + gate signal</li>
+              <li><span class="role-tag human">human</span> Architects — tech guardrails</li>
+              <li><span class="role-tag human">human</span> Craft Engineers — output quality</li>
+              <li><span class="role-tag human">human</span> Quality Advocates — acceptance criteria</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Signal Events</h4>
+            <ul>
+              <li>Cycle kick-off — per intent</li>
+              <li>Auto-test gate — per build</li>
+              <li>Craft review — per deploy (pre-flag)</li>
+              <li>Context reset — every N cycles</li>
+              <li>Capability harvest — when pattern repeats</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Artifacts</h4>
+            <ul>
+              <li>System Memory</li>
+              <li>Capability Library</li>
+              <li>Feature Governance Registry</li>
+              <li>Intent log (what was built)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPENDENCY LAYER -->
+    <div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:3px;">
+        <div class="layer-label dependency">Dependencies</div>
+        <div class="layer-content">
+          <div class="layer-cell">
+            <h4>Roles</h4>
+            <ul>
+              <li><span class="role-tag agent">agent</span></li>
+              <li>Dependency broker — cross-team</li>
+              <li>Affected POs — resolution owners</li>
+              <li>Tech leads — handoff coordinators</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Signal Events</h4>
+            <ul>
+              <li>Dependency sync — triggered by detection</li>
+              <li>Handoff review — on cross-team release</li>
+              <li>Blocker escalation — to PO within 1 cycle</li>
+            </ul>
+          </div>
+          <div class="layer-cell">
+            <h4>Artifacts</h4>
+            <ul>
+              <li>Dependency registry</li>
+              <li>Cross-team contract docs</li>
+              <li>Blocker log</li>
+              <li>Handoff checklist</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ SIGNAL EVENTS ═══════════════════ -->
+<section>
+  <div class="section-label">06 — Signal Events</div>
+  <h2>Signal Events that calibrate, not coordinate</h2>
+  <p style="max-width:640px;">IDF replaces scheduled ceremonies with event-driven triggers. A signal event fires when its condition is met — not because the calendar says so. Every signal event has a trigger, a specific output, and a clear owner. If a signal event produces no actionable output, it is skipped.</p>
+
+  <div class="rituals-table">
+    <div class="rituals-header">
+      <span>Signal Event</span>
+      <span>Trigger Type</span>
+      <span>Trigger + participants</span>
+      <span>Output</span>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-strategic"></span>Strategic Alignment</div>
+      </div>
+      <div class="ritual-cadence">Monthly / quarterly</div>
+      <div class="ritual-trigger">Triggered by: calendar or strategic pivot<br>Participants: Stakeholders + POs</div>
+      <div class="ritual-output">Updated true north document. Any change propagates to client signal log within 1 cycle.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-product"></span>Intent Injection</div>
+      </div>
+      <div class="ritual-cadence">Per cycle</div>
+      <div class="ritual-trigger">Triggered by: cycle start or gate approval of previous cycle<br>Participants: PO (+ Orchestrator reads output)</div>
+      <div class="ritual-output">One intent statement framed as a client outcome. The human expresses a desired outcome — not a task list. This is the formal entry point for every cycle. Orchestrator consumes and produces task list.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-product"></span>Gate Review</div>
+      </div>
+      <div class="ritual-cadence">Per deploy</div>
+      <div class="ritual-trigger">Triggered by: Guardian producing a gate report<br>Participants: PO (decision), Tech Lead (if flagged)</div>
+      <div class="ritual-output">The formal hand-off from Execution to human governance. Nothing ships to users without this signal. Pass: feature flag toggled ON, cycle closes. Fail: Orchestrator re-plans with Guardian notes.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Reset</div>
+      </div>
+      <div class="ritual-cadence">Every 5–10 cycles</div>
+      <div class="ritual-trigger">Triggered by: cycle count or detected context drift<br>Participants: Orchestrator + Tech Lead review</div>
+      <div class="ritual-output">A mandatory event to audit and prune Context Debt — stale memory, dead flags, and outdated capability files. Required output: pruned System Memory with a diff showing what was removed, confirmed Capability Library accuracy, Dead-OFF flags identified and removed with their System Memory entries.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Capability Harvest</div>
+      </div>
+      <div class="ritual-cadence">When pattern repeats</div>
+      <div class="ritual-trigger">Triggered by: Guardian or Orchestrator detecting a repeated pattern<br>Participants: Craft Engineer + Orchestrator</div>
+      <div class="ritual-output">New or updated capability file added to the Capability Library. Reduces re-teaching same conventions each cycle.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Craft Review</div>
+      </div>
+      <div class="ritual-cadence">Per deploy, pre-flag</div>
+      <div class="ritual-trigger">Triggered by: Guardian gate report passing auto-checks<br>Participants: Craft Engineer (output quality) + Quality Advocate (exploratory validation)</div>
+      <div class="ritual-output">Craft annotation on gate report + QA Advocate flag-ON recommendation. Issues either block the flag or generate a capability file update. Low-risk cycles (copy, styling, config) may have abbreviated craft review — exploratory validation always required.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-product"></span>Drift Check</div>
+      </div>
+      <div class="ritual-cadence">Every 10–20 cycles</div>
+      <div class="ritual-trigger">Triggered by: cycle count or PO concern<br>Participants: PO + Orchestrator</div>
+      <div class="ritual-output">Drift register entry. Corrections fed back into System Memory and next cycle's intent. Pattern of drift informs Strategic Alignment agenda.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-dependency"></span>Dependency Sync</div>
+      </div>
+      <div class="ritual-cadence">Event-triggered</div>
+      <div class="ritual-trigger">Triggered by: broker detecting a cross-team need<br>Participants: Affected POs + Tech Leads</div>
+      <div class="ritual-output">Resolution path defined within same cycle. Blocker log updated. Teams work around while awaiting resolution.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-cross"></span>Client Signal Review</div>
+      </div>
+      <div class="ritual-cadence">Weekly minimum</div>
+      <div class="ritual-trigger">Triggered by: new feedback, usage data, support signals<br>Participants: PO (+ UX/Research if available)</div>
+      <div class="ritual-output">Updated client signal log. Priority adjustments fed into next intent injection. Immediate issues escalate to stakeholders.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ ARTIFACTS ═══════════════════ -->
+<section>
+  <div class="section-label">07 — Artifacts</div>
+  <h2>The system's persistent memory</h2>
+  <p style="max-width:640px;">Artifacts are the connective tissue of the framework. Unlike Scrum's artifacts (which compensate for human memory loss), IDF artifacts are the actual memory of the system. They must be kept current — a stale artifact is worse than no artifact because it generates confidently wrong outputs.</p>
+
+  <div class="artifacts-grid">
+
+    <div class="artifact-card">
+      <h3>System Memory</h3>
+      <span class="artifact-filename">SYSTEM_MEMORY.md (or equivalent)</span>
+      <p>The single file every agent reads at the start of every session. Tool-agnostic: use whatever your chosen AI toolchain designates as its persistent context file — a markdown file, a system prompt, a config YAML. The name matters less than the discipline. Contains stack, folder structure, run commands, architectural decisions, conventions, and a running log of what was built. Updated by the Orchestrator after every cycle close.</p>
+      <div class="artifact-owner">Owner: Orchestrator (writes) · Tech Lead (governs)</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Capability Library</h3>
+      <span class="artifact-filename">CAPABILITY_LIBRARY/*.md (or equivalent)</span>
+      <p>Domain-specific instruction sets that encode how this team builds things. Frontend components, API patterns, deploy procedures, auth conventions. Each capability is a short markdown file. Grows through Capability Harvests, governed by Tech Lead. Kept accurate through Context Reset — stale capability files are context debt.</p>
+      <div class="artifact-owner">Owner: Tech Lead (governs) · Orchestrator (reads, triggers harvest)</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>True north document</h3>
+      <span class="artifact-filename">TRUE_NORTH.md</span>
+      <p>Strategic direction and portfolio context maintained by Stakeholders. Provides the PO with the horizon against which all client signals are prioritised. Updated at Strategic Alignment. Referenced by PO in every intent injection.</p>
+      <div class="artifact-owner">Owner: Stakeholders</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Client signal log</h3>
+      <span class="artifact-filename">CLIENT_SIGNALS.md</span>
+      <p>A continuously updated record of real client feedback, usage patterns, support issues, and research findings. The PO's primary input for intent injection. Referenced by the Guardian in gate reviews to evaluate client impact.</p>
+      <div class="artifact-owner">Owner: PO · Updated: continuously</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Intent log</h3>
+      <span class="artifact-filename">INTENT_LOG.md</span>
+      <p>A chronological record of every cycle intent statement and what was actually shipped. Backward-facing only — not a backlog. Used during drift checks to identify divergence between what was asked for and what was built over time.</p>
+      <div class="artifact-owner">Owner: Orchestrator (writes) · PO (uses in drift check)</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Gate report</h3>
+      <span class="artifact-filename">GATE_REPORT_{cycle}.md</span>
+      <p>Produced by the Guardian at cycle end. Three paragraphs maximum: what was built, what the signals show (tests, security, perf, cost, client impact), and a clear pass/flag/fail with a proposed next cycle. Expires when gate decision is made.</p>
+      <div class="artifact-owner">Owner: Guardian (produces) · PO (consumes)</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Feature Governance Registry</h3>
+      <span class="artifact-filename">FEATURE_GOVERNANCE_REGISTRY (flag service or file)</span>
+      <p>All features deployed behind a flag by default. Serves two purposes: deployment safety (instant rollback without revert commits) and agent context hygiene (flags-ON code is the live system agents should reason about). Every flag carries a lifecycle state:</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.9;color:var(--text2);margin-top:8px;"><span style="color:var(--amber2);">Pending-OFF</span> — deployed, not yet released to users<br><span style="color:var(--teal2);">Live-ON</span> — active, released, part of the live context<br><span style="color:var(--text3);">Dead-OFF</span> — permanently abandoned, must be pruned</p>
+      <p>Dead-OFF flags must be removed from code and from System Memory. Any entry describing an abandoned feature is context pollution for every future agent session.</p>
+      <div class="artifact-owner">Owner: PO (toggle decision) · Builder (creates flag) · Tech Lead (dead flag cleanup)</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Drift register</h3>
+      <span class="artifact-filename">DRIFT_REGISTER.md</span>
+      <p>A log of detected divergences between intent and implementation, with the correction taken. The most valuable long-term document in the project — it maps where the system's judgment differs from the PO's and teaches better intent writing over time.</p>
+      <div class="artifact-owner">Owner: PO · Updated: at drift checks and gate failures</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Dependency registry</h3>
+      <span class="artifact-filename">DEPENDENCIES.md</span>
+      <p>Cross-team contracts, shared components, and API agreements. Maintained by the dependency broker. Teams pull from it before planning a cycle to identify potential blockers early. The broker writes to it whenever a new dependency is detected.</p>
+      <div class="artifact-owner">Owner: Dependency broker · Reviewed: per dependency sync</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ COMMUNICATION ═══════════════════ -->
+<section>
+  <div class="section-label">08 — Communication patterns</div>
+  <h2>How layers talk to each other</h2>
+  <p style="max-width:640px;">Inter-layer communication is explicit, documented, and async by default. No layer should require a synchronous meeting to receive information from another layer. The defined communication patterns below are what make fast cycles possible without creating noise or missed signals.</p>
+
+  <div class="comm-grid">
+
+    <div class="comm-card">
+      <div class="comm-direction">
+        <span class="comm-from">Strategic</span>
+        <span class="comm-arrow">→</span>
+        <span class="comm-to">Product</span>
+      </div>
+      <p>Direction flows down as updates to the True North document. POs read it before intent injection. No meeting required — PO is responsible for tracking changes.</p>
+      <div class="comm-payload">Trigger: Strategic Alignment output or strategic pivot<br>Format: Updated TRUE_NORTH.md<br>Frequency: Monthly or on strategic change</div>
+    </div>
+
+    <div class="comm-card">
+      <div class="comm-direction">
+        <span class="comm-from">Product</span>
+        <span class="comm-arrow">→</span>
+        <span class="comm-to">Execution</span>
+      </div>
+      <p>Cycle intent travels as a written outcome statement — not a feature list. The Orchestrator converts it to tasks. If intent is too vague, Orchestrator returns a clarification request, not a guess.</p>
+      <div class="comm-payload">Trigger: Gate approval closes previous cycle<br>Format: Intent statement in INTENT_LOG.md<br>Frequency: Per cycle</div>
+    </div>
+
+    <div class="comm-card">
+      <div class="comm-direction">
+        <span class="comm-from">Execution</span>
+        <span class="comm-arrow">→</span>
+        <span class="comm-to">Product</span>
+      </div>
+      <p>Gate reports surface from Guardian to PO. Nothing else travels upward from execution unprompted — the Guardian filters everything into a readable, actionable summary.</p>
+      <div class="comm-payload">Trigger: All auto-tests pass, preview deployed<br>Format: Gate report (≤3 paragraphs)<br>Frequency: Per cycle</div>
+    </div>
+
+    <div class="comm-card">
+      <div class="comm-direction">
+        <span class="comm-from">Product</span>
+        <span class="comm-arrow">→</span>
+        <span class="comm-to">Strategic</span>
+      </div>
+      <p>Client signals and drift register entries escalate upward when they reveal a strategic concern. PO does not escalate individual features — only patterns or conflicts that require portfolio-level decisions.</p>
+      <div class="comm-payload">Trigger: Drift check, persistent client signal, strategic conflict<br>Format: Escalation note + supporting log entries<br>Frequency: As needed</div>
+    </div>
+
+    <div class="comm-card">
+      <div class="comm-direction">
+        <span class="comm-from">Team A</span>
+        <span class="comm-arrow">→</span>
+        <span class="comm-to">Team B</span>
+      </div>
+      <p>All cross-team communication is mediated by the Dependency Broker. No direct team-to-team coordination channels — this creates noise and missed signals. The broker routes, tracks, and escalates.</p>
+      <div class="comm-payload">Trigger: Orchestrator detects cross-team need during decompose<br>Format: Dependency alert via broker<br>Resolution: Affected POs within 1 cycle</div>
+    </div>
+
+    <div class="comm-card">
+      <div class="comm-direction">
+        <span class="comm-from">Client</span>
+        <span class="comm-arrow">→</span>
+        <span class="comm-to">Product</span>
+      </div>
+      <p>Client signals travel to the PO continuously through whatever feedback channel exists — usage analytics, support tickets, direct research. The PO consolidates them into the client signal log. This is the most important information flow in the system.</p>
+      <div class="comm-payload">Trigger: Any client feedback, usage data, support pattern<br>Format: Entry in CLIENT_SIGNALS.md<br>Frequency: Continuous</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ MEASUREMENT ═══════════════════ -->
+<section>
+  <div class="section-label">09 — Measurement</div>
+  <h2>What good looks like — in numbers</h2>
+  <p style="max-width:640px;">Traditional agile measures effort: story points, velocity, burndown. IDF measures outcomes. In an agent-driven system, execution effort is nearly free — what matters is how fast intent becomes client value, how stable releases are, and how well the system learns from each cycle. The DORA four metrics apply, but their definitions shift when deploys are flag-gated and cycles run in hours.</p>
+
+  <div style="background:rgba(106,104,120,0.08);border:1px solid var(--border);border-left:3px solid var(--text3);border-radius:6px;padding:16px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:8px;letter-spacing:0.08em;">DO NOT TRACK</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;">Story points &nbsp;·&nbsp; Sprint velocity &nbsp;·&nbsp; Burndown charts &nbsp;·&nbsp; Estimation accuracy<br>These are human-bandwidth proxies. Agents absorb execution bandwidth. Tracking effort-based metrics in IDF produces false signals and rewards the wrong behaviours.</div>
+  </div>
+
+  <h3 style="margin-top:48px;margin-bottom:6px;font-size:16px;">The 4 DORA metrics — reframed for IDF</h3>
+  <p style="font-size:13px;color:var(--text3);margin-bottom:20px;">Same signal, IDF unit of measure. Data comes from existing artifacts — no new tooling required.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: Deployment Frequency</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Cycle throughput</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Flags turned ON per day.<br>Source: Feature Governance Registry.</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &gt; 3 / day</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &lt; 1 / week</div>
+    </div>
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: Lead Time</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Intent-to-flag time</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Intent written → flag ON, in hours.<br>Source: INTENT_LOG.md timestamps.</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &lt; 2 hours</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &gt; 8 hours</div>
+    </div>
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: MTTR</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Flag-OFF response</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Issue detected → flag OFF, in minutes.<br>Source: Guardian incident log.</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &lt; 5 minutes</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &gt; 30 minutes</div>
+    </div>
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: Change Failure Rate</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Escape rate</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Flags turned ON that required flag OFF.<br>Source: flag registry ON→OFF events.</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &lt; 5%</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &gt; 20%</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:48px;margin-bottom:6px;font-size:16px;">IDF-native signals</h3>
+  <p style="font-size:13px;color:var(--text3);margin-bottom:20px;">Measures that only exist in an intent-driven, agent-executed model. Review monthly.</p>
+
+  <div class="artifacts-grid">
+    <div class="artifact-card">
+      <h3>Gate first-pass rate</h3>
+      <span class="artifact-filename">% Guardian reports passing without rework</span>
+      <p>Tracks how often Builder output clears Guardian auto-test on the first attempt. A declining rate signals either ambiguous intent (Orchestrator is guessing) or degraded capability files (Craft Engineer action needed).</p>
+      <div class="artifact-owner">Target: &gt;80% &nbsp;·&nbsp; Warning: &lt;60%</div>
+    </div>
+    <div class="artifact-card">
+      <h3>Intent clarity rate</h3>
+      <span class="artifact-filename">% cycles proceeding without PO clarification</span>
+      <p>Tracks how often the Orchestrator must escalate back to the PO before it can decompose a cycle. High escalation is the most common IDF failure mode — it means the PO is writing tasks, not outcomes.</p>
+      <div class="artifact-owner">Target: &gt;85% &nbsp;·&nbsp; Warning: &lt;70%</div>
+    </div>
+    <div class="artifact-card">
+      <h3>PO review time</h3>
+      <span class="artifact-filename">Minutes from gate report to PO decision</span>
+      <p>Measures how long the PO takes to process a Guardian gate report. High values mean the Guardian report is too complex or the PO is a bottleneck. The ≤3 paragraph constraint on gate reports exists to keep this number low.</p>
+      <div class="artifact-owner">Target: &lt;30 min &nbsp;·&nbsp; Warning: &gt;2 hours</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTEXT DEBT ═══════════════════ -->
+<section>
+  <div class="section-label">10 — Context Debt</div>
+  <h2>Noise is the primary cause of agent failure</h2>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">Technical debt accumulates silently and reveals itself as bugs. Context debt accumulates silently and reveals itself as agent confusion — correct behavior executed against the wrong understanding of the system. An agent running against a polluted System Memory does not know it is confused. It produces confident, wrong output. Regular pruning is not housekeeping — it is correctness maintenance.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
+      <h3 style="font-size:16px;margin-bottom:8px;">System Memory Pollution</h3>
+      <p style="font-size:13px;line-height:1.6;">Stale entries that were true at a point in time but no longer reflect the system. The most dangerous because they are specific and authoritative — agents trust them.</p>
+      <ul style="list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--coral);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Abandoned architectural decisions that were never removed</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--coral);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Resolved ambiguities documented but never cleaned from the context</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--coral);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Dead-OFF feature context still referenced as if live</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--coral);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Contradictions between sections added at different times</span></li>
+      </ul>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
+      <h3 style="font-size:16px;margin-bottom:8px;">Capability Library Staleness</h3>
+      <p style="font-size:13px;line-height:1.6;">Capability files that describe patterns the team no longer uses, or miss patterns the team always uses now. Causes Builders to produce output that passes automated checks but fails Craft Review.</p>
+      <ul style="list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Patterns that were superseded but not replaced in the library</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Capability files with no usage signal in the last N cycles</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Recurring Craft Review corrections not yet encoded as capabilities</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Gaps between what the library specifies and what the codebase shows</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:48px;margin-bottom:16px;font-size:16px;">Context Debt audit checklist</h3>
+  <p style="font-size:13px;color:var(--text3);margin-bottom:24px;max-width:640px;">Run at every Context Reset signal event. Each question below is a pruning decision — if the answer is no, the entry is removed.</p>
+
+  <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+    <div style="background:var(--surface2);padding:14px 24px;border-bottom:1px solid var(--border);">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">System Memory — per entry</span>
+    </div>
+    <div style="background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--border);">
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Is this still true? Does the current codebase reflect this entry?</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Is this still relevant? Would an agent need this context for a cycle today?</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does this contradict any other entry? Contradictions must be resolved, not left coexisting.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Is any Dead-OFF flag still referenced here? Remove the entry entirely — dead features are not context.</span></div>
+    </div>
+    <div style="background:var(--surface2);padding:14px 24px;border-bottom:1px solid var(--border);">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Capability Library — per file</span>
+    </div>
+    <div style="background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Has this capability been used in the last N cycles? Unused capabilities are candidates for removal.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does this capability reflect current patterns? Compare against recent Builder output.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are there recurring Craft Review corrections not yet encoded? Harvest them before closing the reset.</span></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">DEBT ACCUMULATION RATE</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Context debt accumulates proportionally to cycle volume. A team running 3 cycles per day accumulates debt ~15× faster than a team running 1 cycle per week. High-throughput teams must run Context Reset more frequently — every 5 cycles, not every 10. The signal that reset is overdue: declining gate first-pass rate with no change in intent clarity.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <span>IDF · Intent Driven Flow Framework · v6.0</span>
+  <span>Built for teams moving fast with AI-assisted execution</span>
+</footer>
+
+<script src="nav.js?v=4"></script>
+</body>
+</html>

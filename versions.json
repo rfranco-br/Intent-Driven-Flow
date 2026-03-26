@@ -156,5 +156,20 @@
       "New Section 10: Context Debt Management — defines context pollution types and mandates audit checklist",
       "Framework no longer assumes any specific AI toolchain — works with Claude, GPT-4, local LLMs, or custom agent swarms"
     ]
+  },
+  {
+    "version": "7.0",
+    "file": "idf-v7.html",
+    "date": "2026-03-26",
+    "title": "The Manifesto",
+    "description": "Adds Section 00 — a four-value manifesto at the foundation of IDF, connecting its mechanics to Agile values and making explicit what the framework prioritizes above all process.",
+    "highlights": [
+      "New Section 00 — Manifesto: four values in the style of the Agile Manifesto",
+      "Human judgment over automated execution",
+      "Functioning systems and clean context over comprehensive documentation",
+      "User outcomes over process compliance",
+      "Responding to better information over following the original plan",
+      "Classic Agile caveat preserved; cover origin updated to reference Agile values lineage"
+    ]
   }
 ]
