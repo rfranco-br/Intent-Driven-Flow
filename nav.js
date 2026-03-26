@@ -109,5 +109,13 @@
         <a href="${basePath}index.html" class="nav-brand">
           <span class="brand-id">IDF</span>
         </a>`;
+    })
+    .finally(() => {
+      // Load notes system on version pages (not the index)
+      if (!isIndex) {
+        const ns = document.createElement('script');
+        ns.src = basePath + 'notes.js';
+        document.body.appendChild(ns);
+      }
     });
 })();
