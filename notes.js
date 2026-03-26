@@ -53,6 +53,37 @@
   const ME      = getUser();
   const PAGE_ID = (location.pathname.split('/').pop() || 'index').replace('.html', '') || 'index';
 
+  // ── ADMIN ──────────────────────────────────────────────────────────────────
+  const ADMIN_KEY = '310220';
+
+  function isAdmin() { return localStorage.getItem('idf-n-admin') === '1'; }
+
+  function promptAdmin() {
+    if (isAdmin()) {
+      if (confirm('Deactivate admin mode?')) {
+        localStorage.removeItem('idf-n-admin');
+        syncAdminBtn();
+        render(allNotes);
+      }
+      return;
+    }
+    const k = prompt('Enter admin key:');
+    if (k === null) return;
+    if (k === ADMIN_KEY) {
+      localStorage.setItem('idf-n-admin', '1');
+      syncAdminBtn();
+      render(allNotes);
+    } else {
+      alert('Incorrect key.');
+    }
+  }
+
+  function syncAdminBtn() {
+    const b = document.getElementById('idf-n-admin-btn');
+    if (b) b.className = isAdmin() ? 'active' : '';
+    b && (b.title = isAdmin() ? 'Admin mode ON — click to deactivate' : 'Admin access');
+  }
+
   // ── STATE ──────────────────────────────────────────────────────────────────
   let db           = null;
   let allNotes     = {};          // { [noteId]: noteData }
@@ -278,6 +309,41 @@
       opacity:0; transition:opacity .3s;
     }
     #idf-n-alt-hint.show { opacity:1; }
+
+    /* ── Panel hint bar ── */
+    #idf-n-hint {
+      padding:10px 16px 8px; border-bottom:1px solid #2a2a3a;
+      display:flex; flex-direction:column; gap:4px;
+      background:rgba(255,255,255,.015); flex-shrink:0;
+    }
+    .idf-n-hint-row {
+      display:flex; align-items:center; gap:8px;
+      font-family:'IBM Plex Mono',monospace; font-size:10px;
+      color:#3a3a50; line-height:1.5; letter-spacing:.03em;
+    }
+    .idf-n-hint-row .k {
+      color:#6a6878; flex-shrink:0; min-width:14px; text-align:center;
+    }
+
+    /* ── Admin button in panel header ── */
+    #idf-n-admin-btn {
+      background:transparent; border:none;
+      color:#3a3a50; font-size:12px; cursor:pointer;
+      padding:0 4px; margin-right:2px; line-height:1;
+      transition:color .15s; flex-shrink:0;
+    }
+    #idf-n-admin-btn:hover { color:#a8a6b4; }
+    #idf-n-admin-btn.active { color:#e8734a; }
+
+    /* ── Delete button inside panel card ── */
+    .idf-n-card-del {
+      background:transparent; border:none;
+      color:#3a3a50; font-size:11px; cursor:pointer;
+      padding:0 2px; margin-left:auto;
+      font-family:'IBM Plex Mono',monospace;
+      transition:color .12s; flex-shrink:0; line-height:1;
+    }
+    .idf-n-card-del:hover { color:#e8734a; }
   `;
 
   const styleEl = document.createElement('style');
@@ -607,15 +673,24 @@
   panel.id = 'idf-n-panel';
   panel.innerHTML = `
     <div id="idf-n-panel-hdr">
-      <span>All notes</span>
+      <span>Notes</span>
+      <button id="idf-n-admin-btn" title="Admin access">🔑</button>
       <button title="Close" id="idf-n-panel-x">✕</button>
     </div>
+    <div id="idf-n-hint">
+      <div class="idf-n-hint-row"><span class="k">✏</span> Select any text, then click <strong style="color:#6a6878">Add note</strong></div>
+      <div class="idf-n-hint-row"><span class="k">⌥</span> Alt + click any section or card</div>
+      <div class="idf-n-hint-row"><span class="k">▲</span> Click a corner triangle to read or edit</div>
+      <div class="idf-n-hint-row"><span class="k">↩</span> Click a note here to scroll to it</div>
+    </div>
     <div id="idf-n-panel-list">
-      <div id="idf-n-panel-empty">No notes yet.<br>Select text or Alt+click a block to add one.</div>
+      <div id="idf-n-panel-empty">No notes yet.</div>
     </div>`;
   document.body.appendChild(panel);
 
-  document.getElementById('idf-n-panel-x').onclick = () => panel.classList.remove('open');
+  document.getElementById('idf-n-panel-x').onclick     = () => panel.classList.remove('open');
+  document.getElementById('idf-n-admin-btn').onclick   = promptAdmin;
+  syncAdminBtn();
 
   function renderPanel(notes) {
     const list  = document.getElementById('idf-n-panel-list');
@@ -627,25 +702,37 @@
       return;
     }
 
-    list.innerHTML = entries.map(([, n]) => `
-      <div class="idf-n-card" data-sel="${esc(n.selector)}">
-        <div class="idf-n-card-hdr">
-          <div class="idf-n-card-dot" style="background:${n.userColor}"></div>
-          <span class="idf-n-card-name">${esc(n.userName)}</span>
-          <span class="idf-n-card-time">${relTime(n.createdAt)}</span>
-        </div>
-        <div class="idf-n-card-txt">${esc(n.note)}</div>
-        ${n.context ? `<div class="idf-n-card-ctx">"${esc(n.context)}"</div>` : ''}
-      </div>`).join('');
+    list.innerHTML = entries.map(([id, n]) => {
+      const canDel = n.userId === ME.id || isAdmin();
+      return `
+        <div class="idf-n-card" data-sel="${esc(n.selector)}">
+          <div class="idf-n-card-hdr">
+            <div class="idf-n-card-dot" style="background:${n.userColor}"></div>
+            <span class="idf-n-card-name">${esc(n.userName)}</span>
+            <span class="idf-n-card-time">${relTime(n.createdAt)}</span>
+            ${canDel ? `<button class="idf-n-card-del" data-id="${esc(id)}" title="Delete note">✕</button>` : ''}
+          </div>
+          <div class="idf-n-card-txt">${esc(n.note)}</div>
+          ${n.context ? `<div class="idf-n-card-ctx">"${esc(n.context)}"</div>` : ''}
+        </div>`;
+    }).join('');
 
     list.querySelectorAll('.idf-n-card').forEach(card => {
-      card.addEventListener('click', () => {
+      card.addEventListener('click', e => {
+        if (e.target.classList.contains('idf-n-card-del')) return; // handled below
         let el; try { el = document.querySelector(card.dataset.sel); } catch (_) {}
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'center' });
           el.style.outline = '2px solid rgba(232,115,74,.5)';
           setTimeout(() => { el.style.outline = ''; }, 1600);
         }
+      });
+    });
+
+    list.querySelectorAll('.idf-n-card-del').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (confirm('Delete this note?')) dbDelete(btn.dataset.id);
       });
     });
   }
