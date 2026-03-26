@@ -51,7 +51,7 @@
   }
 
   const ME      = getUser();
-  const PAGE_ID = (location.pathname.split('/').pop() || 'index').replace('.html', '') || 'index';
+  const PAGE_ID = (location.pathname.split('/').pop() || 'index').replace('.html', '').replace(/\./g, '-') || 'index';
 
   // ── ADMIN ──────────────────────────────────────────────────────────────────
   const ADMIN_KEY = '310220';
