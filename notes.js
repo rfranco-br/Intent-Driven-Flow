@@ -19,13 +19,13 @@
   // ── FIREBASE CONFIG ────────────────────────────────────────────────────────
   // Replace every REPLACE_… value with your project's config.
   const FIREBASE_CONFIG = {
-    apiKey:            'REPLACE_API_KEY',
-    authDomain:        'REPLACE_PROJECT_ID.firebaseapp.com',
-    databaseURL:       'https://REPLACE_PROJECT_ID-default-rtdb.firebaseio.com',
-    projectId:         'REPLACE_PROJECT_ID',
-    storageBucket:     'REPLACE_PROJECT_ID.appspot.com',
-    messagingSenderId: 'REPLACE_SENDER_ID',
-    appId:             'REPLACE_APP_ID'
+    apiKey:            'AIzaSyDtn4tCHxvx-rPbS8fddg23i5QHSQVbXWQ',
+    authDomain:        'testedobeto.firebaseapp.com',
+    databaseURL:       'https://testedobeto-default-rtdb.firebaseio.com',
+    projectId:         'testedobeto',
+    storageBucket:     'testedobeto.firebasestorage.app',
+    messagingSenderId: '384725958571',
+    appId:             '1:384725958571:web:b016e048e769b675e29cee'
   };
 
   const DB_ROOT = 'idf-notes';
