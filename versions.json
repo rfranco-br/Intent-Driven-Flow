@@ -211,5 +211,18 @@
       "\"Dead-OFF flags must be removed\" paragraph cut from Section 07 (canonical home: A14 + Section 10 checklist)",
       "Orchestrator escalation-on-ambiguity explanation cut from Section 08 comm card (canonical home: A03 + Section 03 role card)"
     ]
+  },
+  {
+    "version": "7.4",
+    "file": "idf-v7.4.html",
+    "date": "2026-03-26",
+    "title": "Simplification",
+    "description": "Strips sections 00-02 to essentials, removes theory and duplicate principles, and adds narrative connectors across all ten sections.",
+    "highlights": [
+      "Section 00: card body paragraphs removed — X/over/Y statements stand alone",
+      "Section 01 renamed Getting Started: theory cut, 6 duplicate principles removed, 3-sentence practical intro added",
+      "Section 02: axioms reduced from 14 to 12 — A11 (duplicate value) removed, A05+A12 merged into single memory governance rule, A14 trimmed",
+      "Sections 03–10: single bridging sentence added to each intro — the framework now reads as one connected document"
+    ]
   }
 ]
