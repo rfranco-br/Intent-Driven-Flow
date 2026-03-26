@@ -361,7 +361,7 @@
       if (cur.matches && ANNOTATABLE.some(s => cur.matches(s))) return cur;
       cur = cur.parentElement;
     }
-    return el.closest ? el.closest('section') : null;
+    return (el.closest ? el.closest('section') : null) || document.body;
   }
 
   // ── RENDER ─────────────────────────────────────────────────────────────────
@@ -419,9 +419,9 @@
     if (!text) return;
     if (editingId) {
       dbUpdate(editingId, { note: text, updatedAt: new Date().toISOString() });
-    } else if (pendingEl) {
+    } else {
       dbSave({
-        selector:  buildSelector(pendingEl),
+        selector:  buildSelector(pendingEl || document.body),
         context:   pendingCtx.slice(0, 200),
         note:      text,
         userId:    ME.id,
