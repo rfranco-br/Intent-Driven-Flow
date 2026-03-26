@@ -224,5 +224,19 @@
       "Section 02: axioms reduced from 14 to 12 — A11 (duplicate value) removed, A05+A12 merged into single memory governance rule, A14 trimmed",
       "Sections 03–10: single bridging sentence added to each intro — the framework now reads as one connected document"
     ]
+  },
+  {
+    "version": "7.5",
+    "file": "idf-v7.5.html",
+    "date": "2026-03-26",
+    "title": "Values Merge",
+    "description": "Merges Section 00 (Core Values) into Section 01 (Getting Started) and sharpens all four value labels for precision.",
+    "highlights": [
+      "Sections 00 and 01 merged into a single Getting Started section",
+      "Value grid now appears inline after the 3-sentence intro, above the callout boxes",
+      "\"Functioning systems and clean context\" → \"Usability and clean context\"",
+      "\"User outcomes over process compliance\" → \"Outcomes over process\"",
+      "\"Responding to better information over following the original plan\" → \"Respond to reality over following a plan\""
+    ]
   }
 ]
