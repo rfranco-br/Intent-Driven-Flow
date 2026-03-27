@@ -87,7 +87,6 @@
       color: #3a3a50;
       transition: color 0.15s;
     }
-    #idf-nav .nav-dropdown:hover .nav-dropdown-toggle::after,
     #idf-nav .nav-dropdown.open .nav-dropdown-toggle::after { color: #6a6878; }
 
     #idf-nav .nav-dropdown-menu {
@@ -107,7 +106,6 @@
       gap: 1px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
-    #idf-nav .nav-dropdown:hover .nav-dropdown-menu,
     #idf-nav .nav-dropdown.open .nav-dropdown-menu {
       display: flex;
     }
@@ -207,6 +205,15 @@
             <div class="nav-dropdown-menu">${olderPills}</div>
           </div>
         </div>`;
+      // Click-to-open dropdown — stable against mouse-leave
+      const dropdown = inner.querySelector('.nav-dropdown');
+      if (dropdown) {
+        dropdown.querySelector('.nav-dropdown-toggle').addEventListener('click', e => {
+          e.stopPropagation();
+          dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => dropdown.classList.remove('open'));
+      }
     })
     .catch(() => {
       inner.innerHTML = `
