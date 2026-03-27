@@ -248,5 +248,19 @@
     "highlights": [
       "Cover tagline replaced: \"Traditional agile was built for human bandwidth. This isn't.\""
     ]
+  },
+  {
+    "version": "7.7",
+    "file": "idf-v7.7.html",
+    "date": "2026-03-26",
+    "title": "Quickstart",
+    "description": "Restores the Quickstart section from v1 as Section 11, updated for current IDF terminology and the technology-agnostic artifact names.",
+    "highlights": [
+      "New Section 11 — Quickstart: Your first intent-driven cycle",
+      "6-step walkthrough: Intent → Decompose → Build → Gate → Live-ON → Monitor",
+      "Artifact names updated: INTENT_LOG, FEATURE_GOVERNANCE_REGISTRY, CLIENT_SIGNALS, GATE_REPORT",
+      "Flag lifecycle updated: Pending-OFF → Live-ON (v6.0 terminology)",
+      "Orchestrator escalation behaviour and three-paragraph gate report rule reflected in step descriptions"
+    ]
   }
 ]
