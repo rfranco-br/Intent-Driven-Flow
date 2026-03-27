@@ -262,5 +262,15 @@
       "Flag lifecycle updated: Pending-OFF → Live-ON (v6.0 terminology)",
       "Orchestrator escalation behaviour and three-paragraph gate report rule reflected in step descriptions"
     ]
+  },
+  {
+    "version": "7.8",
+    "file": "idf-v7.8.html",
+    "date": "2026-03-26",
+    "title": "Section Heading",
+    "description": "Replaces the Getting Started h2 with the cover tagline, making the positioning statement the entry point to the framework body.",
+    "highlights": [
+      "Section 01 h2 changed: \"IDF in two sentences.\" → \"Traditional agile was built for human bandwidth. This isn't.\""
+    ]
   }
 ]
