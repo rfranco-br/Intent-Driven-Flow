@@ -267,11 +267,17 @@
     "version": "7.11",
     "file": "idf-v7.11.html",
     "date": "2026-03-27",
-    "title": "The Parable",
-    "description": "Adds 'The Driver and the Pilot' parable between the cover and Section 01, grounding the framework's premise in a single concrete image.",
+    "title": "Mobile-First",
+    "description": "Adds full mobile responsiveness at 767px and below — all grids reflow, padding scales, layer table stacks — without changing the desktop layout.",
     "highlights": [
-      "Parable block added: centered, between cover and Section 01",
-      "\"The Driver and the Pilot\" — where we are going, there are no roads"
+      "Comprehensive @media (max-width: 767px) block added",
+      "Cover, section padding, parable, footer all scale to mobile",
+      "Layer table: label rotates horizontal and stacks above content on mobile",
+      "Rituals table: header hidden, rows stack with inline field labels",
+      "All CSS-class grids collapse to single column (manifesto, roles, artifacts, comm)",
+      "Inline style grids overridden via attribute selectors with !important",
+      "Nav bar tightened at 600px: badge hidden, pills smaller",
+      "Parable 'The Driver and the Pilot' added between cover and Section 01"
     ]
   },
   {

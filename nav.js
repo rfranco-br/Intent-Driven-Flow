@@ -130,8 +130,11 @@
     #idf-nav .nav-dropdown-menu .nav-pill.is-active .pill-title { color: #e8734a; }
 
     @media (max-width: 600px) {
-      #idf-nav .nav-inner { padding: 0 20px; }
+      #idf-nav .nav-inner { padding: 0 16px; gap: 0; }
+      #idf-nav .nav-brand { padding-right: 16px; margin-right: 12px; }
       #idf-nav .nav-brand .brand-sub { display: none; }
+      #idf-nav .nav-latest-badge { display: none; }
+      #idf-nav .nav-pill { padding: 4px 10px; font-size: 10px; }
     }
   `;
 
