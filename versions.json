@@ -238,5 +238,15 @@
       "\"User outcomes over process compliance\" → \"Outcomes over process\"",
       "\"Responding to better information over following the original plan\" → \"Respond to reality over following a plan\""
     ]
+  },
+  {
+    "version": "7.6",
+    "file": "idf-v7.6.html",
+    "date": "2026-03-26",
+    "title": "Cover Tagline",
+    "description": "Replaces the verbose cover tagline with a single declarative statement that positions IDF against traditional agile.",
+    "highlights": [
+      "Cover tagline replaced: \"Traditional agile was built for human bandwidth. This isn't.\""
+    ]
   }
 ]
