@@ -6,7 +6,7 @@ You are a senior Agile methodologist building a new framework designed for an AI
 
 **If `$ARGUMENTS` is empty:** Ask the user the following question and wait for their response before doing anything else:
 
-> **What's new?** Share what changed, what you want to improve, or what new context should inform this review. (Or type `publish` to promote the current subversions into a new major version.)
+> **What's new?** Share what changed, what you want to improve, or what new context should inform this review. (Or type `publish` to promote the current version into a new major version.)
 
 **If `$ARGUMENTS` is not empty:** Use it as the review input and proceed immediately.
 
@@ -32,13 +32,13 @@ Determine the **current major number** (N) and **current minor number** (M, 0 if
 
 Read the review input carefully.
 
-**Publish mode:** If the review input is exactly or substantially `publish`, `release`, `new version`, or `promote` (the user is asking to cut a new major release), go to **Publish path** in Step 3.
+**Publish mode:** If the review input is exactly or substantially `publish`, `release`, `new version`, or `promote` — go to the **Publish path** in Steps 4–6.
 
-**Review mode:** Otherwise, proceed with the normal review and create a subversion.
+**Edit mode:** Otherwise, proceed with the review and edit the current file in place.
 
 ---
 
-## Step 3 — Review (review mode only)
+## Step 3 — Review (edit mode only)
 
 Skip this step in publish mode.
 
@@ -63,64 +63,51 @@ Produce a brief review summary before making changes.
 
 ---
 
-## Step 4 — Apply changes to a new file
+## Step 4 — Apply changes
 
-### Review path — create a subversion
+### Edit path — modify the current file in place
 
-Next version: **N.M+1** (e.g., if current is `idf-v4.html` or `idf-v4.0`, next is `idf-v4.1.html`; if current is `idf-v4.2.html`, next is `idf-v4.3.html`).
-
-Create `idf-vN.M+1.html` as a copy of the source file, then apply your improvements:
+Edit `idf-vN.M.html` (or `idf-vN.html`) **directly**. Do not copy it to a new file.
 
 - Rewrite sections that lack clarity — sharpen, not soften
 - Add missing content from the review
 - Remove or simplify anything that failed the friction audit
 - Fix internal inconsistencies
 - Keep the visual design and HTML structure intact — improvements are content only
-- Update all version references in the new file:
-  - `<title>` tag: `Intent Driven Flow Framework vN.M+1`
-  - Version badge: `IDF · vN.M+1 · 2026`
-  - Footer span (if present): `IDF · Intent Driven Flow Framework · vN.M+1`
-- Keep `<script src="nav.js"></script>` as the last script before `</body>`
+- **Do NOT change** the version number, version badge, `<title>`, or footer version string — the version stays the same
 
 ### Publish path — create a new major version
 
-Next version: **N+1** (e.g., if current subversions are under v4, create `idf-v5.html`).
+Next version: **N+1** (e.g., if current is `idf-v7.11.html`, create `idf-v8.html`).
 
-Find the latest subversion file under the current major (e.g. `idf-v4.3.html`). Copy it to `idf-v5.html`.
+Copy the latest file to `idf-v(N+1).html`.
 
-Update all version references:
-- `<title>`: `Intent Driven Flow Framework v5.0`
-- Version badge: `IDF · v5.0 · 2026`
-- Footer: `IDF · Intent Driven Flow Framework · v5.0`
+Update all version references in the new file:
+- `<title>`: `Intent Driven Flow Framework v(N+1).0`
+- Version badge: `IDF · v(N+1).0 · 2026`
+- Footer span (if present): `IDF · Intent Driven Flow Framework · v(N+1).0`
 
-No content changes in publish mode — this is a promotion only. The subversions already carry the improvements.
+No content changes in publish mode — this is a promotion only.
+
+Keep `<script src="nav.js?v=5"></script>` as the last script before `</body>`.
 
 ---
 
 ## Step 5 — Update versions.json
 
-### Review path
+### Edit path
 
-Add a new entry:
+Find the **existing entry** for the current version in `versions.json`. Update it in place:
+- `title` — 2–4 words capturing the theme of this revision
+- `description` — one sentence: what changed and why it matters
+- `highlights` — updated list of the most significant changes
+- `date` — today's date (YYYY-MM-DD)
 
-```json
-{
-  "version": "N.M+1",
-  "file": "idf-vN.M+1.html",
-  "date": "<today's date YYYY-MM-DD>",
-  "title": "<2-4 words capturing the theme>",
-  "description": "<One sentence: what changed and why it matters>",
-  "highlights": [
-    "<Most significant change>",
-    "<Second change>",
-    "..."
-  ]
-}
-```
+Do **not** add a new entry.
 
 ### Publish path
 
-Add a new entry marking the major release:
+Add a new entry for the new major version:
 
 ```json
 {
@@ -130,7 +117,7 @@ Add a new entry marking the major release:
   "title": "<2-4 words for this major release>",
   "description": "<One sentence summarising what this major version represents>",
   "highlights": [
-    "<Summary of key improvements from the subversion series>",
+    "<Summary of key improvements>",
     "..."
   ]
 }
@@ -140,11 +127,11 @@ Add a new entry marking the major release:
 
 ## Step 6 — Commit and push
 
-### Review path
+### Edit path
 
 ```bash
-git add idf-vN.M+1.html versions.json
-git commit -m "Add IDF vN.M+1 — [title]: [description]"
+git add <current-file> versions.json
+git commit -m "Update IDF vN.M — [title]: [description]"
 git push
 ```
 

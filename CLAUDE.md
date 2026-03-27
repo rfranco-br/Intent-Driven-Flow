@@ -14,16 +14,15 @@ A static documentation site for the IDF (Intent Driven Flow) framework — a gov
 | `.claude/commands/idf-review.md` | `/idf-review` command — the Review Agent |
 
 ## How versioning works
-- **Subversions** (`idf-v4.1.html`, `idf-v4.2.html`) are created on every `/idf-review` interaction
-- **Major versions** (`idf-v5.html`) are created only when the user explicitly requests it (type `publish` or `new version`)
-- `versions.json` holds metadata for every version and subversion
-- `new-version.sh "Title" "Description"` creates a new major version from the latest and pushes to git
+- **`/idf-review`** edits the current latest file **in place** — no new file is created, the version number stays the same, and the existing `versions.json` entry is updated
+- **Major versions** are created only when the user explicitly requests `/idf-review publish`
+- `versions.json` holds metadata for every version; the entry for the current version is updated on each edit-mode review
 
 ## File naming patterns
 | Pattern | Example | Meaning |
 |---|---|---|
-| `idf-vN.html` | `idf-v4.html` | Major version (shown as N.0) |
-| `idf-vN.M.html` | `idf-v4.1.html` | Subversion under major N |
+| `idf-vN.html` | `idf-v7.html` | Major version (shown as N.0) |
+| `idf-vN.M.html` | `idf-v7.11.html` | Subversion under major N |
 
 ## versions.json schema
 ```json
@@ -45,5 +44,5 @@ A static documentation site for the IDF (Intent Driven Flow) framework — a gov
 - Do not modify `index.html`, `nav.js`, or `new-version.sh` during a review cycle
 
 ## Available commands
-- `/idf-review` — Ask "What's new?", take input, apply improvements as a subversion (vN.M+1)
-- `/idf-review publish` — Promote latest subversions into a new major version (vN+1.0)
+- `/idf-review` — Apply improvements directly to the current version file (in-place edit, no new file)
+- `/idf-review publish` — Promote current version to a new major version (vN+1.0)
