@@ -264,6 +264,22 @@
     ]
   },
   {
+    "version": "7.10",
+    "file": "idf-v7.10.html",
+    "date": "2026-03-27",
+    "title": "Structure Clarity",
+    "description": "Rewrites Section 05 layer table so every role is individually tagged as human or agent, and every signal event shows who triggers it and when.",
+    "highlights": [
+      "Every role in all four layers now carries its own inline human/agent tag",
+      "Every signal event now shows a human or auto trigger badge plus who and when",
+      "Strategic: Strategy agent explicitly tagged as agent",
+      "Product: Orchestrator moved to agent; PO/UX explicitly tagged as human",
+      "Execution: Orchestrator, Builder, Guardian each tagged as agent individually",
+      "Dependencies: Dependency broker tagged as agent; Affected POs and Tech leads as human",
+      "Auto-triggered events (Cycle kick-off, Auto-test gate, Dependency sync, Blocker escalation) clearly distinguished from human-triggered events"
+    ]
+  },
+  {
     "version": "7.9",
     "file": "idf-v7.9.html",
     "date": "2026-03-27",
