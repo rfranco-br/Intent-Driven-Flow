@@ -264,6 +264,17 @@
     ]
   },
   {
+    "version": "7.11",
+    "file": "idf-v7.11.html",
+    "date": "2026-03-27",
+    "title": "The Parable",
+    "description": "Adds 'The Driver and the Pilot' parable between the cover and Section 01, grounding the framework's premise in a single concrete image.",
+    "highlights": [
+      "Parable block added: centered, between cover and Section 01",
+      "\"The Driver and the Pilot\" — where we are going, there are no roads"
+    ]
+  },
+  {
     "version": "7.10",
     "file": "idf-v7.10.html",
     "date": "2026-03-27",
