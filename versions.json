@@ -264,6 +264,22 @@
     ]
   },
   {
+    "version": "7.9",
+    "file": "idf-v7.9.html",
+    "date": "2026-03-27",
+    "title": "Five Rules",
+    "description": "Rewrites Section 02 from 12 role-tied axioms to 5 behavioral rules — each expressed as a system behavior, not a role obligation.",
+    "highlights": [
+      "Section 02: 12 axioms → 5 rules (R1–R5)",
+      "R1: Express outcomes, not instructions (covers A01 + A02)",
+      "R2: Ambiguity stops execution, it never shapes it (covers A03)",
+      "R3: Every change ships behind a flag (covers A04 + A12)",
+      "R4: Written context is the only context (covers A05 + A06)",
+      "R5: Measure what reaches the client (covers A07–A11)",
+      "All role names removed from Section 02 — roles are introduced in Section 03"
+    ]
+  },
+  {
     "version": "7.8",
     "file": "idf-v7.8.html",
     "date": "2026-03-26",
