@@ -952,10 +952,6 @@
       <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:10px;letter-spacing:0.08em;">READING ORDER — NEW TO IDF</div>
       <div style="font-size:13px;color:var(--text2);line-height:1.8;"><strong style="color:var(--text);">Sections 01–04</strong> are your foundation: getting started, rules, roles, and one complete cycle.<br><strong style="color:var(--text);">Sections 05–10</strong> are your reference layer — return when you need them.</div>
     </div>
-    <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.15);border-radius:8px;padding:20px 24px;">
-      <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:10px;letter-spacing:0.08em;">BEFORE YOUR FIRST CYCLE</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.8;">Four artifacts must exist before you run cycle 1:<br><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral);">SYSTEM_MEMORY · CLIENT_SIGNALS · TRUE_NORTH · FEATURE_GOVERNANCE_REGISTRY</span></div>
-    </div>
   </div>
 </section>
 
@@ -969,7 +965,7 @@
     <div class="axiom"><span class="axiom-num">R1</span><span class="axiom-text"><strong>Express outcomes, not instructions.</strong> The right input to the system is a clear statement of desired client outcome. Task lists, acceptance criteria, and implementation instructions are outputs of decomposition — not inputs to it. State what needs to be true for the client. Let the system determine how.</span></div>
     <div class="axiom"><span class="axiom-num">R2</span><span class="axiom-text"><strong>Ambiguity stops execution. It never shapes it.</strong> When intent is unclear, the correct response is to surface the ambiguity and wait for clarification. A system that infers its way through unclear intent will be confidently wrong. Execution pauses. Humans resolve. Execution resumes.</span></div>
     <div class="axiom"><span class="axiom-num">R3</span><span class="axiom-text"><strong>Every change ships behind a flag.</strong> No exception. Deployment and release are separate events. A change is deployed when it exists in production behind a Pending-OFF flag. It is released when a human flips it to Live-ON. Dead flags left in the codebase expand the active context surface and increase drift probability — they must be removed.</span></div>
-    <div class="axiom"><span class="axiom-num">R4</span><span class="axiom-text"><strong>Written context is the only context.</strong> A convention that isn't in a file doesn't exist for the next execution cycle. A decision that isn't recorded will be made again, differently, by the next agent session. Write it down. Review it. A system running on memory instead of files is running on context that decays with every cycle.</span></div>
+    <div class="axiom"><span class="axiom-num">R4</span><span class="axiom-text"><strong>Context is data plus intent — and it decays.</strong> An agent's understanding of the system is built from data: written records, logs, code, dashboards, signals. Its direction comes from intent: the outcome the PO committed to. Neither survives without maintenance. Data that isn't reviewed drifts from reality. Intent that isn't recorded gets reinvented. A system that treats memory as a substitute for current, clean data is running on context that corrupts with every cycle.</span></div>
     <div class="axiom"><span class="axiom-num">R5</span><span class="axiom-text"><strong>Measure what reaches the client, not what moves inside the system.</strong> Cycle throughput and escape rate tell you if the system is healthy. Story points, commit counts, and hours worked do not. Drift from intent is normal — the failure is not detecting it before it reaches the client.</span></div>
   </div>
 </section>
