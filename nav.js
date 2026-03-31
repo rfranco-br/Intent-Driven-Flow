@@ -189,6 +189,7 @@
       }).join('');
 
       const olderActiveClass = olderHasActive ? ' is-active' : '';
+      const isPlaybookActive = currentFile === 'playbook.html' ? ' is-active' : '';
 
       inner.innerHTML = `
         <a href="${basePath}index.html" class="nav-brand" title="Version index">
@@ -207,6 +208,7 @@
             <span class="nav-pill nav-dropdown-toggle${olderActiveClass}">Older</span>
             <div class="nav-dropdown-menu">${olderPills}</div>
           </div>
+          <a href="${basePath}playbook.html" class="nav-pill${isPlaybookActive}" style="margin-left:8px;border-left:1px solid #2a2a3a;padding-left:16px;">Playbook</a>
         </div>`;
       // Click-to-open dropdown — stable against mouse-leave
       const dropdown = inner.querySelector('.nav-dropdown');
