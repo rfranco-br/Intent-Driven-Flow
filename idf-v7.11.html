@@ -1025,7 +1025,9 @@
       <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Client signal log, cycle intent, gate approval</span></div>
       <div class="role-attribute"><span class="role-attribute-key">Interfaces</span><span class="role-attribute-val">Stakeholders (up), Orchestrator (down), clients (lateral)</span></div>
       <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Writing intent as client outcomes, not feature descriptions</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Intent eg.</span><span class="role-attribute-val"><span style="color:var(--teal2);">Good: "Users can log in and reach their dashboard without friction"</span><br><span style="color:var(--text3);">Not: "Add a login button to the homepage"</span></span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Intent template</span><span class="role-attribute-val" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal2);">[Client outcome] by [mechanism], measured by [signal].<br><span style="color:var(--text2);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">eg. "Reduce checkout abandonment at the payment step by simplifying the form, measured by drop-off rate below 12%."</span></span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Sources of intent</span><span class="role-attribute-val">Synthesised from three inputs: client signal log (what clients are doing), True North doc (strategic direction), and stakeholder priorities (investment constraints). Intent that cannot be traced to at least one of these sources should not enter the cycle.</span></div>
+      <div class="role-attribute"><span class="role-attribute-key">Anti-patterns</span><span class="role-attribute-val"><span style="color:var(--text3);">Epic-framed: "Build a new onboarding flow" — describes a feature, not an outcome.</span><br><span style="color:var(--text3);">Story-framed: "As a user I want to see my dashboard" — task disguised as intent.</span><br><span style="color:var(--text3);">Spec-framed: "Add a login button to the homepage" — implementation, not outcome.</span><br><span style="color:var(--text3);">If the Orchestrator can start building without asking a question, the intent is probably a task list in disguise.</span></span></div>
       <div class="role-attribute"><span class="role-attribute-key">Backup</span><span class="role-attribute-val">A named delegate (in System Memory) holds gate authority when PO is away. No delegate = cycle holds at Deploy.</span></div>
     </div>
 
@@ -1447,7 +1449,7 @@ flowchart LR
       </div>
       <div class="ritual-cadence">Per cycle</div>
       <div class="ritual-trigger">Triggered by: cycle start or gate approval of previous cycle<br>Participants: PO (+ Orchestrator reads output)</div>
-      <div class="ritual-output">One intent statement framed as a client outcome. The human expresses a desired outcome — not a task list. This is the formal entry point for every cycle. Orchestrator consumes and produces task list.</div>
+      <div class="ritual-output">One intent statement framed as a client outcome, logged in the Intent Log. Use the template: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">[outcome] by [mechanism], measured by [signal]</span>. Derive from client signal log, True North, and stakeholder priorities. The human expresses what must be true for the client — not a task list, not a feature. Orchestrator consumes and produces task list.</div>
     </div>
 
     <div class="ritual-row">

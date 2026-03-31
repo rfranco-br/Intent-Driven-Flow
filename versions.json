@@ -268,7 +268,7 @@
     "file": "idf-v7.11.html",
     "date": "2026-03-31",
     "title": "Mobile-First",
-    "description": "Deepens the role transition table descriptions — each now reveals the mechanism of the role, not just its label.",
+    "description": "Adds intent generation scaffolding to the PO role card: a fill-in-the-blank template, explicit sources of intent, named anti-patterns, and a matching update to the Intent Injection ritual.",
     "highlights": [
       "Comprehensive @media (max-width: 767px) block added",
       "Cover, section padding, parable, footer all scale to mobile",
@@ -278,7 +278,11 @@
       "Inline style grids overridden via attribute selectors with !important",
       "Nav bar tightened at 600px: badge hidden, pills smaller",
       "Parable 'The Driver and the Pilot' added between cover and Section 01",
-      "Role transition table: all five descriptions deepened — mechanism over label"
+      "Role transition table: all five descriptions deepened — mechanism over label",
+      "PO role card: intent template added — [outcome] by [mechanism], measured by [signal]",
+      "PO role card: sources of intent named — client signal log, True North, stakeholder priorities",
+      "PO role card: three anti-patterns named — Epic-framed, Story-framed, Spec-framed",
+      "Intent Injection ritual: output updated to reference template and sources"
     ]
   },
   {
