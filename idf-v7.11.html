@@ -983,23 +983,23 @@
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">Developer / Engineer</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Craft Engineer</strong> — governs how agents write code</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Craft Engineer</strong> — encodes how agents should build; catches what automated checks cannot judge</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">QA Engineer / Tester</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Quality Advocate</strong> — defines what good looks like</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Quality Advocate</strong> — sets gate criteria and validates as a real user before any flag turns ON</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">Product Manager / PO</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Product Owner</strong> — writes intent, approves gates</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Product Owner</strong> — translates client signals into cycle intent; holds the only gate authority</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">Tech Lead / Architect</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Architect</strong> — sets guardrails, owns the Capability Library</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Architect</strong> — defines the constraints agents operate within; decisions live in capability files, not tickets</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">Manager / Director</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Stakeholder</strong> — sets strategic direction, owns True North</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Stakeholder</strong> — holds the portfolio horizon; sets the direction within which product decisions are made</span>
     </div>
   </div>
 
@@ -1681,29 +1681,29 @@ flowchart LR
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: Deployment Frequency</div>
       <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Cycle throughput</div>
       <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Flags turned ON per day.<br>Source: Feature Governance Registry.</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &gt; 3 / day</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &lt; 1 / week</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">e.g. Elite &gt; 3 / day</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">e.g. Warn &lt; 1 / week</div>
     </div>
     <div style="background:var(--surface);padding:24px 20px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: Lead Time</div>
       <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Intent-to-flag time</div>
       <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Intent written → flag ON, in hours.<br>Source: INTENT_LOG.md timestamps.</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &lt; 2 hours</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &gt; 8 hours</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">e.g. Elite &lt; 2 hours</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">e.g. Warn &gt; 8 hours</div>
     </div>
     <div style="background:var(--surface);padding:24px 20px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: MTTR</div>
       <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Flag-OFF response</div>
       <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Issue detected → flag OFF, in minutes.<br>Source: Guardian incident log.</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &lt; 5 minutes</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &gt; 30 minutes</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">e.g. Elite &lt; 5 minutes</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">e.g. Warn &gt; 30 minutes</div>
     </div>
     <div style="background:var(--surface);padding:24px 20px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Was: Change Failure Rate</div>
       <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Escape rate</div>
       <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px;">Flags turned ON that required flag OFF.<br>Source: flag registry ON→OFF events.</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">Elite &lt; 5%</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Warn &gt; 20%</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);margin-bottom:4px;">e.g. Elite &lt; 5%</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">e.g. Warn &gt; 20%</div>
     </div>
   </div>
 
