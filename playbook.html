@@ -429,6 +429,27 @@
   .qs-body { padding: 10px 0 36px; }
   .qs-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
   .qs-desc { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 12px; }
+  .qs-artifact {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.8;
+    white-space: pre;
+  }
+  .qs-artifact-label {
+    font-size: 10px;
+    color: var(--teal2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-bottom: 6px;
+  }
 
   /* ── MANIFESTO ── */
   .manifesto-grid {
@@ -509,6 +530,7 @@
     .qs-steps { max-width: 100%; }
     .qs-step { grid-template-columns: 40px 1fr; gap: 0 12px; }
     .qs-num  { width: 40px; height: 40px; font-size: 12px; }
+    .qs-artifact { white-space: pre-wrap; font-size: 11px; }
 
     /* Inline 2-column grids */
     [style*="grid-template-columns:1fr 1fr"],
@@ -602,8 +624,110 @@
 <section id="w1">
   <div class="section-label">W1 — Workflows</div>
   <h2>Intent Generation</h2>
-  <p style="max-width:640px;">How to write cycle intent from scratch, starting from a client signal and arriving at a well-formed intent statement the Orchestrator can act on without clarification.</p>
-  <!-- TODO: populate -->
+  <p style="max-width:640px;">Intent generation has exactly one job: produce a statement the Orchestrator can act on without asking a clarifying question. Everything else — meetings, transcripts, research synthesis, stakeholder alignment — is upstream work that feeds this moment, not part of it. When W1 feels slow, the signal log is almost always stale. Keep W2 current and W1 takes under an hour.</p>
+
+  <!-- PRECONDITION callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">PRECONDITION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">CLIENT_SIGNALS must be current before W1 begins. If the signal log has not been reviewed since the last cycle or two, run W2 (Client Signal Triage) first. W1 starts from synthesised signals, not from a fresh meeting transcript.</div>
+  </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Read the three sources</div>
+        <div class="qs-desc">Open CLIENT_SIGNALS, TRUE_NORTH, and the current stakeholder priorities in parallel. Read for patterns, not for solutions. The signal log shows what clients are experiencing. True North shows where the organisation is pointed. Stakeholder priorities show what constraints the cycle must respect. You are looking for the intersection — an outcome that is real for the client and relevant to the current strategic direction.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Run AI-assisted synthesis</div>
+        <div class="qs-desc">Load all three source documents into your AI tool and ask it to produce two or three candidate intent statements in the format: [outcome] by [mechanism], measured by [signal]. Ask the AI to cite the specific signal or True North reference driving each candidate. These are starting points, not answers. The AI surfaces patterns across large signal sets faster than a human can — but it does not know which outcome matters most right now. That judgment belongs to the PO.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Select and compose</div>
+        <div class="qs-desc">Evaluate the AI candidates against one question: which outcome, if achieved, produces the most meaningful improvement for the client right now, within the current strategic horizon? Select one candidate. Edit the mechanism clause and success signal until they are precise. Do not accept AI-generated wording if it softens the outcome or introduces ambiguity.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Apply the template</div>
+        <div class="qs-desc">Confirm the statement fits the canonical form.</div>
+        <div class="qs-artifact-label">INTENT TEMPLATE</div>
+        <div class="qs-artifact">[Client outcome] by [mechanism], measured by [signal].
+
+Example:
+Reduce checkout abandonment at the payment step
+  by presenting a single-field card input by default,
+  measured by drop-off rate falling below 12%.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">Anti-pattern self-check</div>
+        <div class="qs-desc">Before logging, run one test: if you handed this statement to the Orchestrator with no additional explanation, could it begin decomposition without asking a clarifying question? If yes, the intent is ready. If no, the mechanism clause is either too vague (Orchestrator cannot determine scope) or too specific (Orchestrator is being told how, not what). Tighten and re-check.</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 16px;margin-top:12px;font-size:13px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:8px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);flex-shrink:0;padding-top:1px;">EPIC-FRAMED</span><span style="color:var(--text2);">Describes a feature, not an outcome. No success signal possible.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:8px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);flex-shrink:0;padding-top:1px;">STORY-FRAMED</span><span style="color:var(--text2);">Task disguised as intent. Orchestrator will build exactly this, nothing more.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);flex-shrink:0;padding-top:1px;">SPEC-FRAMED</span><span style="color:var(--text2);">Implementation detail. PO has already done decomposition. Agents won't question it.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">06</div>
+      <div class="qs-body">
+        <div class="qs-title">Log and trigger</div>
+        <div class="qs-desc">Append the intent entry to INTENT_LOG and trigger the Orchestrator. The log entry is the only artifact W1 produces. Working notes, AI-generated candidates, and draft iterations are ephemeral — they do not enter the framework artifact set.</div>
+        <div class="qs-artifact-label">INTENT_LOG — new entry</div>
+        <div class="qs-artifact">## Cycle [N] — Intent
+Date: YYYY-MM-DD
+Owner: Product Owner
+
+Intent: [outcome] by [mechanism], measured by [signal].
+
+Signal source: [CLIENT_SIGNALS ref] — one sentence of what it showed.
+True North alignment: [One sentence confirming fit, or flag a tension.]
+Stakeholder priority: [Which priority this serves, or
+  "none explicitly — justified by signal weight".]
+
+Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
+  Not a task list. If the mechanism involves a technically novel approach,
+  name it here so the Architect sees it during decomposition.]</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scope sidebar -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">W1 DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— How to run a client meeting — outside IDF scope</div>
+      <div>— How to triage raw signals into CLIENT_SIGNALS — that is W2</div>
+      <div>— How to write the intent statement itself — that is C1</div>
+      <div>— Arch or Tech Lead approval of intent — the correct IDF pattern is an Orchestrator notes field in the log entry, not a synchronous gate</div>
+    </div>
+  </div>
+
 </section>
 
 <section id="w2">
