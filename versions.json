@@ -268,15 +268,12 @@
     "file": "idf-v7.11.html",
     "date": "2026-04-02",
     "title": "Mobile-First",
-    "description": "Softens R3 to client-observable changes only, adds scope check to PO role card, and fully populates Playbook C1 with intent size guidance, the gate test, and a five-point self-check.",
+    "description": "Usability pass: fixes orphaned callout layout in S01, adds coming-soon states to 16 empty playbook sections, adds colour-coded column accents to cycle detail grid, and improves Section 09 subsection headers with coral eyebrow labels.",
     "highlights": [
-      "R3 updated: 'every change' → 'every client-observable change' — version control governs the rest",
-      "PO role card: Scope check added — the gate test as the canonical intent-sizing criterion",
-      "Playbook C1 populated: full Writing Intent Statements guidance",
-      "C1: three-clause breakdown (outcome / mechanism / signal) with individual explanations",
-      "C1: under-specified vs over-specified spectrum with worked examples",
-      "C1: five-point self-check rubric before logging intent",
-      "C1: cycle-sized vs too-large examples (profile picture vs social network)"
+      "S01: reading-order callout unwrapped from broken 2-col grid — now full-width 680px",
+      "Playbook: 16 TODO sections replaced with visible coming-soon callout blocks",
+      "S04: cycle detail grid columns now carry matching colour accent borders (purple/blue/teal/amber/coral)",
+      "S09: DORA and IDF-native subsections get coral monospace eyebrow labels and proper h3 sizing"
     ]
   },
   {

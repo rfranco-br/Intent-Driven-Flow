@@ -953,11 +953,9 @@
     <div style="font-size:13px;color:var(--text2);line-height:1.7;">Story points, sprint planning, and velocity exist because human execution is bandwidth-constrained and variable — estimation is how teams manage that constraint. Agents absorb execution bandwidth. The constraint disappears. Complexity estimation before a cycle is cognitive overhead that produces false confidence: it is almost always wrong, and being wrong has a cost only if you planned around the estimate.<br><br>IDF's answer to "we don't know the complexity" is: run a cycle, read the gate report, adjust. The gate report — not a pre-cycle estimate — is the signal that tells you whether a cycle was simple or hard. Cycles are completion-triggered, not time-boxed. A complex cycle takes as long as it takes. The system learns from the outcome, not from the prediction.</div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;">
-    <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.15);border-radius:8px;padding:20px 24px;">
-      <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:10px;letter-spacing:0.08em;">READING ORDER — NEW TO IDF</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.8;"><strong style="color:var(--text);">Sections 01–04</strong> are your foundation: getting started, rules, roles, and one complete cycle.<br><strong style="color:var(--text);">Sections 05–10</strong> are your reference layer — return when you need them.</div>
-    </div>
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.15);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:10px;letter-spacing:0.08em;">READING ORDER — NEW TO IDF</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.8;"><strong style="color:var(--text);">Sections 01–04</strong> are your foundation: getting started, rules, roles, and one complete cycle.<br><strong style="color:var(--text);">Sections 05–10</strong> are your reference layer — return when you need them.</div>
   </div>
 </section>
 
@@ -1174,53 +1172,53 @@
     <!-- Detail rows -->
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;">
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--purple);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO intent statement<br>System Memory<br>Capability Library<br>True north doc</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--blue);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">Task from Orchestrator<br>Domain capability file<br>System Memory</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--teal);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">CHECKS</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">Unit + integration tests<br>Lint + type check<br>Secrets scan<br>Bundle budget<br>Lighthouse score<br>Cost delta estimate</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--amber);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">GATE</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">All checks pass<br>Guardian report ready<br><span style="color:var(--purple2);">Craft Engineer reviews</span><br><span style="color:var(--purple2);">QA Advocate validates</span><br>PO reads + approves<br>Flag stays OFF<br>Live on server</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--coral);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">SIGNALS</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO flips flag ON<br>Error rates<br>Perf metrics<br>Usage patterns<br>Client feedback<br>Cost actuals</div>
       </div>
 
       <!-- output row -->
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--purple);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">Sequenced task list<br>Dependency signals to broker</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--blue);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">Code + tests committed<br>Feature flag created<br>Flag set to OFF</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--teal);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">Gate report (pass/fail)<br>Fix instructions (on fail)<br>Loop back to Builder</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--amber);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">Preview URL for PO<br>Gate report surfaced<br>Awaiting approval</div>
       </div>
 
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;">
+      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--coral);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.6;">Signals → client log<br>System Memory updated<br>Intent log entry<br>↻ next cycle begins</div>
       </div>
@@ -1682,7 +1680,8 @@ flowchart LR
     <div style="font-size:13px;color:var(--text2);line-height:1.7;">Story points &nbsp;·&nbsp; Sprint velocity &nbsp;·&nbsp; Burndown charts &nbsp;·&nbsp; Estimation accuracy<br>These are human-bandwidth proxies. Agents absorb execution bandwidth. Tracking effort-based metrics in IDF produces false signals and rewards the wrong behaviours.</div>
   </div>
 
-  <h3 style="margin-top:48px;margin-bottom:6px;font-size:16px;">The 4 DORA metrics — reframed for IDF</h3>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.12em;text-transform:uppercase;margin-top:48px;margin-bottom:8px;">DORA — reframed</div>
+  <h3 style="margin-bottom:6px;font-size:18px;color:var(--text);">The 4 DORA metrics — reframed for IDF</h3>
   <p style="font-size:13px;color:var(--text3);margin-bottom:20px;">Same signal, IDF unit of measure. Data comes from existing artifacts — no new tooling required.</p>
 
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
@@ -1716,7 +1715,8 @@ flowchart LR
     </div>
   </div>
 
-  <h3 style="margin-top:48px;margin-bottom:6px;font-size:16px;">IDF-native signals</h3>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.12em;text-transform:uppercase;margin-top:48px;margin-bottom:8px;">IDF-native</div>
+  <h3 style="margin-bottom:6px;font-size:18px;color:var(--text);">IDF-native signals</h3>
   <p style="font-size:13px;color:var(--text3);margin-bottom:20px;">Measures that only exist in an intent-driven, agent-executed model. Review monthly.</p>
 
   <div class="artifacts-grid">
