@@ -173,10 +173,20 @@
       position:fixed; right:0; top:48px; bottom:0; width:300px;
       background:#13131e; border-left:1px solid #2a2a3a;
       z-index:300; display:flex; flex-direction:column;
-      transform:translateX(100%); transition:transform .2s ease;
+      transform:translateX(0);
       box-shadow:-8px 0 32px rgba(0,0,0,.3);
     }
-    #idf-n-panel.open { transform:translateX(0); }
+    /* Desktop: always visible, page content yields space */
+    @media (min-width:768px) {
+      body { padding-right:300px; }
+      #idf-n-panel { transform:translateX(0) !important; }
+    }
+    /* Mobile: slide-in toggle retained */
+    @media (max-width:767px) {
+      #idf-n-panel { transform:translateX(100%); transition:transform .2s ease; }
+      #idf-n-panel.open { transform:translateX(0); }
+      body { padding-right:0 !important; }
+    }
     #idf-n-panel-hdr {
       padding:14px 16px; border-bottom:1px solid #2a2a3a;
       display:flex; align-items:center; justify-content:space-between;
@@ -208,6 +218,11 @@
     .idf-n-card-txt  { font-size:12px; color:#f0ede8; line-height:1.4; margin-bottom:4px; }
     .idf-n-card-ctx  { font-size:11px; color:#6a6878; font-style:italic; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     #idf-n-panel-empty { padding:32px 16px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#3a3a50; line-height:1.8; }
+
+    /* Desktop: hide panel close button (panel is always visible) */
+    @media (min-width:768px) {
+      #idf-n-panel-x { display:none !important; }
+    }
 
     /* ── Nav button ── */
     #idf-n-nav-btn {
@@ -590,7 +605,10 @@
     if (badge) badge.textContent = count;
   }
 
+  function isMobile() { return window.innerWidth < 768; }
+
   function toggleNotes() {
+    if (!isMobile()) return; // desktop: panel always visible, no toggle
     const isOpen = panel.classList.toggle('open');
     const btn = document.getElementById('idf-n-nav-btn');
     if (btn) {
@@ -618,7 +636,13 @@
 
   // ── BOOT ───────────────────────────────────────────────────────────────────
   tryInjectNav();
-  panel.classList.add('open');
+  // Desktop: panel always visible via CSS — no class needed
+  // Mobile: panel starts closed, user toggles it
+  if (!isMobile()) {
+    // ensure nav button reflects always-on state
+    const btn = document.getElementById('idf-n-nav-btn');
+    if (btn) btn.className = 'on';
+  }
   loadFirebase(database => {
     if (!database) return;
     dbSubscribe(notes => render(notes));
