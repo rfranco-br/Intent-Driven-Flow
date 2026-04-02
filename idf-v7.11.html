@@ -464,7 +464,9 @@
     padding: 0 12px;
   }
 
-  .role-map-row { display: flex; gap: 16px; align-items: flex-start; position: relative; flex-wrap: wrap; margin-bottom: 8px; }
+  .role-map-row { display: grid; gap: 12px; align-items: stretch; position: relative; margin-bottom: 8px; }
+  #humanRow { grid-template-columns: repeat(5, 1fr); }
+  #agentRow { grid-template-columns: repeat(5, 1fr); }
 
   .role-node {
     display: flex;
@@ -474,13 +476,13 @@
     border: 1px solid var(--border2);
     border-left: 3px solid var(--border2);
     border-radius: 10px;
-    padding: 12px 16px;
+    padding: 12px 14px;
     cursor: pointer;
     transition: border-color 0.15s, background 0.15s, transform 0.1s;
     position: relative;
-    min-width: 140px;
     user-select: none;
     z-index: 1;
+    min-width: 0;
   }
   .role-node:hover { transform: translateY(-2px); }
   .role-node.human { border-left-color: var(--purple); }
@@ -1007,8 +1009,11 @@
     /* Role map */
     .role-map-diagram { padding: 20px 16px; }
     .role-map-row { gap: 8px; }
-    .role-node { min-width: 110px; padding: 10px 12px; }
-    .role-node-name { font-size: 12px; }
+    #humanRow { grid-template-columns: repeat(3, 1fr); }
+    #agentRow { grid-template-columns: repeat(3, 1fr); }
+    .role-node { padding: 10px 10px; }
+    .role-node-name { font-size: 11px; }
+    .role-node-fn { font-size: 9px; }
     .role-detail-inner { padding: 20px 16px; }
 
     /* Axioms */
