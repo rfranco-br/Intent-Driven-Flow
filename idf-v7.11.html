@@ -400,6 +400,139 @@
 
   .role-attribute-val { color: var(--text2); line-height: 1.5; }
 
+  /* ── ROLE MAP ── */
+  .role-map-wrap { margin-top: 48px; max-width: 960px; }
+
+  .role-map-hint {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .role-map-hint::before {
+    content: '';
+    display: inline-block;
+    width: 8px; height: 8px;
+    border: 1px solid var(--text3);
+    border-radius: 50%;
+    animation: pulse-hint 2s ease-in-out infinite;
+  }
+  @keyframes pulse-hint {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.3); }
+  }
+
+  .role-map-diagram {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 32px 32px 28px;
+  }
+
+  .role-map-zone { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .role-map-zone-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .role-map-zone-label.human { color: var(--purple2); }
+  .role-map-zone-label.agent { color: var(--blue2); }
+  .role-map-zone-line { flex: 1; height: 1px; background: var(--border); }
+
+  .role-map-boundary {
+    border-top: 1px dashed var(--border2);
+    margin: 8px 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .role-map-boundary-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral2);
+    background: var(--surface);
+    padding: 0 12px;
+  }
+
+  .role-map-row { display: flex; gap: 12px; align-items: flex-start; position: relative; flex-wrap: wrap; }
+
+  .role-map-svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .role-node {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--border2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    position: relative;
+    min-width: 140px;
+    user-select: none;
+    z-index: 1;
+  }
+  .role-node:hover { transform: translateY(-2px); }
+  .role-node.human { border-left-color: var(--purple); }
+  .role-node.agent { border-left-color: var(--blue); }
+  .role-node.active.human { background: rgba(124,92,191,0.12); border-color: var(--purple2); border-left-color: var(--purple); }
+  .role-node.active.agent { background: rgba(74,122,191,0.12);  border-color: var(--blue2);   border-left-color: var(--blue); }
+
+  .role-node-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .role-node-fn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+  .role-node-tag {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 100px;
+    margin-top: 2px;
+    width: fit-content;
+  }
+  .role-node-tag.human { background: rgba(124,92,191,0.15); color: var(--purple2); border: 1px solid rgba(124,92,191,0.3); }
+  .role-node-tag.agent { background: rgba(74,122,191,0.15);  color: var(--blue2);   border: 1px solid rgba(74,122,191,0.3); }
+
+  .role-map-detail {
+    margin-top: 3px;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    background: var(--bg);
+    padding: 28px 32px;
+    display: none;
+  }
+  .role-map-detail.visible { display: block; }
+
+  .role-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 16px; }
+  .role-detail-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--text); }
+  .role-detail-desc { font-size: 14px; color: var(--text2); line-height: 1.7; max-width: 680px; margin-bottom: 20px; }
+  .role-detail-attrs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+
   /* ── RITUALS ── */
   .rituals-table {
     margin-top: 48px;
@@ -857,6 +990,14 @@
     .qs-num  { width: 40px; height: 40px; font-size: 12px; }
     .qs-artifact { white-space: pre-wrap; font-size: 11px; }
 
+    /* Role map */
+    .role-map-diagram { padding: 20px 16px; }
+    .role-map-row { gap: 8px; }
+    .role-node { min-width: 110px; padding: 10px 12px; }
+    .role-node-name { font-size: 12px; }
+    .role-map-svg { display: none; }
+    .role-map-detail { padding: 20px 16px; }
+
     /* Axioms */
     .axiom { gap: 10px; }
 
@@ -1008,18 +1149,276 @@
     </div>
   </div>
 
-  <div class="roles-grid">
+  <div class="role-map-wrap">
 
-    <div class="role-card">
-      <div class="role-card-header">
-        <h3>Stakeholders &amp; Business</h3>
-        <span class="role-tag human">human</span>
+    <div class="role-map-hint">Select a role to explore its responsibilities</div>
+
+    <div class="role-map-diagram" id="roleMapDiagram">
+
+      <div class="role-map-zone">
+        <span class="role-map-zone-label human">Humans — Govern</span>
+        <div class="role-map-zone-line"></div>
       </div>
-      <p>Hold the portfolio horizon, strategic intent, and investment decisions. Do not manage features or sprints — they set the direction within which product decisions are made.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">True north, portfolio map, cross-team priorities</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Interfaces</span><span class="role-attribute-val">PO (downward), dependency broker (cross-team)</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Touch points</span><span class="role-attribute-val">North star sync, portfolio review, escalations</span></div>
+
+      <div class="role-map-row" id="humanRow">
+        <div class="role-node human" data-role="stakeholders" id="node-stakeholders">
+          <span class="role-node-name">Stakeholders</span>
+          <span class="role-node-fn">Portfolio horizon</span>
+          <span class="role-node-tag human">human</span>
+        </div>
+        <div class="role-node human" data-role="po" id="node-po">
+          <span class="role-node-name">Product Owner</span>
+          <span class="role-node-fn">Intent &amp; gate authority</span>
+          <span class="role-node-tag human">human</span>
+        </div>
+        <div class="role-node human" data-role="craft" id="node-craft">
+          <span class="role-node-name">Craft Engineer</span>
+          <span class="role-node-fn">Code craft governor</span>
+          <span class="role-node-tag human">human</span>
+        </div>
+        <div class="role-node human" data-role="qa" id="node-qa">
+          <span class="role-node-name">Quality Advocate</span>
+          <span class="role-node-fn">Gate criteria &amp; validation</span>
+          <span class="role-node-tag human">human</span>
+        </div>
+        <div class="role-node human" data-role="arch" id="node-arch">
+          <span class="role-node-name">Architects / TLs</span>
+          <span class="role-node-fn">Technical guardrails</span>
+          <span class="role-node-tag human">human</span>
+        </div>
+      </div>
+
+      <div class="role-map-boundary" style="margin:24px 0;">
+        <span class="role-map-boundary-label">Intent flows down &nbsp;·&nbsp; Approval flows up</span>
+      </div>
+
+      <div class="role-map-zone">
+        <span class="role-map-zone-label agent">Agents — Execute</span>
+        <div class="role-map-zone-line"></div>
+      </div>
+
+      <div class="role-map-row" id="agentRow">
+        <div class="role-node agent" data-role="orchestrator" id="node-orchestrator">
+          <span class="role-node-name">Orchestrator</span>
+          <span class="role-node-fn">Decompose &amp; route</span>
+          <span class="role-node-tag agent">agent</span>
+        </div>
+        <div class="role-node agent" data-role="builder" id="node-builder">
+          <span class="role-node-name">Builder(s)</span>
+          <span class="role-node-fn">Execute tasks</span>
+          <span class="role-node-tag agent">agent</span>
+        </div>
+        <div class="role-node agent" data-role="guardian" id="node-guardian">
+          <span class="role-node-name">Guardian</span>
+          <span class="role-node-fn">Gate &amp; quality check</span>
+          <span class="role-node-tag agent">agent</span>
+        </div>
+        <div class="role-node agent" data-role="broker" id="node-broker">
+          <span class="role-node-name">Dep. Broker</span>
+          <span class="role-node-fn">Cross-team signals</span>
+          <span class="role-node-tag agent">agent</span>
+        </div>
+        <div class="role-node human" data-role="client" id="node-client">
+          <span class="role-node-name">Client</span>
+          <span class="role-node-fn">Ultimate measure</span>
+          <span class="role-node-tag human">human</span>
+        </div>
+      </div>
+
+      <svg class="role-map-svg" id="roleMapSvg" aria-hidden="true"></svg>
+
     </div>
+
+    <div class="role-map-detail" id="roleMapDetail">
+      <div id="roleDetailContent"></div>
+    </div>
+
+  </div>
+
+  <script>
+  (function() {
+    var roles = {
+      stakeholders: {
+        name: 'Stakeholders &amp; Business', type: 'human',
+        desc: 'Hold the portfolio horizon, strategic intent, and investment decisions. Do not manage features or sprints — they set the direction within which product decisions are made.',
+        attrs: [
+          { k: 'Owns',         v: 'True north, portfolio map, cross-team priorities' },
+          { k: 'Interfaces',   v: 'PO (downward), dependency broker (cross-team)' },
+          { k: 'Touch points', v: 'North star sync, portfolio review, escalations' }
+        ]
+      },
+      po: {
+        name: 'Product Owner', type: 'human',
+        desc: 'The translation layer. Holds simultaneous understanding of client needs, business constraints, and current strategic priorities. The PO\'s primary output is cycle intent — a clear statement of desired outcome that agents can execute against.',
+        attrs: [
+          { k: 'Owns',           v: 'Client signal log, cycle intent, gate approval' },
+          { k: 'Interfaces',     v: 'Stakeholders (up), Orchestrator (down), clients (lateral)' },
+          { k: 'Key discipline', v: 'Writing intent as client outcomes, not feature descriptions' },
+          { k: 'Intent template',v: '[Client outcome] by [mechanism], measured by [signal].', mono: true },
+          { k: 'Sources',        v: 'Client signal log, True North doc, stakeholder priorities. Intent not traceable to one of these should not enter the cycle.' },
+          { k: 'Backup',         v: 'A named delegate in System Memory holds gate authority when PO is away. No delegate = cycle holds at Deploy.' }
+        ],
+        extra: '<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:11px;font-family:\'IBM Plex Mono\',monospace;color:var(--coral2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Anti-patterns</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Epic-framed: <em>&ldquo;Build a new onboarding flow&rdquo;</em> — describes a feature, not an outcome.</div><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Story-framed: <em>&ldquo;As a user I want to see my dashboard&rdquo;</em> — task disguised as intent.</div><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Spec-framed: <em>&ldquo;Add a login button to the homepage&rdquo;</em> — implementation, not outcome.</div><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">If the Orchestrator can start building without asking a question, the intent is probably a task list in disguise.</div></div></div><div style="margin-top:16px;padding:14px 16px;background:var(--surface2);border-radius:6px;border-left:3px solid var(--amber);"><div style="font-size:11px;font-family:\'IBM Plex Mono\',monospace;color:var(--amber2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Scope check</div><p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0 0 10px;">Ask: <strong>could a single gate report confirm this outcome was achieved?</strong> If no — decompose first. Each cycle-ready intent maps to one feature flag.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--coral2);font-size:12px;font-family:\'IBM Plex Mono\',monospace;color:var(--text3);">\u2717 Too large<br><span style="color:var(--text2);">&ldquo;Launch a social network where users control who joins&rdquo;</span></div><div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--teal2);font-size:12px;font-family:\'IBM Plex Mono\',monospace;color:var(--text3);">\u2713 Cycle-sized<br><span style="color:var(--text2);">&ldquo;Allow users to set their profile as invite-only, measured by adoption rate.&rdquo;</span></div></div></div>'
+      },
+      craft: {
+        name: 'Craft Engineer', type: 'human',
+        desc: 'A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge.',
+        attrs: [
+          { k: 'Owns',           v: 'Capability Library quality, agent training, craft standards' },
+          { k: 'Produces',       v: 'Capability file updates, pattern escalations, craft annotations on gate reports' },
+          { k: 'Also handles',   v: 'Genuinely novel architectural problems and deep environmental issues agents cannot resolve' },
+          { k: 'Key discipline', v: 'Noticing "the Builder keeps solving this wrong" and encoding the fix into a capability file — not fixing it manually each time' }
+        ]
+      },
+      qa: {
+        name: 'Quality Advocate', type: 'human',
+        desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify — and validates each deploy as a real user before the flag turns ON.',
+        attrs: [
+          { k: 'Owns',           v: 'Acceptance criteria, gate criteria, exploratory validation pre-flag' },
+          { k: 'Produces',       v: 'Gate criteria updates, quality signals to client signal log, flag-ON recommendation' },
+          { k: 'Catches',        v: 'Flows that are technically correct but humanly confusing — the class of problem no automated test finds' },
+          { k: 'Key discipline', v: 'Encoding discovered issues into gate criteria, so the Guardian catches the same class of problem automatically next cycle' },
+          { k: 'Authority',      v: 'Advisory — PO holds final gate authority. PO overrides must be documented. Repeated overrides signal a process problem.' }
+        ]
+      },
+      arch: {
+        name: 'Architects &amp; Tech Leads', type: 'human',
+        desc: 'Define and maintain the technical guardrails that agents work within. They do not build features — they own the conventions, constraints, and capability files that shape how the team builds everything.',
+        attrs: [
+          { k: 'Owns',           v: 'Capability Library, System Memory conventions, tech constraints' },
+          { k: 'Interfaces',     v: 'Builder agents (via capabilities), Guardian (via gate criteria)' },
+          { k: 'Key discipline', v: 'Translating architectural decisions into capability files, not tickets' }
+        ]
+      },
+      orchestrator: {
+        name: 'Orchestrator', type: 'agent', sub: 'Intent Translator / Decomposer',
+        desc: 'Receives cycle intent from the PO and decomposes it into a sequenced task list. Routes tasks to the correct Builder agents based on domain, tracks in-flight work, and updates System Memory at cycle close.',
+        attrs: [
+          { k: 'Reads',      v: 'System Memory, Capability Library, cycle intent statement' },
+          { k: 'Produces',   v: 'Task list, routing decisions, memory updates' },
+          { k: 'Fails when', v: 'Intent is ambiguous (see R2)' }
+        ]
+      },
+      builder: {
+        name: 'Builder(s)', type: 'agent', sub: 'Execution Entity',
+        desc: 'Execute individual tasks. Can be a single agent, a swarm of specialized agents, or human-assisted execution — the framework makes no assumption about the underlying AI toolchain. Each Builder reads the relevant capability files before starting, produces code and tests as a single unit, and operates without state between tasks.',
+        attrs: [
+          { k: 'Reads',      v: 'Task brief, domain capability file, System Memory' },
+          { k: 'Produces',   v: 'Code + tests, wrapped in a feature flag by default' },
+          { k: 'Constraint', v: 'Stateless — no opinion carried between tasks or cycles' }
+        ]
+      },
+      guardian: {
+        name: 'Guardian', type: 'agent', sub: 'Automated Quality / Policy Governor',
+        desc: 'Reviews Builder output against the gate criteria before it reaches the PO. Runs security, performance, and cost signals. Produces a short, human-readable gate report with a clear pass / flag / fail signal.',
+        attrs: [
+          { k: 'Checks',    v: 'Tests pass, sec scan clean, perf budget, cost delta, client impact' },
+          { k: 'Produces',  v: 'Gate report (\u22643 paragraphs), next-cycle suggestion' },
+          { k: 'Escalates', v: 'Architectural concerns to Craft Engineer, dependency conflicts to broker' }
+        ]
+      },
+      broker: {
+        name: 'Dependency Broker', type: 'agent',
+        desc: 'Monitors cross-team signals. When a team\'s Orchestrator detects a cross-team need during decomposition, the broker routes the request, notifies affected POs, and tracks resolution.',
+        attrs: [
+          { k: 'Monitors',  v: 'All Orchestrator task lists and cycle plans across teams in scope' },
+          { k: 'Produces',  v: 'Dependency alerts, blocker log, handoff checklists' },
+          { k: 'Key value', v: "Teams don't wait — they work around while the broker resolves" }
+        ]
+      },
+      client: {
+        name: 'Client', type: 'human',
+        desc: 'Not a workflow participant, but the ultimate measure of all decisions. The PO captures client signals continuously — feedback, usage data, support patterns — and feeds them into the client signal log.',
+        attrs: [
+          { k: 'Provides',       v: 'Real needs, usage signals, feedback, priority by behaviour' },
+          { k: 'Represented by', v: 'PO (in cycle intent), Guardian (in gate review)' },
+          { k: 'Validated by',   v: 'Feature flag rollout, usage metrics post-deploy' }
+        ]
+      }
+    };
+
+    var connections = [
+      ['node-stakeholders', 'node-po',           'human'],
+      ['node-po',           'node-orchestrator', 'cross'],
+      ['node-orchestrator', 'node-builder',      'agent'],
+      ['node-builder',      'node-guardian',     'agent'],
+      ['node-guardian',     'node-po',           'cross'],
+      ['node-guardian',     'node-craft',        'human'],
+      ['node-po',           'node-client',       'cross']
+    ];
+
+    function renderDetail(roleKey) {
+      var r = roles[roleKey];
+      if (!r) return;
+      var tagClass = r.type === 'human' ? 'human' : 'agent';
+      var attrsHtml = r.attrs.map(function(a) {
+        return '<div class="role-attribute"><span class="role-attribute-key">' + a.k + '</span><span class="role-attribute-val"' + (a.mono ? ' style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;color:var(--teal2);"' : '') + '>' + a.v + '</span></div>';
+      }).join('');
+      document.getElementById('roleDetailContent').innerHTML =
+        '<div class="role-detail-header"><div><div class="role-detail-name">' + r.name + '</div>' +
+        (r.sub ? '<div style="font-size:11px;font-family:\'IBM Plex Mono\',monospace;color:var(--text3);margin-top:4px;letter-spacing:0.06em;">' + r.sub + '</div>' : '') +
+        '</div><span class="role-tag ' + tagClass + '">' + r.type + '</span></div>' +
+        '<p class="role-detail-desc">' + r.desc + '</p>' +
+        '<div class="role-detail-attrs">' + attrsHtml + '</div>' +
+        (r.extra || '');
+      var detail = document.getElementById('roleMapDetail');
+      detail.classList.add('visible');
+    }
+
+    function drawConnectors() {
+      var svg = document.getElementById('roleMapSvg');
+      var diagram = document.getElementById('roleMapDiagram');
+      if (!svg || !diagram) return;
+      var dr = diagram.getBoundingClientRect();
+      svg.innerHTML = '<defs>' +
+        '<marker id="arr-human" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--purple2)" opacity="0.4"/></marker>' +
+        '<marker id="arr-agent" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--blue2)" opacity="0.4"/></marker>' +
+        '<marker id="arr-cross" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--coral)" opacity="0.5"/></marker>' +
+        '</defs>';
+      var colorMap = { human: 'var(--purple2)', agent: 'var(--blue2)', cross: 'var(--coral)' };
+      connections.forEach(function(c) {
+        var fromEl = document.getElementById(c[0]);
+        var toEl   = document.getElementById(c[1]);
+        if (!fromEl || !toEl) return;
+        var fr = fromEl.getBoundingClientRect();
+        var tr = toEl.getBoundingClientRect();
+        var x1 = fr.left + fr.width  / 2 - dr.left;
+        var y1 = fr.top  + fr.height / 2 - dr.top;
+        var x2 = tr.left + tr.width  / 2 - dr.left;
+        var y2 = tr.top  + tr.height / 2 - dr.top;
+        var cx = x1 + (x2 - x1) * 0.5;
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', 'M' + x1 + ',' + y1 + ' C' + cx + ',' + y1 + ' ' + cx + ',' + y2 + ' ' + x2 + ',' + y2);
+        path.setAttribute('stroke', colorMap[c[2]]);
+        path.setAttribute('stroke-width', '1.5');
+        path.setAttribute('stroke-opacity', '0.3');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('marker-end', 'url(#arr-' + c[2] + ')');
+        svg.appendChild(path);
+      });
+    }
+
+    document.querySelectorAll('.role-node').forEach(function(node) {
+      node.addEventListener('click', function() {
+        document.querySelectorAll('.role-node').forEach(function(n) { n.classList.remove('active'); });
+        this.classList.add('active');
+        renderDetail(this.dataset.role);
+      });
+    });
+
+    window.addEventListener('load', drawConnectors);
+    window.addEventListener('resize', drawConnectors);
+
+    var firstNode = document.querySelector('.role-node');
+    if (firstNode) {
+      firstNode.classList.add('active');
+      renderDetail(firstNode.dataset.role);
+    }
+    setTimeout(drawConnectors, 150);
+  })();
+  </script>
+
+  <!-- legacy role cards removed — replaced by role map above -->
 
     <div class="role-card">
       <div class="role-card-header">
