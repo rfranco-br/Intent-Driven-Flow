@@ -449,7 +449,7 @@
 
   .role-map-boundary {
     border-top: 1px dashed var(--border2);
-    margin: 8px 0 24px;
+    margin: 24px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -464,15 +464,7 @@
     padding: 0 12px;
   }
 
-  .role-map-row { display: flex; gap: 12px; align-items: flex-start; position: relative; flex-wrap: wrap; }
-
-  .role-map-svg {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    overflow: visible;
-  }
+  .role-map-row { display: flex; gap: 16px; align-items: flex-start; position: relative; flex-wrap: wrap; margin-bottom: 8px; }
 
   .role-node {
     display: flex;
@@ -518,20 +510,42 @@
   .role-node-tag.agent { background: rgba(74,122,191,0.15);  color: var(--blue2);   border: 1px solid rgba(74,122,191,0.3); }
 
   .role-map-detail {
-    margin-top: 3px;
+    margin-top: 0;
     border: 1px solid var(--border);
     border-top: none;
     border-radius: 0 0 16px 16px;
-    background: var(--bg);
-    padding: 28px 32px;
+    background: var(--surface);
+    padding: 0;
     display: none;
+    overflow: hidden;
   }
   .role-map-detail.visible { display: block; }
 
-  .role-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 16px; }
-  .role-detail-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--text); }
+  .role-detail-accent {
+    height: 3px;
+    background: var(--purple);
+    transition: background 0.2s;
+  }
+  .role-detail-inner {
+    padding: 28px 32px;
+  }
+  .role-detail-breadcrumb {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .role-detail-breadcrumb .crumb-sep { color: var(--border2); }
+
+  .role-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 16px; }
+  .role-detail-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--text); }
   .role-detail-desc { font-size: 14px; color: var(--text2); line-height: 1.7; max-width: 680px; margin-bottom: 20px; }
-  .role-detail-attrs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+  .role-detail-attrs { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
 
   /* ── RITUALS ── */
   .rituals-table {
@@ -995,8 +1009,7 @@
     .role-map-row { gap: 8px; }
     .role-node { min-width: 110px; padding: 10px 12px; }
     .role-node-name { font-size: 12px; }
-    .role-map-svg { display: none; }
-    .role-map-detail { padding: 20px 16px; }
+    .role-detail-inner { padding: 20px 16px; }
 
     /* Axioms */
     .axiom { gap: 10px; }
@@ -1188,7 +1201,7 @@
         </div>
       </div>
 
-      <div class="role-map-boundary" style="margin:24px 0;">
+      <div class="role-map-boundary">
         <span class="role-map-boundary-label">Intent flows down &nbsp;·&nbsp; Approval flows up</span>
       </div>
 
@@ -1225,12 +1238,18 @@
         </div>
       </div>
 
-      <svg class="role-map-svg" id="roleMapSvg" aria-hidden="true"></svg>
-
     </div>
 
     <div class="role-map-detail" id="roleMapDetail">
-      <div id="roleDetailContent"></div>
+      <div class="role-detail-accent" id="roleDetailAccent"></div>
+      <div class="role-detail-inner">
+        <div class="role-detail-breadcrumb">
+          <span>Role map</span>
+          <span class="crumb-sep">›</span>
+          <span id="roleDetailBreadcrumb"></span>
+        </div>
+        <div id="roleDetailContent"></div>
+      </div>
     </div>
 
   </div>
@@ -1337,20 +1356,11 @@
       }
     };
 
-    var connections = [
-      ['node-stakeholders', 'node-po',           'human'],
-      ['node-po',           'node-orchestrator', 'cross'],
-      ['node-orchestrator', 'node-builder',      'agent'],
-      ['node-builder',      'node-guardian',     'agent'],
-      ['node-guardian',     'node-po',           'cross'],
-      ['node-guardian',     'node-craft',        'human'],
-      ['node-po',           'node-client',       'cross']
-    ];
-
     function renderDetail(roleKey) {
       var r = roles[roleKey];
       if (!r) return;
-      var tagClass = r.type === 'human' ? 'human' : 'agent';
+      var tagClass   = r.type === 'human' ? 'human' : 'agent';
+      var accentColor = r.type === 'human' ? 'var(--purple)' : 'var(--blue)';
       var attrsHtml = r.attrs.map(function(a) {
         return '<div class="role-attribute"><span class="role-attribute-key">' + a.k + '</span><span class="role-attribute-val"' + (a.mono ? ' style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;color:var(--teal2);"' : '') + '>' + a.v + '</span></div>';
       }).join('');
@@ -1361,41 +1371,10 @@
         '<p class="role-detail-desc">' + r.desc + '</p>' +
         '<div class="role-detail-attrs">' + attrsHtml + '</div>' +
         (r.extra || '');
+      document.getElementById('roleDetailAccent').style.background = accentColor;
+      document.getElementById('roleDetailBreadcrumb').textContent = r.name;
       var detail = document.getElementById('roleMapDetail');
       detail.classList.add('visible');
-    }
-
-    function drawConnectors() {
-      var svg = document.getElementById('roleMapSvg');
-      var diagram = document.getElementById('roleMapDiagram');
-      if (!svg || !diagram) return;
-      var dr = diagram.getBoundingClientRect();
-      svg.innerHTML = '<defs>' +
-        '<marker id="arr-human" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--purple2)" opacity="0.4"/></marker>' +
-        '<marker id="arr-agent" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--blue2)" opacity="0.4"/></marker>' +
-        '<marker id="arr-cross" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--coral)" opacity="0.5"/></marker>' +
-        '</defs>';
-      var colorMap = { human: 'var(--purple2)', agent: 'var(--blue2)', cross: 'var(--coral)' };
-      connections.forEach(function(c) {
-        var fromEl = document.getElementById(c[0]);
-        var toEl   = document.getElementById(c[1]);
-        if (!fromEl || !toEl) return;
-        var fr = fromEl.getBoundingClientRect();
-        var tr = toEl.getBoundingClientRect();
-        var x1 = fr.left + fr.width  / 2 - dr.left;
-        var y1 = fr.top  + fr.height / 2 - dr.top;
-        var x2 = tr.left + tr.width  / 2 - dr.left;
-        var y2 = tr.top  + tr.height / 2 - dr.top;
-        var cx = x1 + (x2 - x1) * 0.5;
-        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('d', 'M' + x1 + ',' + y1 + ' C' + cx + ',' + y1 + ' ' + cx + ',' + y2 + ' ' + x2 + ',' + y2);
-        path.setAttribute('stroke', colorMap[c[2]]);
-        path.setAttribute('stroke-width', '1.5');
-        path.setAttribute('stroke-opacity', '0.3');
-        path.setAttribute('fill', 'none');
-        path.setAttribute('marker-end', 'url(#arr-' + c[2] + ')');
-        svg.appendChild(path);
-      });
     }
 
     document.querySelectorAll('.role-node').forEach(function(node) {
@@ -1406,152 +1385,13 @@
       });
     });
 
-    window.addEventListener('load', drawConnectors);
-    window.addEventListener('resize', drawConnectors);
-
     var firstNode = document.querySelector('.role-node');
     if (firstNode) {
       firstNode.classList.add('active');
       renderDetail(firstNode.dataset.role);
     }
-    setTimeout(drawConnectors, 150);
   })();
   </script>
-
-  <!-- legacy role cards removed — replaced by role map above -->
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <h3>Product Owner</h3>
-        <span class="role-tag human">human</span>
-      </div>
-      <p>The translation layer. Holds simultaneous understanding of client needs, business constraints, and current strategic priorities. The PO's primary output is cycle intent — a clear statement of desired outcome that agents can execute against.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Client signal log, cycle intent, gate approval</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Interfaces</span><span class="role-attribute-val">Stakeholders (up), Orchestrator (down), clients (lateral)</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Writing intent as client outcomes, not feature descriptions</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Intent template</span><span class="role-attribute-val" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal2);">[Client outcome] by [mechanism], measured by [signal].<br><span style="color:var(--text2);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">eg. "Reduce checkout abandonment at the payment step by simplifying the form, measured by drop-off rate below 12%."</span></span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Sources of intent</span><span class="role-attribute-val">Synthesised from three inputs: client signal log (what clients are doing), True North doc (strategic direction), and stakeholder priorities (investment constraints). Intent that cannot be traced to at least one of these sources should not enter the cycle.</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Backup</span><span class="role-attribute-val">A named delegate (in System Memory) holds gate authority when PO is away. No delegate = cycle holds at Deploy.</span></div>
-
-      <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:16px;">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Anti-patterns</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Epic-framed: <em>"Build a new onboarding flow"</em> — describes a feature, not an outcome.</div>
-          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Story-framed: <em>"As a user I want to see my dashboard"</em> — task disguised as intent.</div>
-          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Spec-framed: <em>"Add a login button to the homepage"</em> — implementation, not outcome.</div>
-          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">If the Orchestrator can start building without asking a question, the intent is probably a task list in disguise.</div>
-        </div>
-      </div>
-
-      <div style="margin-top:16px;padding:14px 16px;background:var(--bg);border-radius:6px;border-left:3px solid var(--amber);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--amber2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Scope check</div>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0 0 10px;">A well-formed intent is also a cycle-sized intent. Ask: <strong>could a single gate report tell me whether this outcome was achieved?</strong> If no — the outcome spans multiple independently testable outcomes — decompose it into smaller intents before the cycle begins. Each cycle-ready intent maps to one feature flag. If the outcome would require multiple flags to release safely, split it first.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--coral2);font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--text3);">✗ Too large<br><span style="color:var(--text2);">"Launch a social network where users control who joins"</span><br><span style="color:var(--text3);font-size:11px;">No single gate can confirm this.</span></div>
-          <div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--teal2);font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--text3);">✓ Cycle-sized<br><span style="color:var(--text2);">"Allow users to set their profile as invite-only, measured by adoption rate."</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <h3>Architects &amp; Tech Leads</h3>
-        <span class="role-tag human">human</span>
-      </div>
-      <p>Define and maintain the technical guardrails that agents work within. They do not build features — they own the conventions, constraints, and capability files that shape how the team builds everything.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Capability Library, System Memory conventions, tech constraints</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Interfaces</span><span class="role-attribute-val">Builder agents (via capabilities), Guardian (via gate criteria)</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Translating architectural decisions into capability files, not tickets</span></div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <div>
-          <h3>Orchestrator</h3>
-          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-top:4px;letter-spacing:0.06em;">Intent Translator / Decomposer</div>
-        </div>
-        <span class="role-tag agent">agent</span>
-      </div>
-      <p>Receives cycle intent from the PO and decomposes it into a sequenced task list. Routes tasks to the correct Builder agents based on domain, tracks in-flight work, and updates System Memory at cycle close.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Reads</span><span class="role-attribute-val">System Memory, Capability Library, cycle intent statement</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Task list, routing decisions, memory updates</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Fails when</span><span class="role-attribute-val">Intent is ambiguous (see A03)</span></div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <div>
-          <h3>Builder(s)</h3>
-          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-top:4px;letter-spacing:0.06em;">Execution Entity</div>
-        </div>
-        <span class="role-tag agent">agent</span>
-      </div>
-      <p>Execute individual tasks. Can be a single agent, a swarm of specialized agents, or human-assisted execution — the framework makes no assumption about the underlying AI toolchain. Each Builder reads the relevant capability files before starting, produces code and tests as a single unit, and operates without state between tasks. Multiple Builders can run in parallel on independent tasks within the same cycle.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Reads</span><span class="role-attribute-val">Task brief, domain capability file, System Memory</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Code + tests, wrapped in a feature flag by default</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Constraint</span><span class="role-attribute-val">Stateless — no opinion carried between tasks or cycles</span></div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <div>
-          <h3>Guardian</h3>
-          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-top:4px;letter-spacing:0.06em;">Automated Quality / Policy Governor</div>
-        </div>
-        <span class="role-tag agent">agent</span>
-      </div>
-      <p>Reviews Builder output against the gate criteria before it reaches the PO. Runs security, performance, and cost signals. Produces a short, human-readable gate report with a clear pass / flag / fail signal. The Guardian is what makes the PO's gate review manageable.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Checks</span><span class="role-attribute-val">Tests pass, sec scan clean, perf budget, cost delta, client impact</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Gate report (≤3 paragraphs), next-cycle suggestion</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Escalates</span><span class="role-attribute-val">Architectural concerns to Craft Engineer, dependency conflicts to broker</span></div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <h3>Craft Engineer</h3>
-        <span class="role-tag human">human</span>
-      </div>
-      <p>A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Capability Library quality, agent training, craft standards</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Capability file updates, pattern escalations, craft annotations on gate reports</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Also handles</span><span class="role-attribute-val">Genuinely novel architectural problems and deep environmental issues agents cannot resolve</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Noticing "the Builder keeps solving this wrong" and encoding the fix into a capability file — not fixing it manually each time</span></div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <h3>Quality Advocate</h3>
-        <span class="role-tag human">human</span>
-      </div>
-      <p>A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify — and validates each deploy as a real user before the flag turns ON.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Owns</span><span class="role-attribute-val">Acceptance criteria, gate criteria, exploratory validation pre-flag</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Gate criteria updates, quality signals to client signal log, flag-ON recommendation</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Catches</span><span class="role-attribute-val">Flows that are technically correct but humanly confusing — the class of problem no automated test finds</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Encoding discovered issues into gate criteria, so the Guardian catches the same class of problem automatically next cycle</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Authority</span><span class="role-attribute-val">Advisory — PO holds final gate authority. PO overrides must be documented. Repeated overrides signal a process problem.</span></div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <h3>Dependency Broker</h3>
-        <span class="role-tag agent">agent</span>
-      </div>
-      <p>Monitors cross-team signals. When a team's Orchestrator detects a cross-team need during decomposition, the broker routes the request, notifies affected POs, and tracks resolution. Escalates to stakeholder level if a blocker persists beyond one cycle.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Monitors</span><span class="role-attribute-val">All Orchestrator task lists and cycle plans across teams in scope</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Produces</span><span class="role-attribute-val">Dependency alerts, blocker log, handoff checklists</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Key value</span><span class="role-attribute-val">Teams don't wait — they work around while the broker resolves</span></div>
-    </div>
-
-    <div class="role-card">
-      <div class="role-card-header">
-        <h3>Client</h3>
-        <span class="role-tag human">human</span>
-      </div>
-      <p>Not a workflow participant, but the ultimate measure of all decisions. The PO captures client signals continuously — feedback, usage data, support patterns — and feeds them into the client signal log. Every layer uses this log as a reality check.</p>
-      <div class="role-attribute"><span class="role-attribute-key">Provides</span><span class="role-attribute-val">Real needs, usage signals, feedback, priority by behaviour</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Represented by</span><span class="role-attribute-val">PO (in cycle intent), Guardian (in gate review)</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Validated by</span><span class="role-attribute-val">Feature flag rollout, usage metrics post-deploy</span></div>
-    </div>
 
   </div>
 </section>
