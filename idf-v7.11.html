@@ -838,7 +838,8 @@
       padding: 16px 16px;
     }
     .ritual-row .ritual-cadence { color: var(--coral); }
-    .ritual-row .ritual-trigger::before { content: 'Trigger: '; font-weight: 600; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
+    .ritual-row .ritual-cadence::before { content: 'Trigger Type: '; font-weight: 600; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
+    .ritual-row .ritual-trigger::before { content: 'Trigger + Participants: '; font-weight: 600; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
     .ritual-row .ritual-output::before  { content: 'Output: ';  font-weight: 600; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
 
     /* Artifacts grid → single column */
@@ -1031,9 +1032,26 @@
       <div class="role-attribute"><span class="role-attribute-key">Key discipline</span><span class="role-attribute-val">Writing intent as client outcomes, not feature descriptions</span></div>
       <div class="role-attribute"><span class="role-attribute-key">Intent template</span><span class="role-attribute-val" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal2);">[Client outcome] by [mechanism], measured by [signal].<br><span style="color:var(--text2);font-family:'IBM Plex Sans',sans-serif;font-size:13px;">eg. "Reduce checkout abandonment at the payment step by simplifying the form, measured by drop-off rate below 12%."</span></span></div>
       <div class="role-attribute"><span class="role-attribute-key">Sources of intent</span><span class="role-attribute-val">Synthesised from three inputs: client signal log (what clients are doing), True North doc (strategic direction), and stakeholder priorities (investment constraints). Intent that cannot be traced to at least one of these sources should not enter the cycle.</span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Anti-patterns</span><span class="role-attribute-val"><span style="color:var(--text3);">Epic-framed: "Build a new onboarding flow" — describes a feature, not an outcome.</span><br><span style="color:var(--text3);">Story-framed: "As a user I want to see my dashboard" — task disguised as intent.</span><br><span style="color:var(--text3);">Spec-framed: "Add a login button to the homepage" — implementation, not outcome.</span><br><span style="color:var(--text3);">If the Orchestrator can start building without asking a question, the intent is probably a task list in disguise.</span></span></div>
-      <div class="role-attribute"><span class="role-attribute-key">Scope check</span><span class="role-attribute-val">A well-formed intent is also a cycle-sized intent. Ask: could a single gate report tell me whether this outcome was achieved? If no — the outcome spans multiple independently testable outcomes — decompose it into smaller intents before the cycle begins. Each cycle-ready intent maps to one feature flag. If the outcome would require multiple flags to release safely, split it first.<br><span style="color:var(--text3);font-size:12px;">Too large: "Launch a social network where users control who joins" — no single gate can confirm this.<br>Cycle-sized: "Allow users to set their profile as invite-only, measured by adoption rate."</span></span></div>
       <div class="role-attribute"><span class="role-attribute-key">Backup</span><span class="role-attribute-val">A named delegate (in System Memory) holds gate authority when PO is away. No delegate = cycle holds at Deploy.</span></div>
+
+      <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:16px;">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Anti-patterns</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Epic-framed: <em>"Build a new onboarding flow"</em> — describes a feature, not an outcome.</div>
+          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Story-framed: <em>"As a user I want to see my dashboard"</em> — task disguised as intent.</div>
+          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Spec-framed: <em>"Add a login button to the homepage"</em> — implementation, not outcome.</div>
+          <div style="padding:8px 12px;background:var(--bg);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">If the Orchestrator can start building without asking a question, the intent is probably a task list in disguise.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding:14px 16px;background:var(--bg);border-radius:6px;border-left:3px solid var(--amber);">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--amber2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Scope check</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0 0 10px;">A well-formed intent is also a cycle-sized intent. Ask: <strong>could a single gate report tell me whether this outcome was achieved?</strong> If no — the outcome spans multiple independently testable outcomes — decompose it into smaller intents before the cycle begins. Each cycle-ready intent maps to one feature flag. If the outcome would require multiple flags to release safely, split it first.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--coral2);font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--text3);">✗ Too large<br><span style="color:var(--text2);">"Launch a social network where users control who joins"</span><br><span style="color:var(--text3);font-size:11px;">No single gate can confirm this.</span></div>
+          <div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--teal2);font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--text3);">✓ Cycle-sized<br><span style="color:var(--text2);">"Allow users to set their profile as invite-only, measured by adoption rate."</span></div>
+        </div>
+      </div>
     </div>
 
     <div class="role-card">
@@ -1921,9 +1939,9 @@ saved card data. Consider one-click payment for returning users.</div>
 
   </div>
 
-  <div style="margin-top:40px;padding:20px 24px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);max-width:680px;">
-    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);letter-spacing:0.08em;margin-bottom:8px;">THAT'S ONE CYCLE. REPEAT.</div>
-    <p style="font-size:14px;color:var(--text2);line-height:1.7;">Intent → Decompose → Build → Gate → Live-ON → Monitor. No sprint planning, no standups, no story points. The artifacts carry the context. The agents carry the execution. The PO governs the outcome.</p>
+  <div style="margin-top:40px;padding:20px 24px;border-left:3px solid var(--coral);background:var(--surface2);border-radius:0 8px 8px 0;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);letter-spacing:0.08em;margin-bottom:10px;">THAT'S ONE CYCLE. REPEAT.</div>
+    <p style="font-size:15px;color:var(--text);line-height:1.7;margin:0;">Intent → Decompose → Build → Gate → Live-ON → Monitor. No sprint planning, no standups, no story points. The artifacts carry the context. The agents carry the execution. The PO governs the outcome.</p>
   </div>
 </section>
 
