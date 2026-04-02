@@ -268,12 +268,15 @@
     "file": "idf-v7.11.html",
     "date": "2026-04-02",
     "title": "Mobile-First",
-    "description": "Adds greenfield/constrained-greenfield callouts to Playbook W1, and an explicit anti-estimation callout to Section 01 of the core framework addressing teams migrating from Scrum.",
+    "description": "Softens R3 to client-observable changes only, adds scope check to PO role card, and fully populates Playbook C1 with intent size guidance, the gate test, and a five-point self-check.",
     "highlights": [
-      "Playbook W1: GREENFIELD callout — assumption-based intent format when no signals exist",
-      "Playbook W1: CONSTRAINED GREENFIELD callout — standing constraints go in System Memory, not intent",
-      "IDF Section 01: 'IF YOU ARE COMING FROM SCRUM' callout — no estimation, deliberate design",
-      "Estimation anti-pattern made explicit: gate report replaces pre-cycle complexity scoring"
+      "R3 updated: 'every change' → 'every client-observable change' — version control governs the rest",
+      "PO role card: Scope check added — the gate test as the canonical intent-sizing criterion",
+      "Playbook C1 populated: full Writing Intent Statements guidance",
+      "C1: three-clause breakdown (outcome / mechanism / signal) with individual explanations",
+      "C1: under-specified vs over-specified spectrum with worked examples",
+      "C1: five-point self-check rubric before logging intent",
+      "C1: cycle-sized vs too-large examples (profile picture vs social network)"
     ]
   },
   {

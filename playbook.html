@@ -839,8 +839,95 @@ Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
 <section id="c1">
   <div class="section-label">C1 — Communication Patterns</div>
   <h2>Writing Intent Statements</h2>
-  <p style="max-width:640px;">Extended guidance beyond the INTENT_LOG template: the difference between an outcome and an instruction, the failure modes of under-specified and over-specified intent, and a self-check rubric.</p>
-  <!-- TODO: populate -->
+  <p style="max-width:640px;">The intent statement is the only input the Orchestrator receives from a human. Everything the system produces in a cycle flows from it. A statement that is too vague produces a cycle that drifts before the first task is complete. A statement that is too specific means the PO has already done the Orchestrator's job — and the agents will build exactly what was specified, no more, no less, even if it is wrong.</p>
+
+  <!-- The format -->
+  <h3 style="margin-top:48px;margin-bottom:12px;">The canonical format</h3>
+  <div class="qs-artifact-label">INTENT TEMPLATE</div>
+  <div class="qs-artifact">[Client outcome] by [mechanism], measured by [signal].
+
+Example:
+Reduce checkout abandonment at the payment step
+  by presenting a single-field card input by default,
+  measured by drop-off rate falling below 12%.</div>
+
+  <p style="max-width:640px;margin-top:24px;">Three clauses. Each does a distinct job:</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:16px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:860px;">
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.08em;margin-bottom:10px;">CLIENT OUTCOME</div>
+      <p style="font-size:13px;line-height:1.6;">What changes for the client if this cycle succeeds. Not what the team will build — what the client will experience differently. This is the only clause the PO fully controls. The others are aids to decomposition.</p>
+    </div>
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.08em;margin-bottom:10px;">MECHANISM</div>
+      <p style="font-size:13px;line-height:1.6;">The approach the team believes will produce the outcome. This constrains the Orchestrator's decomposition without specifying implementation. It must be specific enough to prevent the Orchestrator from asking a scoping question, but not so specific that it dictates how to build.</p>
+    </div>
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.08em;margin-bottom:10px;">SUCCESS SIGNAL</div>
+      <p style="font-size:13px;line-height:1.6;">How the PO will know the outcome was achieved — a measurable client-side indicator. This is what makes a gate report binary: pass if the signal moved, fail if it did not. Without this clause, the gate review becomes a judgment call with no anchor.</p>
+    </div>
+  </div>
+
+  <!-- Scope -->
+  <h3 style="margin-top:48px;margin-bottom:12px;">Scope: is this intent cycle-sized?</h3>
+  <p style="max-width:640px;">Format is necessary but not sufficient. An intent can be perfectly formatted and still be too large to complete in a single cycle. The test is not word count or complexity — it is whether a single gate report can confirm the outcome was achieved.</p>
+
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:24px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">THE GATE TEST</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Could the PO read a single gate report and make a binary pass/fail decision on this outcome? If yes, the intent is cycle-sized. If no, the intent spans multiple independently testable outcomes and must be decomposed by the PO before the cycle begins.</div>
+  </div>
+
+  <div style="margin-top:32px;max-width:860px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--teal);border-radius:8px;padding:20px 22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);letter-spacing:0.08em;margin-bottom:12px;">CYCLE-SIZED</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px;">"Allow users to set their profile to invite-only, measured by the feature being used by 20% of active users within 7 days."</p>
+        <p style="font-size:12px;color:var(--text3);line-height:1.5;">One flag. One gate condition. The PO can pass or fail this in one review.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--coral);border-radius:8px;padding:20px 22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.08em;margin-bottom:12px;">TOO LARGE</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px;">"Build a social network where users control who joins, measured by user satisfaction."</p>
+        <p style="font-size:12px;color:var(--text3);line-height:1.5;">No single gate can confirm this. The outcome requires multiple flags, multiple releases, and months of signal accumulation. This is a product vision, not an intent.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- The spectrum -->
+  <h3 style="margin-top:48px;margin-bottom:12px;">The under-specified / over-specified spectrum</h3>
+  <p style="max-width:640px;">Most intent failures land at one of two extremes. Both produce bad cycles for different reasons.</p>
+
+  <div style="margin-top:24px;display:flex;flex-direction:column;gap:2px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:860px;">
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr;background:var(--surface2);padding:10px 20px;gap:16px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Type</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">What it looks like</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">What breaks</div>
+    </div>
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">UNDER-SPECIFIED</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">"Improve the user profile." No mechanism, no signal. The Orchestrator must invent scope.</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">Orchestrator escalates immediately (R2). If it doesn't, it is making product decisions on behalf of the PO.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">OVER-SPECIFIED</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">"Add an 80×80px circular avatar field to the profile edit form, stored in S3." Implementation detail masquerading as intent.</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">Agents build exactly this. No more. If the spec is wrong, the output is wrong — and the gate report will pass because the spec was met, not because the client outcome was achieved.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">WELL-FORMED</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">"Let users update their profile picture by uploading an image from their device, measured by profile completion rate increasing by 10%."</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">Outcome is clear. Mechanism constrains scope without dictating implementation. Signal makes the gate binary.</div>
+    </div>
+  </div>
+
+  <!-- Self-check -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">Self-check before logging</h3>
+  <div class="axioms" style="max-width:860px;">
+    <div class="axiom"><span class="axiom-num">01</span><span class="axiom-text">Could the Orchestrator begin decomposition without asking a clarifying question? If no — the mechanism clause is too vague.</span></div>
+    <div class="axiom"><span class="axiom-num">02</span><span class="axiom-text">Could a single gate report confirm the outcome was achieved? If no — the intent is too large. Decompose before logging.</span></div>
+    <div class="axiom"><span class="axiom-num">03</span><span class="axiom-text">Does the success signal measure a client-side change? If it measures internal activity (deploys, tickets closed, hours worked) — rewrite it.</span></div>
+    <div class="axiom"><span class="axiom-num">04</span><span class="axiom-text">Can you trace this intent to at least one source in CLIENT_SIGNALS, True North, or stakeholder priorities? If no — do not log it yet.</span></div>
+    <div class="axiom"><span class="axiom-num">05</span><span class="axiom-text">Would this intent require more than one feature flag to release safely? If yes — it is more than one cycle. Split it.</span></div>
+  </div>
+
 </section>
 
 <section id="c2">
