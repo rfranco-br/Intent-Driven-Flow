@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IDF — Intent Driven Flow Framework</title>
+<title>IDF in 5 Minutes — Intent Driven Flow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -22,6 +22,10 @@
     --purple2: #9b7fd4;
     --teal: #3a9e78;
     --teal2: #5bbf95;
+    --blue: #4a7abf;
+    --blue2: #6b99d4;
+    --amber: #bf8f3a;
+    --amber2: #d4a85b;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,326 +36,465 @@
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 15px;
     line-height: 1.7;
-    min-height: 100vh;
   }
 
-  /* ── HEADER ── */
-  header {
-    padding: 48px 80px 40px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 32px;
+  /* ── SHARED LAYOUT ── */
+  .page-gutter {
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
-  .header-brand {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .header-badge {
+  .section-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    color: var(--coral);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 24px;
   }
 
-  .header-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.2;
+  /* ── BLOCK 1: BYLINE HEADER ── */
+  .byline {
+    padding-top: 64px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
   }
 
-  .header-title span { color: var(--coral); }
-
-  .header-desc {
-    font-size: 13px;
+  .byline-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--text3);
-    max-width: 420px;
+    margin-bottom: 14px;
+  }
+
+  .byline-tagline {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+    color: var(--text2);
+    line-height: 1.55;
+    max-width: 520px;
+  }
+
+  /* ── BLOCK 2: THE CONTRAST ── */
+  .contrast-block {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contrast-table {
+    max-width: 860px;
+    width: 100%;
+  }
+
+  .contrast-headers {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+    margin-bottom: 4px;
+  }
+
+  .contrast-col-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .contrast-col-label.left  { color: var(--text3); }
+  .contrast-col-label.right { color: var(--coral); }
+
+  .contrast-divider-header {
+    background: var(--border2);
+    width: 1px;
+  }
+
+  .contrast-row {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .contrast-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contrast-cell {
+    padding: 16px 20px 16px 4px;
+    font-size: 14px;
     line-height: 1.6;
   }
 
-  /* ── MAIN ── */
-  main {
-    padding: 64px 80px;
-    max-width: 1100px;
+  .contrast-cell.before {
+    color: var(--text3);
+    padding-right: 28px;
   }
 
-  .section-eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  .contrast-cell.after {
+    color: var(--text);
+    font-weight: 500;
+    padding-left: 28px;
+  }
+
+  .contrast-divider {
+    background: var(--border2);
+    width: 1px;
+    align-self: stretch;
+  }
+
+  /* ── BLOCK 3: MENTAL MODEL ── */
+  .mental-model {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mental-model-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .mental-model-statement {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     margin-bottom: 32px;
   }
 
-  /* ── VERSION CARDS ── */
-  .versions-list {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  .mental-model-statement .part-muted { color: var(--text2); }
+  .mental-model-statement .part-coral { color: var(--coral); }
+
+  .mental-model-sub {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
-  .version-card {
+  /* ── BLOCK 4: THREE THINGS THAT CHANGE ── */
+  .three-things {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 860px;
+    margin-top: 8px;
+  }
+
+  .change-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 32px 36px;
-    display: grid;
-    grid-template-columns: 120px 1fr auto;
-    gap: 32px;
-    align-items: start;
-    transition: border-color 0.15s, background 0.15s;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .version-card:hover {
-    border-color: var(--border2);
-    background: var(--surface2);
-  }
-
-  .version-card.latest {
-    border-color: rgba(232,115,74,0.35);
-  }
-
-  .version-card.latest:hover {
-    border-color: rgba(232,115,74,0.6);
-  }
-
-  /* version number column */
-  .vc-num {
+    border-radius: 12px;
+    padding: 28px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding-top: 2px;
+    gap: 12px;
   }
 
-  .vc-v {
+  .card-number {
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--text);
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--border2);
     line-height: 1;
+    letter-spacing: -0.02em;
   }
 
-  .version-card.latest .vc-v { color: var(--coral); }
-
-  .vc-date {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.06em;
-  }
-
-  .vc-latest-badge {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--coral);
-    background: rgba(232,115,74,0.1);
-    border: 1px solid rgba(232,115,74,0.25);
-    border-radius: 4px;
-    padding: 2px 7px;
-    letter-spacing: 0.06em;
-    margin-top: 4px;
-  }
-
-  /* body column */
-  .vc-body { display: flex; flex-direction: column; gap: 10px; }
-
-  .vc-title {
-    font-size: 17px;
+  .card-claim {
+    font-size: 15px;
     font-weight: 600;
     color: var(--text);
-    line-height: 1.3;
+    line-height: 1.4;
   }
 
-  .vc-desc {
+  .card-body {
     font-size: 13px;
     color: var(--text2);
-    line-height: 1.7;
+    line-height: 1.65;
+  }
+
+  /* ── BLOCK 5: WHAT YOU STOP DOING ── */
+  .stop-doing {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stop-doing h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+
+  .strikethrough-list {
+    max-width: 480px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .strikethrough-list li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text3);
+    line-height: 2.2;
+    text-decoration: line-through;
+    text-decoration-color: var(--border2);
+    text-decoration-thickness: 1px;
+  }
+
+  /* ── BLOCK 6: CLOSING + CTA ── */
+  .closing {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .closing-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text2);
+    line-height: 1.8;
     max-width: 560px;
   }
 
-  .vc-highlights {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 4px;
-  }
-
-  .vc-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 3px 9px;
-  }
-
-  .version-card.latest .vc-tag {
-    color: var(--text2);
-    border-color: var(--border2);
-  }
-
-  /* action column */
-  .vc-action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-    padding-top: 4px;
-  }
-
-  .btn-view {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--text2);
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    border-radius: 6px;
-    padding: 9px 18px;
-    text-decoration: none;
-    transition: color 0.15s, border-color 0.15s;
-    white-space: nowrap;
-  }
-
-  .btn-view:hover { color: var(--text); border-color: var(--text3); }
-
-  .version-card.latest .btn-view {
-    color: var(--coral2);
-    border-color: rgba(232,115,74,0.4);
-    background: rgba(232,115,74,0.06);
-  }
-
-  .version-card.latest .btn-view:hover {
-    color: var(--text);
-    border-color: var(--coral);
-    background: rgba(232,115,74,0.1);
-  }
-
-  .btn-arrow { font-size: 14px; }
-
-  /* ── LOADING / ERROR ── */
-  .state-msg {
+  .closing-sub {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 13px;
     color: var(--text3);
-    padding: 40px 0;
+    letter-spacing: 0.06em;
   }
+
+  .cta-pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--coral);
+    border: 1px solid var(--coral);
+    border-radius: 6px;
+    padding: 10px 24px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: background 0.15s;
+  }
+
+  .cta-pill:hover { background: rgba(232, 115, 74, 0.1); }
 
   /* ── FOOTER ── */
   footer {
-    margin-top: 80px;
-    padding: 28px 80px;
+    padding: 32px 80px;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  footer span {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
     color: var(--text3);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
 
-  @media (max-width: 768px) {
-    header, main, footer { padding-left: 24px; padding-right: 24px; }
-    .version-card { grid-template-columns: 1fr; gap: 16px; }
-    .vc-action { align-items: flex-start; }
+  footer a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--coral);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  footer a:hover { color: var(--coral2); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 767px) {
+    .page-gutter { padding-left: 24px; padding-right: 24px; }
+    .byline { padding-top: 40px; padding-bottom: 36px; }
+    .byline-tagline { font-size: 15px; }
+    .contrast-block { padding-top: 48px; padding-bottom: 48px; }
+    .contrast-headers { display: none; }
+    .contrast-row { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+    .contrast-divider { display: none; }
+    .contrast-cell.before { padding: 14px 0 8px 0; color: var(--text3); font-size: 13px; }
+    .contrast-cell.before::before {
+      display: block;
+      content: 'RIGHT NOW';
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 4px;
+    }
+    .contrast-cell.after { padding: 0 0 14px 0; font-size: 13px; }
+    .contrast-cell.after::before {
+      display: block;
+      content: 'WITH IDF';
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 4px;
+    }
+    .mental-model { padding-top: 56px; padding-bottom: 56px; }
+    .mental-model-statement { font-size: 36px; }
+    .mental-model-inner { text-align: left; }
+    .mental-model-sub { text-align: left; margin: 0; }
+    .three-things { padding-top: 48px; padding-bottom: 48px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .stop-doing { padding-top: 48px; padding-bottom: 48px; }
+    .stop-doing h2 { font-size: 26px; }
+    .closing { padding-top: 56px; padding-bottom: 56px; }
+    .closing-inner { text-align: left; align-items: flex-start; }
+    .pull-quote { font-size: 16px; }
+    footer { padding: 28px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-brand">
-    <div class="header-badge">IDF · Version Index</div>
-    <h1 class="header-title">Intent Driven <span>Flow</span> Framework</h1>
-  </div>
-  <p class="header-desc">A multi-layer delivery framework for human governance and agentic execution. Each version below reflects an evolution of the methodology.</p>
-  <a class="btn-view" href="playbook.html">Playbook <span class="btn-arrow">→</span></a>
+<!-- ═══════════════════ BLOCK 1: BYLINE HEADER ═══════════════════ -->
+<header class="byline page-gutter">
+  <div class="byline-mono">IDF · Intent Driven Flow · 2026</div>
+  <p class="byline-tagline">A delivery framework for teams where agents execute and humans govern.</p>
 </header>
 
-<main>
-  <div class="section-eyebrow">Released versions — newest first</div>
-  <div class="versions-list" id="versions-list">
-    <div class="state-msg">Loading versions…</div>
-  </div>
-</main>
+<!-- ═══════════════════ BLOCK 2: THE CONTRAST ═══════════════════ -->
+<section class="contrast-block page-gutter">
+  <div class="contrast-table">
 
+    <div class="contrast-headers">
+      <div class="contrast-col-label left">Right Now</div>
+      <div class="contrast-divider-header"></div>
+      <div class="contrast-col-label right">With IDF</div>
+    </div>
+
+    <div class="contrast-row">
+      <div class="contrast-cell before">Write a ticket describing what to build.</div>
+      <div class="contrast-divider"></div>
+      <div class="contrast-cell after">Write what the client needs to be true. Agents figure out what to build.</div>
+    </div>
+
+    <div class="contrast-row">
+      <div class="contrast-cell before">Estimate complexity before you start.</div>
+      <div class="contrast-divider"></div>
+      <div class="contrast-cell after">Learn it from the gate report after.</div>
+    </div>
+
+    <div class="contrast-row">
+      <div class="contrast-cell before">Deploy, then manage the panic.</div>
+      <div class="contrast-divider"></div>
+      <div class="contrast-cell after">Deploy behind a flag. Release when ready.</div>
+    </div>
+
+    <div class="contrast-row">
+      <div class="contrast-cell before">Measure velocity and story points.</div>
+      <div class="contrast-divider"></div>
+      <div class="contrast-cell after">Measure what the client actually received.</div>
+    </div>
+
+    <div class="contrast-row">
+      <div class="contrast-cell before">Sprint plan. Estimate. Stand up. Retro.</div>
+      <div class="contrast-divider"></div>
+      <div class="contrast-cell after">Cycles end when the outcome is confirmed.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ BLOCK 3: MENTAL MODEL ═══════════════════ -->
+<section class="mental-model page-gutter">
+  <div class="mental-model-inner">
+    <p class="mental-model-statement">
+      <span class="part-muted">Agents execute.</span><br>
+      <span class="part-coral">Humans govern.</span>
+    </p>
+    <p class="mental-model-sub">Feature flags separate "it's deployed" from "it's live." Deployment and release are separate decisions.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ BLOCK 4: THREE THINGS THAT CHANGE ═══════════════════ -->
+<section class="three-things page-gutter">
+  <div class="section-label">What Actually Changes</div>
+  <div class="cards-grid">
+
+    <div class="change-card">
+      <div class="card-number">01</div>
+      <div class="card-claim">You give outcomes, not instructions.</div>
+      <div class="card-body">Tell the system what needs to be true for the client. Agents determine how.</div>
+    </div>
+
+    <div class="change-card">
+      <div class="card-number">02</div>
+      <div class="card-claim">Deployment and release are separate events.</div>
+      <div class="card-body">Code ships behind a flag set to OFF. A human flips it ON when ready.</div>
+    </div>
+
+    <div class="change-card">
+      <div class="card-number">03</div>
+      <div class="card-claim">Complexity is learned, not predicted.</div>
+      <div class="card-body">No estimates before a cycle. The gate report tells you if it was simple or hard.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ BLOCK 5: WHAT YOU STOP DOING ═══════════════════ -->
+<section class="stop-doing page-gutter">
+  <div class="section-label">What IDF Removes</div>
+  <h2>What leaves your week.</h2>
+  <ul class="strikethrough-list">
+    <li>Sprint planning ceremonies</li>
+    <li>Estimation and story points</li>
+    <li>Tickets describing implementation</li>
+    <li>Post-merge rollback planning</li>
+    <li>Standups reporting status to the room</li>
+  </ul>
+</section>
+
+<!-- ═══════════════════ BLOCK 6: CLOSING + CTA ═══════════════════ -->
+<section class="closing page-gutter">
+  <div class="closing-inner">
+    <p class="pull-quote">"The artifacts carry the context. The agents carry the execution. The PO governs the outcome."</p>
+    <span class="closing-sub">Five rules. Eleven roles. One cycle.</span>
+    <a class="cta-pill" href="idf-v7.11.html">Read the framework →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
   <span>IDF · Intent Driven Flow Framework</span>
-  <span>Built for teams moving fast with Claude Code</span>
+  <a href="idf-v7.11.html">Read the full framework →</a>
 </footer>
 
-<script>
-  async function loadVersions() {
-    const container = document.getElementById('versions-list');
-    try {
-      const res = await fetch('versions.json?v=' + Date.now());
-      if (!res.ok) throw new Error('Failed to load versions.json');
-      const versions = await res.json();
-
-      // Sort newest first — semantic compare so 7.10 > 7.9
-      const sorted = [...versions].sort((a, b) => {
-        const pa = a.version.split('.').map(Number);
-        const pb = b.version.split('.').map(Number);
-        for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
-          const diff = (pb[i] || 0) - (pa[i] || 0);
-          if (diff !== 0) return diff;
-        }
-        return 0;
-      });
-
-      if (sorted.length === 0) {
-        container.innerHTML = '<div class="state-msg">No versions found.</div>';
-        return;
-      }
-
-      container.innerHTML = sorted.map((v, i) => {
-        const isLatest = i === 0;
-        const highlights = (v.highlights || [])
-          .map(h => `<span class="vc-tag">${h}</span>`)
-          .join('');
-
-        return `
-          <div class="version-card ${isLatest ? 'latest' : ''}">
-            <div class="vc-num">
-              <div class="vc-v">v${v.version}</div>
-              <div class="vc-date">${v.date}</div>
-              ${isLatest ? '<span class="vc-latest-badge">LATEST</span>' : ''}
-            </div>
-            <div class="vc-body">
-              <div class="vc-title">${v.title}</div>
-              <div class="vc-desc">${v.description}</div>
-              ${highlights ? `<div class="vc-highlights">${highlights}</div>` : ''}
-            </div>
-            <div class="vc-action">
-              <a class="btn-view" href="${v.file}">
-                View <span class="btn-arrow">→</span>
-              </a>
-            </div>
-          </div>`;
-      }).join('');
-
-    } catch (err) {
-      container.innerHTML = `<div class="state-msg">Error: ${err.message}</div>`;
-    }
-  }
-
-  loadVersions();
-</script>
-<script src="nav.js?v=8"></script>
+<script src="nav.js?v=9"></script>
 </body>
 </html>
