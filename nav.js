@@ -82,7 +82,7 @@
   // ── Render nav ─────────────────────────────────────────────────────────────
   const pages = [
     { file: 'index.html',      label: 'Overview' },
-    { file: 'idf-v7.11.html',  label: 'Framework' },
+    { file: 'idf.html',  label: 'Framework' },
     { file: 'playbook.html',   label: 'Playbook'  },
   ];
 
