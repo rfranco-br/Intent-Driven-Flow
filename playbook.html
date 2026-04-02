@@ -728,6 +728,17 @@ Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
     </div>
   </div>
 
+  <!-- Greenfield callouts -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">GREENFIELD — NO SIGNALS YET</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">When CLIENT_SIGNALS does not exist or is empty, intent cannot be derived from observed client behaviour. Write an assumption-based intent instead. The format is identical — <em>[outcome] by [mechanism], measured by [signal]</em> — but the signal is a hypothesis validation target, not a performance metric. Mark the INTENT_LOG entry with <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral2);">Signal source: assumption — [one sentence stating what you believe to be true about the client's need]</code>. The cycle that follows is a learning cycle: its purpose is to validate or invalidate the assumption, not to deliver a known improvement. If the assumption is invalidated, the Escape Hatch applies and the learning is logged.</div>
+  </div>
+
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:16px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">CONSTRAINED GREENFIELD — KNOWN RESTRICTIONS, NO SIGNALS</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">When building new work that must later integrate with an existing corporate or platform ecosystem, predefined constraints (integration standards, auth requirements, infrastructure dependencies) belong in System Memory before the first cycle begins — not in the intent statement. The Orchestrator reads System Memory automatically. The PO does not restate constraints per cycle. Use the <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral2);">Orchestrator notes:</code> field in the INTENT_LOG entry only for constraints that are not yet in System Memory and are novel to this specific cycle. Signals may be absent at the start; constraints must not be.</div>
+  </div>
+
 </section>
 
 <section id="w2">

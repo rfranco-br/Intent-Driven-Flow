@@ -266,23 +266,14 @@
   {
     "version": "7.11",
     "file": "idf-v7.11.html",
-    "date": "2026-03-31",
+    "date": "2026-04-02",
     "title": "Mobile-First",
-    "description": "Adds intent generation scaffolding to the PO role card: a fill-in-the-blank template, explicit sources of intent, named anti-patterns, and a matching update to the Intent Injection ritual.",
+    "description": "Adds greenfield/constrained-greenfield callouts to Playbook W1, and an explicit anti-estimation callout to Section 01 of the core framework addressing teams migrating from Scrum.",
     "highlights": [
-      "Comprehensive @media (max-width: 767px) block added",
-      "Cover, section padding, parable, footer all scale to mobile",
-      "Layer table: label rotates horizontal and stacks above content on mobile",
-      "Rituals table: header hidden, rows stack with inline field labels",
-      "All CSS-class grids collapse to single column (manifesto, roles, artifacts, comm)",
-      "Inline style grids overridden via attribute selectors with !important",
-      "Nav bar tightened at 600px: badge hidden, pills smaller",
-      "Parable 'The Driver and the Pilot' added between cover and Section 01",
-      "Role transition table: all five descriptions deepened — mechanism over label",
-      "PO role card: intent template added — [outcome] by [mechanism], measured by [signal]",
-      "PO role card: sources of intent named — client signal log, True North, stakeholder priorities",
-      "PO role card: three anti-patterns named — Epic-framed, Story-framed, Spec-framed",
-      "Intent Injection ritual: output updated to reference template and sources"
+      "Playbook W1: GREENFIELD callout — assumption-based intent format when no signals exist",
+      "Playbook W1: CONSTRAINED GREENFIELD callout — standing constraints go in System Memory, not intent",
+      "IDF Section 01: 'IF YOU ARE COMING FROM SCRUM' callout — no estimation, deliberate design",
+      "Estimation anti-pattern made explicit: gate report replaces pre-cycle complexity scoring"
     ]
   },
   {
