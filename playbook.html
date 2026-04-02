@@ -624,12 +624,12 @@
 <section id="w1">
   <div class="section-label">W1 — Workflows</div>
   <h2>Intent Generation</h2>
-  <p style="max-width:640px;">Intent generation has exactly one job: produce a statement the Orchestrator can act on without asking a clarifying question. Everything else — meetings, transcripts, research synthesis, stakeholder alignment — is upstream work that feeds this moment, not part of it. When W1 feels slow, the signal log is almost always stale. Keep W2 current and W1 takes under an hour.</p>
+  <p style="max-width:640px;">Intent generation has exactly one job: produce a statement the Orchestrator can act on without asking a clarifying question. Everything else — meetings, transcripts, research synthesis, stakeholder alignment — is upstream work that feeds this moment, not part of it. When Intent Generation feels slow, the Client Signal log is almost always stale. Keep Client Signal Triage (W2) current and Intent Generation takes under an hour.</p>
 
   <!-- PRECONDITION callout -->
   <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
     <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">PRECONDITION</div>
-    <div style="font-size:14px;color:var(--text2);line-height:1.7;">CLIENT_SIGNALS must be current before W1 begins. If the signal log has not been reviewed since the last cycle or two, run W2 (Client Signal Triage) first. W1 starts from synthesised signals, not from a fresh meeting transcript.</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">CLIENT_SIGNALS must be current before Intent Generation begins. If the signal log has not been reviewed since the last cycle or two, run Client Signal Triage (W2) first. Intent Generation starts from synthesised signals, not from a fresh meeting transcript.</div>
   </div>
 
   <!-- Flow steps -->
@@ -696,7 +696,7 @@ Reduce checkout abandonment at the payment step
       <div class="qs-num">06</div>
       <div class="qs-body">
         <div class="qs-title">Log and trigger</div>
-        <div class="qs-desc">Append the intent entry to INTENT_LOG and trigger the Orchestrator. The log entry is the only artifact W1 produces. Working notes, AI-generated candidates, and draft iterations are ephemeral — they do not enter the framework artifact set.</div>
+        <div class="qs-desc">Append the intent entry to INTENT_LOG and trigger the Orchestrator. The log entry is the only artifact Intent Generation produces. Working notes, AI-generated candidates, and draft iterations are ephemeral — they do not enter the framework artifact set.</div>
         <div class="qs-artifact-label">INTENT_LOG — new entry</div>
         <div class="qs-artifact">## Cycle [N] — Intent
 Date: YYYY-MM-DD
@@ -719,11 +719,11 @@ Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
 
   <!-- Scope sidebar -->
   <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">W1 DOES NOT COVER</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">INTENT GENERATION DOES NOT COVER</div>
     <div style="font-size:13px;color:var(--text2);line-height:1.9;">
       <div>— How to run a client meeting — outside IDF scope</div>
-      <div>— How to triage raw signals into CLIENT_SIGNALS — that is W2</div>
-      <div>— How to write the intent statement itself — that is C1</div>
+      <div>— How to triage raw signals into CLIENT_SIGNALS — that is Client Signal Triage (W2)</div>
+      <div>— How to write the intent statement itself — that is Writing Intent Statements (C1)</div>
       <div>— Arch or Tech Lead approval of intent — the correct IDF pattern is an Orchestrator notes field in the log entry, not a synchronous gate</div>
     </div>
   </div>
@@ -1184,7 +1184,7 @@ third-party credentials, legacy systems under migration.]</div>
     — Craft review finds the same category of issue in consecutive cycles<br>
     — A PO gate question reveals an architectural decision not in System Memory<br>
     — A cycle touches an "off-limits" area without triggering an escalation<br><br>
-    Any of these is a trigger for a Context Reset (W5). The Last reviewed date at the top of the file must be updated every time the file is edited — not on a schedule.</div>
+    Any of these is a trigger for a Context Reset — see the Context Reset workflow (W5). The Last reviewed date at the top of the file must be updated every time the file is edited — not on a schedule.</div>
   </div>
 
 </section>
@@ -1394,7 +1394,7 @@ Architects / TLs: [Name or "none designated yet"]</div>
       <div class="qs-num">02</div>
       <div class="qs-body">
         <div class="qs-title">Bootstrap System Memory</div>
-        <div class="qs-desc">Use the T4 template. Fill Product context, Technical constraints, Conventions, and PO gate authority before anything else. Leave Active feature flags and Known dependencies empty — they will populate from the first cycle. Do not fill sections with placeholder text. An empty section is honest. A placeholder is noise the agent will try to interpret.</div>
+        <div class="qs-desc">Use the System Memory template (T4). Fill Product context, Technical constraints, Conventions, and PO gate authority before anything else. Leave Active feature flags and Known dependencies empty — they will populate from the first cycle. Do not fill sections with placeholder text. An empty section is honest. A placeholder is noise the agent will try to interpret.</div>
         <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:14px 18px;margin-top:12px;">
           <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:6px;letter-spacing:0.08em;">MINIMUM VIABLE SYSTEM MEMORY</div>
           <div style="font-size:13px;color:var(--text2);line-height:1.65;">Product context paragraph + Technical constraints list + three Conventions + PO gate authority. That is enough to run the first cycle. Everything else can be added as the team discovers it.</div>
@@ -1412,7 +1412,7 @@ Architects / TLs: [Name or "none designated yet"]</div>
         <div class="qs-artifact">[ ] SYSTEM_MEMORY — Product context, constraints, conventions, gate authority
 [ ] INTENT_LOG — empty file ready to receive first entry
 [ ] FEATURE_GOVERNANCE_REGISTRY — empty file (flags added by Builder)
-[ ] CLIENT_SIGNALS — at least one entry before W1 begins
+[ ] CLIENT_SIGNALS — at least one entry before Intent Generation begins
 [ ] TRUE_NORTH — optional; note absence in INTENT_LOG if missing</div>
       </div>
     </div>
@@ -1421,7 +1421,7 @@ Architects / TLs: [Name or "none designated yet"]</div>
       <div class="qs-num">04</div>
       <div class="qs-body">
         <div class="qs-title">Write the first intent</div>
-        <div class="qs-desc">Use W1 and C1. The first intent should be deliberately narrow. The team is learning the system — not just what to build, but how the Orchestrator decomposes, how the Builder produces output, and what the Guardian flags. A narrow intent produces a short cycle with a fast feedback loop. A broad intent on cycle one will produce a long cycle where every learning is delayed.</div>
+        <div class="qs-desc">Use Intent Generation (W1) and Writing Intent Statements (C1). The first intent should be deliberately narrow. The team is learning the system — not just what to build, but how the Orchestrator decomposes, how the Builder produces output, and what the Guardian flags. A narrow intent produces a short cycle with a fast feedback loop. A broad intent on cycle one will produce a long cycle where every learning is delayed.</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
           <div style="background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--teal);border-radius:6px;padding:16px 18px;">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);letter-spacing:0.08em;margin-bottom:8px;">GOOD FIRST INTENT</div>
@@ -1448,7 +1448,7 @@ Architects / TLs: [Name or "none designated yet"]</div>
     </div>
     <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;border-top:1px solid var(--bg);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple2);">Orchestrator decomposition</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.6;">If the Orchestrator escalates immediately, the intent is ambiguous (R2). Do not push through — rewrite the intent. If the Orchestrator produces a task list that looks like a feature spec, the mechanism clause was too detailed. Note this for C1 refinement after the cycle.</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">If the Orchestrator escalates immediately, the intent is ambiguous (R2). Do not push through — rewrite the intent. If the Orchestrator produces a task list that looks like a feature spec, the mechanism clause was too detailed. Note this for Writing Intent Statements (C1) refinement after the cycle.</div>
     </div>
     <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;border-top:1px solid var(--bg);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue2);">Builder execution</div>
@@ -1460,7 +1460,7 @@ Architects / TLs: [Name or "none designated yet"]</div>
     </div>
     <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;border-top:1px solid var(--bg);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple2);">PO gate review</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.6;">The PO reads the gate report and makes a binary decision. If the PO finds themselves wanting more information before deciding, the gate report structure is insufficient — note what was missing for T3 refinement. If the PO overrides a Guardian FLAG, document the reason in the INTENT_LOG.</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">The PO reads the gate report and makes a binary decision. If the PO finds themselves wanting more information before deciding, the gate report structure is insufficient — note what was missing for the Gate Report template (T3) refinement. If the PO overrides a Guardian FLAG, document the reason in the INTENT_LOG.</div>
     </div>
   </div>
 
@@ -1502,7 +1502,7 @@ Architects / TLs: [Name or "none designated yet"]</div>
         <div class="qs-title">Answer three questions before cycle two</div>
         <div class="qs-desc">These are the only retrospective IDF requires after cycle one:</div>
         <div class="qs-artifact" style="margin-top:12px;">1. Did the Orchestrator decompose without escalating?
-   If no: which part of the intent was ambiguous? → fix in C1.
+   If no: which part of the intent was ambiguous? → fix in Writing Intent Statements (C1).
 
 2. Did the Guardian gate report give the PO everything needed
    to decide without asking for more information?
