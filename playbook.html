@@ -744,11 +744,113 @@ Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
 <section id="w2">
   <div class="section-label">W2 — Workflows</div>
   <h2>Client Signal Triage</h2>
-  <p style="max-width:640px;">How to process raw signals — from support tickets, user interviews, analytics alerts, and direct feedback — into structured entries in the CLIENT_SIGNALS log.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <p style="max-width:640px;">Client Signal Triage has one job: convert raw observations into structured CLIENT_SIGNALS entries the PO can read and act on. Raw signals are noise — support tickets, interview transcripts, analytics alerts, sales call notes. A structured signal is a pattern with a severity, a frequency estimate, and a direct line to a client outcome. Triage is the work that turns the first into the second.</p>
+
+  <!-- PRECONDITION callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHEN TO RUN W2</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Run Client Signal Triage before Intent Generation (W1) begins, whenever the signal log has not been reviewed since the last one or two cycles. The trigger is not a schedule — it is the PO noticing that the CLIENT_SIGNALS log no longer reflects what clients are experiencing right now. A log that is more than two cycles out of date is context debt: Intent Generation running on stale signals will produce cycle intent that was accurate last month, not today.</div>
   </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Collect the raw inputs</div>
+        <div class="qs-desc">Pull together everything that arrived since the last triage: support tickets (especially recurring ones), direct client feedback, sales and CS call notes, analytics anomalies, and any in-product behavioural data you have access to. Do not filter yet — collect first. The goal at this step is a single pile, not a prioritised list. If your team uses a CRM, helpdesk, or analytics tool, export a summary rather than reading every item individually.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Identify patterns, not incidents</div>
+        <div class="qs-desc">A single support ticket is an incident. Three tickets describing the same friction in different words are a pattern. Signal triage looks for patterns. Read the pile for recurrence: the same step failing for different users, the same feature absent in multiple feedback threads, the same question appearing repeatedly in client calls. An incident that appears once belongs in a notes file, not in CLIENT_SIGNALS. A pattern that appears three or more times — or once with a high-severity, business-critical impact — earns a structured entry.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Score each pattern</div>
+        <div class="qs-desc">Before writing the entry, score the pattern on two dimensions: <strong>frequency</strong> (how many clients are affected, roughly) and <strong>severity</strong> (what happens to the client if this is never fixed — minor friction, blocked workflow, or lost value). High frequency + high severity entries go to the top of the log and feed the next Intent Generation session. Low frequency + low severity entries go in, but are marked low-priority. Do not discard them — patterns that are low-priority today become high-priority when a related signal clusters around them next cycle.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:12px;border:1px solid var(--border);border-radius:8px;overflow:hidden;max-width:640px;">
+          <div style="background:var(--surface2);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Frequency</div>
+          <div style="background:var(--surface2);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Severity</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">HIGH — reported by 3+ distinct users or clients in this period</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">HIGH — client is blocked, loses value, or churns without this resolved</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">LOW — seen once or twice; may be edge case</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">LOW — minor friction; workaround available; does not block core task</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Write the structured entry</div>
+        <div class="qs-desc">Each signal entry describes the pattern in client terms — what the client experiences, not what the system does wrong. The entry is not a bug report or a feature request: it is an observation of client reality. The PO uses it to write intent; the intent should be traceable to at least one entry in this log.</div>
+        <div class="qs-artifact-label">CLIENT_SIGNALS — entry format</div>
+        <div class="qs-artifact">## [Short pattern name]
+Date added: YYYY-MM-DD
+Frequency: [HIGH / LOW] — [brief note, e.g. "5 tickets in last 2 weeks"]
+Severity: [HIGH / LOW] — [brief note, e.g. "blocks checkout completion"]
+Source(s): [Where this came from — support, interview, analytics, etc.]
+
+Observation:
+[2–3 sentences describing what clients experience. Write in client terms.
+"Users cannot complete payment when..." not "The payment endpoint returns 500..."]
+
+Intent candidate:
+[Optional. One sentence in intent format: [outcome] by [mechanism].
+Leave blank if the pattern is not yet clear enough to generate intent.]
+
+Status: [ACTIVE / ADDRESSED — Cycle N / ARCHIVED]</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">Update existing entries</div>
+        <div class="qs-desc">Do not add a new entry for every triage session. If the pattern already exists in the log, update the frequency count, add a new source reference, and refresh the date. A pattern that is growing across cycles signals an unresolved client need — that escalation in frequency is itself valuable signal for the PO. An entry marked ADDRESSED should be verified: if new signals on the same pattern appear after a cycle closed, reopen it rather than creating a duplicate.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">06</div>
+      <div class="qs-body">
+        <div class="qs-title">Hand off to Intent Generation</div>
+        <div class="qs-desc">When triage is complete, the log should contain: all active patterns, ordered roughly by frequency × severity, with at least one HIGH/HIGH entry that is ACTIVE. That entry is almost always the input to the next Intent Generation (W1) session. Signal the PO that the log is current. Triage is complete when the PO can open CLIENT_SIGNALS and identify the most pressing client need in under two minutes.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scope box -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">CLIENT SIGNAL TRIAGE DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— How to run a client interview or feedback session — outside IDF scope</div>
+      <div>— How to set up analytics tooling or event tracking — outside IDF scope</div>
+      <div>— How to write the final intent statement — that is Writing Intent Statements (C1)</div>
+      <div>— Prioritisation between competing intent candidates — that is the PO's judgment in Intent Generation (W1), using True North and stakeholder priorities as inputs</div>
+    </div>
+  </div>
+
+  <!-- AI-assisted triage callout -->
+  <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:8px;letter-spacing:0.08em;">AI-ASSISTED TRIAGE</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">AI tools can accelerate steps 01–03 significantly. Load your raw inputs — ticket export, call notes, feedback thread — and ask the AI to identify recurring patterns, group by theme, and produce a draft signal entry for each pattern above a frequency threshold you define. Review every draft before it enters the log. The AI identifies recurrence fast; it does not understand which patterns actually block client outcomes versus which merely produce complaints. That distinction belongs to the PO.</div>
+  </div>
+
 </section>
 
 <section id="w3">
