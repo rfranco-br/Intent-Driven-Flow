@@ -826,21 +826,367 @@ Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
 <section id="t3">
   <div class="section-label">T3 — Artifact Templates</div>
   <h2>GATE_REPORT</h2>
-  <p style="max-width:640px;">The three-paragraph Guardian structure that keeps gate reports scannable, with annotated pass, flag, and fail examples showing what each paragraph must contain.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <p style="max-width:640px;">The gate report is what the Guardian produces at the end of every cycle. It is the only artifact the PO reads before making a pass, flag, or fail decision. Its job is to compress an entire cycle's output into a scannable summary — not to document everything that happened, but to surface exactly what the PO needs to decide. A gate report that requires the PO to dig further has failed its purpose.</p>
+
+  <!-- Structure -->
+  <h3 style="margin-top:48px;margin-bottom:12px;">The three-paragraph structure</h3>
+  <p style="max-width:640px;margin-bottom:24px;">Every gate report has exactly three paragraphs, in this order. The Guardian does not add sections, summaries, or appendices. The PO reads all three in under two minutes.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:860px;">
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Paragraph 1</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Verdict</div>
+      <p style="font-size:13px;line-height:1.6;">One sentence. <strong style="color:var(--teal2);">PASS</strong>, <strong style="color:var(--amber2);">FLAG</strong>, or <strong style="color:var(--coral);">FAIL</strong> — followed by one sentence stating the single most important reason. The PO reads this and knows immediately what decision is in front of them.</p>
+    </div>
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Paragraph 2</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Evidence</div>
+      <p style="font-size:13px;line-height:1.6;">Three to five bullet points. Tests passed or failed (with counts), security scan result, performance delta against budget, cost delta, and one sentence on client-impact scope. Facts only — no interpretation. The PO uses this to verify the verdict is supported.</p>
+    </div>
+    <div style="background:var(--surface);padding:24px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Paragraph 3</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Next cycle</div>
+      <p style="font-size:13px;line-height:1.6;">One to two sentences. What the Guardian observed that is worth acting on in the next cycle — a pattern in test failures, a dependency that surfaced, a performance trend. Not a task list. The PO decides whether to act on it.</p>
+    </div>
   </div>
+
+  <!-- Template -->
+  <h3 style="margin-top:48px;margin-bottom:8px;">The template</h3>
+  <div class="qs-artifact-label">GATE_REPORT — structure</div>
+  <div class="qs-artifact">## Gate Report — Cycle [N]
+Date: YYYY-MM-DD
+Intent: [One-line restatement of the cycle intent]
+Flag: [FLAG_NAME]
+
+---
+
+[PASS / FLAG / FAIL] — [One sentence: the primary reason for this verdict.]
+
+---
+
+- Tests: [N passed / N failed — name any failing tests]
+- Security: [clean / [finding description]]
+- Performance: [delta vs budget — e.g. "p95 latency +12ms, within 50ms budget"]
+- Cost: [delta — e.g. "estimated +$0.004/request, within $0.01 budget"]
+- Client impact: [Who is affected and how, if flag is turned ON]
+
+---
+
+[One or two sentences on what to watch or act on next cycle.
+If nothing notable: "No escalations. Proceed at normal cadence."]</div>
+
+  <!-- Annotated examples -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">Annotated examples</h3>
+
+  <!-- PASS -->
+  <div style="margin-bottom:16px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal2);margin-bottom:8px;">PASS example</div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--teal);border-radius:8px;padding:24px 28px;max-width:860px;">
+      <div class="qs-artifact" style="margin-bottom:16px;">## Gate Report — Cycle 14
+Date: 2026-04-01
+Intent: Reduce checkout abandonment at the payment step by presenting
+  a single-field card input by default, measured by drop-off rate
+  falling below 12%.
+Flag: CHECKOUT_SIMPLIFIED_INPUT
+
+---
+
+PASS — All gate criteria met; the simplified input renders correctly
+across all tested viewports and the drop-off measurement hook is in place.
+
+---
+
+- Tests: 47 passed / 0 failed
+- Security: clean
+- Performance: p95 latency +8ms on checkout load, within 50ms budget
+- Cost: no change (client-side only)
+- Client impact: affects all users at the payment step; flag is scoped
+  to the card input field only — no other checkout behaviour changes
+
+---
+
+No escalations. The existing autofill test suite covers this change
+adequately. Proceed at normal cadence.</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.7;">
+        <span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;">WHY IT WORKS — </span>
+        Verdict is immediate. Evidence is factual and complete. The "no change" cost line is explicit rather than absent — absence looks like an oversight. Next-cycle note is minimal because nothing needs acting on.
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAG -->
+  <div style="margin-bottom:16px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber2);margin-bottom:8px;">FLAG example — PO must decide</div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--amber);border-radius:8px;padding:24px 28px;max-width:860px;">
+      <div class="qs-artifact" style="margin-bottom:16px;">## Gate Report — Cycle 15
+Date: 2026-04-02
+Intent: Allow users to export their order history as a CSV file,
+  measured by export feature used by 15% of returning users
+  within 14 days.
+Flag: ORDER_HISTORY_EXPORT
+
+---
+
+FLAG — Tests pass and the export produces valid CSV, but the generation
+time for accounts with 500+ orders exceeds the 3-second UX threshold.
+
+---
+
+- Tests: 31 passed / 0 failed
+- Security: clean — no PII logged; export scoped to requesting user only
+- Performance: export generation at p95: 2.1s (under 500 orders),
+  6.8s (500+ orders) — exceeds 3s budget for ~8% of user base
+- Cost: +$0.002/export request, within $0.01 budget
+- Client impact: affects returning users with order history; 8% of
+  returning users have 500+ orders
+
+---
+
+Recommend: PO to decide whether to release behind a staged rollout
+(excluding accounts with 500+ orders initially) or hold for a
+performance fix. Guardian has escalated the generation pattern to
+the Craft Engineer for review.</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.7;">
+        <span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;">WHY IT WORKS — </span>
+        Flag verdict explains the specific condition that triggered it. The evidence quantifies the problem precisely (6.8s, 8% of users) so the PO can make a risk decision. The next-cycle paragraph offers a concrete option without prescribing the answer — that judgment belongs to the PO.
+      </div>
+    </div>
+  </div>
+
+  <!-- FAIL -->
+  <div style="margin-bottom:40px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral);margin-bottom:8px;">FAIL example</div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--coral);border-radius:8px;padding:24px 28px;max-width:860px;">
+      <div class="qs-artifact" style="margin-bottom:16px;">## Gate Report — Cycle 16
+Date: 2026-04-03
+Intent: Prevent duplicate order submissions on double-tap by adding
+  server-side idempotency on the order creation endpoint, measured
+  by duplicate order rate falling to zero in the next 48-hour window.
+Flag: ORDER_IDEMPOTENCY
+
+---
+
+FAIL — 3 tests failing in the idempotency suite; duplicate orders
+are still created under concurrent request conditions.
+
+---
+
+- Tests: 28 passed / 3 failed
+  (order_idempotency_concurrent_post × 2, order_idempotency_race_condition × 1)
+- Security: clean
+- Performance: no regression
+- Cost: no change
+- Client impact: flag must remain OFF; the failure condition produces
+  real duplicate charges
+
+---
+
+The race condition occurs when two requests arrive within the same
+database transaction window. The idempotency key is being checked
+before the first write commits. Escalated to Craft Engineer — this
+requires a transaction-level fix, not an application-level key check.</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.7;">
+        <span style="color:var(--coral);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;">WHY IT WORKS — </span>
+        Fail verdict names the specific tests and why they matter (real duplicate charges). The escalation in the next-cycle paragraph gives the Craft Engineer exactly what they need to diagnose — no additional investigation required. The flag stays OFF because the evidence makes the risk clear.
+      </div>
+    </div>
+  </div>
+
+  <!-- Anti-patterns -->
+  <div style="background:rgba(106,104,120,0.08);border:1px solid var(--border);border-left:3px solid var(--text3);border-radius:6px;padding:20px 24px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">GATE REPORT ANTI-PATTERNS</div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text2);line-height:1.7;">
+      <div>— <strong style="color:var(--text);font-weight:500;">Verdict buried in paragraph two.</strong> The PO should not have to read to find the decision. Verdict is always first.</div>
+      <div>— <strong style="color:var(--text);font-weight:500;">Missing lines in the evidence paragraph.</strong> Absent security or performance lines look like the check was skipped, not that nothing changed. State the result even if it is "clean" or "no change."</div>
+      <div>— <strong style="color:var(--text);font-weight:500;">Next-cycle paragraph that is a task list.</strong> The Guardian observes and recommends. It does not assign tasks or set priorities. Those decisions belong to the PO.</div>
+      <div>— <strong style="color:var(--text);font-weight:500;">FLAG with no decision criteria.</strong> A flag without a concrete condition for the PO to evaluate forces a judgment call with no anchor. Every flag must include what the PO is deciding.</div>
+    </div>
+  </div>
+
 </section>
 
 <section id="t4">
   <div class="section-label">T4 — Artifact Templates</div>
   <h2>System Memory</h2>
-  <p style="max-width:640px;">A starter structure for a new team's System Memory file, including the required sections, the naming conventions, and the entries that prevent the most common early failures.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <p style="max-width:640px;">System Memory is the single file every agent reads before acting. It holds the team's decisions, constraints, and conventions — the context that would otherwise have to be re-explained every cycle. A well-maintained System Memory file is what makes agents consistent. A stale or empty one is the most common cause of cycles that produce correct-but-wrong output.</p>
+
+  <!-- What it is -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHAT SYSTEM MEMORY IS NOT</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">System Memory is not a project wiki, a meeting notes dump, or a technical design document. It contains only the information agents need to act correctly — decisions, constraints, and conventions that apply across cycles. If a piece of information would not change how an agent behaves, it does not belong here.</div>
   </div>
+
+  <!-- The template -->
+  <h3 style="margin-top:48px;margin-bottom:8px;">The starter template</h3>
+  <p style="max-width:640px;margin-bottom:16px;">Copy this structure when starting a new team. Fill the required sections before the first cycle. Leave optional sections empty rather than filling them with placeholder text — agents treat empty sections as absent, not as gaps to fill.</p>
+
+  <div class="qs-artifact-label">SYSTEM_MEMORY — starter file</div>
+  <div class="qs-artifact"># System Memory
+Last reviewed: YYYY-MM-DD
+Owner: [Role responsible for keeping this current]
+
+---
+
+## Product context
+[One paragraph. What does this product do, who uses it,
+and what does success look like for a typical user?
+Write this for an agent that has never seen the product.]
+
+---
+
+## Technical constraints
+[Bullet list. Hard rules agents must never violate.
+Examples: auth method, deployment target, language version,
+infrastructure limits, third-party integration requirements.
+Do not list preferences here — only constraints.]
+
+---
+
+## Architecture decisions
+[Bullet list. Decisions that have been made and closed.
+Not the reasoning — just the decision and its scope.
+Example: "All API routes use REST. GraphQL not in scope."
+If a decision can be reopened by an agent, it is not ready
+for this section.]
+
+---
+
+## Conventions
+[Bullet list. Naming patterns, file structure rules,
+commit message format, branch naming, test patterns.
+Agents use this section to self-check output before
+submitting. Be specific enough that "does this follow
+our conventions?" has a binary answer.]
+
+---
+
+## PO gate authority
+Backup delegate: [Name]
+If PO is unavailable: [Name holds gate authority]
+Escalation: [How to reach the PO delegate if a cycle is blocked]
+
+---
+
+## Active feature flags
+[List of flags currently in Pending-OFF or Live-ON state.
+Format: FLAG_NAME — description — current state — date set
+Remove Dead-OFF flags promptly. This list is agent context.]
+
+---
+
+## Known dependencies
+[External services, teams, or systems the agents must be
+aware of. Include SLA, contact, and any known failure modes.]
+
+---
+
+## Off-limits
+[Explicit list of things agents must not touch, modify,
+or make assumptions about. Examples: production data,
+third-party credentials, legacy systems under migration.]</div>
+
+  <!-- Section-by-section -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">Section guide</h3>
+
+  <div style="display:flex;flex-direction:column;gap:2px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:860px;">
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface2);padding:10px 20px;gap:16px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Section</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Purpose and rules</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">Product context</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required.</strong> The orientation paragraph. Agents use it to understand scope when decomposing intent. Without it, agents may produce technically correct output that misses the product's core purpose. Keep it to one paragraph — if it needs more, it is too broad to be useful.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">Technical constraints</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required.</strong> Hard limits, not preferences. A constraint is something that, if violated, produces a broken or non-deployable system. Preferences belong in Conventions. If a constraint has an expiry (e.g. a migration in progress), note the date — stale constraints are context debt.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">Architecture decisions</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required once made.</strong> Closed decisions only. An agent that reads an open question in this section may attempt to resolve it. Each entry should read as: what was decided, and what is out of scope as a result. Do not include the debate — only the outcome.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">Conventions</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required.</strong> The list that makes agent output consistent across cycles. Agents self-check against this before producing output. The more specific the entries, the less craft review overhead. Vague conventions ("write clean code") produce nothing. Specific ones ("all async functions must have an error boundary") are enforced.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">PO gate authority</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required.</strong> R3 makes the PO the sole gate authority. Without a named backup, an unavailable PO holds the entire cycle at the Deploy step indefinitely. This section must be current — an outdated delegate is equivalent to no delegate.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">Active feature flags</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required — living.</strong> Agents use this list to understand what is currently live, what is pending release, and what is safe to touch. Dead-OFF flags left here become context pollution (R4). Remove them promptly. The Craft Engineer is responsible for flag hygiene.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">Known dependencies</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required once known.</strong> Agents discovering a dependency for the first time during decomposition will escalate or guess. This section prevents both. Include the dependency's reliability characteristics — an agent that knows a service has a known latency issue will plan differently.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">Off-limits</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;"><strong style="color:var(--text);font-weight:500;">Required when applicable.</strong> The explicit boundary list. Agents do not intuit that certain systems are untouchable — they need to be told. A missing entry here is how migrations get disrupted and production data gets touched during a routine cycle.</div>
+    </div>
+  </div>
+
+  <!-- Common failures -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">Entries that prevent the most common early failures</h3>
+  <p style="max-width:640px;margin-bottom:24px;">These are the specific entries new teams most often omit — and pay for within the first three cycles.</p>
+
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:860px;">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:20px 24px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);letter-spacing:0.08em;margin-bottom:8px;">MISSING: AUTH PATTERN</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.65;">The most frequently re-implemented thing in any codebase. Without it in System Memory, every Builder agent re-derives auth from context — producing inconsistent session handling, token storage, and middleware across cycles. Add the auth method, token storage location, and session timeout rule on day one.</div>
+      <div class="qs-artifact" style="margin-top:12px;font-size:11px;">## Technical constraints
+- Auth: JWT, stored in httpOnly cookie, 24h expiry
+- Session refresh: sliding window, max 7 days
+- Route protection: all /api/* routes require valid token</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:20px 24px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);letter-spacing:0.08em;margin-bottom:8px;">MISSING: ERROR HANDLING CONVENTION</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.65;">Agents produce error handling that is technically correct but inconsistent — some throw, some return error objects, some log silently. A single convention entry eliminates this class of craft review feedback across all future cycles.</div>
+      <div class="qs-artifact" style="margin-top:12px;font-size:11px;">## Conventions
+- Error handling: all async operations use try/catch;
+  errors logged to [logging service] with context object;
+  never silently swallowed
+- API errors: return { error: string, code: string };
+  never expose stack traces to client</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:20px 24px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);letter-spacing:0.08em;margin-bottom:8px;">MISSING: TEST SCOPE BOUNDARY</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.65;">Without a clear test scope entry, agents write tests for everything they can reach — including third-party integrations, external APIs, and infrastructure. This inflates test suites, increases false-positive failure rates, and slows gate reviews. Define the boundary explicitly.</div>
+      <div class="qs-artifact" style="margin-top:12px;font-size:11px;">## Conventions
+- Unit tests: required for all business logic functions
+- Integration tests: required for all DB write operations
+- Do not test: third-party SDK internals, external APIs,
+  infrastructure provisioning
+- Test file location: co-located with source (*.test.ts)</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:20px 24px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);letter-spacing:0.08em;margin-bottom:8px;">MISSING: MIGRATION / LEGACY SYSTEM BOUNDARY</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.65;">If any part of the system is under migration, being deprecated, or must not be modified during the migration window, it must be in Off-limits. An agent with no knowledge of a migration in progress will make changes to the system being replaced — because from its context, those changes are correct.</div>
+      <div class="qs-artifact" style="margin-top:12px;font-size:11px;">## Off-limits
+- /legacy-api/* — under migration to v2, do not modify
+  (migration owner: [Name], expected completion: YYYY-MM-DD)
+- users_v1 table — read-only during migration window;
+  all writes go to users_v2</div>
+    </div>
+
+  </div>
+
+  <!-- Staleness callout -->
+  <div style="background:rgba(106,104,120,0.08);border:1px solid var(--border);border-left:3px solid var(--text3);border-radius:6px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">STALENESS SIGNALS</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.75;">System Memory becomes context debt when it describes a system that no longer exists. Watch for these signals:<br><br>
+    — Agents produce output that was correct three cycles ago but wrong now<br>
+    — Craft review finds the same category of issue in consecutive cycles<br>
+    — A PO gate question reveals an architectural decision not in System Memory<br>
+    — A cycle touches an "off-limits" area without triggering an escalation<br><br>
+    Any of these is a trigger for a Context Reset (W5). The Last reviewed date at the top of the file must be updated every time the file is edited — not on a schedule.</div>
+  </div>
+
 </section>
 
 <section id="t5">
@@ -1014,11 +1360,163 @@ Reduce checkout abandonment at the payment step
 <section id="p2">
   <div class="section-label">P2 — Team Patterns</div>
   <h2>Running Your First Cycle</h2>
-  <p style="max-width:640px;">A real team setup guide — not a worked example, but the actual decisions to make before your first cycle: artifact bootstrapping, role assignment, tooling choices, and the first intent to write.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <p style="max-width:640px;">The first cycle is not a pilot — it is the real system running at reduced scope. The goal is to close a complete loop: intent → decomposition → build → gate → flag ON. Everything that prevents that loop from closing is a setup problem, not a framework problem. Fix it before cycle two.</p>
+
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">BEFORE YOU START</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">The first cycle must be small enough that failure is cheap. Choose an intent that is genuinely useful but isolated — something that touches one area of the codebase, has a clear success signal, and does not block other work if it takes longer than expected. The first cycle teaches the team how the system works. It is not the place to prove the framework on a complex problem.</div>
   </div>
+
+  <!-- Phase 1: Setup -->
+  <h3 style="margin-top:48px;margin-bottom:4px;">Phase 1 — Before the cycle begins</h3>
+  <p style="max-width:640px;margin-bottom:0;">Complete these in order. Do not start the cycle until all four are done.</p>
+
+  <div class="qs-steps" style="margin-top:24px;">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Assign roles — explicitly</div>
+        <div class="qs-desc">Name who holds each role for this cycle. For a small team, one person may hold multiple human roles — but the Product Owner and the Craft Engineer must be separate people if possible. The PO holds gate authority; the Craft Engineer reviews agent output. If the same person does both, there is no quality check before the gate. Write the assignments into System Memory before the cycle starts.</div>
+        <div class="qs-artifact-label">System Memory — role assignments</div>
+        <div class="qs-artifact">## Role assignments — Cycle 1
+Product Owner: [Name]
+PO backup delegate: [Name]
+Craft Engineer: [Name]
+Quality Advocate: [Name or "PO acting" if solo]
+Architects / TLs: [Name or "none designated yet"]</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Bootstrap System Memory</div>
+        <div class="qs-desc">Use the T4 template. Fill Product context, Technical constraints, Conventions, and PO gate authority before anything else. Leave Active feature flags and Known dependencies empty — they will populate from the first cycle. Do not fill sections with placeholder text. An empty section is honest. A placeholder is noise the agent will try to interpret.</div>
+        <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:14px 18px;margin-top:12px;">
+          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:6px;letter-spacing:0.08em;">MINIMUM VIABLE SYSTEM MEMORY</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.65;">Product context paragraph + Technical constraints list + three Conventions + PO gate authority. That is enough to run the first cycle. Everything else can be added as the team discovers it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Create the minimum artifact set</div>
+        <div class="qs-desc">The first cycle needs three files to exist before the Orchestrator can start: System Memory, INTENT_LOG, and a feature governance registry (even if empty). CLIENT_SIGNALS should exist but can start with a single entry synthesised from what the team already knows about the client's most pressing need. TRUE_NORTH is optional for cycle one — but if it is absent, note that fact in the INTENT_LOG entry so the Orchestrator knows the intent was not validated against a strategic direction document.</div>
+        <div class="qs-artifact-label">Minimum artifact checklist</div>
+        <div class="qs-artifact">[ ] SYSTEM_MEMORY — Product context, constraints, conventions, gate authority
+[ ] INTENT_LOG — empty file ready to receive first entry
+[ ] FEATURE_GOVERNANCE_REGISTRY — empty file (flags added by Builder)
+[ ] CLIENT_SIGNALS — at least one entry before W1 begins
+[ ] TRUE_NORTH — optional; note absence in INTENT_LOG if missing</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Write the first intent</div>
+        <div class="qs-desc">Use W1 and C1. The first intent should be deliberately narrow. The team is learning the system — not just what to build, but how the Orchestrator decomposes, how the Builder produces output, and what the Guardian flags. A narrow intent produces a short cycle with a fast feedback loop. A broad intent on cycle one will produce a long cycle where every learning is delayed.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--teal);border-radius:6px;padding:16px 18px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);letter-spacing:0.08em;margin-bottom:8px;">GOOD FIRST INTENT</div>
+            <div style="font-size:13px;color:var(--text2);line-height:1.6;">One feature flag. Touches one area of the codebase. Success signal is observable within 24 hours of flag ON. The Orchestrator can decompose it in under 5 tasks.</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--coral);border-radius:6px;padding:16px 18px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral);letter-spacing:0.08em;margin-bottom:8px;">AVOID FOR CYCLE ONE</div>
+            <div style="font-size:13px;color:var(--text2);line-height:1.6;">Auth system changes, database migrations, cross-service integrations, or anything that would require multiple flags or block other work if it stalls.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Phase 2: During -->
+  <h3 style="margin-top:48px;margin-bottom:4px;">Phase 2 — During the cycle</h3>
+  <p style="max-width:640px;margin-bottom:24px;">What to watch, what to resist, and when to intervene.</p>
+
+  <div style="display:flex;flex-direction:column;gap:2px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:860px;">
+    <div style="background:var(--surface2);padding:12px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Stage</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">What to watch for</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple2);">Orchestrator decomposition</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">If the Orchestrator escalates immediately, the intent is ambiguous (R2). Do not push through — rewrite the intent. If the Orchestrator produces a task list that looks like a feature spec, the mechanism clause was too detailed. Note this for C1 refinement after the cycle.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue2);">Builder execution</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">Resist reviewing Builder output before the Guardian runs. First-cycle instinct is to check every task as it completes — this creates a shadow review loop that bypasses the gate. Let the cycle run. The Guardian report will tell you what to inspect.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue2);">Guardian gate</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">A FLAG or FAIL on cycle one is useful. It means the gate criteria are working. Read the report carefully — the specific failure tells you what to add to System Memory or Capability Library before cycle two. A PASS on cycle one with thin gate criteria is a warning sign, not a success.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:180px 1fr;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple2);">PO gate review</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">The PO reads the gate report and makes a binary decision. If the PO finds themselves wanting more information before deciding, the gate report structure is insufficient — note what was missing for T3 refinement. If the PO overrides a Guardian FLAG, document the reason in the INTENT_LOG.</div>
+    </div>
+  </div>
+
+  <!-- Phase 3: After -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">Phase 3 — After the cycle closes</h3>
+
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Update System Memory</div>
+        <div class="qs-desc">Add anything the Orchestrator or Builder discovered that is not yet in System Memory — new dependencies encountered, architectural decisions surfaced during decomposition, conventions violated that need to be made explicit. Update the "Last reviewed" date.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Update the Capability Library</div>
+        <div class="qs-desc">If the Craft Engineer found patterns in the Builder output that should be enforced next cycle, encode them now. A capability file written after cycle one is worth more than one written before it — it reflects how this Builder actually behaves, not how it theoretically should.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Turn the flag ON — or log why not</div>
+        <div class="qs-desc">If the gate passed, the Quality Advocate validates as a real user and recommends flag ON. The PO flips it. If the flag is not being turned ON despite a pass, document the reason in the INTENT_LOG. A flag left permanently in Pending-OFF state after a passed gate is context debt.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Answer three questions before cycle two</div>
+        <div class="qs-desc">These are the only retrospective IDF requires after cycle one:</div>
+        <div class="qs-artifact" style="margin-top:12px;">1. Did the Orchestrator decompose without escalating?
+   If no: which part of the intent was ambiguous? → fix in C1.
+
+2. Did the Guardian gate report give the PO everything needed
+   to decide without asking for more information?
+   If no: what was missing? → add to gate criteria.
+
+3. Did the Builder output require corrections the Guardian
+   did not catch?
+   If yes: what pattern was it? → encode in Capability Library.</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.65;margin-top:12px;">These three answers are the only output of the first cycle retrospective. They become direct inputs to System Memory, gate criteria, or the Capability Library. No meeting required. No action items outside those three artefacts.</div>
+      </div>
+    </div>
+
+  </div>
+
 </section>
 
 <section id="p3">
