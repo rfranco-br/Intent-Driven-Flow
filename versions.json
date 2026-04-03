@@ -4,14 +4,14 @@
     "file": "idf.html",
     "date": "2026-04-03",
     "title": "Alpha",
-    "description": "Introduces SDD path as a pluggable alternative to autonomous Orchestrator decomposition — same governance, human-authored Cycle Spec replaces runtime planning.",
+    "description": "Extends SDD path documentation to name the Builder effect — Cycle Spec narrows Builder interpretive surface, not just Orchestrator decomposition.",
     "highlights": [
       "Site restructured to three pages: index (5-min), framework, playbook",
       "Old versions archived",
       "Interactive role map with spatial human/agent zones and detail panel",
       "Predictability reframe in Scrum callout: gate model as guarantee, not forecast",
       "Capacity forecasting callout in Section 09: throughput as observed signal, not declared estimate",
-      "SDD execution path: Cycle Spec artifact + Orchestrator as spec executor, not planner"
+      "SDD path: Cycle Spec narrows Builder interpretive surface — interface contracts and constraints pre-resolved at spec-write time"
     ]
   }
 ]
