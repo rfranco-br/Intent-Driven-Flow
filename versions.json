@@ -2,13 +2,14 @@
   {
     "version": "alpha",
     "file": "idf.html",
-    "date": "2026-04-02",
+    "date": "2026-04-03",
     "title": "Alpha",
-    "description": "Single framework file, versioned as Alpha. Three-page site: overview, framework, playbook.",
+    "description": "Reframes IDF's gate model as evidence-based predictability to address framework adoption hesitation around the no-estimation stance.",
     "highlights": [
       "Site restructured to three pages: index (5-min), framework, playbook",
       "Old versions archived",
-      "Interactive role map with spatial human/agent zones and detail panel"
+      "Interactive role map with spatial human/agent zones and detail panel",
+      "Predictability reframe in Scrum callout: gate model as guarantee, not forecast"
     ]
   }
 ]
