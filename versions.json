@@ -4,12 +4,13 @@
     "file": "idf.html",
     "date": "2026-04-03",
     "title": "Alpha",
-    "description": "Reframes IDF's gate model as evidence-based predictability to address framework adoption hesitation around the no-estimation stance.",
+    "description": "Adds capacity forecasting callout to Section 09, naming intent-to-flag time as an emergent throughput signal after cycle baseline forms.",
     "highlights": [
       "Site restructured to three pages: index (5-min), framework, playbook",
       "Old versions archived",
       "Interactive role map with spatial human/agent zones and detail panel",
-      "Predictability reframe in Scrum callout: gate model as guarantee, not forecast"
+      "Predictability reframe in Scrum callout: gate model as guarantee, not forecast",
+      "Capacity forecasting callout in Section 09: throughput as observed signal, not declared estimate"
     ]
   }
 ]
