@@ -1315,12 +1315,13 @@
         ]
       },
       orchestrator: {
-        name: 'Orchestrator', type: 'agent', sub: 'Intent Translator / Decomposer',
-        desc: 'Receives cycle intent from the PO and decomposes it into a sequenced task list. Routes tasks to the correct Builder agents based on domain, tracks in-flight work, and updates System Memory at cycle close.',
+        name: 'Orchestrator', type: 'agent', sub: 'Execution Planner / Task Router',
+        desc: 'Routes tasks to the correct Builder agents, tracks in-flight work, and updates System Memory at cycle close. Its planning input is pluggable: in fully agentic teams, it generates the task list by decomposing the PO\'s intent directly. In SDD teams, it executes against a human-authored Cycle Spec. The governance model, gate structure, and flag rules are identical in both paths.',
         attrs: [
-          { k: 'Reads',      v: 'System Memory, Capability Library, cycle intent statement' },
+          { k: 'Reads',      v: 'Cycle Spec (SDD path) or intent statement (agentic path), System Memory, Capability Library' },
           { k: 'Produces',   v: 'Task list, routing decisions, memory updates' },
-          { k: 'Fails when', v: 'Intent is ambiguous (see R2)' }
+          { k: 'Fails when', v: 'Intent is ambiguous (agentic) or Spec is incomplete (SDD) — see R2' },
+          { k: 'Key shift',  v: 'Decomposition complexity moves to the Cycle Spec in SDD mode — a human-reviewed document, not a runtime decision' }
         ]
       },
       builder: {
@@ -1435,7 +1436,7 @@
 
       <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--purple);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO intent statement<br>System Memory<br>Capability Library<br>True north doc</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO intent statement<br>System Memory<br>Capability Library<br>True north doc<br><span style="color:var(--teal2);">↳ or Cycle Spec (SDD path)</span></div>
       </div>
 
       <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--blue);">
@@ -1503,6 +1504,11 @@
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:6px;letter-spacing:0.08em;">GOVERNANCE — memory updates</div>
         <div style="font-size:13px;color:var(--text2);">Orchestrator writes System Memory updates after every cycle close. These are effective immediately but reviewed by the Tech Lead at every Context Reset. A System Memory entry that has never been reviewed by a human is provisional until then.</div>
       </div>
+    </div>
+
+    <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:16px 20px;margin-top:8px;">
+      <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:6px;letter-spacing:0.08em;">SDD PATH — SPEC-DRIVEN EXECUTION</div>
+      <div style="font-size:13px;color:var(--text2);">Teams not ready for autonomous decomposition can substitute a human-authored Cycle Spec for the Orchestrator's planning step. The PO writes intent as normal. A Craft Engineer or senior engineer authors the Cycle Spec — a pre-sequenced task list with dependencies encoded in writing. The Orchestrator executes the spec rather than generating a plan. Everything downstream — Builder execution, Guardian checks, gate approval, flag model — is identical. The trade-off is deliberate: less autonomous, more legible. Both paths are fully IDF.</div>
     </div>
 
     <div class="mermaid-wrap">
@@ -1832,6 +1838,13 @@ flowchart LR
       <span class="artifact-filename">GATE_REPORT_{cycle}.md</span>
       <p>Produced by the Guardian at cycle end. Three paragraphs maximum: what was built, what the signals show (tests, security, perf, cost, client impact), and a clear pass/flag/fail with a proposed next cycle. Expires when gate decision is made.</p>
       <div class="artifact-owner">Owner: Guardian (produces) · PO (consumes)</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Cycle Spec <span style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);font-weight:400;margin-left:8px;">SDD path</span></h3>
+      <span class="artifact-filename">CYCLE_SPEC_{cycle}.md</span>
+      <p>A human-authored document that pre-sequences tasks and encodes dependencies before execution begins. Used in the SDD path as the Orchestrator's planning input — replacing autonomous decomposition with a reviewed spec. The Orchestrator executes against it; it does not generate it. Reduces Orchestrator complexity at the cost of a human bottleneck at spec-writing time.</p>
+      <div class="artifact-owner">Owner: Craft Engineer or PO (authors) · Orchestrator (executes) · Required only on SDD path</div>
     </div>
 
     <div class="artifact-card">
