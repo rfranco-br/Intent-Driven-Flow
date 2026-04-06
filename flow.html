@@ -252,6 +252,10 @@
       <text x="682" y="421" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">pre-sequenced tasks</text>
       <text x="682" y="432" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact · SDD</text>
 
+      <!-- SDD sub-zone: Orchestrator + Builder + Guardian share the execution path -->
+      <rect x="736" y="150" width="462" height="152" rx="10" fill="rgba(58,158,120,0.05)" stroke="rgba(58,158,120,0.22)" stroke-width="1" stroke-dasharray="5,3"/>
+      <text x="967" y="145" font-family="IBM Plex Mono,monospace" font-size="8" fill="rgba(91,191,149,0.6)" text-anchor="middle" letter-spacing="1">SDD PATH ALSO EXECUTES THROUGH HERE</text>
+
       <!-- ── DOWNSTREAM: ORCHESTRATOR ── -->
       <rect x="740" y="160" width="140" height="56" rx="8" fill="rgba(74,122,191,0.12)" stroke="#4a7abf" stroke-width="1"/>
       <rect x="740" y="160" width="3"   height="56" rx="1" fill="#4a7abf"/>
@@ -321,31 +325,31 @@
       <!-- Client → Signal Log -->
       <line x1="109" y1="360" x2="135" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
-      <!-- True North → PO (arc through zone boundary) -->
-      <path d="M289,198 L315,198 L315,255 L324,261" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
+      <!-- True North → PO (curve through zone boundary) -->
+      <path d="M289,198 C315,198 315,261 324,261" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
       <!-- Signal Log → PO -->
-      <path d="M285,360 L315,360 L315,285 L324,277" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
+      <path d="M285,360 C315,360 315,277 324,277" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
       <!-- PO → Intent Statement -->
-      <line x1="466" y1="262" x2="486" y2="258" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
+      <path d="M466,262 C476,262 476,255 486,255" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
       <!-- Intent Statement → Orchestrator (standard path) -->
-      <path d="M624,248 L655,248 L655,188 L740,188" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
-      <text x="660" y="222" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6a6878">standard</text>
+      <path d="M624,248 C656,248 656,188 740,188" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="662" y="224" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6a6878">standard</text>
 
-      <!-- Orchestrator → Builder -->
-      <path d="M880,188 L900,188 L900,262 L899,262" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Orchestrator → Builder (exits Orchestrator bottom, curves to Builder top) -->
+      <path d="M811,216 C811,252 899,252 899,236" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
       <!-- Builder → Guardian -->
-      <line x1="1021" y1="262" x2="1056" y2="262" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+      <path d="M1021,262 C1038,262 1038,262 1056,262" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
       <!-- Guardian → Gate1 -->
-      <line x1="1188" y1="262" x2="1215" y2="262" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+      <path d="M1188,262 C1201,262 1201,262 1215,262" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
       <!-- Gate1 pass → Deploy -->
-      <path d="M1295,262 L1315,262 L1315,188 L1321,188" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
-      <text x="1300" y="253" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">pass</text>
+      <path d="M1295,262 C1320,262 1320,188 1321,188" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="1306" y="250" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">pass</text>
 
       <!-- Deploy → Craft Review -->
       <line x1="1449" y1="188" x2="1468" y2="188" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
@@ -364,35 +368,36 @@
            SDD PATH ARROWS (teal dashed)
       ══════════════════════════════════════════════════ -->
 
-      <!-- Intent Statement → Craft Engineer (SDD branch down) -->
-      <path d="M555,281 L555,412 L474,412" fill="none" stroke="#3a9e78" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-s)"/>
-      <text x="560" y="360" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">SDD path</text>
+      <!-- Intent Statement → Craft Engineer (SDD branch — exits left of Intent, curves down to Craft Eng left) -->
+      <path d="M486,260 C452,260 452,412 474,412" fill="none" stroke="#3a9e78" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-s)"/>
+      <text x="434" y="348" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">SDD</text>
+      <text x="434" y="360" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">path</text>
 
       <!-- Craft Engineer → Cycle Spec -->
-      <line x1="606" y1="412" x2="623" y2="412" stroke="#3a9e78" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-s)"/>
+      <path d="M606,412 C614,412 614,412 623,412" fill="none" stroke="#3a9e78" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-s)"/>
 
-      <!-- Cycle Spec → Orchestrator bottom -->
-      <path d="M741,412 L810,412 L810,216" fill="none" stroke="#3a9e78" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-s)"/>
+      <!-- Cycle Spec → Orchestrator bottom (exits right, curves up into Orchestrator bottom) -->
+      <path d="M741,412 C810,412 810,350 810,216" fill="none" stroke="#3a9e78" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-s)"/>
 
       <!-- ══════════════════════════════════════════════════
            FEEDBACK ARROWS (coral dashed)
       ══════════════════════════════════════════════════ -->
 
-      <!-- Gate1 fail → Orchestrator (arc below) -->
-      <path d="M1255,300 L1255,450 L810,450 L810,216" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
+      <!-- Gate1 fail → Orchestrator (arc below, rounded corners) -->
+      <path d="M1255,300 C1255,450 810,450 810,216" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
       <text x="1205" y="317" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">fail</text>
       <text x="1000" y="464" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">re-plan with failure context</text>
 
-      <!-- Gate2 reject → Orchestrator (arc above) -->
-      <path d="M1840,150 L1840,105 L810,105 L810,160" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
-      <text x="1850" y="140" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">reject</text>
+      <!-- Gate2 reject → Orchestrator (arc above, rounded corners) -->
+      <path d="M1840,150 C1840,105 810,105 810,160" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
+      <text x="1852" y="138" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">reject</text>
       <text x="1250" y="97" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">intent correction · Orchestrator re-plans</text>
 
       <!-- ══════════════════════════════════════════════════
            STRATEGIC LOOP — Monitor → Client Signal Log (teal dashed)
       ══════════════════════════════════════════════════ -->
 
-      <path d="M1840,344 L1840,478 L210,478 L210,386" fill="none" stroke="#5bbf95" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-t)"/>
+      <path d="M1840,344 C1840,478 210,478 210,386" fill="none" stroke="#5bbf95" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-t)"/>
       <text x="1025" y="491" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95" text-anchor="middle">signals → client log · ↻ next cycle begins</text>
 
       <!-- Zone footnotes -->
