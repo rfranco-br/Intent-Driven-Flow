@@ -2723,6 +2723,27 @@ saved card data. Consider one-click payment for returning users.</div>
     sdd:       '#9b7fd4'
   };
   var dashMap = { feedback: '6,3', strategic: '6,3', dep: '4,3', sdd: '5,3' };
+  var arrowTypes = ['forward','context','feedback','strategic','dep','sdd'];
+
+  function ensureMarkers(svg) {
+    if (svg.querySelector('defs')) return;
+    var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    arrowTypes.forEach(function(type) {
+      var marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+      marker.setAttribute('id', svg.id + '-' + type);
+      marker.setAttribute('markerWidth', '5');
+      marker.setAttribute('markerHeight', '5');
+      marker.setAttribute('refX', '4');
+      marker.setAttribute('refY', '2.5');
+      marker.setAttribute('orient', 'auto');
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', 'M0,0.5 L4.5,2.5 L0,4.5 Z');
+      p.setAttribute('fill', colorMap[type]);
+      marker.appendChild(p);
+      defs.appendChild(marker);
+    });
+    svg.appendChild(defs);
+  }
 
   function pt(el, side, cr) {
     var r = el.getBoundingClientRect();
@@ -2772,6 +2793,7 @@ saved card data. Consider one-click payment for returning users.</div>
     path.setAttribute('stroke', colorMap[def.type] || '#5a5868');
     path.setAttribute('stroke-width', def.type === 'dep' ? '1' : '1.5');
     if (dashMap[def.type]) path.setAttribute('stroke-dasharray', dashMap[def.type]);
+    path.setAttribute('marker-end', 'url(#' + svg.id + '-' + (def.type || 'forward') + ')');
     svg.appendChild(path);
 
     // Optional label at midpoint
@@ -2804,8 +2826,9 @@ saved card data. Consider one-click payment for returning users.</div>
     var gridEl = panel ? panel.querySelector('.flow-grid') : null;
     if (!gridEl) return;
 
-    // Clear
+    // Clear & set up markers
     while (svg.firstChild) svg.removeChild(svg.firstChild);
+    ensureMarkers(svg);
 
     var cr = gridEl.getBoundingClientRect();
     defs.forEach(function(def) { drawArrow(svg, cr, def, gridEl); });
