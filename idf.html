@@ -1044,6 +1044,214 @@
       display: block;
     }
   }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow-diagram-wrap {
+    overflow-x: auto;
+    margin-top: 28px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .flow-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+  }
+
+  .flow-tab {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 12px 16px 10px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+
+  .flow-tab:hover { color: var(--text2); }
+  .flow-tab.active { color: var(--coral2); border-bottom-color: var(--coral); }
+
+  .flow-panel { display: none; padding: 16px; }
+  .flow-panel.active { display: block; }
+
+  .flow-grid {
+    display: grid;
+    grid-template-columns: 72px repeat(12, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 4px;
+    position: relative;
+    min-width: 1100px;
+  }
+
+  .lane-bg {
+    grid-column: 1 / -1;
+    border-radius: 6px;
+    z-index: 0;
+  }
+
+  .lane-bg.client     { background: rgba(232,115,74,0.04);  border: 1px solid rgba(232,115,74,0.08); }
+  .lane-bg.strategic  { background: rgba(124,92,191,0.04);  border: 1px solid rgba(124,92,191,0.08); }
+  .lane-bg.product    { background: rgba(58,158,120,0.04);  border: 1px solid rgba(58,158,120,0.08); }
+  .lane-bg.execution  { background: rgba(74,122,191,0.04);  border: 1px solid rgba(74,122,191,0.08); }
+  .lane-bg.dependency { background: rgba(191,143,58,0.04);  border: 1px solid rgba(191,143,58,0.08); }
+
+  .lane-label-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / 2;
+    border-radius: 5px;
+    padding: 8px 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    z-index: 1;
+    min-height: 56px;
+  }
+
+  .lane-label-cell.client     { color: var(--coral2);   border-left: 2px solid var(--coral);   background: var(--surface2); }
+  .lane-label-cell.strategic  { color: var(--purple2);  border-left: 2px solid var(--purple);  background: var(--surface2); }
+  .lane-label-cell.product    { color: var(--teal2);    border-left: 2px solid var(--teal);    background: var(--surface2); }
+  .lane-label-cell.execution  { color: var(--blue2);    border-left: 2px solid var(--blue);    background: var(--surface2); }
+  .lane-label-cell.dependency { color: var(--amber2);   border-left: 2px solid var(--amber);   background: var(--surface2); }
+
+  /* Base flow node */
+  .fn {
+    border-radius: 6px;
+    padding: 7px 9px;
+    font-size: 11px;
+    line-height: 1.4;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-self: center;
+  }
+
+  .fn-human {
+    background: rgba(124,92,191,0.10);
+    border: 1px solid rgba(155,127,212,0.35);
+    border-left: 3px solid var(--purple);
+  }
+
+  .fn-agent {
+    background: rgba(74,122,191,0.10);
+    border: 1px solid rgba(107,153,212,0.35);
+    border-left: 3px solid var(--blue);
+  }
+
+  .fn-artifact {
+    background: rgba(191,143,58,0.08);
+    border: 1px dashed rgba(212,168,91,0.45);
+  }
+
+  .fn-gate {
+    background: rgba(232,115,74,0.10);
+    border: 1px solid rgba(232,115,74,0.40);
+    clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+  }
+
+  .fn-monitor {
+    background: rgba(58,158,120,0.10);
+    border: 1px solid rgba(91,191,149,0.35);
+    border-left: 3px solid var(--teal);
+  }
+
+  .fn-sdd {
+    background: rgba(74,122,191,0.08);
+    border: 1px solid rgba(124,92,191,0.25);
+    border-left: 3px solid var(--purple);
+  }
+
+  .fn-dep {
+    background: rgba(191,143,58,0.06);
+    border: 1px dashed rgba(191,143,58,0.25);
+    opacity: 0.75;
+  }
+
+  .fn-client-node {
+    background: rgba(232,115,74,0.10);
+    border: 1px solid rgba(232,115,74,0.35);
+    border-left: 3px solid var(--coral);
+  }
+
+  .fn-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .fn-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    color: var(--text2);
+    line-height: 1.3;
+  }
+
+  .fn-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    color: var(--text3);
+    line-height: 1.2;
+  }
+
+  /* Arrow SVG overlay */
+  .flow-arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 10;
+  }
+
+  /* Flow legend */
+  .flow-legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px 4px 4px;
+  }
+
+  .flow-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+  }
+
+  .fli-line {
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .fli-dash {
+    width: 22px;
+    height: 0;
+    border-top: 2px dashed;
+    flex-shrink: 0;
+  }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { background: '#13131e', primaryColor: '#1a1a2a', primaryTextColor: '#f0ede8', primaryBorderColor: '#3a3a50', lineColor: '#6a6878', edgeLabelBackground: '#13131e', tertiaryColor: '#13131e' } });</script>
@@ -1691,12 +1899,236 @@ flowchart LR
 
   </div>
 
-  <div style="background:rgba(74,122,191,0.06);border:1px solid rgba(74,122,191,0.2);border-left:3px solid var(--blue);border-radius:6px;padding:20px 24px;margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
-    <div>
-      <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--blue2);margin-bottom:6px;letter-spacing:0.08em;">END-TO-END FLOW DIAGRAM</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.6;">See how the four layers connect in the execution cycle — two models: Fully Agentic and IDF + SDD.</div>
+  <!-- ── END-TO-END FLOW DIAGRAM ── -->
+  <div class="flow-diagram-wrap">
+    <div class="flow-tabs">
+      <button class="flow-tab active" data-panel="flow-panel-v1" data-arrows="v1Arrows">01 — IDF · Fully Agentic</button>
+      <button class="flow-tab" data-panel="flow-panel-v2" data-arrows="v2Arrows">02 — IDF + SDD</button>
     </div>
-    <a href="flow.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(74,122,191,0.12);border:1px solid rgba(74,122,191,0.3);border-radius:6px;padding:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue2);text-decoration:none;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.background='rgba(74,122,191,0.2)';this.style.borderColor='rgba(74,122,191,0.5)'" onmouseout="this.style.background='rgba(74,122,191,0.12)';this.style.borderColor='rgba(74,122,191,0.3)'">End-to-End Flow Diagram →</a>
+
+    <!-- ── V1: FULLY AGENTIC ── -->
+    <div class="flow-panel active" id="flow-panel-v1">
+      <div class="flow-grid" id="flow-grid-v1">
+        <!-- Lane backgrounds (row 1–5) -->
+        <div class="lane-bg client"     style="grid-row:1;grid-column:1/-1;margin-bottom:0;"></div>
+        <div class="lane-bg strategic"  style="grid-row:2;grid-column:1/-1;"></div>
+        <div class="lane-bg product"    style="grid-row:3;grid-column:1/-1;"></div>
+        <div class="lane-bg execution"  style="grid-row:4;grid-column:1/-1;"></div>
+        <div class="lane-bg dependency" style="grid-row:5;grid-column:1/-1;"></div>
+
+        <!-- Lane labels -->
+        <div class="lane-label-cell client"     style="grid-row:1;grid-column:1;">Client</div>
+        <div class="lane-label-cell strategic"  style="grid-row:2;grid-column:1;">Strategic</div>
+        <div class="lane-label-cell product"    style="grid-row:3;grid-column:1;">Product</div>
+        <div class="lane-label-cell execution"  style="grid-row:4;grid-column:1;">Execution</div>
+        <div class="lane-label-cell dependency" style="grid-row:5;grid-column:1;">Deps</div>
+
+        <!-- ROW 1: CLIENT -->
+        <div class="fn fn-client-node" id="v1-client" style="grid-row:1;grid-column:2/4;">
+          <div class="fn-title">Client</div>
+          <div class="fn-sub">signals · feedback</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-artifact" id="v1-siglog" style="grid-row:1;grid-column:4/6;">
+          <div class="fn-title">Client Signal Log</div>
+          <div class="fn-sub">feedback · usage</div>
+          <div class="fn-type">artifact</div>
+        </div>
+        <div class="fn fn-monitor" id="v1-monitor" style="grid-row:1;grid-column:13/14;">
+          <div class="fn-title">Monitor</div>
+          <div class="fn-sub">observe · signal</div>
+          <div class="fn-type">agent</div>
+        </div>
+
+        <!-- ROW 2: STRATEGIC -->
+        <div class="fn fn-human" id="v1-stkhld" style="grid-row:2;grid-column:2/4;">
+          <div class="fn-title">Stakeholders</div>
+          <div class="fn-sub">portfolio horizon</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-artifact" id="v1-truenorth" style="grid-row:2;grid-column:4/6;">
+          <div class="fn-title">True North Doc</div>
+          <div class="fn-sub">strategy · direction</div>
+          <div class="fn-type">artifact</div>
+        </div>
+
+        <!-- ROW 3: PRODUCT -->
+        <div class="fn fn-human" id="v1-po" style="grid-row:3;grid-column:4/6;">
+          <div class="fn-title">Product Owner</div>
+          <div class="fn-sub">intent · gate authority</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-artifact" id="v1-intent" style="grid-row:3;grid-column:6/8;">
+          <div class="fn-title">Intent Statement</div>
+          <div class="fn-sub">[outcome] by [mechanism]</div>
+          <div class="fn-type">artifact</div>
+        </div>
+        <div class="fn fn-human" id="v1-craftrev" style="grid-row:3;grid-column:10/12;">
+          <div class="fn-title">Craft Review</div>
+          <div class="fn-sub">quality · pre-flag</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-gate" id="v1-pogate" style="grid-row:3;grid-column:12/13;">
+          <div class="fn-title" style="color:var(--coral2);">PO Gate</div>
+          <div class="fn-type" style="color:var(--coral);">approve / reject</div>
+        </div>
+
+        <!-- ROW 4: EXECUTION -->
+        <div class="fn fn-agent" id="v1-orch" style="grid-row:4;grid-column:6/8;">
+          <div class="fn-title">Orchestrator</div>
+          <div class="fn-sub">decompose intent</div>
+          <div class="fn-type">agent</div>
+        </div>
+        <div class="fn fn-agent" id="v1-builder" style="grid-row:4;grid-column:8/10;">
+          <div class="fn-title">Builder(s)</div>
+          <div class="fn-sub">execute tasks</div>
+          <div class="fn-type">agent</div>
+        </div>
+        <div class="fn fn-agent" id="v1-guardian" style="grid-row:4;grid-column:10/11;">
+          <div class="fn-title">Guardian</div>
+          <div class="fn-sub">auto-test · report</div>
+          <div class="fn-type">agent</div>
+        </div>
+        <div class="fn fn-gate" id="v1-gate1" style="grid-row:4;grid-column:11/12;">
+          <div class="fn-title" style="color:var(--coral2);">Auto-Test Gate</div>
+          <div class="fn-type" style="color:var(--coral);">pass / fail</div>
+        </div>
+        <div class="fn fn-agent" id="v1-deploy" style="grid-row:4;grid-column:12/13;">
+          <div class="fn-title">Deploy</div>
+          <div class="fn-sub">feature flag</div>
+          <div class="fn-type">agent</div>
+        </div>
+        <div class="fn fn-gate" id="v1-gate2" style="grid-row:4;grid-column:13/14;">
+          <div class="fn-title" style="color:var(--coral2);">PO Gate 2</div>
+          <div class="fn-type" style="color:var(--coral);">approve / reject</div>
+        </div>
+
+        <!-- ROW 5: DEPENDENCIES -->
+        <div class="fn fn-dep" id="v1-infra" style="grid-row:5;grid-column:6/8;">
+          <div class="fn-title">Infra · Compute</div>
+          <div class="fn-type">external</div>
+        </div>
+        <div class="fn fn-dep" id="v1-extsvc" style="grid-row:5;grid-column:12/13;">
+          <div class="fn-title">External Services</div>
+          <div class="fn-type">external</div>
+        </div>
+
+        <!-- Arrow SVG overlay -->
+        <svg class="flow-arrows" id="v1Svg"></svg>
+      </div>
+
+      <!-- Legend -->
+      <div class="flow-legend">
+        <div class="flow-legend-item"><div class="fli-line" style="background:#6a6878;"></div>forward flow</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#a8a6b4;"></div>context feed</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#e8734a;"></div>feedback loop</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#5bbf95;"></div>strategic loop</div>
+        <div class="flow-legend-item"><div class="fli-dash" style="border-color:#bf8f3a;"></div>dependency</div>
+      </div>
+    </div>
+
+    <!-- ── V2: IDF + SDD ── -->
+    <div class="flow-panel" id="flow-panel-v2">
+      <div class="flow-grid" id="flow-grid-v2">
+        <!-- Lane backgrounds -->
+        <div class="lane-bg client"     style="grid-row:1;grid-column:1/-1;"></div>
+        <div class="lane-bg strategic"  style="grid-row:2;grid-column:1/-1;"></div>
+        <div class="lane-bg product"    style="grid-row:3;grid-column:1/-1;"></div>
+        <div class="lane-bg execution"  style="grid-row:4;grid-column:1/-1;"></div>
+        <div class="lane-bg dependency" style="grid-row:5;grid-column:1/-1;"></div>
+
+        <!-- Lane labels -->
+        <div class="lane-label-cell client"     style="grid-row:1;grid-column:1;">Client</div>
+        <div class="lane-label-cell strategic"  style="grid-row:2;grid-column:1;">Strategic</div>
+        <div class="lane-label-cell product"    style="grid-row:3;grid-column:1;">Product</div>
+        <div class="lane-label-cell execution"  style="grid-row:4;grid-column:1;">Execution</div>
+        <div class="lane-label-cell dependency" style="grid-row:5;grid-column:1;">Deps</div>
+
+        <!-- ROW 1: CLIENT (same as V1) -->
+        <div class="fn fn-client-node" id="v2-client" style="grid-row:1;grid-column:2/4;">
+          <div class="fn-title">Client</div>
+          <div class="fn-sub">signals · feedback</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-artifact" id="v2-siglog" style="grid-row:1;grid-column:4/6;">
+          <div class="fn-title">Client Signal Log</div>
+          <div class="fn-sub">feedback · usage</div>
+          <div class="fn-type">artifact</div>
+        </div>
+        <div class="fn fn-monitor" id="v2-monitor" style="grid-row:1;grid-column:13/14;">
+          <div class="fn-title">Monitor</div>
+          <div class="fn-sub">observe · signal</div>
+          <div class="fn-type">agent</div>
+        </div>
+
+        <!-- ROW 2: STRATEGIC (same as V1) -->
+        <div class="fn fn-human" id="v2-stkhld" style="grid-row:2;grid-column:2/4;">
+          <div class="fn-title">Stakeholders</div>
+          <div class="fn-sub">portfolio horizon</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-artifact" id="v2-truenorth" style="grid-row:2;grid-column:4/6;">
+          <div class="fn-title">True North Doc</div>
+          <div class="fn-sub">strategy · direction</div>
+          <div class="fn-type">artifact</div>
+        </div>
+
+        <!-- ROW 3: PRODUCT (same as V1) -->
+        <div class="fn fn-human" id="v2-po" style="grid-row:3;grid-column:4/6;">
+          <div class="fn-title">Product Owner</div>
+          <div class="fn-sub">intent · gate authority</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-artifact" id="v2-intent" style="grid-row:3;grid-column:6/8;">
+          <div class="fn-title">Intent Statement</div>
+          <div class="fn-sub">[outcome] by [mechanism]</div>
+          <div class="fn-type">artifact</div>
+        </div>
+        <div class="fn fn-human" id="v2-craftrev" style="grid-row:3;grid-column:10/12;">
+          <div class="fn-title">Craft Review</div>
+          <div class="fn-sub">quality · pre-flag</div>
+          <div class="fn-type">human</div>
+        </div>
+        <div class="fn fn-gate" id="v2-pogate" style="grid-row:3;grid-column:12/13;">
+          <div class="fn-title" style="color:var(--coral2);">PO Gate</div>
+          <div class="fn-type" style="color:var(--coral);">approve / reject</div>
+        </div>
+
+        <!-- ROW 4: EXECUTION — SDD replaces Orchestrator+Builder+Guardian+Gate1 -->
+        <div class="fn fn-sdd" id="v2-sdd" style="grid-row:4;grid-column:6/12;">
+          <div class="fn-title">SDD Execution</div>
+          <div class="fn-sub" style="color:var(--purple2);">Craft Engineer · Cycle Spec · AI-assisted SDLC</div>
+          <div class="fn-type">human-led · replaces agentic stack</div>
+        </div>
+        <div class="fn fn-agent" id="v2-deploy" style="grid-row:4;grid-column:12/13;">
+          <div class="fn-title">Deploy</div>
+          <div class="fn-sub">feature flag</div>
+          <div class="fn-type">agent</div>
+        </div>
+        <div class="fn fn-gate" id="v2-gate2" style="grid-row:4;grid-column:13/14;">
+          <div class="fn-title" style="color:var(--coral2);">PO Gate 2</div>
+          <div class="fn-type" style="color:var(--coral);">approve / reject</div>
+        </div>
+
+        <!-- ROW 5: DEPENDENCIES -->
+        <div class="fn fn-dep" id="v2-extsvc" style="grid-row:5;grid-column:12/13;">
+          <div class="fn-title">External Services</div>
+          <div class="fn-type">external</div>
+        </div>
+
+        <!-- Arrow SVG overlay -->
+        <svg class="flow-arrows" id="v2Svg"></svg>
+      </div>
+
+      <!-- Legend -->
+      <div class="flow-legend">
+        <div class="flow-legend-item"><div class="fli-line" style="background:#6a6878;"></div>forward flow</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#a8a6b4;"></div>context feed</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#e8734a;"></div>feedback loop</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#5bbf95;"></div>strategic loop</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#9b7fd4;"></div>SDD path</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2221,6 +2653,202 @@ saved card data. Consider one-click payment for returning users.</div>
   <span>Built for teams moving fast with AI-assisted execution</span>
 </footer>
 
+<script>
+// ── FLOW DIAGRAM: Tab switching + Arrow rendering ──
+(function() {
+  // Arrow definitions — V1: Fully Agentic
+  window.v1Arrows = [
+    { from:'v1-client',    to:'v1-siglog',    exit:'right',  enter:'left',   type:'forward' },
+    { from:'v1-stkhld',    to:'v1-truenorth', exit:'right',  enter:'left',   type:'forward' },
+    { from:'v1-truenorth', to:'v1-po',        exit:'bottom', enter:'top',    type:'context' },
+    { from:'v1-siglog',    to:'v1-po',        exit:'bottom', enter:'top',    type:'context' },
+    { from:'v1-po',        to:'v1-intent',    exit:'right',  enter:'left',   type:'forward' },
+    { from:'v1-intent',    to:'v1-orch',      exit:'bottom', enter:'top',    type:'forward' },
+    { from:'v1-orch',      to:'v1-builder',   exit:'right',  enter:'left',   type:'forward' },
+    { from:'v1-builder',   to:'v1-guardian',  exit:'right',  enter:'left',   type:'forward' },
+    { from:'v1-guardian',  to:'v1-gate1',     exit:'right',  enter:'left',   type:'forward' },
+    { from:'v1-gate1',     to:'v1-deploy',    exit:'right',  enter:'left',   type:'forward', label:'pass' },
+    { from:'v1-deploy',    to:'v1-craftrev',  exit:'top',    enter:'bottom', type:'forward' },
+    { from:'v1-craftrev',  to:'v1-pogate',    exit:'right',  enter:'left',   type:'forward' },
+    { from:'v1-pogate',    to:'v1-gate2',     exit:'bottom', enter:'top',    type:'forward' },
+    { from:'v1-gate2',     to:'v1-monitor',   exit:'top',    enter:'bottom', type:'forward', label:'yes' },
+    { from:'v1-orch',      to:'v1-infra',     exit:'bottom', enter:'top',    type:'dep' },
+    { from:'v1-deploy',    to:'v1-extsvc',    exit:'bottom', enter:'top',    type:'dep' },
+    { from:'v1-gate1',     to:'v1-orch',      exit:'left',   enter:'left',   type:'feedback', label:'fail',   arc:'below', arcOffset:0 },
+    { from:'v1-gate2',     to:'v1-intent',    exit:'left',   enter:'bottom', type:'feedback', label:'reject', arc:'below', arcOffset:30 },
+    { from:'v1-monitor',   to:'v1-siglog',    exit:'left',   enter:'top',    type:'strategic', arc:'below', arcOffset:60 },
+  ];
+
+  // Arrow definitions — V2: IDF + SDD
+  window.v2Arrows = [
+    { from:'v2-client',    to:'v2-siglog',    exit:'right',  enter:'left',   type:'forward' },
+    { from:'v2-stkhld',    to:'v2-truenorth', exit:'right',  enter:'left',   type:'forward' },
+    { from:'v2-truenorth', to:'v2-po',        exit:'bottom', enter:'top',    type:'context' },
+    { from:'v2-siglog',    to:'v2-po',        exit:'bottom', enter:'top',    type:'context' },
+    { from:'v2-po',        to:'v2-intent',    exit:'right',  enter:'left',   type:'forward' },
+    { from:'v2-intent',    to:'v2-sdd',       exit:'bottom', enter:'top',    type:'sdd' },
+    { from:'v2-sdd',       to:'v2-deploy',    exit:'right',  enter:'left',   type:'forward' },
+    { from:'v2-deploy',    to:'v2-craftrev',  exit:'top',    enter:'bottom', type:'forward' },
+    { from:'v2-craftrev',  to:'v2-pogate',    exit:'right',  enter:'left',   type:'forward' },
+    { from:'v2-pogate',    to:'v2-gate2',     exit:'bottom', enter:'top',    type:'forward' },
+    { from:'v2-gate2',     to:'v2-monitor',   exit:'top',    enter:'bottom', type:'forward', label:'yes' },
+    { from:'v2-deploy',    to:'v2-extsvc',    exit:'bottom', enter:'top',    type:'dep' },
+    { from:'v2-gate2',     to:'v2-intent',    exit:'left',   enter:'bottom', type:'feedback', label:'reject', arc:'below', arcOffset:0 },
+    { from:'v2-monitor',   to:'v2-siglog',    exit:'left',   enter:'top',    type:'strategic', arc:'below', arcOffset:30 },
+  ];
+
+  // ── Tab switching ──
+  function activateTab(tabEl) {
+    document.querySelectorAll('.flow-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.flow-panel').forEach(function(p) { p.classList.remove('active'); });
+    tabEl.classList.add('active');
+    var panel = document.getElementById(tabEl.dataset.panel);
+    if (panel) {
+      panel.classList.add('active');
+      renderArrows(tabEl.dataset.arrows);
+    }
+  }
+
+  document.querySelectorAll('.flow-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() { activateTab(tab); });
+  });
+
+  // ── Arrow rendering ──
+  var colorMap = {
+    forward:   '#5a5868',
+    context:   '#8a88a0',
+    feedback:  '#e8734a',
+    strategic: '#5bbf95',
+    dep:       '#9a7030',
+    sdd:       '#9b7fd4'
+  };
+  var dashMap = { feedback: '6,3', strategic: '6,3', dep: '4,3', sdd: '5,3' };
+  var markerIdMap = { forward: 'fl-fwd', context: 'fl-ctx', feedback: 'fl-fb', strategic: 'fl-st', dep: 'fl-dep', sdd: 'fl-sdd' };
+
+  function ensureMarkers(svg) {
+    if (svg.querySelector('defs')) return;
+    var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    Object.keys(colorMap).forEach(function(type) {
+      var marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+      marker.setAttribute('id', markerIdMap[type]);
+      marker.setAttribute('markerWidth', '8');
+      marker.setAttribute('markerHeight', '8');
+      marker.setAttribute('refX', '6');
+      marker.setAttribute('refY', '3.5');
+      marker.setAttribute('orient', 'auto');
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M0,0.5 L6.5,3.5 L0,6.5 Z');
+      path.setAttribute('fill', colorMap[type]);
+      marker.appendChild(path);
+      defs.appendChild(marker);
+    });
+    svg.appendChild(defs);
+  }
+
+  function pt(el, side, cr) {
+    var r = el.getBoundingClientRect();
+    var x = side === 'left'   ? r.left  - cr.left :
+             side === 'right'  ? r.right - cr.left :
+             (r.left + r.right) / 2 - cr.left;
+    var y = side === 'top'    ? r.top    - cr.top :
+             side === 'bottom' ? r.bottom - cr.top :
+             (r.top + r.bottom) / 2 - cr.top;
+    return { x: x, y: y };
+  }
+
+  function drawArrow(svg, cr, def, gridEl) {
+    var fromEl = document.getElementById(def.from);
+    var toEl   = document.getElementById(def.to);
+    if (!fromEl || !toEl) return;
+
+    var from = pt(fromEl, def.exit,  cr);
+    var to   = pt(toEl,   def.enter, cr);
+    var d;
+
+    if (def.arc === 'below') {
+      var arcY = gridEl.offsetHeight + 28 + (def.arcOffset || 0);
+      d = 'M' + from.x + ',' + from.y +
+          ' C' + from.x + ',' + arcY +
+          ' ' + to.x + ',' + arcY +
+          ' ' + to.x + ',' + to.y;
+    } else if (def.exit === 'bottom' && def.enter === 'top') {
+      var midY = (from.y + to.y) / 2;
+      d = 'M' + from.x + ',' + from.y +
+          ' C' + from.x + ',' + midY +
+          ' ' + to.x + ',' + midY +
+          ' ' + to.x + ',' + to.y;
+    } else if (def.exit === 'top' && def.enter === 'bottom') {
+      var midY2 = (from.y + to.y) / 2;
+      d = 'M' + from.x + ',' + from.y +
+          ' C' + from.x + ',' + midY2 +
+          ' ' + to.x + ',' + midY2 +
+          ' ' + to.x + ',' + to.y;
+    } else {
+      d = 'M' + from.x + ',' + from.y + ' L' + to.x + ',' + to.y;
+    }
+
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', colorMap[def.type] || '#5a5868');
+    path.setAttribute('stroke-width', def.type === 'dep' ? '1' : '1.5');
+    if (dashMap[def.type]) path.setAttribute('stroke-dasharray', dashMap[def.type]);
+    path.setAttribute('marker-end', 'url(#' + (markerIdMap[def.type] || 'fl-fwd') + ')');
+    svg.appendChild(path);
+
+    // Optional label at midpoint
+    if (def.label) {
+      var lx = (from.x + to.x) / 2;
+      var ly = def.arc === 'below'
+        ? gridEl.offsetHeight + 28 + (def.arcOffset || 0) + 12
+        : (from.y + to.y) / 2 - 4;
+      var lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      lbl.setAttribute('x', lx);
+      lbl.setAttribute('y', ly);
+      lbl.setAttribute('text-anchor', 'middle');
+      lbl.setAttribute('font-family', 'IBM Plex Mono, monospace');
+      lbl.setAttribute('font-size', '9');
+      lbl.setAttribute('fill', colorMap[def.type] || '#5a5868');
+      lbl.textContent = def.label;
+      svg.appendChild(lbl);
+    }
+  }
+
+  function renderArrows(defId) {
+    var defs = window[defId];
+    if (!defs) return;
+    var svgId = defId.replace('Arrows', 'Svg');
+    var svg = document.getElementById(svgId);
+    if (!svg) return;
+
+    var panelId = defId === 'v1Arrows' ? 'flow-panel-v1' : 'flow-panel-v2';
+    var panel = document.getElementById(panelId);
+    var gridEl = panel ? panel.querySelector('.flow-grid') : null;
+    if (!gridEl) return;
+
+    // Clear & set up
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    ensureMarkers(svg);
+
+    var cr = gridEl.getBoundingClientRect();
+    defs.forEach(function(def) { drawArrow(svg, cr, def, gridEl); });
+  }
+
+  // Initial render after layout settles
+  setTimeout(function() { renderArrows('v1Arrows'); }, 80);
+
+  // Re-render on resize
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      document.querySelectorAll('.flow-panel.active').forEach(function(p) {
+        renderArrows(p.id === 'flow-panel-v1' ? 'v1Arrows' : 'v2Arrows');
+      });
+    }, 150);
+  });
+})();
+</script>
 <script src="nav.js?v=10"></script>
 </body>
 </html>
