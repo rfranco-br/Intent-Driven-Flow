@@ -1140,51 +1140,53 @@
     align-self: center;
   }
 
+  /* Node colors: all use dark surface bg so they pop over lane tints.
+     Left-bar color = role type, chosen to contrast with the lane it appears in. */
   .fn-human {
-    background: rgba(124,92,191,0.10);
-    border: 1px solid rgba(155,127,212,0.35);
-    border-left: 3px solid var(--purple);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--coral2);   /* coral = human authority; ≠ purple/teal lanes */
   }
 
   .fn-agent {
-    background: rgba(74,122,191,0.10);
-    border: 1px solid rgba(107,153,212,0.35);
-    border-left: 3px solid var(--blue);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--blue2);    /* blue = automation; pops on dark surface */
   }
 
   .fn-artifact {
-    background: rgba(191,143,58,0.08);
-    border: 1px dashed rgba(212,168,91,0.45);
+    background: rgba(191,143,58,0.06);
+    border: 1px dashed rgba(212,168,91,0.40);
   }
 
   .fn-gate {
-    background: rgba(232,115,74,0.10);
-    border: 1px solid rgba(232,115,74,0.40);
+    background: rgba(232,115,74,0.12);
+    border: 1px solid rgba(232,115,74,0.45);
     clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
   }
 
   .fn-monitor {
-    background: rgba(58,158,120,0.10);
-    border: 1px solid rgba(91,191,149,0.35);
-    border-left: 3px solid var(--teal);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--teal2);    /* teal = observe/output; in coral Client lane — no clash */
   }
 
   .fn-sdd {
-    background: rgba(74,122,191,0.08);
-    border: 1px solid rgba(124,92,191,0.25);
-    border-left: 3px solid var(--purple);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--amber2);   /* amber = alternate path; ≠ purple/teal/blue lanes */
   }
 
   .fn-dep {
-    background: rgba(191,143,58,0.06);
-    border: 1px dashed rgba(191,143,58,0.25);
-    opacity: 0.75;
+    background: rgba(191,143,58,0.04);
+    border: 1px dashed rgba(191,143,58,0.20);
+    opacity: 0.7;
   }
 
   .fn-client-node {
-    background: rgba(232,115,74,0.10);
-    border: 1px solid rgba(232,115,74,0.35);
-    border-left: 3px solid var(--coral);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--coral);    /* coral = client thread */
   }
 
   .fn-title {
@@ -2019,11 +2021,9 @@ flowchart LR
 
       <!-- Legend -->
       <div class="flow-legend">
-        <div class="flow-legend-item"><div class="fli-line" style="background:#6a6878;"></div>forward flow</div>
-        <div class="flow-legend-item"><div class="fli-line" style="background:#a8a6b4;"></div>context feed</div>
-        <div class="flow-legend-item"><div class="fli-line" style="background:#e8734a;"></div>feedback loop</div>
-        <div class="flow-legend-item"><div class="fli-line" style="background:#5bbf95;"></div>strategic loop</div>
-        <div class="flow-legend-item"><div class="fli-dash" style="border-color:#bf8f3a;"></div>dependency</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#6a6878;"></div>context</div>
+        <div class="flow-legend-item"><div class="fli-dash" style="border-color:#e8734a;border-style:dashed;"></div>feedback</div>
+        <div class="flow-legend-item"><div class="fli-dash" style="border-color:#9a7030;border-style:dotted;"></div>dependency</div>
       </div>
     </div>
 
@@ -2097,7 +2097,7 @@ flowchart LR
         <!-- ROW 4: EXECUTION — SDD replaces Orchestrator+Builder+Guardian+Gate1 -->
         <div class="fn fn-sdd" id="v2-sdd" style="grid-row:4;grid-column:6/12;">
           <div class="fn-title">SDD Execution</div>
-          <div class="fn-sub" style="color:var(--purple2);">Craft Engineer · Cycle Spec · AI-assisted SDLC</div>
+          <div class="fn-sub" style="color:var(--amber2);">Craft Engineer · Cycle Spec · AI-assisted SDLC</div>
           <div class="fn-type">human-led · replaces agentic stack</div>
         </div>
         <div class="fn fn-agent" id="v2-deploy" style="grid-row:4;grid-column:12/13;">
@@ -2122,11 +2122,10 @@ flowchart LR
 
       <!-- Legend -->
       <div class="flow-legend">
-        <div class="flow-legend-item"><div class="fli-line" style="background:#6a6878;"></div>forward flow</div>
-        <div class="flow-legend-item"><div class="fli-line" style="background:#a8a6b4;"></div>context feed</div>
-        <div class="flow-legend-item"><div class="fli-line" style="background:#e8734a;"></div>feedback loop</div>
-        <div class="flow-legend-item"><div class="fli-line" style="background:#5bbf95;"></div>strategic loop</div>
-        <div class="flow-legend-item"><div class="fli-line" style="background:#9b7fd4;"></div>SDD path</div>
+        <div class="flow-legend-item"><div class="fli-line" style="background:#6a6878;"></div>context</div>
+        <div class="flow-legend-item"><div class="fli-dash" style="border-color:#e8734a;border-style:dashed;"></div>feedback</div>
+        <div class="flow-legend-item"><div class="fli-dash" style="border-color:#9a7030;border-style:dotted;"></div>dependency</div>
+        <div class="flow-legend-item"><div class="fli-dash" style="border-color:#4ab0c0;border-style:dashed;"></div>SDD path</div>
       </div>
     </div>
   </div>
@@ -2658,43 +2657,24 @@ saved card data. Consider one-click payment for returning users.</div>
 (function() {
   // Arrow definitions — V1: Fully Agentic
   window.v1Arrows = [
-    { from:'v1-client',    to:'v1-siglog',    exit:'right',  enter:'left',   type:'forward' },
-    { from:'v1-stkhld',    to:'v1-truenorth', exit:'right',  enter:'left',   type:'forward' },
-    { from:'v1-truenorth', to:'v1-po',        exit:'bottom', enter:'top',    type:'context' },
-    { from:'v1-siglog',    to:'v1-po',        exit:'bottom', enter:'top',    type:'context' },
-    { from:'v1-po',        to:'v1-intent',    exit:'right',  enter:'left',   type:'forward' },
-    { from:'v1-intent',    to:'v1-orch',      exit:'bottom', enter:'top',    type:'forward' },
-    { from:'v1-orch',      to:'v1-builder',   exit:'right',  enter:'left',   type:'forward' },
-    { from:'v1-builder',   to:'v1-guardian',  exit:'right',  enter:'left',   type:'forward' },
-    { from:'v1-guardian',  to:'v1-gate1',     exit:'right',  enter:'left',   type:'forward' },
-    { from:'v1-gate1',     to:'v1-deploy',    exit:'right',  enter:'left',   type:'forward', label:'pass' },
-    { from:'v1-deploy',    to:'v1-craftrev',  exit:'top',    enter:'bottom', type:'forward' },
-    { from:'v1-craftrev',  to:'v1-pogate',    exit:'right',  enter:'left',   type:'forward' },
-    { from:'v1-pogate',    to:'v1-gate2',     exit:'bottom', enter:'top',    type:'forward' },
-    { from:'v1-gate2',     to:'v1-monitor',   exit:'top',    enter:'bottom', type:'forward', label:'yes' },
-    { from:'v1-orch',      to:'v1-infra',     exit:'bottom', enter:'top',    type:'dep' },
-    { from:'v1-deploy',    to:'v1-extsvc',    exit:'bottom', enter:'top',    type:'dep' },
-    { from:'v1-gate1',     to:'v1-orch',      exit:'left',   enter:'left',   type:'feedback', label:'fail',   arc:'below', arcOffset:0 },
-    { from:'v1-gate2',     to:'v1-intent',    exit:'left',   enter:'bottom', type:'feedback', label:'reject', arc:'below', arcOffset:30 },
-    { from:'v1-monitor',   to:'v1-siglog',    exit:'left',   enter:'right',  type:'strategic' },
+    { from:'v1-truenorth', to:'v1-po',     exit:'bottom', enter:'top',   type:'context' },
+    { from:'v1-siglog',    to:'v1-po',     exit:'bottom', enter:'top',   type:'context' },
+    { from:'v1-orch',      to:'v1-infra',  exit:'bottom', enter:'top',   type:'dep' },
+    { from:'v1-deploy',    to:'v1-extsvc', exit:'bottom', enter:'top',   type:'dep' },
+    { from:'v1-gate1',     to:'v1-orch',   exit:'left',   enter:'left',  type:'feedback', label:'fail',   arc:'below', arcOffset:0 },
+    { from:'v1-gate2',     to:'v1-intent', exit:'left',   enter:'bottom',type:'feedback', label:'reject', arc:'below', arcOffset:30 },
+    { from:'v1-monitor',   to:'v1-siglog', exit:'left',   enter:'right', type:'feedback' },
   ];
 
   // Arrow definitions — V2: IDF + SDD
   window.v2Arrows = [
-    { from:'v2-client',    to:'v2-siglog',    exit:'right',  enter:'left',   type:'forward' },
-    { from:'v2-stkhld',    to:'v2-truenorth', exit:'right',  enter:'left',   type:'forward' },
-    { from:'v2-truenorth', to:'v2-po',        exit:'bottom', enter:'top',    type:'context' },
-    { from:'v2-siglog',    to:'v2-po',        exit:'bottom', enter:'top',    type:'context' },
-    { from:'v2-po',        to:'v2-intent',    exit:'right',  enter:'left',   type:'forward' },
-    { from:'v2-intent',    to:'v2-sdd',       exit:'bottom', enter:'top',    type:'sdd' },
-    { from:'v2-sdd',       to:'v2-deploy',    exit:'right',  enter:'left',   type:'forward' },
-    { from:'v2-deploy',    to:'v2-craftrev',  exit:'top',    enter:'bottom', type:'forward' },
-    { from:'v2-craftrev',  to:'v2-pogate',    exit:'right',  enter:'left',   type:'forward' },
-    { from:'v2-pogate',    to:'v2-gate2',     exit:'bottom', enter:'top',    type:'forward' },
-    { from:'v2-gate2',     to:'v2-monitor',   exit:'top',    enter:'bottom', type:'forward', label:'yes' },
-    { from:'v2-deploy',    to:'v2-extsvc',    exit:'bottom', enter:'top',    type:'dep' },
-    { from:'v2-gate2',     to:'v2-intent',    exit:'left',   enter:'bottom', type:'feedback', label:'reject', arc:'below', arcOffset:0 },
-    { from:'v2-monitor',   to:'v2-siglog',    exit:'left',   enter:'right',  type:'strategic' },
+    { from:'v2-truenorth', to:'v2-po',      exit:'bottom', enter:'top',   type:'context' },
+    { from:'v2-siglog',    to:'v2-po',      exit:'bottom', enter:'top',   type:'context' },
+    { from:'v2-intent',    to:'v2-sdd',     exit:'bottom', enter:'top',   type:'sdd' },
+    { from:'v2-sdd',       to:'v2-deploy',  exit:'right',  enter:'left',  type:'sdd' },
+    { from:'v2-deploy',    to:'v2-extsvc',  exit:'bottom', enter:'top',   type:'dep' },
+    { from:'v2-gate2',     to:'v2-intent',  exit:'left',   enter:'bottom',type:'feedback', label:'reject', arc:'below', arcOffset:0 },
+    { from:'v2-monitor',   to:'v2-siglog',  exit:'left',   enter:'right', type:'feedback' },
   ];
 
   // ── Tab switching ──
@@ -2715,15 +2695,13 @@ saved card data. Consider one-click payment for returning users.</div>
 
   // ── Arrow rendering ──
   var colorMap = {
-    forward:   '#5a5868',
-    context:   '#8a88a0',
-    feedback:  '#e8734a',
-    strategic: '#5bbf95',
-    dep:       '#9a7030',
-    sdd:       '#9b7fd4'
+    context:  '#6a6878',   // neutral gray
+    feedback: '#e8734a',   // coral — corrections / loops
+    dep:      '#9a7030',   // amber — external deps
+    sdd:      '#4ab0c0'    // cyan — SDD alternate path, distinct from all lane colors
   };
-  var dashMap = { feedback: '6,3', strategic: '6,3', dep: '4,3', sdd: '5,3' };
-  var arrowTypes = ['forward','context','feedback','strategic','dep','sdd'];
+  var dashMap = { feedback: '5,3', dep: '3,2', sdd: '6,2' };
+  var arrowTypes = ['context','feedback','dep','sdd'];
 
   function ensureMarkers(svg) {
     if (svg.querySelector('defs')) return;
