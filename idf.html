@@ -1361,11 +1361,11 @@
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">QA Engineer / Tester</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Quality Advocate</strong> — sets gate criteria and validates as a real user before any flag turns ON</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Quality Advocate</strong> — sets quality gate criteria and validates as a real user before any flag turns ON</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">Product Manager / PO</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Product Owner</strong> — translates client signals into cycle intent; holds the only gate authority</span>
+      <span style="font-size:13px;color:var(--text);"><strong>Product Owner</strong> — translates client signals into cycle intent; holds release gate authority</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
       <span style="font-size:13px;color:var(--text2);">Tech Lead / Architect</span>
@@ -1396,7 +1396,7 @@
         </div>
         <div class="role-node human" data-role="po" id="node-po">
           <span class="role-node-name">Product Owner</span>
-          <span class="role-node-fn">Intent &amp; gate authority</span>
+          <span class="role-node-fn">Intent &amp; release gate authority</span>
           <span class="role-node-tag human">human</span>
         </div>
         <div class="role-node human" data-role="craft" id="node-craft">
@@ -1485,12 +1485,12 @@
         name: 'Product Owner', type: 'human',
         desc: 'The translation layer. Holds simultaneous understanding of client needs, business constraints, and current strategic priorities. The PO\'s primary output is cycle intent — a clear statement of desired outcome that agents can execute against.',
         attrs: [
-          { k: 'Owns',           v: 'Client signal log, cycle intent, gate approval' },
+          { k: 'Owns',           v: 'Client signal log, cycle intent, release gate authority' },
           { k: 'Interfaces',     v: 'Stakeholders (up), Orchestrator (down), clients (lateral)' },
           { k: 'Key discipline', v: 'Writing intent as client outcomes, not feature descriptions' },
           { k: 'Intent template',v: '[Client outcome] by [mechanism], measured by [signal].', mono: true },
           { k: 'Sources',        v: 'Client signal log, True North doc, stakeholder priorities. Intent not traceable to one of these should not enter the cycle.' },
-          { k: 'Backup',         v: 'A named delegate in System Memory holds gate authority when PO is away. No delegate = cycle holds at Deploy.' }
+          { k: 'Backup',         v: 'A named delegate in System Memory holds release gate authority when PO is away. No delegate = cycle holds at Deploy.' }
         ],
         extra: '<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:11px;font-family:\'IBM Plex Mono\',monospace;color:var(--coral2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Anti-patterns</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Epic-framed: <em>&ldquo;Build a new onboarding flow&rdquo;</em> — describes a feature, not an outcome.</div><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Story-framed: <em>&ldquo;As a user I want to see my dashboard&rdquo;</em> — task disguised as intent.</div><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">Spec-framed: <em>&ldquo;Add a login button to the homepage&rdquo;</em> — implementation, not outcome.</div><div style="padding:8px 12px;background:var(--surface2);border-radius:4px;border-left:2px solid var(--border2);font-size:13px;color:var(--text3);">If the Orchestrator can start building without asking a question, the intent is probably a task list in disguise.</div></div></div><div style="margin-top:16px;padding:14px 16px;background:var(--surface2);border-radius:6px;border-left:3px solid var(--amber);"><div style="font-size:11px;font-family:\'IBM Plex Mono\',monospace;color:var(--amber2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Scope check</div><p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0 0 10px;">Ask: <strong>could a single gate report confirm this outcome was achieved?</strong> If no — decompose first. Each cycle-ready intent maps to one feature flag.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--coral2);font-size:12px;font-family:\'IBM Plex Mono\',monospace;color:var(--text3);">\u2717 Too large<br><span style="color:var(--text2);">&ldquo;Launch a social network where users control who joins&rdquo;</span></div><div style="padding:8px 12px;background:var(--surface);border-radius:4px;border-left:2px solid var(--teal2);font-size:12px;font-family:\'IBM Plex Mono\',monospace;color:var(--text3);">\u2713 Cycle-sized<br><span style="color:var(--text2);">&ldquo;Allow users to set their profile as invite-only, measured by adoption rate.&rdquo;</span></div></div></div>'
       },
@@ -1508,11 +1508,11 @@
         name: 'Quality Advocate', type: 'human',
         desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify — and validates each deploy as a real user before the flag turns ON.',
         attrs: [
-          { k: 'Owns',           v: 'Acceptance criteria, gate criteria, exploratory validation pre-flag' },
-          { k: 'Produces',       v: 'Gate criteria updates, quality signals to client signal log, flag-ON recommendation' },
+          { k: 'Owns',           v: 'Acceptance criteria, quality gate criteria, exploratory validation pre-flag' },
+          { k: 'Produces',       v: 'Quality gate criteria updates, quality signals to client signal log, flag-ON recommendation' },
           { k: 'Catches',        v: 'Flows that are technically correct but humanly confusing — the class of problem no automated test finds' },
-          { k: 'Key discipline', v: 'Encoding discovered issues into gate criteria, so the Guardian catches the same class of problem automatically next cycle' },
-          { k: 'Authority',      v: 'Advisory — PO holds final gate authority. PO overrides must be documented. Repeated overrides signal a process problem.' }
+          { k: 'Key discipline', v: 'Encoding discovered issues into quality gate criteria, so the Guardian catches the same class of problem automatically next cycle' },
+          { k: 'Authority',      v: 'Advisory — PO holds final release gate authority. PO overrides must be documented. Repeated overrides signal a process problem.' }
         ]
       },
       arch: {
@@ -1545,7 +1545,7 @@
       },
       guardian: {
         name: 'Guardian', type: 'agent', sub: 'Automated Quality / Policy Governor',
-        desc: 'Reviews Builder output against the gate criteria before it reaches the PO. Runs security, performance, and cost signals. Produces a short, human-readable gate report with a clear pass / flag / fail signal.',
+        desc: 'Runs the Quality Gate automatically after every build. Checks Builder output against quality gate criteria set by the Quality Advocate. Produces a gate report — three paragraphs: what was built, what the signals show, and a clear pass / flag / fail. On pass, Deploy proceeds. On fail, Orchestrator re-plans. PO is not involved in the Quality Gate.',
         attrs: [
           { k: 'Checks',    v: 'Tests pass, sec scan clean, perf budget, cost delta, client impact' },
           { k: 'Produces',  v: 'Gate report (\u22643 paragraphs), next-cycle suggestion' },
@@ -1566,7 +1566,7 @@
         desc: 'Not a workflow participant, but the ultimate measure of all decisions. The PO captures client signals continuously — feedback, usage data, support patterns — and feeds them into the client signal log.',
         attrs: [
           { k: 'Provides',       v: 'Real needs, usage signals, feedback, priority by behaviour' },
-          { k: 'Represented by', v: 'PO (in cycle intent), Guardian (in gate review)' },
+          { k: 'Represented by', v: 'PO (in cycle intent), Guardian (in Quality Gate report)' },
           { k: 'Validated by',   v: 'Feature flag rollout, usage metrics post-deploy' }
         ]
       }
@@ -1616,6 +1616,17 @@
   <div class="section-label">04 — The delivery cycle</div>
   <h2>Plan to monitor — one cycle</h2>
   <p style="max-width:640px;">Those roles interact through a single repeatable cycle. Each cycle is a complete, self-contained unit of delivery. A cycle begins with intent and ends with a monitored, flag-controlled release. Cycles are not time-boxed — they are completion-triggered. A simple feature may complete in 2 hours. A complex one may span multiple sub-cycles with intermediate gates.</p>
+
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;margin-bottom:4px;max-width:860px;">
+    <div style="flex:1;min-width:280px;background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.18);border-left:3px solid var(--coral);border-radius:6px;padding:16px 20px;">
+      <div style="font-size:10px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.1em;">QUALITY GATE · AUTOMATED</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.65;"><strong style="color:var(--text);font-weight:500;">When:</strong> after every build, before Deploy.<br><strong style="color:var(--text);font-weight:500;">Why:</strong> prevents technically deficient code from reaching any deployment.<br><strong style="color:var(--text);font-weight:500;">Who:</strong> Guardian executes; Quality Advocate owns the criteria; PO not involved.<br><strong style="color:var(--text);font-weight:500;">Output:</strong> pass → Deploy. Fail → Orchestrator re-plans.</div>
+    </div>
+    <div style="flex:1;min-width:280px;background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.18);border-left:3px solid var(--coral);border-radius:6px;padding:16px 20px;">
+      <div style="font-size:10px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.1em;">RELEASE GATE · HUMAN</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.65;"><strong style="color:var(--text);font-weight:500;">When:</strong> after Deploy (flag OFF) and Craft Review.<br><strong style="color:var(--text);font-weight:500;">Why:</strong> ensures outcome alignment before users see the feature. Nothing reaches users without this signal.<br><strong style="color:var(--text);font-weight:500;">Who:</strong> PO decides; informed by gate report + Craft Review + QA recommendation.<br><strong style="color:var(--text);font-weight:500;">Output:</strong> approve → flag Live-ON. Reject → intent correction.</div>
+    </div>
+  </div>
 
   <div class="sdlc-diagram">
     <div class="flow-row" style="margin-bottom:24px;">
@@ -1718,7 +1729,7 @@
 
     <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:16px 20px;margin-top:8px;">
       <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:6px;letter-spacing:0.08em;">SDD PATH — SPEC-DRIVEN DELIVERY</div>
-      <div style="font-size:13px;color:var(--text2);">Teams not ready for autonomous execution can substitute a human-led, AI-assisted SDLC for the entire agentic execution stack. In the SDD path, the Orchestrator, Builder, and Guardian are replaced as a complete unit — a Craft Engineer authors a Cycle Spec, drives execution, and owns quality directly. The PO writes intent as normal. Everything from Deploy onward — flag-gated release, Craft Review, PO Gate, Monitor — is identical in both paths. The benefit of IDF is the outcome-based governance model; SDD is an alternative execution layer within it. The trade-off is deliberate: less autonomous, more legible. Both paths are fully IDF.</div>
+      <div style="font-size:13px;color:var(--text2);">Teams not ready for autonomous execution can substitute a human-led, AI-assisted SDLC for the entire agentic execution stack. In the SDD path, the Orchestrator, Builder, and Guardian are replaced as a complete unit — a Craft Engineer authors a Cycle Spec, drives execution, and owns quality directly. The PO writes intent as normal. Everything from Deploy onward — Craft Review, Release Gate, Monitor — is identical in both paths. The Quality Gate is bypassed on the SDD path; the Craft Engineer owns quality directly. The benefit of IDF is the outcome-based governance model; SDD is an alternative execution layer within it. The trade-off is deliberate: less autonomous, more legible. Both paths are fully IDF.</div>
     </div>
 
     <div class="mermaid-wrap">
@@ -1727,11 +1738,11 @@
 flowchart LR
   A([Intent\nStatement]) --> B[Orchestrator\nDecompose]
   B --> C[Builder\nCode + Tests]
-  C --> D{Guardian\nAuto-Test}
+  C --> D{Quality\nGate}
   D -->|Pass| E[Deploy\nflag OFF]
   D -->|Fail| B
   E --> F[Craft Review\nCraft Eng + QA]
-  F -->|Ready| G[PO\nGate Review]
+  F -->|Ready| G{Release\nGate}
   F -->|Craft issues| B
   G -->|Approve| H[Monitor\nflag ON]
   G -->|Reject — Intent\nCorrection| B
@@ -1799,7 +1810,7 @@ flowchart LR
           <div class="layer-cell">
             <h4>Roles</h4>
             <ul>
-              <li><span class="role-tag human">human</span> Product Owner — intent + gate authority</li>
+              <li><span class="role-tag human">human</span> Product Owner — intent + release gate authority</li>
               <li><span class="role-tag human">human</span> UX / Research — client signal capture</li>
               <li><span class="role-tag agent">agent</span> Orchestrator — intent decomposition</li>
             </ul>
@@ -1809,7 +1820,7 @@ flowchart LR
             <ul>
               <li>Intent injection <span class="role-tag human">human</span> PO writes, per cycle</li>
               <li>Client signal review <span class="role-tag human">human</span> PO / UX, ongoing</li>
-              <li>Gate review <span class="role-tag human">human</span> PO approves, per deploy</li>
+              <li>Release Gate <span class="role-tag human">human</span> PO approves, per deploy</li>
               <li>Drift check <span class="role-tag human">human</span> PO + Architect, every 10–20 cycles</li>
             </ul>
           </div>
@@ -1846,7 +1857,7 @@ flowchart LR
             <h4>Signal Events</h4>
             <ul>
               <li>Cycle kick-off <span class="role-tag agent">auto</span> Orchestrator, on intent received</li>
-              <li>Auto-test gate <span class="role-tag agent">auto</span> Guardian, per build</li>
+              <li>Quality Gate <span class="role-tag agent">auto</span> Guardian, per build</li>
               <li>Craft review <span class="role-tag human">human</span> Craft Eng + QA, pre-flag</li>
               <li>Context reset <span class="role-tag human">human</span> Architect, every N cycles</li>
               <li>Capability harvest <span class="role-tag human">human</span> Craft Eng, on repeated pattern</li>
@@ -1957,7 +1968,7 @@ flowchart LR
         <!-- ROW 3: PRODUCT -->
         <div class="fn fn-human" id="v1-po" style="grid-row:3;grid-column:4/6;">
           <div class="fn-title">Product Owner</div>
-          <div class="fn-sub">intent · gate authority</div>
+          <div class="fn-sub">intent · release gate authority</div>
           <div class="fn-type">human</div>
         </div>
         <div class="fn fn-artifact" id="v1-intent" style="grid-row:3;grid-column:6/8;">
@@ -1971,7 +1982,7 @@ flowchart LR
           <div class="fn-type">human</div>
         </div>
         <div class="fn fn-gate" id="v1-pogate" style="grid-row:3;grid-column:12/13;">
-          <div class="fn-title" style="color:var(--coral2);">PO Gate</div>
+          <div class="fn-title" style="color:var(--coral2);">Release Gate</div>
           <div class="fn-type" style="color:var(--coral);">approve / reject</div>
         </div>
 
@@ -1992,17 +2003,13 @@ flowchart LR
           <div class="fn-type">agent</div>
         </div>
         <div class="fn fn-gate" id="v1-gate1" style="grid-row:4;grid-column:11/12;">
-          <div class="fn-title" style="color:var(--coral2);">Auto-Test Gate</div>
+          <div class="fn-title" style="color:var(--coral2);">Quality Gate</div>
           <div class="fn-type" style="color:var(--coral);">pass / fail</div>
         </div>
         <div class="fn fn-agent" id="v1-deploy" style="grid-row:4;grid-column:12/13;">
           <div class="fn-title">Deploy</div>
           <div class="fn-sub">feature flag</div>
           <div class="fn-type">agent</div>
-        </div>
-        <div class="fn fn-gate" id="v1-gate2" style="grid-row:4;grid-column:13/14;">
-          <div class="fn-title" style="color:var(--coral2);">PO Gate 2</div>
-          <div class="fn-type" style="color:var(--coral);">approve / reject</div>
         </div>
 
         <!-- ROW 5: DEPENDENCIES -->
@@ -2076,7 +2083,7 @@ flowchart LR
         <!-- ROW 3: PRODUCT (same as V1) -->
         <div class="fn fn-human" id="v2-po" style="grid-row:3;grid-column:4/6;">
           <div class="fn-title">Product Owner</div>
-          <div class="fn-sub">intent · gate authority</div>
+          <div class="fn-sub">intent · release gate authority</div>
           <div class="fn-type">human</div>
         </div>
         <div class="fn fn-artifact" id="v2-intent" style="grid-row:3;grid-column:6/8;">
@@ -2090,7 +2097,7 @@ flowchart LR
           <div class="fn-type">human</div>
         </div>
         <div class="fn fn-gate" id="v2-pogate" style="grid-row:3;grid-column:12/13;">
-          <div class="fn-title" style="color:var(--coral2);">PO Gate</div>
+          <div class="fn-title" style="color:var(--coral2);">Release Gate</div>
           <div class="fn-type" style="color:var(--coral);">approve / reject</div>
         </div>
 
@@ -2104,10 +2111,6 @@ flowchart LR
           <div class="fn-title">Deploy</div>
           <div class="fn-sub">feature flag</div>
           <div class="fn-type">agent</div>
-        </div>
-        <div class="fn fn-gate" id="v2-gate2" style="grid-row:4;grid-column:13/14;">
-          <div class="fn-title" style="color:var(--coral2);">PO Gate 2</div>
-          <div class="fn-type" style="color:var(--coral);">approve / reject</div>
         </div>
 
         <!-- ROW 5: DEPENDENCIES -->
@@ -2159,13 +2162,13 @@ flowchart LR
         <div class="ritual-name"><span class="layer-dot dot-product"></span>Intent Injection</div>
       </div>
       <div class="ritual-cadence">Per cycle</div>
-      <div class="ritual-trigger">Triggered by: cycle start or gate approval of previous cycle<br>Participants: PO (+ Orchestrator reads output)</div>
+      <div class="ritual-trigger">Triggered by: cycle start or release gate approval of previous cycle<br>Participants: PO (+ Orchestrator reads output)</div>
       <div class="ritual-output">One intent statement framed as a client outcome, logged in the Intent Log. Use the template: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">[outcome] by [mechanism], measured by [signal]</span>. Derive from client signal log, True North, and stakeholder priorities. The human expresses what must be true for the client — not a task list, not a feature. Orchestrator consumes and produces task list.</div>
     </div>
 
     <div class="ritual-row">
       <div>
-        <div class="ritual-name"><span class="layer-dot dot-product"></span>Gate Review</div>
+        <div class="ritual-name"><span class="layer-dot dot-product"></span>Release Gate</div>
       </div>
       <div class="ritual-cadence">Per deploy</div>
       <div class="ritual-trigger">Triggered by: Guardian producing a gate report<br>Participants: PO (decision), Tech Lead (if flagged)</div>
@@ -2188,6 +2191,15 @@ flowchart LR
       <div class="ritual-cadence">When pattern repeats</div>
       <div class="ritual-trigger">Triggered by: Guardian or Orchestrator detecting a repeated pattern<br>Participants: Craft Engineer + Orchestrator</div>
       <div class="ritual-output">New or updated capability file added to the Capability Library. Reduces re-teaching same conventions each cycle.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Quality Gate</div>
+      </div>
+      <div class="ritual-cadence">Per build</div>
+      <div class="ritual-trigger">Triggered by: Builder output complete<br>Participants: Guardian (executes) · Quality Advocate (owns criteria)</div>
+      <div class="ritual-output">Gate report produced. Pass: Deploy proceeds automatically, gate report surfaced to PO for context. Fail: Orchestrator re-plans with failure context — PO not involved. Failure rate tracked as quality gate pass rate.</div>
     </div>
 
     <div class="ritual-row">
@@ -2261,7 +2273,7 @@ flowchart LR
     <div class="artifact-card">
       <h3>Client signal log</h3>
       <span class="artifact-filename">CLIENT_SIGNALS.md</span>
-      <p>A continuously updated record of real client feedback, usage patterns, support issues, and research findings. The PO's primary input for intent injection. Referenced by the Guardian in gate reviews to evaluate client impact.</p>
+      <p>A continuously updated record of real client feedback, usage patterns, support issues, and research findings. The PO's primary input for intent injection. Referenced by the Guardian at the Quality Gate to evaluate client impact.</p>
       <div class="artifact-owner">Owner: PO · Updated: continuously</div>
     </div>
 
@@ -2275,7 +2287,7 @@ flowchart LR
     <div class="artifact-card">
       <h3>Gate report</h3>
       <span class="artifact-filename">GATE_REPORT_{cycle}.md</span>
-      <p>Produced by the Guardian at cycle end. Three paragraphs maximum: what was built, what the signals show (tests, security, perf, cost, client impact), and a clear pass/flag/fail with a proposed next cycle. Expires when gate decision is made.</p>
+      <p>Produced by the Guardian at the Quality Gate. Three paragraphs maximum: what was built, what the signals show (tests, security, perf, cost, client impact), and a clear pass/flag/fail with a proposed next cycle. Expires when release gate decision is made.</p>
       <div class="artifact-owner">Owner: Guardian (produces) · PO (consumes)</div>
     </div>
 
@@ -2336,7 +2348,7 @@ flowchart LR
         <span class="comm-to">Execution</span>
       </div>
       <p>Cycle intent travels as a written outcome statement — not a feature list. The Orchestrator converts it to tasks.</p>
-      <div class="comm-payload">Trigger: Gate approval closes previous cycle<br>Format: Intent statement in INTENT_LOG.md<br>Frequency: Per cycle</div>
+      <div class="comm-payload">Trigger: Release Gate approval closes previous cycle<br>Format: Intent statement in INTENT_LOG.md<br>Frequency: Per cycle</div>
     </div>
 
     <div class="comm-card">
@@ -2440,9 +2452,9 @@ flowchart LR
 
   <div class="artifacts-grid">
     <div class="artifact-card">
-      <h3>Gate first-pass rate</h3>
+      <h3>Quality gate pass rate</h3>
       <span class="artifact-filename">% Guardian reports passing without rework</span>
-      <p>Tracks how often Builder output clears Guardian auto-test on the first attempt. A declining rate signals either ambiguous intent (Orchestrator is guessing) or degraded capability files (Craft Engineer action needed).</p>
+      <p>Tracks how often Builder output clears the Quality Gate on the first attempt. A declining rate signals either ambiguous intent (Orchestrator is guessing) or degraded capability files (Craft Engineer action needed).</p>
       <div class="artifact-owner">Target: &gt;80% &nbsp;·&nbsp; Warning: &lt;60%</div>
     </div>
     <div class="artifact-card">
@@ -2452,9 +2464,9 @@ flowchart LR
       <div class="artifact-owner">Target: &gt;85% &nbsp;·&nbsp; Warning: &lt;70%</div>
     </div>
     <div class="artifact-card">
-      <h3>PO review time</h3>
-      <span class="artifact-filename">Minutes from gate report to PO decision</span>
-      <p>Measures how long the PO takes to process a Guardian gate report. High values mean the Guardian report is too complex or the PO is a bottleneck. The ≤3 paragraph constraint on gate reports exists to keep this number low.</p>
+      <h3>Release gate cycle time</h3>
+      <span class="artifact-filename">Minutes from gate report to release decision</span>
+      <p>Measures how long the Release Gate takes from gate report ready to decision. High values mean the gate report is too complex or the PO is a bottleneck. The ≤3 paragraph constraint on gate reports exists to keep this number low.</p>
       <div class="artifact-owner">Target: &lt;30 min &nbsp;·&nbsp; Warning: &gt;2 hours</div>
     </div>
   </div>
@@ -2642,7 +2654,7 @@ saved card data. Consider one-click payment for returning users.</div>
 
   <div style="margin-top:40px;padding:20px 24px;border-left:3px solid var(--coral);background:var(--surface2);border-radius:0 8px 8px 0;max-width:680px;">
     <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);letter-spacing:0.08em;margin-bottom:10px;">THAT'S ONE CYCLE. REPEAT.</div>
-    <p style="font-size:15px;color:var(--text);line-height:1.7;margin:0;">Intent → Decompose → Build → Gate → Live-ON → Monitor. No sprint planning, no standups, no story points. The artifacts carry the context. The agents carry the execution. The PO governs the outcome.</p>
+    <p style="font-size:15px;color:var(--text);line-height:1.7;margin:0;">Intent → Decompose → Build → Quality Gate → Deploy → Release Gate → Live-ON → Monitor. No sprint planning, no standups, no story points. The artifacts carry the context. The agents carry the execution. The PO governs the outcome.</p>
   </div>
 </section>
 
@@ -2661,8 +2673,8 @@ saved card data. Consider one-click payment for returning users.</div>
     { from:'v1-siglog',    to:'v1-po',     exit:'bottom', enter:'top',   type:'context' },
     { from:'v1-orch',      to:'v1-infra',  exit:'bottom', enter:'top',   type:'dep' },
     { from:'v1-deploy',    to:'v1-extsvc', exit:'bottom', enter:'top',   type:'dep' },
-    { from:'v1-gate1',     to:'v1-orch',   exit:'left',   enter:'left',  type:'feedback', label:'fail',   arc:'below', arcOffset:0 },
-    { from:'v1-gate2',     to:'v1-intent', exit:'left',   enter:'bottom',type:'feedback', label:'reject', arc:'below', arcOffset:30 },
+    { from:'v1-gate1',     to:'v1-orch',    exit:'left',   enter:'left',  type:'feedback', label:'fail',   arc:'below', arcOffset:0 },
+    { from:'v1-pogate',    to:'v1-intent', exit:'left',   enter:'bottom',type:'feedback', label:'reject', arc:'below', arcOffset:30 },
     { from:'v1-monitor',   to:'v1-siglog', exit:'left',   enter:'right', type:'feedback' },
   ];
 
@@ -2673,7 +2685,7 @@ saved card data. Consider one-click payment for returning users.</div>
     { from:'v2-intent',    to:'v2-sdd',     exit:'right',  enter:'left',  type:'sdd' },
     { from:'v2-sdd',       to:'v2-deploy',  exit:'right',  enter:'left',  type:'sdd' },
     { from:'v2-deploy',    to:'v2-extsvc',  exit:'bottom', enter:'top',   type:'dep' },
-    { from:'v2-gate2',     to:'v2-intent',  exit:'left',   enter:'bottom',type:'feedback', label:'reject', arc:'below', arcOffset:0 },
+    { from:'v2-pogate',    to:'v2-intent',  exit:'left',   enter:'bottom',type:'feedback', label:'reject', arc:'below', arcOffset:0 },
     { from:'v2-monitor',   to:'v2-siglog',  exit:'left',   enter:'right', type:'feedback' },
   ];
 
