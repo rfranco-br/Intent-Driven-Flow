@@ -92,6 +92,7 @@
   .li-flow     { width:26px;height:2px;background:#6a6878;border-radius:1px;flex-shrink:0; }
   .li-feedback { width:26px;height:2px;background:#e8734a;border-radius:1px;flex-shrink:0; }
   .li-sdd-block { width:14px;height:14px;border-radius:3px;background:rgba(58,158,120,0.2);border:1px solid #3a9e78;flex-shrink:0; }
+  .li-dep      { width:14px;height:14px;border-radius:3px;background:rgba(191,143,58,0.08);border:1px dashed #bf8f3a;flex-shrink:0; }
 
   .version-section {
     border-bottom: 1px solid var(--border);
@@ -137,11 +138,11 @@
 
   .diagram-outer {
     overflow-x: auto;
-    padding: 36px 64px 40px;
+    padding: 36px 64px 52px;
   }
 
   .diagram-inner {
-    min-width: 2000px;
+    min-width: 2200px;
   }
 
   .page-footer {
@@ -165,7 +166,7 @@
     .legend { padding: 14px 20px; gap: 16px; }
     .version-header-bar { padding: 20px 20px 16px; gap: 12px; }
     .version-title { font-size: 18px; }
-    .diagram-outer { padding: 20px 20px 28px; }
+    .diagram-outer { padding: 20px 20px 36px; }
     .page-footer { padding: 28px 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
   }
 </style>
@@ -175,13 +176,14 @@
 <div class="page-header">
   <div class="page-label">Intent Driven Flow — Reference</div>
   <h1>End-to-End Flow</h1>
-  <p>Two execution models · same governance, same outcome-based intent · from client signal to production</p>
+  <p>Five lanes · Client thread · Strategic · Product · Execution · Dependencies — from signal to production</p>
 </div>
 
 <div class="legend">
   <div class="legend-item"><div class="li-human"></div> Human role</div>
   <div class="legend-item"><div class="li-agent"></div> AI agent</div>
   <div class="legend-item"><div class="li-artifact"></div> Artifact</div>
+  <div class="legend-item"><div class="li-dep"></div> External dependency</div>
   <div class="legend-item"><div class="li-gate"></div> Gate / decision</div>
   <div class="legend-item"><div class="li-flow"></div> Forward flow</div>
   <div class="legend-item"><div class="li-feedback"></div> Feedback / correction loop</div>
@@ -198,196 +200,261 @@
     <span class="version-tag">01</span>
     <div>
       <div class="version-title">IDF — Fully Agentic</div>
-      <div class="version-desc">Autonomous decomposition and execution. Orchestrator plans the cycle from the Intent Statement; Builder agents execute; Guardian validates.</div>
+      <div class="version-desc">Autonomous decomposition and execution. Orchestrator plans from Intent; Builder agents execute; Guardian validates and reports.</div>
     </div>
   </div>
   <div class="diagram-outer">
     <div class="diagram-inner">
-      <svg viewBox="0 0 2000 500" width="2000" height="500" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
-        <defs>
-          <marker id="arr"   markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#6a6878"/></marker>
-          <marker id="arr-b" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#a8a6b4"/></marker>
-          <marker id="arr-f" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#e8734a"/></marker>
-          <marker id="arr-t" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#5bbf95"/></marker>
-        </defs>
 
-        <!-- ZONE BACKGROUNDS -->
-        <rect x="0"   y="40" width="315"  height="430" fill="rgba(124,92,191,0.04)"/>
-        <rect x="315" y="40" width="420"  height="430" fill="rgba(232,115,74,0.025)"/>
-        <rect x="735" y="40" width="1265" height="430" fill="rgba(74,122,191,0.03)"/>
+<!--
+  LANE GEOMETRY (V1)
+  Label panel: x=0–130
+  Content: x=130–2200
+  Lane y boundaries: CLIENT 0–90 | STRATEGIC 90–180 | PRODUCT 180–290 | EXECUTION 290–430 | DEPENDENCIES 430–520
+  Column x-centers: c1=195 c2=360 c3=530 c4=695 c5=870 c6=1030 c7=1180 c8=1320 c9=1470 c10=1620 c11=1785 c12=1985
+-->
+<svg viewBox="0 0 2200 520" width="2200" height="520" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+  <defs>
+    <marker id="arr"   markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#6a6878"/></marker>
+    <marker id="arr-b" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#a8a6b4"/></marker>
+    <marker id="arr-f" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#e8734a"/></marker>
+    <marker id="arr-t" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#5bbf95"/></marker>
+    <marker id="arr-d" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#bf8f3a"/></marker>
+  </defs>
 
-        <!-- Zone dividers -->
-        <line x1="315" y1="40" x2="315" y2="470" stroke="#2a2a3a" stroke-width="1" stroke-dasharray="4,4"/>
-        <line x1="735" y1="40" x2="735" y2="470" stroke="#2a2a3a" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- ── LANE BACKGROUNDS ── -->
+  <rect x="0"   y="0"   width="2200" height="90"  fill="rgba(232,115,74,0.03)"/>
+  <rect x="0"   y="90"  width="2200" height="90"  fill="rgba(124,92,191,0.04)"/>
+  <rect x="0"   y="180" width="2200" height="110" fill="rgba(58,158,120,0.04)"/>
+  <rect x="0"   y="290" width="2200" height="140" fill="rgba(74,122,191,0.04)"/>
+  <rect x="0"   y="430" width="2200" height="90"  fill="rgba(191,143,58,0.03)"/>
 
-        <!-- Zone labels -->
-        <text x="16"  y="60" font-family="IBM Plex Mono,monospace" font-size="10" fill="#9b7fd4" letter-spacing="2">STRATEGIC</text>
-        <text x="329" y="60" font-family="IBM Plex Mono,monospace" font-size="10" fill="#f0956e" letter-spacing="2">UPSTREAM</text>
-        <text x="749" y="60" font-family="IBM Plex Mono,monospace" font-size="10" fill="#6b99d4" letter-spacing="2">DOWNSTREAM</text>
+  <!-- ── LABEL PANEL BACKGROUNDS ── -->
+  <rect x="0" y="0"   width="130" height="90"  fill="rgba(232,115,74,0.07)"/>
+  <rect x="0" y="90"  width="130" height="90"  fill="rgba(124,92,191,0.08)"/>
+  <rect x="0" y="180" width="130" height="110" fill="rgba(58,158,120,0.07)"/>
+  <rect x="0" y="290" width="130" height="140" fill="rgba(74,122,191,0.07)"/>
+  <rect x="0" y="430" width="130" height="90"  fill="rgba(191,143,58,0.06)"/>
 
-        <!-- ── STRATEGIC: STAKEHOLDERS ── -->
-        <rect x="17"  y="150" width="122" height="52" rx="7" fill="rgba(124,92,191,0.12)" stroke="#7c5cbf" stroke-width="1"/>
-        <rect x="17"  y="150" width="3"   height="52" rx="1" fill="#7c5cbf"/>
-        <text x="80"  y="171" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Stakeholders</text>
-        <text x="80"  y="186" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">portfolio horizon</text>
-        <text x="80"  y="197" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
+  <!-- ── LANE DIVIDERS ── -->
+  <line x1="0"   y1="90"  x2="2200" y2="90"  stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="0"   y1="180" x2="2200" y2="180" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="0"   y1="290" x2="2200" y2="290" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="0"   y1="430" x2="2200" y2="430" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="130" y1="0"   x2="130"  y2="520" stroke="#3a3a50" stroke-width="1"/>
 
-        <!-- ── STRATEGIC: TRUE NORTH DOC ── -->
-        <rect x="161" y="150" width="128" height="52" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
-        <text x="225" y="171" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">True North Doc</text>
-        <text x="225" y="186" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">strategy · direction</text>
-        <text x="225" y="197" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
+  <!-- ── LANE LABELS (rotated -90°, bottom-to-top) ── -->
+  <text x="65" y="45"  text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#f0956e" letter-spacing="2" transform="rotate(-90,65,45)">CLIENT</text>
+  <text x="65" y="135" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#9b7fd4" letter-spacing="2" transform="rotate(-90,65,135)">STRATEGIC</text>
+  <text x="65" y="235" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#5bbf95" letter-spacing="2" transform="rotate(-90,65,235)">PRODUCT</text>
+  <text x="65" y="360" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#6b99d4" letter-spacing="2" transform="rotate(-90,65,360)">EXECUTION</text>
+  <text x="65" y="475" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9"  fill="#d4a85b" letter-spacing="1" transform="rotate(-90,65,475)">DEPENDENCIES</text>
 
-        <!-- ── STRATEGIC: CLIENT ── -->
-        <circle cx="75" cy="340" r="34" fill="rgba(232,115,74,0.1)" stroke="#e8734a" stroke-width="1.5"/>
-        <text x="75"  y="336" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Client</text>
-        <text x="75"  y="350" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#f0956e" text-anchor="middle">signals</text>
+  <!-- ══════════════════════════════════════════════════
+       CLIENT LANE  (y=0–90, center_y=45)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- ── STRATEGIC: CLIENT SIGNAL LOG ── -->
-        <rect x="135" y="314" width="150" height="52" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
-        <text x="210" y="335" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">Client Signal Log</text>
-        <text x="210" y="350" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">feedback · usage signals</text>
-        <text x="210" y="361" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
+  <!-- Client circle (cx=195, cy=45, r=30) -->
+  <circle cx="195" cy="45" r="30" fill="rgba(232,115,74,0.1)" stroke="#e8734a" stroke-width="1.5"/>
+  <text x="195" y="41" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Client</text>
+  <text x="195" y="55" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#f0956e" text-anchor="middle">signals</text>
 
-        <!-- ── UPSTREAM: PRODUCT OWNER ── -->
-        <rect x="324" y="218" width="142" height="62" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
-        <rect x="324" y="218" width="3"   height="62" rx="1" fill="#7c5cbf"/>
-        <text x="396" y="239" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Product Owner</text>
-        <text x="396" y="255" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">intent · gate authority</text>
-        <text x="396" y="268" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
+  <!-- Client Signal Log artifact (center_x=360, y_top=22, w=140, h=46) -->
+  <rect x="290" y="22" width="140" height="46" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="360" y="40" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">Client Signal Log</text>
+  <text x="360" y="53" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">feedback · usage signals</text>
+  <text x="360" y="63" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
 
-        <!-- ── UPSTREAM: INTENT STATEMENT ── -->
-        <rect x="486" y="210" width="138" height="52" rx="6" fill="rgba(191,143,58,0.12)" stroke="#d4a85b" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <text x="555" y="231" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#d4a85b" text-anchor="middle">Intent Statement</text>
-        <text x="555" y="247" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">[outcome] by [mechanism]</text>
-        <text x="555" y="258" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
+  <!-- Monitor (center_x=1985, y_top=19, w=140, h=52) -->
+  <rect x="1915" y="19" width="140" height="52" rx="8" fill="rgba(58,158,120,0.12)" stroke="#3a9e78" stroke-width="1.5"/>
+  <rect x="1915" y="19" width="3"   height="52" rx="1" fill="#3a9e78"/>
+  <text x="1985" y="38" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Monitor</text>
+  <text x="1985" y="52" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#5bbf95" text-anchor="middle">flag ON · signals collected</text>
+  <text x="1985" y="63" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">production</text>
 
-        <!-- ── DOWNSTREAM: ORCHESTRATOR ── -->
-        <rect x="740" y="142" width="140" height="56" rx="8" fill="rgba(74,122,191,0.12)" stroke="#4a7abf" stroke-width="1"/>
-        <rect x="740" y="142" width="3"   height="56" rx="1" fill="#4a7abf"/>
-        <text x="811" y="163" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Orchestrator</text>
-        <text x="811" y="178" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#6b99d4" text-anchor="middle">decompose + route</text>
-        <text x="811" y="190" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">agent</text>
+  <!-- ══════════════════════════════════════════════════
+       STRATEGIC LANE  (y=90–180, center_y=135)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- ── DOWNSTREAM: BUILDER(S) ── -->
-        <rect x="899" y="218" width="122" height="52" rx="8" fill="rgba(74,122,191,0.12)" stroke="#4a7abf" stroke-width="1"/>
-        <rect x="899" y="218" width="3"   height="52" rx="1" fill="#4a7abf"/>
-        <text x="961" y="239" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Builder(s)</text>
-        <text x="961" y="255" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#6b99d4" text-anchor="middle">execute tasks</text>
-        <text x="961" y="266" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">agent</text>
+  <!-- Stakeholders (center_x=195, y_top=109, w=130, h=52) -->
+  <rect x="130" y="109" width="130" height="52" rx="7" fill="rgba(124,92,191,0.12)" stroke="#7c5cbf" stroke-width="1"/>
+  <rect x="130" y="109" width="3"   height="52" rx="1" fill="#7c5cbf"/>
+  <text x="196" y="130" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Stakeholders</text>
+  <text x="196" y="145" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">portfolio horizon</text>
+  <text x="196" y="156" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
 
-        <!-- ── DOWNSTREAM: GUARDIAN ── -->
-        <rect x="1056" y="218" width="132" height="52" rx="8" fill="rgba(74,122,191,0.12)" stroke="#4a7abf" stroke-width="1"/>
-        <rect x="1056" y="218" width="3"   height="52" rx="1" fill="#4a7abf"/>
-        <text x="1123" y="239" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Guardian</text>
-        <text x="1123" y="255" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#6b99d4" text-anchor="middle">auto-test · gate report</text>
-        <text x="1123" y="266" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">agent</text>
+  <!-- True North Doc artifact (center_x=360, y_top=112, w=130, h=46) -->
+  <rect x="295" y="112" width="130" height="46" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="360" y="131" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">True North Doc</text>
+  <text x="360" y="146" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">strategy · direction</text>
+  <text x="360" y="156" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
 
-        <!-- ── DOWNSTREAM: AUTO-TEST GATE (diamond) cx=1255 cy=244 ── -->
-        <polygon points="1255,206 1295,244 1255,282 1215,244" fill="rgba(232,115,74,0.12)" stroke="#e8734a" stroke-width="1.5"/>
-        <text x="1255" y="240" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">Auto-test</text>
-        <text x="1255" y="253" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">pass?</text>
+  <!-- ══════════════════════════════════════════════════
+       PRODUCT LANE  (y=180–290, center_y=235)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- ── DOWNSTREAM: DEPLOY ── -->
-        <rect x="1321" y="144" width="128" height="52" rx="8" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1"/>
-        <rect x="1321" y="144" width="3"   height="52" rx="1" fill="#bf8f3a"/>
-        <text x="1386" y="165" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Deploy</text>
-        <text x="1386" y="180" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#d4a85b" text-anchor="middle">flag OFF · live on server</text>
-        <text x="1386" y="192" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">execution</text>
+  <!-- Product Owner (center_x=530, y_top=204, w=142, h=62) -->
+  <rect x="459" y="204" width="142" height="62" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
+  <rect x="459" y="204" width="3"   height="62" rx="1" fill="#7c5cbf"/>
+  <text x="531" y="225" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Product Owner</text>
+  <text x="531" y="241" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">intent · gate authority</text>
+  <text x="531" y="254" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
 
-        <!-- ── DOWNSTREAM: CRAFT REVIEW ── -->
-        <rect x="1468" y="144" width="140" height="52" rx="8" fill="rgba(124,92,191,0.1)" stroke="#7c5cbf" stroke-width="1"/>
-        <rect x="1468" y="144" width="3"   height="52" rx="1" fill="#7c5cbf"/>
-        <text x="1539" y="165" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Craft Review</text>
-        <text x="1539" y="180" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">Craft Eng + QA Advocate</text>
-        <text x="1539" y="192" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human · pre-flag</text>
+  <!-- Intent Statement artifact (center_x=695, y_top=209, w=140, h=52) -->
+  <rect x="625" y="209" width="140" height="52" rx="6" fill="rgba(191,143,58,0.12)" stroke="#d4a85b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="695" y="230" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#d4a85b" text-anchor="middle">Intent Statement</text>
+  <text x="695" y="246" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">[outcome] by [mechanism]</text>
+  <text x="695" y="257" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
 
-        <!-- ── DOWNSTREAM: PO GATE REVIEW ── -->
-        <rect x="1628" y="144" width="144" height="52" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
-        <rect x="1628" y="144" width="3"   height="52" rx="1" fill="#7c5cbf"/>
-        <text x="1701" y="165" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">PO Gate Review</text>
-        <text x="1701" y="180" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">approve to release</text>
-        <text x="1701" y="192" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
+  <!-- ══════════════════════════════════════════════════
+       EXECUTION LANE  (y=290–430, center_y=360)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- ── DOWNSTREAM: PRODUCT OK GATE (diamond) cx=1840 cy=170 ── -->
-        <polygon points="1840,132 1880,170 1840,208 1800,170" fill="rgba(232,115,74,0.12)" stroke="#e8734a" stroke-width="1.5"/>
-        <text x="1840" y="166" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">Product</text>
-        <text x="1840" y="179" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">OK?</text>
+  <!-- Orchestrator (center_x=870, y_top=332, w=140, h=56) -->
+  <rect x="800" y="332" width="140" height="56" rx="8" fill="rgba(74,122,191,0.12)" stroke="#4a7abf" stroke-width="1"/>
+  <rect x="800" y="332" width="3"   height="56" rx="1" fill="#4a7abf"/>
+  <text x="871" y="353" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Orchestrator</text>
+  <text x="871" y="368" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#6b99d4" text-anchor="middle">decompose + route</text>
+  <text x="871" y="380" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">agent</text>
 
-        <!-- ── DOWNSTREAM: MONITOR / FLAG ON ── -->
-        <rect x="1770" y="270" width="140" height="52" rx="8" fill="rgba(58,158,120,0.12)" stroke="#3a9e78" stroke-width="1.5"/>
-        <rect x="1770" y="270" width="3"   height="52" rx="1" fill="#3a9e78"/>
-        <text x="1841" y="291" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Monitor</text>
-        <text x="1841" y="307" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#5bbf95" text-anchor="middle">flag ON · signals collected</text>
-        <text x="1841" y="318" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">production</text>
+  <!-- Builder(s) (center_x=1030, y_top=334, w=122, h=52) -->
+  <rect x="969" y="334" width="122" height="52" rx="8" fill="rgba(74,122,191,0.12)" stroke="#4a7abf" stroke-width="1"/>
+  <rect x="969" y="334" width="3"   height="52" rx="1" fill="#4a7abf"/>
+  <text x="1031" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Builder(s)</text>
+  <text x="1031" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#6b99d4" text-anchor="middle">execute tasks</text>
+  <text x="1031" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">agent</text>
 
-        <!-- ══ FORWARD FLOW ARROWS ══ -->
+  <!-- Guardian (center_x=1180, y_top=334, w=132, h=52) -->
+  <rect x="1114" y="334" width="132" height="52" rx="8" fill="rgba(74,122,191,0.12)" stroke="#4a7abf" stroke-width="1"/>
+  <rect x="1114" y="334" width="3"   height="52" rx="1" fill="#4a7abf"/>
+  <text x="1181" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Guardian</text>
+  <text x="1181" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#6b99d4" text-anchor="middle">auto-test · gate report</text>
+  <text x="1181" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">agent</text>
 
-        <!-- Stakeholders → True North -->
-        <line x1="139" y1="176" x2="161" y2="176" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Auto-test Gate diamond (cx=1320, cy=360, half=40) -->
+  <polygon points="1320,320 1360,360 1320,400 1280,360" fill="rgba(232,115,74,0.12)" stroke="#e8734a" stroke-width="1.5"/>
+  <text x="1320" y="356" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">Auto-test</text>
+  <text x="1320" y="369" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">pass?</text>
 
-        <!-- Client → Signal Log -->
-        <line x1="109" y1="340" x2="135" y2="340" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Deploy (center_x=1470, y_top=335, w=128, h=50) -->
+  <rect x="1406" y="335" width="128" height="50" rx="8" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1"/>
+  <rect x="1406" y="335" width="3"   height="50" rx="1" fill="#bf8f3a"/>
+  <text x="1471" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Deploy</text>
+  <text x="1471" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#d4a85b" text-anchor="middle">flag OFF · live on server</text>
+  <text x="1471" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">execution</text>
 
-        <!-- True North → PO -->
-        <path d="M289,176 C315,176 315,242 324,242" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
+  <!-- Craft Review (center_x=1620, y_top=335, w=140, h=50) -->
+  <rect x="1550" y="335" width="140" height="50" rx="8" fill="rgba(124,92,191,0.1)" stroke="#7c5cbf" stroke-width="1"/>
+  <rect x="1550" y="335" width="3"   height="50" rx="1" fill="#7c5cbf"/>
+  <text x="1621" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Craft Review</text>
+  <text x="1621" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">Craft Eng + QA Advocate</text>
+  <text x="1621" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human · pre-flag</text>
 
-        <!-- Signal Log → PO -->
-        <path d="M285,340 C315,340 315,258 324,258" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
+  <!-- PO Gate Review (center_x=1785, y_top=335, w=144, h=50) -->
+  <rect x="1713" y="335" width="144" height="50" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
+  <rect x="1713" y="335" width="3"   height="50" rx="1" fill="#7c5cbf"/>
+  <text x="1786" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">PO Gate Review</text>
+  <text x="1786" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">approve to release</text>
+  <text x="1786" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
 
-        <!-- PO → Intent Statement -->
-        <path d="M466,244 C476,244 476,236 486,236" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
+  <!-- Product OK Gate diamond (cx=1985, cy=360, half=40) -->
+  <polygon points="1985,320 2025,360 1985,400 1945,360" fill="rgba(232,115,74,0.12)" stroke="#e8734a" stroke-width="1.5"/>
+  <text x="1985" y="356" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">Product</text>
+  <text x="1985" y="369" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">OK?</text>
 
-        <!-- Intent Statement → Orchestrator -->
-        <path d="M624,229 C670,229 670,170 740,170" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- ══════════════════════════════════════════════════
+       DEPENDENCIES LANE  (y=430–520, center_y=475)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- Orchestrator → Builder -->
-        <path d="M811,198 C811,232 899,232 899,218" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Infra · Compute passive node (under Orchestrator, center_x=870) -->
+  <rect x="800" y="453" width="140" height="40" rx="6" fill="rgba(191,143,58,0.06)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="870" y="468" font-family="IBM Plex Sans,sans-serif" font-size="11" fill="#d4a85b" text-anchor="middle">Infra · Compute</text>
+  <text x="870" y="481" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">external · passive</text>
 
-        <!-- Builder → Guardian -->
-        <path d="M1021,244 C1038,244 1038,244 1056,244" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- External Services passive node (under Deploy, center_x=1470) -->
+  <rect x="1406" y="453" width="128" height="40" rx="6" fill="rgba(191,143,58,0.06)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="1470" y="468" font-family="IBM Plex Sans,sans-serif" font-size="11" fill="#d4a85b" text-anchor="middle">External Services</text>
+  <text x="1470" y="481" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">external · passive</text>
 
-        <!-- Guardian → Gate1 -->
-        <path d="M1188,244 C1201,244 1201,244 1215,244" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- ══════════════════════════════════════════════════
+       FORWARD FLOW ARROWS
+  ══════════════════════════════════════════════════ -->
 
-        <!-- Gate1 pass → Deploy -->
-        <path d="M1295,244 C1320,244 1320,170 1321,170" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="1308" y="232" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">pass</text>
+  <!-- Client → Signal Log (CLIENT lane, horizontal) -->
+  <line x1="225" y1="45" x2="288" y2="45" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <!-- Deploy → Craft Review -->
-        <line x1="1449" y1="170" x2="1468" y2="170" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Stakeholders → True North (STRATEGIC lane, horizontal) -->
+  <line x1="260" y1="135" x2="293" y2="135" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <!-- Craft Review → PO Gate -->
-        <line x1="1608" y1="170" x2="1628" y2="170" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- True North → PO (STRATEGIC→PRODUCT cross-lane) -->
+  <path d="M425,135 C452,135 459,188 459,235" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
-        <!-- PO Gate → Gate2 -->
-        <line x1="1772" y1="170" x2="1800" y2="170" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Signal Log → PO (CLIENT→PRODUCT cross-lane, routes right of True North) -->
+  <path d="M430,45 C462,45 459,140 459,235" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
-        <!-- Gate2 yes → Monitor -->
-        <line x1="1840" y1="208" x2="1840" y2="270" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="1846" y="243" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">yes</text>
+  <!-- PO → Intent Statement (PRODUCT lane, horizontal) -->
+  <line x1="601" y1="235" x2="623" y2="235" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
-        <!-- ══ FEEDBACK ARROWS ══ -->
+  <!-- Intent Statement → Orchestrator (PRODUCT→EXECUTION cross-lane) -->
+  <path d="M765,235 C792,235 800,292 800,360" fill="none" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <!-- Gate1 fail → Orchestrator -->
-        <path d="M1255,282 C1255,430 811,430 811,198" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
-        <text x="1215" y="298" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">fail</text>
-        <text x="1025" y="444" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">re-plan with failure context</text>
+  <!-- Orchestrator → Builder (EXECUTION lane, horizontal) -->
+  <line x1="940" y1="360" x2="967" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <!-- Gate2 reject → Orchestrator -->
-        <path d="M1840,132 C1840,88 811,88 811,142" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
-        <text x="1852" y="120" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">reject</text>
-        <text x="1250" y="80" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">intent correction · Orchestrator re-plans</text>
+  <!-- Builder → Guardian (EXECUTION lane, horizontal) -->
+  <line x1="1091" y1="360" x2="1112" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <!-- ══ STRATEGIC LOOP ══ -->
-        <path d="M1841,322 C1841,460 210,460 210,366" fill="none" stroke="#5bbf95" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-t)"/>
-        <text x="1025" y="473" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95" text-anchor="middle">signals → client log · ↻ next cycle begins</text>
+  <!-- Guardian → Gate1 (EXECUTION lane, horizontal) -->
+  <line x1="1246" y1="360" x2="1278" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <!-- Zone footnotes -->
-        <text x="16"  y="468" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(124,92,191,0.5)" letter-spacing="1">= human in the loop</text>
-        <text x="750" y="468" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(74,122,191,0.5)"  letter-spacing="1">= agent executes</text>
+  <!-- Gate1 pass → Deploy (EXECUTION lane, horizontal) -->
+  <line x1="1360" y1="360" x2="1404" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="1374" y="352" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">pass</text>
 
-      </svg>
+  <!-- Deploy → Craft Review (EXECUTION lane, horizontal) -->
+  <line x1="1534" y1="360" x2="1548" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Craft Review → PO Gate Review (EXECUTION lane, horizontal) -->
+  <line x1="1690" y1="360" x2="1711" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- PO Gate Review → Gate2 (EXECUTION lane, horizontal) -->
+  <line x1="1857" y1="360" x2="1943" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Gate2 yes → Monitor (EXECUTION→CLIENT cross-lane, vertical) -->
+  <line x1="1985" y1="320" x2="1985" y2="71" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="1991" y="200" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">yes</text>
+
+  <!-- ══ DEPENDENCY ARROWS (vertical dashed downward from Execution) ══ -->
+
+  <!-- Orchestrator → Infra·Compute -->
+  <line x1="870" y1="388" x2="870" y2="451" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-d)"/>
+
+  <!-- Deploy → External Services -->
+  <line x1="1470" y1="385" x2="1470" y2="451" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-d)"/>
+
+  <!-- ══════════════════════════════════════════════════
+       FEEDBACK ARCS (coral dashed, route below SVG)
+  ══════════════════════════════════════════════════ -->
+
+  <!-- Gate1 fail → Orchestrator (arc below DEPENDENCIES lane) -->
+  <path d="M1320,400 C1320,476 870,476 870,388" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
+  <text x="1290" y="415" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">fail</text>
+  <text x="1100" y="490" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">re-plan with failure context</text>
+
+  <!-- Gate2 reject → Intent Statement (arc below SVG via overflow:visible) -->
+  <path d="M1985,400 C1985,534 695,534 695,261" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-f)"/>
+  <text x="1997" y="415" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">reject</text>
+  <text x="1340" y="548" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">intent correction · revise and resubmit</text>
+
+  <!-- ══════════════════════════════════════════════════
+       STRATEGIC LOOP — Monitor → Signal Log
+  ══════════════════════════════════════════════════ -->
+
+  <path d="M1985,71 C1985,570 360,570 360,68" fill="none" stroke="#5bbf95" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-t)"/>
+  <text x="1172" y="582" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95" text-anchor="middle">signals → client log · ↻ next cycle begins</text>
+
+</svg>
+
     </div>
   </div>
 </div>
@@ -402,163 +469,219 @@
     <span class="version-tag">02</span>
     <div>
       <div class="version-title">IDF + SDD</div>
-      <div class="version-desc">The Orchestrator, Builder, and Guardian are replaced by an SDD Execution block — a human-led, AI-assisted SDLC. Governance, gates, and strategic loop are identical.</div>
+      <div class="version-desc">Orchestrator, Builder, and Guardian replaced by an SDD Execution block — human-led, AI-assisted SDLC. Governance, gates, and strategic loop are identical.</div>
     </div>
   </div>
   <div class="diagram-outer">
     <div class="diagram-inner">
-      <svg viewBox="0 0 2000 440" width="2000" height="440" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
-        <defs>
-          <marker id="arr2"   markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#6a6878"/></marker>
-          <marker id="arr2-b" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#a8a6b4"/></marker>
-          <marker id="arr2-f" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#e8734a"/></marker>
-          <marker id="arr2-t" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#5bbf95"/></marker>
-        </defs>
 
-        <!-- ZONE BACKGROUNDS -->
-        <rect x="0"   y="40" width="315"  height="370" fill="rgba(124,92,191,0.04)"/>
-        <rect x="315" y="40" width="420"  height="370" fill="rgba(232,115,74,0.025)"/>
-        <rect x="735" y="40" width="1265" height="370" fill="rgba(74,122,191,0.03)"/>
+<!--
+  LANE GEOMETRY (V2) — identical to V1 except Execution lane replaces
+  Orchestrator+Builder+Guardian+Gate1 with SDD Execution block (x=800–1370).
+  Gate2 shifts left to cx=1985 to match Gate2 position; Deploy onwards unchanged.
+-->
+<svg viewBox="0 0 2200 520" width="2200" height="520" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+  <defs>
+    <marker id="arr2"   markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#6a6878"/></marker>
+    <marker id="arr2-b" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#a8a6b4"/></marker>
+    <marker id="arr2-f" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#e8734a"/></marker>
+    <marker id="arr2-t" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#5bbf95"/></marker>
+    <marker id="arr2-d" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6 Z" fill="#bf8f3a"/></marker>
+  </defs>
 
-        <!-- Zone dividers -->
-        <line x1="315" y1="40" x2="315" y2="410" stroke="#2a2a3a" stroke-width="1" stroke-dasharray="4,4"/>
-        <line x1="735" y1="40" x2="735" y2="410" stroke="#2a2a3a" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- ── LANE BACKGROUNDS ── -->
+  <rect x="0"   y="0"   width="2200" height="90"  fill="rgba(232,115,74,0.03)"/>
+  <rect x="0"   y="90"  width="2200" height="90"  fill="rgba(124,92,191,0.04)"/>
+  <rect x="0"   y="180" width="2200" height="110" fill="rgba(58,158,120,0.04)"/>
+  <rect x="0"   y="290" width="2200" height="140" fill="rgba(74,122,191,0.04)"/>
+  <rect x="0"   y="430" width="2200" height="90"  fill="rgba(191,143,58,0.03)"/>
 
-        <!-- Zone labels -->
-        <text x="16"  y="60" font-family="IBM Plex Mono,monospace" font-size="10" fill="#9b7fd4" letter-spacing="2">STRATEGIC</text>
-        <text x="329" y="60" font-family="IBM Plex Mono,monospace" font-size="10" fill="#f0956e" letter-spacing="2">UPSTREAM</text>
-        <text x="749" y="60" font-family="IBM Plex Mono,monospace" font-size="10" fill="#6b99d4" letter-spacing="2">DOWNSTREAM</text>
+  <!-- ── LABEL PANEL BACKGROUNDS ── -->
+  <rect x="0" y="0"   width="130" height="90"  fill="rgba(232,115,74,0.07)"/>
+  <rect x="0" y="90"  width="130" height="90"  fill="rgba(124,92,191,0.08)"/>
+  <rect x="0" y="180" width="130" height="110" fill="rgba(58,158,120,0.07)"/>
+  <rect x="0" y="290" width="130" height="140" fill="rgba(74,122,191,0.07)"/>
+  <rect x="0" y="430" width="130" height="90"  fill="rgba(191,143,58,0.06)"/>
 
-        <!-- ── STRATEGIC: STAKEHOLDERS ── -->
-        <rect x="17"  y="120" width="122" height="52" rx="7" fill="rgba(124,92,191,0.12)" stroke="#7c5cbf" stroke-width="1"/>
-        <rect x="17"  y="120" width="3"   height="52" rx="1" fill="#7c5cbf"/>
-        <text x="80"  y="141" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Stakeholders</text>
-        <text x="80"  y="156" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">portfolio horizon</text>
-        <text x="80"  y="167" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
+  <!-- ── LANE DIVIDERS ── -->
+  <line x1="0"   y1="90"  x2="2200" y2="90"  stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="0"   y1="180" x2="2200" y2="180" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="0"   y1="290" x2="2200" y2="290" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="0"   y1="430" x2="2200" y2="430" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="130" y1="0"   x2="130"  y2="520" stroke="#3a3a50" stroke-width="1"/>
 
-        <!-- ── STRATEGIC: TRUE NORTH DOC ── -->
-        <rect x="161" y="120" width="128" height="52" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
-        <text x="225" y="141" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">True North Doc</text>
-        <text x="225" y="156" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">strategy · direction</text>
-        <text x="225" y="167" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
+  <!-- ── LANE LABELS ── -->
+  <text x="65" y="45"  text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#f0956e" letter-spacing="2" transform="rotate(-90,65,45)">CLIENT</text>
+  <text x="65" y="135" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#9b7fd4" letter-spacing="2" transform="rotate(-90,65,135)">STRATEGIC</text>
+  <text x="65" y="235" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#5bbf95" letter-spacing="2" transform="rotate(-90,65,235)">PRODUCT</text>
+  <text x="65" y="360" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#6b99d4" letter-spacing="2" transform="rotate(-90,65,360)">EXECUTION</text>
+  <text x="65" y="475" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9"  fill="#d4a85b" letter-spacing="1" transform="rotate(-90,65,475)">DEPENDENCIES</text>
 
-        <!-- ── STRATEGIC: CLIENT ── -->
-        <circle cx="75" cy="300" r="34" fill="rgba(232,115,74,0.1)" stroke="#e8734a" stroke-width="1.5"/>
-        <text x="75"  y="296" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Client</text>
-        <text x="75"  y="310" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#f0956e" text-anchor="middle">signals</text>
+  <!-- ══════════════════════════════════════════════════
+       CLIENT LANE  (identical to V1)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- ── STRATEGIC: CLIENT SIGNAL LOG ── -->
-        <rect x="135" y="274" width="150" height="52" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
-        <text x="210" y="295" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">Client Signal Log</text>
-        <text x="210" y="310" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">feedback · usage signals</text>
-        <text x="210" y="321" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
+  <circle cx="195" cy="45" r="30" fill="rgba(232,115,74,0.1)" stroke="#e8734a" stroke-width="1.5"/>
+  <text x="195" y="41" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Client</text>
+  <text x="195" y="55" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#f0956e" text-anchor="middle">signals</text>
 
-        <!-- ── UPSTREAM: PRODUCT OWNER ── -->
-        <rect x="324" y="186" width="142" height="62" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
-        <rect x="324" y="186" width="3"   height="62" rx="1" fill="#7c5cbf"/>
-        <text x="396" y="207" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Product Owner</text>
-        <text x="396" y="223" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">intent · gate authority</text>
-        <text x="396" y="236" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
+  <rect x="290" y="22" width="140" height="46" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="360" y="40" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">Client Signal Log</text>
+  <text x="360" y="53" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">feedback · usage signals</text>
+  <text x="360" y="63" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
 
-        <!-- ── UPSTREAM: INTENT STATEMENT ── -->
-        <rect x="486" y="178" width="138" height="52" rx="6" fill="rgba(191,143,58,0.12)" stroke="#d4a85b" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <text x="555" y="199" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#d4a85b" text-anchor="middle">Intent Statement</text>
-        <text x="555" y="215" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">[outcome] by [mechanism]</text>
-        <text x="555" y="226" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
+  <rect x="1915" y="19" width="140" height="52" rx="8" fill="rgba(58,158,120,0.12)" stroke="#3a9e78" stroke-width="1.5"/>
+  <rect x="1915" y="19" width="3"   height="52" rx="1" fill="#3a9e78"/>
+  <text x="1985" y="38" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Monitor</text>
+  <text x="1985" y="52" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#5bbf95" text-anchor="middle">flag ON · signals collected</text>
+  <text x="1985" y="63" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">production</text>
 
-        <!-- ── DOWNSTREAM: SDD EXECUTION BLOCK ── -->
-        <rect x="740" y="155" width="490" height="100" rx="10" fill="rgba(58,158,120,0.1)" stroke="#3a9e78" stroke-width="1.5"/>
-        <rect x="740" y="155" width="4"   height="100" rx="2" fill="#3a9e78"/>
-        <text x="986" y="187" font-family="IBM Plex Sans,sans-serif" font-size="14" font-weight="600" fill="#f0ede8" text-anchor="middle">SDD Execution</text>
-        <text x="986" y="207" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#5bbf95" text-anchor="middle">plan · build · test</text>
-        <text x="986" y="222" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">AI-assisted SDLC · human-led planning</text>
-        <text x="986" y="237" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">replaces Orchestrator + Builder + Guardian</text>
+  <!-- ══════════════════════════════════════════════════
+       STRATEGIC LANE  (identical to V1)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- ── DOWNSTREAM: DEPLOY ── -->
-        <rect x="1258" y="155" width="128" height="52" rx="8" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1"/>
-        <rect x="1258" y="155" width="3"   height="52" rx="1" fill="#bf8f3a"/>
-        <text x="1323" y="176" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Deploy</text>
-        <text x="1323" y="191" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#d4a85b" text-anchor="middle">flag OFF · live on server</text>
-        <text x="1323" y="203" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">execution</text>
+  <rect x="130" y="109" width="130" height="52" rx="7" fill="rgba(124,92,191,0.12)" stroke="#7c5cbf" stroke-width="1"/>
+  <rect x="130" y="109" width="3"   height="52" rx="1" fill="#7c5cbf"/>
+  <text x="196" y="130" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Stakeholders</text>
+  <text x="196" y="145" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">portfolio horizon</text>
+  <text x="196" y="156" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
 
-        <!-- ── DOWNSTREAM: CRAFT REVIEW ── -->
-        <rect x="1405" y="155" width="140" height="52" rx="8" fill="rgba(124,92,191,0.1)" stroke="#7c5cbf" stroke-width="1"/>
-        <rect x="1405" y="155" width="3"   height="52" rx="1" fill="#7c5cbf"/>
-        <text x="1476" y="176" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Craft Review</text>
-        <text x="1476" y="191" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">Craft Eng + QA Advocate</text>
-        <text x="1476" y="203" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human · pre-flag</text>
+  <rect x="295" y="112" width="130" height="46" rx="6" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="360" y="131" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="500" fill="#d4a85b" text-anchor="middle">True North Doc</text>
+  <text x="360" y="146" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">strategy · direction</text>
+  <text x="360" y="156" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
 
-        <!-- ── DOWNSTREAM: PO GATE REVIEW ── -->
-        <rect x="1563" y="155" width="144" height="52" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
-        <rect x="1563" y="155" width="3"   height="52" rx="1" fill="#7c5cbf"/>
-        <text x="1636" y="176" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">PO Gate Review</text>
-        <text x="1636" y="191" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">approve to release</text>
-        <text x="1636" y="203" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
+  <!-- ══════════════════════════════════════════════════
+       PRODUCT LANE  (identical to V1)
+  ══════════════════════════════════════════════════ -->
 
-        <!-- ── DOWNSTREAM: PRODUCT OK GATE (diamond) cx=1775 cy=181 ── -->
-        <polygon points="1775,143 1815,181 1775,219 1735,181" fill="rgba(232,115,74,0.12)" stroke="#e8734a" stroke-width="1.5"/>
-        <text x="1775" y="177" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">Product</text>
-        <text x="1775" y="190" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">OK?</text>
+  <rect x="459" y="204" width="142" height="62" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
+  <rect x="459" y="204" width="3"   height="62" rx="1" fill="#7c5cbf"/>
+  <text x="531" y="225" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Product Owner</text>
+  <text x="531" y="241" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">intent · gate authority</text>
+  <text x="531" y="254" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
 
-        <!-- ── DOWNSTREAM: MONITOR / FLAG ON ── -->
-        <rect x="1705" y="268" width="140" height="52" rx="8" fill="rgba(58,158,120,0.12)" stroke="#3a9e78" stroke-width="1.5"/>
-        <rect x="1705" y="268" width="3"   height="52" rx="1" fill="#3a9e78"/>
-        <text x="1776" y="289" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Monitor</text>
-        <text x="1776" y="305" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#5bbf95" text-anchor="middle">flag ON · signals collected</text>
-        <text x="1776" y="316" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">production</text>
+  <rect x="625" y="209" width="140" height="52" rx="6" fill="rgba(191,143,58,0.12)" stroke="#d4a85b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="695" y="230" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#d4a85b" text-anchor="middle">Intent Statement</text>
+  <text x="695" y="246" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">[outcome] by [mechanism]</text>
+  <text x="695" y="257" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">artifact</text>
 
-        <!-- ══ FORWARD FLOW ARROWS ══ -->
+  <!-- ══════════════════════════════════════════════════
+       EXECUTION LANE — SDD Execution block replaces
+       Orchestrator + Builder + Guardian + Gate1
+  ══════════════════════════════════════════════════ -->
 
-        <!-- Stakeholders → True North -->
-        <line x1="139" y1="146" x2="161" y2="146" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- SDD Execution block (x=800–1370, spans 570px, center_y=360) -->
+  <rect x="800" y="315" width="570" height="90" rx="10" fill="rgba(58,158,120,0.1)" stroke="#3a9e78" stroke-width="1.5"/>
+  <rect x="800" y="315" width="4"   height="90" rx="2" fill="#3a9e78"/>
+  <text x="1086" y="345" font-family="IBM Plex Sans,sans-serif" font-size="13" font-weight="600" fill="#f0ede8" text-anchor="middle">SDD Execution</text>
+  <text x="1086" y="362" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#5bbf95" text-anchor="middle">plan · build · test</text>
+  <text x="1086" y="377" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#a8a6b4" text-anchor="middle">AI-assisted SDLC · human-led planning</text>
+  <text x="1086" y="390" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">replaces Orchestrator + Builder + Guardian</text>
 
-        <!-- Client → Signal Log -->
-        <line x1="109" y1="300" x2="135" y2="300" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- Deploy (center_x=1470, same position as V1) -->
+  <rect x="1406" y="335" width="128" height="50" rx="8" fill="rgba(191,143,58,0.1)" stroke="#bf8f3a" stroke-width="1"/>
+  <rect x="1406" y="335" width="3"   height="50" rx="1" fill="#bf8f3a"/>
+  <text x="1471" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Deploy</text>
+  <text x="1471" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#d4a85b" text-anchor="middle">flag OFF · live on server</text>
+  <text x="1471" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">execution</text>
 
-        <!-- True North → PO -->
-        <path d="M289,146 C315,146 315,210 324,210" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr2-b)"/>
+  <!-- Craft Review (same as V1) -->
+  <rect x="1550" y="335" width="140" height="50" rx="8" fill="rgba(124,92,191,0.1)" stroke="#7c5cbf" stroke-width="1"/>
+  <rect x="1550" y="335" width="3"   height="50" rx="1" fill="#7c5cbf"/>
+  <text x="1621" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">Craft Review</text>
+  <text x="1621" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">Craft Eng + QA Advocate</text>
+  <text x="1621" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human · pre-flag</text>
 
-        <!-- Signal Log → PO -->
-        <path d="M285,300 C315,300 315,226 324,226" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr2-b)"/>
+  <!-- PO Gate Review (same as V1) -->
+  <rect x="1713" y="335" width="144" height="50" rx="8" fill="rgba(124,92,191,0.15)" stroke="#9b7fd4" stroke-width="1.5"/>
+  <rect x="1713" y="335" width="3"   height="50" rx="1" fill="#7c5cbf"/>
+  <text x="1786" y="355" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="600" fill="#f0ede8" text-anchor="middle">PO Gate Review</text>
+  <text x="1786" y="370" font-family="IBM Plex Mono,monospace"  font-size="9"  fill="#9b7fd4" text-anchor="middle">approve to release</text>
+  <text x="1786" y="381" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">human</text>
 
-        <!-- PO → Intent Statement -->
-        <path d="M466,212 C476,212 476,204 486,204" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr2-b)"/>
+  <!-- Product OK Gate diamond (same as V1) -->
+  <polygon points="1985,320 2025,360 1985,400 1945,360" fill="rgba(232,115,74,0.12)" stroke="#e8734a" stroke-width="1.5"/>
+  <text x="1985" y="356" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">Product</text>
+  <text x="1985" y="369" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e" text-anchor="middle">OK?</text>
 
-        <!-- Intent Statement → SDD Execution -->
-        <path d="M624,204 C680,204 680,205 740,205" fill="none" stroke="#3a9e78" stroke-width="1.5" marker-end="url(#arr2-t)"/>
+  <!-- ══════════════════════════════════════════════════
+       DEPENDENCIES LANE
+  ══════════════════════════════════════════════════ -->
 
-        <!-- SDD Execution → Deploy -->
-        <path d="M1230,205 C1244,205 1244,181 1258,181" fill="none" stroke="#3a9e78" stroke-width="1.5" marker-end="url(#arr2-t)"/>
+  <!-- Infra · Services passive node (under SDD block center) -->
+  <rect x="986" y="453" width="200" height="40" rx="6" fill="rgba(191,143,58,0.06)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="1086" y="468" font-family="IBM Plex Sans,sans-serif" font-size="11" fill="#d4a85b" text-anchor="middle">Infra · Services</text>
+  <text x="1086" y="481" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">external · passive</text>
 
-        <!-- Deploy → Craft Review -->
-        <line x1="1386" y1="181" x2="1405" y2="181" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- External Services passive node (under Deploy, same as V1) -->
+  <rect x="1406" y="453" width="128" height="40" rx="6" fill="rgba(191,143,58,0.06)" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="1470" y="468" font-family="IBM Plex Sans,sans-serif" font-size="11" fill="#d4a85b" text-anchor="middle">External Services</text>
+  <text x="1470" y="481" font-family="IBM Plex Mono,monospace"  font-size="8"  fill="#6a6878" text-anchor="middle">external · passive</text>
 
-        <!-- Craft Review → PO Gate -->
-        <line x1="1545" y1="181" x2="1563" y2="181" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- ══════════════════════════════════════════════════
+       FORWARD FLOW ARROWS
+  ══════════════════════════════════════════════════ -->
 
-        <!-- PO Gate → Gate2 -->
-        <line x1="1707" y1="181" x2="1735" y2="181" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- Client → Signal Log -->
+  <line x1="225" y1="45" x2="288" y2="45" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
 
-        <!-- Gate2 yes → Monitor -->
-        <line x1="1775" y1="219" x2="1775" y2="268" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
-        <text x="1781" y="248" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">yes</text>
+  <!-- Stakeholders → True North -->
+  <line x1="260" y1="135" x2="293" y2="135" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
 
-        <!-- ══ FEEDBACK ARROWS ══ -->
+  <!-- True North → PO -->
+  <path d="M425,135 C452,135 459,188 459,235" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr2-b)"/>
 
-        <!-- Gate2 reject → Intent Statement top -->
-        <path d="M1775,143 C1775,90 555,90 555,178" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr2-f)"/>
-        <text x="1787" y="131" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">reject</text>
-        <text x="1165" y="82" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">intent correction · revise and resubmit</text>
+  <!-- Signal Log → PO -->
+  <path d="M430,45 C462,45 459,140 459,235" fill="none" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr2-b)"/>
 
-        <!-- ══ STRATEGIC LOOP ══ -->
-        <path d="M1776,320 C1776,400 210,400 210,326" fill="none" stroke="#5bbf95" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr2-t)"/>
-        <text x="993" y="413" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95" text-anchor="middle">signals → client log · ↻ next cycle begins</text>
+  <!-- PO → Intent Statement -->
+  <line x1="601" y1="235" x2="623" y2="235" stroke="#a8a6b4" stroke-width="1.5" marker-end="url(#arr2-b)"/>
 
-        <!-- Zone footnotes -->
-        <text x="16"  y="407" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(124,92,191,0.5)" letter-spacing="1">= human in the loop</text>
-        <text x="750" y="407" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(58,158,120,0.5)"  letter-spacing="1">= SDD Execution block</text>
+  <!-- Intent Statement → SDD Execution (teal, crosses PRODUCT→EXECUTION) -->
+  <path d="M765,235 C792,235 800,292 800,360" fill="none" stroke="#3a9e78" stroke-width="1.5" marker-end="url(#arr2-t)"/>
 
-      </svg>
+  <!-- SDD Execution → Deploy -->
+  <line x1="1370" y1="360" x2="1404" y2="360" stroke="#3a9e78" stroke-width="1.5" marker-end="url(#arr2-t)"/>
+
+  <!-- Deploy → Craft Review -->
+  <line x1="1534" y1="360" x2="1548" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- Craft Review → PO Gate Review -->
+  <line x1="1690" y1="360" x2="1711" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- PO Gate Review → Gate2 -->
+  <line x1="1857" y1="360" x2="1943" y2="360" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- Gate2 yes → Monitor (cross-lane vertical) -->
+  <line x1="1985" y1="320" x2="1985" y2="71" stroke="#6a6878" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <text x="1991" y="200" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95">yes</text>
+
+  <!-- ══ DEPENDENCY ARROWS ══ -->
+
+  <!-- SDD Execution → Infra·Services -->
+  <line x1="1086" y1="405" x2="1086" y2="451" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2-d)"/>
+
+  <!-- Deploy → External Services -->
+  <line x1="1470" y1="385" x2="1470" y2="451" stroke="#bf8f3a" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2-d)"/>
+
+  <!-- ══════════════════════════════════════════════════
+       FEEDBACK ARC — Gate2 reject → Intent Statement
+  ══════════════════════════════════════════════════ -->
+
+  <path d="M1985,400 C1985,534 695,534 695,261" fill="none" stroke="#e8734a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr2-f)"/>
+  <text x="1997" y="415" font-family="IBM Plex Mono,monospace" font-size="9" fill="#f0956e">reject</text>
+  <text x="1340" y="548" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e8734a" text-anchor="middle">intent correction · revise and resubmit</text>
+
+  <!-- ══════════════════════════════════════════════════
+       STRATEGIC LOOP — Monitor → Signal Log
+  ══════════════════════════════════════════════════ -->
+
+  <path d="M1985,71 C1985,570 360,570 360,68" fill="none" stroke="#5bbf95" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr2-t)"/>
+  <text x="1172" y="582" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5bbf95" text-anchor="middle">signals → client log · ↻ next cycle begins</text>
+
+</svg>
+
     </div>
   </div>
 </div>
