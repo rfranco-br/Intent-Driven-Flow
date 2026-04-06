@@ -2670,7 +2670,7 @@ saved card data. Consider one-click payment for returning users.</div>
   window.v2Arrows = [
     { from:'v2-truenorth', to:'v2-po',      exit:'bottom', enter:'top',   type:'context' },
     { from:'v2-siglog',    to:'v2-po',      exit:'bottom', enter:'top',   type:'context' },
-    { from:'v2-intent',    to:'v2-sdd',     exit:'bottom', enter:'top',   type:'sdd' },
+    { from:'v2-intent',    to:'v2-sdd',     exit:'right',  enter:'left',  type:'sdd' },
     { from:'v2-sdd',       to:'v2-deploy',  exit:'right',  enter:'left',  type:'sdd' },
     { from:'v2-deploy',    to:'v2-extsvc',  exit:'bottom', enter:'top',   type:'dep' },
     { from:'v2-gate2',     to:'v2-intent',  exit:'left',   enter:'bottom',type:'feedback', label:'reject', arc:'below', arcOffset:0 },
