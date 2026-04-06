@@ -2676,7 +2676,7 @@ saved card data. Consider one-click payment for returning users.</div>
     { from:'v1-deploy',    to:'v1-extsvc',    exit:'bottom', enter:'top',    type:'dep' },
     { from:'v1-gate1',     to:'v1-orch',      exit:'left',   enter:'left',   type:'feedback', label:'fail',   arc:'below', arcOffset:0 },
     { from:'v1-gate2',     to:'v1-intent',    exit:'left',   enter:'bottom', type:'feedback', label:'reject', arc:'below', arcOffset:30 },
-    { from:'v1-monitor',   to:'v1-siglog',    exit:'left',   enter:'top',    type:'strategic', arc:'below', arcOffset:60 },
+    { from:'v1-monitor',   to:'v1-siglog',    exit:'left',   enter:'right',  type:'strategic' },
   ];
 
   // Arrow definitions — V2: IDF + SDD
@@ -2694,7 +2694,7 @@ saved card data. Consider one-click payment for returning users.</div>
     { from:'v2-gate2',     to:'v2-monitor',   exit:'top',    enter:'bottom', type:'forward', label:'yes' },
     { from:'v2-deploy',    to:'v2-extsvc',    exit:'bottom', enter:'top',    type:'dep' },
     { from:'v2-gate2',     to:'v2-intent',    exit:'left',   enter:'bottom', type:'feedback', label:'reject', arc:'below', arcOffset:0 },
-    { from:'v2-monitor',   to:'v2-siglog',    exit:'left',   enter:'top',    type:'strategic', arc:'below', arcOffset:30 },
+    { from:'v2-monitor',   to:'v2-siglog',    exit:'left',   enter:'right',  type:'strategic' },
   ];
 
   // ── Tab switching ──
