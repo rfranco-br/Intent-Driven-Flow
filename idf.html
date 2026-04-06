@@ -1267,16 +1267,16 @@
         name: 'Stakeholders &amp; Business', type: 'human',
         desc: 'Hold the portfolio horizon, strategic intent, and investment decisions. Do not manage features or sprints — they set the direction within which product decisions are made.',
         attrs: [
-          { k: 'Owns',         v: 'True north, portfolio map, cross-team priorities' },
+          { k: 'Accountable for', v: 'True north, portfolio map, cross-team priorities' },
           { k: 'Interfaces',   v: 'PO (downward), dependency broker (cross-team)' },
           { k: 'Touch points', v: 'North star sync, portfolio review, escalations' }
         ]
       },
       po: {
         name: 'Product Owner', type: 'human',
-        desc: 'The translation layer. Holds simultaneous understanding of client needs, business constraints, and current strategic priorities. The PO\'s primary output is cycle intent — a clear statement of desired outcome that agents can execute against.',
+        desc: 'The translation layer. Holds simultaneous understanding of client needs, business constraints, and current strategic priorities. The PO\'s primary responsibility is cycle intent — authoring a clear statement of desired outcome that agents can execute against.',
         attrs: [
-          { k: 'Owns',           v: 'Client signal log, cycle intent, release gate authority' },
+          { k: 'Accountable for', v: 'Client signal log, cycle intent, release gate authority' },
           { k: 'Interfaces',     v: 'Stakeholders (up), Orchestrator (down), clients (lateral)' },
           { k: 'Key discipline', v: 'Writing intent as client outcomes, not feature descriptions' },
           { k: 'Intent template',v: '[Client outcome] by [mechanism], measured by [signal].', mono: true },
@@ -1289,7 +1289,7 @@
         name: 'Craft Engineer', type: 'human',
         desc: 'A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge.',
         attrs: [
-          { k: 'Owns',           v: 'Capability Library quality, agent training, craft standards' },
+          { k: 'Accountable for', v: 'Capability Library quality, agent training, craft standards' },
           { k: 'Produces',       v: 'Capability file updates, pattern escalations, craft annotations on gate reports' },
           { k: 'Also handles',   v: 'Genuinely novel architectural problems and deep environmental issues agents cannot resolve' },
           { k: 'Key discipline', v: 'Noticing "the Builder keeps solving this wrong" and encoding the fix into a capability file — not fixing it manually each time' }
@@ -1299,7 +1299,7 @@
         name: 'Quality Advocate', type: 'human',
         desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify — and validates each deploy as a real user before the flag turns ON.',
         attrs: [
-          { k: 'Owns',           v: 'Acceptance criteria, quality gate criteria, exploratory validation pre-flag' },
+          { k: 'Accountable for', v: 'Acceptance criteria, quality gate criteria, exploratory validation pre-flag' },
           { k: 'Produces',       v: 'Quality gate criteria updates, quality signals to client signal log, flag-ON recommendation' },
           { k: 'Catches',        v: 'Flows that are technically correct but humanly confusing — the class of problem no automated test finds' },
           { k: 'Key discipline', v: 'Encoding discovered issues into quality gate criteria, so the Guardian catches the same class of problem automatically next cycle' },
@@ -1310,14 +1310,14 @@
         name: 'Architects &amp; Tech Leads', type: 'human',
         desc: 'Define and maintain the technical guardrails that agents work within. They do not build features — they own the conventions, constraints, and capability files that shape how the team builds everything.',
         attrs: [
-          { k: 'Owns',           v: 'Capability Library, System Memory conventions, tech constraints' },
+          { k: 'Accountable for', v: 'Capability Library, System Memory conventions, tech constraints' },
           { k: 'Interfaces',     v: 'Builder agents (via capabilities), Guardian (via gate criteria)' },
           { k: 'Key discipline', v: 'Translating architectural decisions into capability files, not tickets' }
         ]
       },
       orchestrator: {
         name: 'Orchestrator', type: 'agent', sub: 'Execution Planner / Task Router',
-        desc: 'Routes tasks to the correct Builder agents, tracks in-flight work, and updates System Memory at cycle close. Active only on the fully agentic path — it decomposes the PO\'s intent directly into a sequenced task list. On the SDD path, the Orchestrator is not used; a Craft Engineer and Cycle Spec replace it as a complete unit. The governance model, gate structure, and flag rules are identical in both paths.',
+        desc: 'Routes tasks to the correct Builder agents, tracks in-flight work, and updates System Memory at cycle close. Active only on the fully agentic path — it decomposes the cycle intent directly into a sequenced task list. On the SDD path, the Orchestrator is not used; a Craft Engineer and Cycle Spec replace it as a complete unit. The governance model, gate structure, and flag rules are identical in both paths.',
         attrs: [
           { k: 'Reads',      v: 'Intent statement, System Memory, Capability Library (agentic path only)' },
           { k: 'Produces',   v: 'Task list, routing decisions, memory updates' },
@@ -1354,7 +1354,7 @@
       },
       client: {
         name: 'Client', type: 'human',
-        desc: 'Not a workflow participant, but the ultimate measure of all decisions. The PO captures client signals continuously — feedback, usage data, support patterns — and feeds them into the client signal log.',
+        desc: 'Not a workflow participant, but the ultimate measure of all decisions. Client signals — feedback, usage data, support patterns — flow continuously into the client signal log.',
         attrs: [
           { k: 'Provides',       v: 'Real needs, usage signals, feedback, priority by behaviour' },
           { k: 'Represented by', v: 'PO (in cycle intent), Guardian (in Quality Gate report)' },
@@ -1448,7 +1448,7 @@
 
       <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--purple);">
         <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO intent statement<br>System Memory<br>Capability Library<br>True north doc</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Intent Statement<br>System Memory<br>Capability Library<br>True north doc</div>
       </div>
 
       <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--blue);">
@@ -1825,49 +1825,49 @@ flowchart LR
       <h3>System Memory</h3>
       <span class="artifact-filename">SYSTEM_MEMORY.md (or equivalent)</span>
       <p>The single file every agent reads at the start of every session. Tool-agnostic: use whatever your chosen AI toolchain designates as its persistent context file — a markdown file, a system prompt, a config YAML. The name matters less than the discipline. Contains stack, folder structure, run commands, architectural decisions, conventions, and a running log of what was built. Updated by the Orchestrator after every cycle close.</p>
-      <div class="artifact-owner">Owner: Orchestrator (writes) · Tech Lead (governs)</div>
+      <div class="artifact-owner">Steward:Orchestrator (writes) · Tech Lead (governs)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Capability Library</h3>
       <span class="artifact-filename">CAPABILITY_LIBRARY/*.md (or equivalent)</span>
       <p>Domain-specific instruction sets that encode how this team builds things. Frontend components, API patterns, deploy procedures, auth conventions. Each capability is a short markdown file. Grows through Capability Harvests, governed by Tech Lead, audited at every Context Reset.</p>
-      <div class="artifact-owner">Owner: Tech Lead (governs) · Orchestrator (reads, triggers harvest)</div>
+      <div class="artifact-owner">Steward:Tech Lead (governs) · Orchestrator (reads, triggers harvest)</div>
     </div>
 
     <div class="artifact-card">
       <h3>True north document</h3>
       <span class="artifact-filename">TRUE_NORTH.md</span>
-      <p>Strategic direction and portfolio context maintained by Stakeholders. Provides the PO with the horizon against which all client signals are prioritised. Updated at Strategic Alignment. Referenced by PO in every intent injection.</p>
-      <div class="artifact-owner">Owner: Stakeholders</div>
+      <p>Strategic direction and portfolio context maintained by Stakeholders. Sets the horizon against which all client signals are prioritised. Updated at Strategic Alignment. Referenced during every intent injection.</p>
+      <div class="artifact-owner">Steward:Stakeholders</div>
     </div>
 
     <div class="artifact-card">
       <h3>Client signal log</h3>
       <span class="artifact-filename">CLIENT_SIGNALS.md</span>
-      <p>A continuously updated record of real client feedback, usage patterns, support issues, and research findings. The PO's primary input for intent injection. Referenced by the Guardian at the Quality Gate to evaluate client impact.</p>
-      <div class="artifact-owner">Owner: PO · Updated: continuously</div>
+      <p>A continuously updated record of real client feedback, usage patterns, support issues, and research findings. Primary input for intent injection. Referenced by the Guardian at the Quality Gate to evaluate client impact.</p>
+      <div class="artifact-owner">Steward:PO · Updated: continuously</div>
     </div>
 
     <div class="artifact-card">
       <h3>Intent log</h3>
       <span class="artifact-filename">INTENT_LOG.md</span>
       <p>A chronological record of every cycle intent statement and what was actually shipped. Backward-facing only — not a backlog. Used during drift checks to identify divergence between what was asked for and what was built over time.</p>
-      <div class="artifact-owner">Owner: Orchestrator (writes) · PO (uses in drift check)</div>
+      <div class="artifact-owner">Steward:Orchestrator (writes) · PO (uses in drift check)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Gate report</h3>
       <span class="artifact-filename">GATE_REPORT_{cycle}.md</span>
       <p>Produced by the Guardian at the Quality Gate. Three paragraphs maximum: what was built, what the signals show (tests, security, perf, cost, client impact), and a clear pass/flag/fail with a proposed next cycle. Expires when release gate decision is made.</p>
-      <div class="artifact-owner">Owner: Guardian (produces) · PO (consumes)</div>
+      <div class="artifact-owner">Steward:Guardian (produces) · PO (consumes)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Cycle Spec <span style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);font-weight:400;margin-left:8px;">SDD path</span></h3>
       <span class="artifact-filename">CYCLE_SPEC_{cycle}.md</span>
       <p>A human-authored document that pre-sequences tasks and encodes dependencies before execution begins. Used in the SDD path as the primary execution plan — replacing the entire agentic stack (Orchestrator, Builder, Guardian) with a Craft Engineer-led SDLC. The engineer authors and drives execution from the spec; no agent orchestrates it. Reduces autonomous complexity at the cost of a human bottleneck at spec-writing time.</p>
-      <div class="artifact-owner">Owner: Craft Engineer or senior engineer (authors &amp; executes) · Required only on SDD path</div>
+      <div class="artifact-owner">Steward:Craft Engineer or senior engineer (authors &amp; executes) · Required only on SDD path</div>
     </div>
 
     <div class="artifact-card">
@@ -1875,21 +1875,21 @@ flowchart LR
       <span class="artifact-filename">FEATURE_GOVERNANCE_REGISTRY (flag service or file)</span>
       <p>The flag-gated deploy model (A04) extended into an artifact. Every flag carries a lifecycle state:</p>
       <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.9;color:var(--text2);margin-top:8px;"><span style="color:var(--amber2);">Pending-OFF</span> — deployed, not yet released to users<br><span style="color:var(--teal2);">Live-ON</span> — active, released, part of the live context<br><span style="color:var(--text3);">Dead-OFF</span> — permanently abandoned, must be pruned at Context Reset</p>
-      <div class="artifact-owner">Owner: PO (toggle decision) · Builder (creates flag) · Tech Lead (dead flag cleanup)</div>
+      <div class="artifact-owner">Steward:PO (toggle decision) · Builder (creates flag) · Tech Lead (dead flag cleanup)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Drift register</h3>
       <span class="artifact-filename">DRIFT_REGISTER.md</span>
       <p>A log of detected divergences between intent and implementation, with the correction taken. The most valuable long-term document in the project — it maps where the system's judgment differs from the PO's and teaches better intent writing over time.</p>
-      <div class="artifact-owner">Owner: PO · Updated: at drift checks and gate failures</div>
+      <div class="artifact-owner">Steward:PO · Updated: at drift checks and gate failures</div>
     </div>
 
     <div class="artifact-card">
       <h3>Dependency registry</h3>
       <span class="artifact-filename">DEPENDENCIES.md</span>
       <p>Cross-team contracts, shared components, and API agreements. Maintained by the dependency broker. Teams pull from it before planning a cycle to identify potential blockers early. The broker writes to it whenever a new dependency is detected.</p>
-      <div class="artifact-owner">Owner: Dependency broker · Reviewed: per dependency sync</div>
+      <div class="artifact-owner">Steward:Dependency broker · Reviewed: per dependency sync</div>
     </div>
 
   </div>
@@ -2119,7 +2119,7 @@ flowchart LR
         <div class="qs-artifact-label">INTENT_LOG — new entry</div>
         <div class="qs-artifact">## Cycle 14 — Intent
 Date: 2026-03-24
-Owner: Product Owner
+Steward:Product Owner
 
 Intent: Reduce checkout abandonment at the payment step by presenting
         a single-field card input by default, deferring billing address
