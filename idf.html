@@ -2723,27 +2723,6 @@ saved card data. Consider one-click payment for returning users.</div>
     sdd:       '#9b7fd4'
   };
   var dashMap = { feedback: '6,3', strategic: '6,3', dep: '4,3', sdd: '5,3' };
-  var markerIdMap = { forward: 'fl-fwd', context: 'fl-ctx', feedback: 'fl-fb', strategic: 'fl-st', dep: 'fl-dep', sdd: 'fl-sdd' };
-
-  function ensureMarkers(svg) {
-    if (svg.querySelector('defs')) return;
-    var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    Object.keys(colorMap).forEach(function(type) {
-      var marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-      marker.setAttribute('id', markerIdMap[type]);
-      marker.setAttribute('markerWidth', '8');
-      marker.setAttribute('markerHeight', '8');
-      marker.setAttribute('refX', '6');
-      marker.setAttribute('refY', '3.5');
-      marker.setAttribute('orient', 'auto');
-      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', 'M0,0.5 L6.5,3.5 L0,6.5 Z');
-      path.setAttribute('fill', colorMap[type]);
-      marker.appendChild(path);
-      defs.appendChild(marker);
-    });
-    svg.appendChild(defs);
-  }
 
   function pt(el, side, cr) {
     var r = el.getBoundingClientRect();
@@ -2793,7 +2772,6 @@ saved card data. Consider one-click payment for returning users.</div>
     path.setAttribute('stroke', colorMap[def.type] || '#5a5868');
     path.setAttribute('stroke-width', def.type === 'dep' ? '1' : '1.5');
     if (dashMap[def.type]) path.setAttribute('stroke-dasharray', dashMap[def.type]);
-    path.setAttribute('marker-end', 'url(#' + (markerIdMap[def.type] || 'fl-fwd') + ')');
     svg.appendChild(path);
 
     // Optional label at midpoint
@@ -2826,9 +2804,8 @@ saved card data. Consider one-click payment for returning users.</div>
     var gridEl = panel ? panel.querySelector('.flow-grid') : null;
     if (!gridEl) return;
 
-    // Clear & set up
+    // Clear
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    ensureMarkers(svg);
 
     var cr = gridEl.getBoundingClientRect();
     defs.forEach(function(def) { drawArrow(svg, cr, def, gridEl); });
