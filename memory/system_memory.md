@@ -139,3 +139,11 @@ Change: Cycle 2 QA sign-off — all checks PASS. `.sdlc-step-grid`, `.sdlc-step-
 Date: 2026-04-07
 Updated by: Fullstack Dev
 Change: Cycle 3 playbook clarity fixes (18 coded references resolved) — replaced all W-code, C-code, T-code, and R-code parenthetical references in playbook.html with explicit language; Instance 10 resolved as anchor hyperlink `<a href="#t4" style="color:var(--teal2);">System Memory template</a>`; R-code instances (14, 15, 16) resolved with inlined rule meanings per Orchestrator decision.
+
+Date: 2026-04-06
+Updated by: QA
+Change: Cycle 3 QA sign-off — all 18 changes PASS. All W/C/T/R parenthetical codes removed from prose; Instance 10 hyperlink correct (`<a href="#t4" style="color:var(--teal2);">`, anchor confirmed at line 1125, no broken HTML); Instances 14/15/16 R-code inlines confirmed; Instance 17 `Cycle [number]` confirmed; TOC toc-id spans and section-label divs untouched; `[N]` template placeholders intact. Regression: GA4 tag present, `nav.js?v=10` before `</body>`. Out-of-scope finding: one residual `(W1)` at line 767 (W2 precondition callout body) — not part of the 18 in-scope instances, flagged for future cycle.
+
+Date: 2026-04-07
+Updated by: Fullstack Dev
+Change: Cycle 4 W4 Gate Review Decision — replaced COMING SOON stub with full 8-step section content (PRECONDITION + WHEN TO RUN callouts, decision matrix, scope sidebar) in playbook.html; also resolved residual (W1) reference in W2 PRECONDITION callout (Cycle 3 carryover).

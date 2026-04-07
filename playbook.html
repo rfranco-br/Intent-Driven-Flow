@@ -764,7 +764,7 @@ Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
   <!-- PRECONDITION callout -->
   <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
     <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHEN TO RUN CLIENT SIGNAL TRIAGE</div>
-    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Run Client Signal Triage before Intent Generation (W1) begins, whenever the signal log has not been reviewed since the last one or two cycles. The trigger is not a schedule — it is the PO noticing that the CLIENT_SIGNALS log no longer reflects what clients are experiencing right now. A log that is more than two cycles out of date is context debt: Intent Generation running on stale signals will produce cycle intent that was accurate last month, not today.</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Run Client Signal Triage before Intent Generation begins, whenever the signal log has not been reviewed since the last one or two cycles. The trigger is not a schedule — it is the PO noticing that the CLIENT_SIGNALS log no longer reflects what clients are experiencing right now. A log that is more than two cycles out of date is context debt: Intent Generation running on stale signals will produce cycle intent that was accurate last month, not today.</div>
   </div>
 
   <!-- Flow steps -->
@@ -881,11 +881,134 @@ Status: [ACTIVE / ADDRESSED — Cycle [number] / ARCHIVED]</div>
 <section id="w4">
   <div class="section-label">W4 — Workflows</div>
   <h2>Gate Review Decision</h2>
-  <p style="max-width:640px;">How the Product Owner reads a Guardian gate report and makes a pass, flag, or fail decision — including the questions to ask when the report is ambiguous.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <p style="max-width:640px;">Gate Review Decision has one job: give the Product Owner a clear, repeatable procedure for reading a Guardian gate report and recording a PASS, FLAG, or FAIL decision. The Guardian produces the evidence. The PO makes the call. No agent makes this decision, no engineer overrides it, and no cycle ships without it.</p>
+
+  <!-- PRECONDITION callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">PRECONDITION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">The Guardian has run and produced a Gate Report. The Gate Report is linked or attached to the cycle context. The PO has the original Intent Statement for this cycle available. If any of these is missing, do not begin — return to the Guardian first.</div>
   </div>
+
+  <!-- WHEN TO RUN callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:16px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHEN TO RUN GATE REVIEW DECISION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Run Gate Review Decision at the end of every build cycle, after the Guardian signals build complete and produces a gate report — whether that report is generated automatically or prompted by the Orchestrator. Never skip this step. No build ships without a PO gate decision, regardless of test status or team confidence.</div>
+  </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Open the Gate Report</div>
+        <div class="qs-desc">Locate the latest Gate Report artifact for this cycle. Confirm it was produced by the Guardian — not manually authored by a Builder or Orchestrator. The report must follow the three-paragraph structure: verdict, evidence, next cycle. If no report exists, or if the report does not follow the standard structure, stop and return to the Guardian. A non-standard or absent report is not a reason to proceed — it is a precondition failure.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Read the verdict paragraph</div>
+        <div class="qs-desc">Read the first paragraph. The Guardian has already written a recommended verdict — PASS, FLAG, or FAIL — with one sentence of primary reasoning. Note it, but do not adopt it automatically. The PO's job is to verify the verdict is supported by the evidence, not to ratify the Guardian's judgment. The Guardian may recommend FLAG on a borderline case that the PO decides to PASS, or vice versa. The PO's decision is the gate — the Guardian's verdict is input to it.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Check the evidence paragraph</div>
+        <div class="qs-desc">Read the second paragraph. Verify every evidence line is present: test counts, security result, performance delta, cost delta, and client impact scope. If any line is absent — not "clean" or "no change", but genuinely missing — treat it as a failed check. A missing line means the check was skipped or the Guardian did not have the data; it does not mean the check passed. Ask: does the evidence support the verdict? If tests passed but performance is outside budget, the verdict should be FLAG, not PASS. If the Guardian's verdict conflicts with the evidence, the PO decides — not the Guardian.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Read the next-cycle paragraph</div>
+        <div class="qs-desc">Read the third paragraph. This is the Guardian's observational record — patterns noticed during the cycle, dependencies that surfaced, risks worth watching. These observations are non-binding: the PO decides which, if any, to act on. Items that belong here: new technical debt introduced, a dependency risk that emerged, a partial implementation deferred to the next cycle. Items that do not belong here: task lists, feature requests, unilateral recommendations to delay shipping. If the next-cycle paragraph contains task assignments or overrides the shipping decision, flag that as a Guardian anti-pattern for a future cycle.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">Check against the cycle intent</div>
+        <div class="qs-desc">Open the original Intent Statement for this cycle. Ask two questions. First: does what was built match what the intent said — correct outcome, correct mechanism constraint respected? If the Orchestrator escalated mid-cycle and the scope was adjusted, confirm the adjusted scope is still within the original intent boundary and that the adjustment was logged. Second: does what shipped move toward or away from True North? A build that passes all technical checks but drifts away from the strategic direction is still a FLAG. True North alignment is a gate criterion, not a nice-to-have.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">06</div>
+      <div class="qs-body">
+        <div class="qs-title">Make the gate decision</div>
+        <div class="qs-desc">Choose one of three decisions. The criteria are:</div>
+        <div style="display:grid;grid-template-columns:1fr 2fr 2fr;gap:3px;margin-top:12px;border:1px solid var(--border);border-radius:8px;overflow:hidden;max-width:680px;">
+          <div style="background:var(--surface2);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Decision</div>
+          <div style="background:var(--surface2);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Condition</div>
+          <div style="background:var(--surface2);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Next action</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);">PASS</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">Intent met. All checks green. No True North conflict. No unresolved risk in observations.</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">Flag ON. Cycle closed. Notify team.</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);">FLAG</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">Intent partially met, or one or more checks failed, or an observation risk is too high to ship without a follow-up commitment.</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">Flag stays OFF. Write a follow-up intent for the next cycle. Do not reopen this cycle.</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--coral);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);">FAIL</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">Intent not met, or quality gate failed with no path to a quick fix, or the build drifts from True North in a way that cannot be resolved by a follow-up intent alone.</div>
+          <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">Flag stays OFF. Cycle closed without shipping. Write retrospective note. Rewrite intent for next cycle.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">07</div>
+      <div class="qs-body">
+        <div class="qs-title">Record the decision</div>
+        <div class="qs-desc">Update the Gate Report with the PO decision and a one-sentence rationale. This is not a detailed post-mortem — it is a one-line record that closes the cycle: who decided, what they decided, and the primary reason. This record becomes part of the permanent cycle history and is the input a future PO or team member uses to understand why a flag was or was not turned on.</div>
+        <div class="qs-artifact-label">GATE REPORT — PO decision record</div>
+        <div class="qs-artifact">PO Decision: [PASS / FLAG / FAIL]
+Date: YYYY-MM-DD
+Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of users;
+  follow-up intent written for next cycle."]</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">08</div>
+      <div class="qs-body">
+        <div class="qs-title">Hand off</div>
+        <div class="qs-desc">Act on the decision immediately.
+          <br><br>
+          <strong style="color:var(--teal2);">PASS:</strong> notify the team the flag is live. The cycle is closed. The next cycle begins when a new intent is written.
+          <br><br>
+          <strong style="color:var(--amber2);">FLAG:</strong> write the follow-up intent before the next cycle begins. The follow-up intent is a new, complete intent — not an amendment to the current one. The current cycle's flag stays OFF until the follow-up cycle passes gate.
+          <br><br>
+          <strong style="color:var(--coral);">FAIL:</strong> write a retrospective note to the INTENT_LOG entry for this cycle, stating what was not met and why. Reset intent for a full new cycle. Do not carry the failed intent forward unchanged — a failed cycle is signal that the intent, the mechanism, or the measurement was wrong. The retrospective note is what makes the next cycle smarter.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scope sidebar -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">GATE REVIEW DECISION DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— How to write or produce the gate report — see Gate Report (Artifact Templates)</div>
+      <div>— How to fix failing checks — that is Builder and Guardian work, resolved before the next gate</div>
+      <div>— How to rewrite a failed or flagged intent — see Intent Generation</div>
+      <div>— Whether to run a cycle at all — that is Intent Generation</div>
+      <div>— How to turn a feature flag on in the codebase — that is a Builder task triggered by PASS</div>
+    </div>
+  </div>
+
 </section>
 
 <section id="w5">
