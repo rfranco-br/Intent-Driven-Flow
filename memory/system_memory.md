@@ -1,0 +1,125 @@
+# IDF Project — System Memory
+
+> This file is the single source of truth for the current state of the project.
+> It must always reflect the current version — not history, not decisions that were reversed.
+> Updated by Fullstack Dev after every implementation cycle. Updated by QA after every test cycle.
+
+---
+
+## Project
+
+**Name:** Intent Driven Flow (IDF)
+**Purpose:** Official documentation site for the IDF framework — a governance methodology for AI-assisted development teams where agents execute and humans govern.
+**Live URL:** https://rfranco-br.github.io/Intent-Driven-Flow/
+**Repo:** https://github.com/rfranco-br/Intent-Driven-Flow
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Hosting | GitHub Pages (main branch) |
+| Backend | Firebase (integration in progress) |
+| Frontend | Pure HTML/CSS/JS — no build step, no framework |
+| Fonts | Playfair Display · IBM Plex Sans · IBM Plex Mono (Google Fonts) |
+| Diagrams | Mermaid.js (CDN) |
+| Analytics | Google Analytics 4 — G-MV9XNW7Y6V |
+| Version control | Git — single branch `main` |
+
+---
+
+## CSS Design Tokens (always use these — never hardcode colors)
+
+```css
+--bg: #0c0c14          --surface: #13131e       --surface2: #1a1a2a
+--border: #2a2a3a      --border2: #3a3a50
+--text: #f0ede8        --text2: #a8a6b4         --text3: #6a6878
+--coral: #e8734a       --coral2: #f0956e
+--purple: #7c5cbf      --purple2: #9b7fd4
+--teal: #3a9e78        --teal2: #5bbf95
+--blue: #4a7abf        --blue2: #6b99d4
+--amber: #bf8f3a       --amber2: #d4a85b
+```
+
+---
+
+## File Structure
+
+```
+/
+├── index.html              — Version landing page (reads versions.json)
+├── idf.html                — Main framework documentation (current: Alpha)
+├── playbook.html           — Supplementary practices and templates
+├── flow.html               — End-to-end flow reference diagram
+├── nav.js                  — Shared sticky nav (injected in all pages)
+├── versions.json           — Version registry — source of truth
+├── LICENSE                 — CC BY 4.0
+├── memory/
+│   └── system_memory.md    — This file
+├── tests/
+│   └── report.md           — QA test results (updated each cycle)
+├── docs/
+│   └── agent-teams.md      — Agent teams reference guide
+├── .claude/
+│   ├── CLAUDE.md           — Project instructions for Claude
+│   ├── settings.json       — Shared project settings
+│   ├── settings.local.json — Local settings (not committed)
+│   ├── agents/             — Teammate role definitions
+│   │   ├── researcher.md
+│   │   ├── fullstack-dev.md
+│   │   └── qa.md
+│   ├── skills/             — Skill definitions (legacy)
+│   └── commands/           — Slash command definitions
+└── archive/                — Old version files (idf-v1 through idf-v7.11)
+```
+
+---
+
+## Current Version
+
+**Badge:** IDF · Alpha · 2026
+**File:** `idf.html`
+**Date:** 2026-04-07
+**Status:** Active development
+
+**Key framework sections in idf.html:**
+- Section 01: Cover
+- Section 02: Rules (A01–A06)
+- Section 03: Roles (Stakeholders, PO, Craft Engineer, QA Advocate, Architects, Orchestrator, Builder, Guardian, Dependency Broker, Client)
+- Section 04: Delivery Cycle (Mermaid flow + SDLC detail)
+- Section 05: Structure
+- Section 06: Signal Events + Rituals
+- Section 07: Artifacts
+- Section 08: Communication
+- Section 09: Measurement
+- Section 10: Quickstart
+- Contribute section
+- Footer
+
+---
+
+## Active Constraints
+
+- Every HTML page must be fully self-contained (embedded CSS, no external build)
+- Every HTML page must include `<script src="nav.js?v=10"></script>` before `</body>`
+- Google Analytics snippet (`G-MV9XNW7Y6V`) must be in `<head>` of all active pages
+- Do not modify `index.html`, `nav.js`, or `new-version.sh` unless explicitly instructed
+- Git branch: `main` is production — all changes commit directly to `main`
+
+---
+
+## Contact / Attribution
+
+**Author:** Roberto Pillon Franco
+**Email:** robertopillonfranco@gmail.com
+**LinkedIn:** https://www.linkedin.com/in/roberto-pillon-franco/
+**License:** CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+
+---
+
+## Last Updated
+
+Date: 2026-04-07
+Updated by: Orchestrator (initial setup)
+Change: Initial system memory created for agent team workflow

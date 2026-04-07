@@ -46,3 +46,21 @@ A static documentation site for the IDF (Intent Driven Flow) framework — a gov
 ## Available commands
 - `/idf-review` — Apply improvements directly to the current version file (in-place edit, no new file)
 - `/idf-review publish` — Promote current version to a new major version (vN+1.0)
+
+## Agent team
+
+The project runs a 3-teammate agent team. Roles:
+
+| Role | Model | Responsibility |
+|---|---|---|
+| `researcher` | Opus/Sonnet | Content research + copy generation → produces `temp/copy-{N}-{desc}.md` |
+| `fullstack-dev` | Opus/Sonnet | Implements copy files + Firebase + git + updates `memory/system_memory.md` |
+| `qa` | Opus/Sonnet | Tests every cycle + updates `tests/report.md` + routes issues |
+
+**Cycle flow:** User + Orchestrator confirm intent → Researcher produces copy → Fullstack Dev implements → QA tests → Orchestrator reports to user.
+
+**Persistent files (updated every cycle):**
+- `memory/system_memory.md` — current project state (updated by Fullstack Dev + QA)
+- `tests/report.md` — pass/fail test results per cycle (updated by QA)
+
+**Model selection:** teammates choose Opus or Sonnet based on task complexity — Opus for deep reasoning, Sonnet for execution.
