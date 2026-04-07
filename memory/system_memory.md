@@ -147,3 +147,11 @@ Change: Cycle 3 QA sign-off — all 18 changes PASS. All W/C/T/R parenthetical c
 Date: 2026-04-07
 Updated by: Fullstack Dev
 Change: Cycle 4 W4 Gate Review Decision — replaced COMING SOON stub with full 8-step section content (PRECONDITION + WHEN TO RUN callouts, decision matrix, scope sidebar) in playbook.html; also resolved residual (W1) reference in W2 PRECONDITION callout (Cycle 3 carryover).
+
+Date: 2026-04-07
+Updated by: QA
+Change: Cycle 4 QA sign-off — PASS. W4 full section verified (8 steps, decision matrix, scope sidebar, both callouts, no COMING SOON); residual (W1) confirmed absent; W2 PRECONDITION body corrected; all regression checks clean (GA4, nav.js?v=10, TOC W4 entry).
+
+Date: 2026-04-07
+Updated by: Fullstack Dev
+Change: Cycle 5 W5 Context Reset — replaced COMING SOON stub with full 7-step section content (PRECONDITION + WHEN TO RUN callouts, audit procedure, POST-RESET CHECKLIST artifact, scope sidebar) in playbook.html.

@@ -1014,11 +1014,114 @@ Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of us
 <section id="w5">
   <div class="section-label">W5 — Workflows</div>
   <h2>Context Reset</h2>
-  <p style="max-width:640px;">How to run a Context Reset in practice: who initiates it, what the audit checklist looks like end-to-end, and what done means before resuming cycles.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <p style="max-width:640px;">Context Reset has one job: audit every persistent artifact for staleness, conflicts, and decay before the next cycle begins. It is not a retrospective. It is not a planning meeting. It is a targeted artifact hygiene operation — the step that ensures what agents read is still accurate before they execute. Stale context corrupts agent decisions. A Context Reset is how the team prevents that corruption from compounding across cycles.</p>
+
+  <!-- PRECONDITION callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">PRECONDITION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">A staleness trigger has fired — see System Memory (Artifact Templates) for the trigger list. The PO has approved the reset; it delays the next cycle and must not begin without PO sign-off. All artifacts in scope are accessible — no artifact is locked or currently being updated by another team member.</div>
   </div>
+
+  <!-- WHEN TO RUN callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:16px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHEN TO RUN CONTEXT RESET</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">
+      — After any cycle that ends in FAIL<br>
+      — When System Memory has not been updated in 3 or more cycles<br>
+      — When a role changed hands<br>
+      — When the tech stack changed materially<br>
+      — When agents begin producing unexpected output patterns<br>
+      — Proactively every 5–7 cycles even if no trigger fires — artifact decay is gradual; waiting for a visible trigger means some decay has already affected work
+    </div>
+  </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Confirm scope</div>
+        <div class="qs-desc">PO and Craft Engineer agree on which artifacts are in scope for this reset. The default scope is: System Memory, Capability Library, Client Signal Log. Optional scope: Feature Governance Registry, Drift Register, TRUE_NORTH. Scope should match the trigger — if only System Memory is stale, a full five-artifact audit is waste. If a role changed hands, all artifacts are in scope because every artifact reflects assumptions made by the previous role-holder. Agree and write down the scope before any audit begins.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Audit System Memory</div>
+        <div class="qs-desc">Read System Memory top to bottom. Mark every entry that is: outdated (the reality it describes has changed), conflicted (contradicts another entry in the file or another artifact), or orphaned (refers to a decision, feature, or system that no longer exists). Remove or update each marked entry. Do not archive stale entries — stale System Memory should be deleted, not moved. A stale entry that is merely archived to a notes file still exists and may still be read. Update the "Last reviewed" field at the top of the file when the audit is complete.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Audit the Capability Library</div>
+        <div class="qs-desc">Review every capability file in scope. For each file, ask: does this file still describe what the Builder currently does? Are the examples current? Does this file describe a capability that was deprecated or replaced? Flag outdated files to the Craft Engineer for rewrite. Do not leave a file that describes the old behavior — an agent reading it will follow the pattern it describes, not the pattern the team currently uses. If a capability no longer exists, delete the file rather than marking it deprecated in place.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Audit the Client Signal Log</div>
+        <div class="qs-desc">Scan for entries with ACTIVE status older than three cycles. For each one, make a decision: still valid (leave ACTIVE, confirm it with a date refresh), promoted to cycle intent (change status to ADDRESSED with a cycle reference), or no longer relevant (change status to ARCHIVED with a one-sentence reason). The signal log should not be a graveyard of stale ACTIVE signals. An ACTIVE signal the PO no longer believes in is context that biases the next Intent Generation session. Resolve or archive it.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">Audit optional artifacts (if in scope)</div>
+        <div class="qs-desc">If the Feature Governance Registry is in scope: remove flags that are permanently ON — deployed, stable, and no longer under governance. They are shipped features, not governance objects, and continuing to list them as governance objects adds noise to every future review. If the Drift Register is in scope: review every open drift entry. Has it been resolved? If yes, close it with a resolution date. If not, it is an unresolved input to the next cycle's intent. An open drift entry that is not feeding the next cycle's intent is stale by definition.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">06</div>
+      <div class="qs-body">
+        <div class="qs-title">Resolve conflicts</div>
+        <div class="qs-desc">If any two artifacts contradict each other — for example, System Memory describes one tech constraint while a Capability Library file assumes a different one — resolve the conflict before the reset is complete. The resolution goes into the artifact with the broader scope, which is usually System Memory. Do not leave the conflict in place with a note that it "needs discussion later." An agent reading conflicting artifacts during the next cycle will choose one arbitrarily or escalate. Resolve it now, and log the resolution decision briefly in the artifact where the change was made.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">07</div>
+      <div class="qs-body">
+        <div class="qs-title">Signal reset complete</div>
+        <div class="qs-desc">Craft Engineer confirms to PO: all in-scope artifacts audited, no known conflicts, team ready to execute the next cycle. PO signs off. The next cycle's intent injection begins from the reset state — agents receive the updated context as their starting state, not the pre-reset state. Before sign-off, run the post-reset checklist.</div>
+        <div class="qs-artifact-label">POST-RESET CHECKLIST</div>
+        <div class="qs-artifact" style="background:rgba(191,143,58,0.06);border:1px solid rgba(191,143,58,0.2);border-left:3px solid var(--amber);">□  System Memory: last-reviewed date reflects this reset
+□  Capability Library: no files describing deprecated behavior
+□  Client Signal Log: no ACTIVE entries older than 3 cycles without review
+□  Feature Governance Registry (if audited): no permanently ON flags still listed
+□  Drift Register (if audited): all resolved entries closed
+□  Conflicts: none unresolved
+□  PO sign-off: confirmed</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scope sidebar -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">CONTEXT RESET DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— How to update individual System Memory entries — see System Memory (Artifact Templates)</div>
+      <div>— How to write a new Capability Library file — see Writing Capability Library Entries</div>
+      <div>— How to triage new client signals — see Client Signal Triage</div>
+      <div>— Whether a cycle failed — that is Gate Review Decision; Context Reset runs after the gate decision, not instead of it</div>
+      <div>— How to log intent corrections mid-cycle — see Drift Register (Artifact Templates)</div>
+    </div>
+  </div>
+
 </section>
 
 <section id="w6">
