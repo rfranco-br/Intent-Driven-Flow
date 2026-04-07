@@ -123,3 +123,11 @@
 Date: 2026-04-07
 Updated by: Fullstack Dev
 Change: Cycle 1 mobile responsiveness fixes — added `.principles-grid` and `.flow-row` mobile collapse rules + `.section-contribute` class with mobile override to `idf.html`; added `.principles-grid` collapse and `[style*="grid-template-columns:140px"]` override to `playbook.html`; added `.scroll-hint` CSS + HTML before both diagram sections in `flow.html`; updated `flow.html` nav.js reference to `nav.js?v=10`.
+
+Date: 2026-04-07
+Updated by: QA
+Change: Cycle 1 QA sign-off — all checks PASS. GA4 tag, nav.js?v=10, CSS variables, mobile overrides, `.section-contribute` class, `.scroll-hint` placement, and attribute selector validity all verified across idf.html, playbook.html, flow.html, and index.html.
+
+Date: 2026-04-07
+Updated by: Fullstack Dev
+Change: Cycle 2 SDLC step cards restructure — replaced `/* ── FLOW ── */` CSS block with new `/* ── SDLC STEP CARDS ── */` block in idf.html; replaced `.flow-row` + inline detail grid HTML (Section 04) with `.sdlc-step-grid` containing 5 `.sdlc-step-card` divs; replaced `.flow-row` mobile media query rule with `.sdlc-step-grid` equivalent.

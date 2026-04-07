@@ -667,39 +667,60 @@
     margin-top: 48px;
   }
 
-  /* ── FLOW ── */
-  .flow-row {
+  /* ── SDLC STEP CARDS ── */
+  .sdlc-step-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 3px;
-    margin-bottom: 3px;
   }
 
-  .flow-cell {
+  .sdlc-step-card {
     background: var(--surface);
     border-radius: 6px;
     padding: 20px 16px;
-    text-align: center;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .flow-cell .step-name {
+  .sdlc-step-card .step-name {
     font-weight: 500;
     font-size: 13px;
     margin-bottom: 4px;
+    text-align: center;
   }
 
-  .flow-cell .step-sub {
+  .sdlc-step-card .step-sub {
     font-size: 11px;
     color: var(--text3);
     font-family: 'IBM Plex Mono', monospace;
+    text-align: center;
+    margin-bottom: 16px;
   }
 
-  .flow-cell.highlight-plan { border-top: 2px solid var(--purple); }
-  .flow-cell.highlight-build { border-top: 2px solid var(--blue); }
-  .flow-cell.highlight-test { border-top: 2px solid var(--teal); }
-  .flow-cell.highlight-deploy { border-top: 2px solid var(--amber); }
-  .flow-cell.highlight-monitor { border-top: 2px solid var(--coral); }
+  .sdlc-step-card .card-section-label {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text3);
+    margin-bottom: 8px;
+    margin-top: 12px;
+  }
+
+  .sdlc-step-card .card-section-label:first-of-type {
+    margin-top: 0;
+  }
+
+  .sdlc-step-card .card-section-content {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  .sdlc-step-card.highlight-plan  { border-top: 2px solid var(--purple); }
+  .sdlc-step-card.highlight-build { border-top: 2px solid var(--blue); }
+  .sdlc-step-card.highlight-test  { border-top: 2px solid var(--teal); }
+  .sdlc-step-card.highlight-deploy { border-top: 2px solid var(--amber); }
+  .sdlc-step-card.highlight-monitor { border-top: 2px solid var(--coral); }
 
   /* ── CLIENT BAR ── */
   .client-bar {
@@ -1004,8 +1025,8 @@
     /* Principles grid → single column */
     .principles-grid { grid-template-columns: 1fr; }
 
-    /* SDLC flow row → single column */
-    .flow-row { grid-template-columns: 1fr; }
+    /* SDLC step cards → single column */
+    .sdlc-step-grid { grid-template-columns: 1fr; }
 
     /* Contribute section padding */
     .section-contribute { padding: 40px 20px; }
@@ -1439,81 +1460,51 @@
   </div>
 
   <div class="sdlc-diagram">
-    <div class="flow-row" style="margin-bottom:24px;">
-      <div class="flow-cell highlight-plan">
+    <div class="sdlc-step-grid">
+
+      <div class="sdlc-step-card highlight-plan">
         <div class="step-name">Plan</div>
         <div class="step-sub">Orchestrator</div>
+        <div class="card-section-label">INPUT</div>
+        <div class="card-section-content">Intent Statement<br>System Memory<br>Capability Library<br>True north doc</div>
+        <div class="card-section-label">OUTPUT</div>
+        <div class="card-section-content">Sequenced task list<br>Dependency signals to broker</div>
       </div>
-      <div class="flow-cell highlight-build">
+
+      <div class="sdlc-step-card highlight-build">
         <div class="step-name">Build</div>
         <div class="step-sub">Builder(s)</div>
+        <div class="card-section-label">INPUT</div>
+        <div class="card-section-content">Task from Orchestrator<br>Domain capability file<br>System Memory</div>
+        <div class="card-section-label">OUTPUT</div>
+        <div class="card-section-content">Code + tests committed<br>Feature flag created<br>Flag set to OFF</div>
       </div>
-      <div class="flow-cell highlight-test">
+
+      <div class="sdlc-step-card highlight-test">
         <div class="step-name">Auto-test</div>
         <div class="step-sub">Guardian</div>
+        <div class="card-section-label">CHECKS</div>
+        <div class="card-section-content">Unit + integration tests<br>Lint + type check<br>Secrets scan<br>Bundle budget<br>Lighthouse score<br>Cost delta estimate</div>
+        <div class="card-section-label">OUTPUT</div>
+        <div class="card-section-content">Gate report (pass/fail)<br>Fix instructions (on fail)<br>Loop back to Builder</div>
       </div>
-      <div class="flow-cell highlight-deploy">
+
+      <div class="sdlc-step-card highlight-deploy">
         <div class="step-name">Deploy</div>
         <div class="step-sub">flag OFF</div>
+        <div class="card-section-label">GATE</div>
+        <div class="card-section-content">All checks pass<br>Guardian report ready<br><span style="color:var(--purple2);">Craft Engineer reviews</span><br><span style="color:var(--purple2);">QA Advocate validates</span><br>PO reads + approves<br>Flag stays OFF<br>Live on server</div>
+        <div class="card-section-label">OUTPUT</div>
+        <div class="card-section-content">Preview URL for PO<br>Gate report surfaced<br>Awaiting approval</div>
       </div>
-      <div class="flow-cell highlight-monitor">
+
+      <div class="sdlc-step-card highlight-monitor">
         <div class="step-name">Monitor</div>
         <div class="step-sub">flag ON</div>
-      </div>
-    </div>
-
-    <!-- Detail rows -->
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;">
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--purple);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Intent Statement<br>System Memory<br>Capability Library<br>True north doc</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--blue);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">INPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Task from Orchestrator<br>Domain capability file<br>System Memory</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--teal);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">CHECKS</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Unit + integration tests<br>Lint + type check<br>Secrets scan<br>Bundle budget<br>Lighthouse score<br>Cost delta estimate</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--amber);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">GATE</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">All checks pass<br>Guardian report ready<br><span style="color:var(--purple2);">Craft Engineer reviews</span><br><span style="color:var(--purple2);">QA Advocate validates</span><br>PO reads + approves<br>Flag stays OFF<br>Live on server</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;border-top:2px solid var(--coral);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">SIGNALS</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">PO flips flag ON<br>Error rates<br>Perf metrics<br>Usage patterns<br>Client feedback<br>Cost actuals</div>
-      </div>
-
-      <!-- output row -->
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--purple);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Sequenced task list<br>Dependency signals to broker</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--blue);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Code + tests committed<br>Feature flag created<br>Flag set to OFF</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--teal);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Gate report (pass/fail)<br>Fix instructions (on fail)<br>Loop back to Builder</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--amber);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Preview URL for PO<br>Gate report surfaced<br>Awaiting approval</div>
-      </div>
-
-      <div style="background:var(--surface);border-radius:6px;padding:16px;margin-top:3px;border-top:2px solid var(--coral);">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;">OUTPUT</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;">Signals → client log<br>System Memory updated<br>Intent log entry<br>↻ next cycle begins</div>
+        <div class="card-section-label">SIGNALS</div>
+        <div class="card-section-content">PO flips flag ON<br>Error rates<br>Perf metrics<br>Usage patterns<br>Client feedback<br>Cost actuals</div>
+        <div class="card-section-label">OUTPUT</div>
+        <div class="card-section-content">Signals → client log<br>System Memory updated<br>Intent log entry<br>↻ next cycle begins</div>
       </div>
 
     </div>
