@@ -131,3 +131,11 @@ Change: Cycle 1 QA sign-off — all checks PASS. GA4 tag, nav.js?v=10, CSS varia
 Date: 2026-04-07
 Updated by: Fullstack Dev
 Change: Cycle 2 SDLC step cards restructure — replaced `/* ── FLOW ── */` CSS block with new `/* ── SDLC STEP CARDS ── */` block in idf.html; replaced `.flow-row` + inline detail grid HTML (Section 04) with `.sdlc-step-grid` containing 5 `.sdlc-step-card` divs; replaced `.flow-row` mobile media query rule with `.sdlc-step-grid` equivalent.
+
+Date: 2026-04-06
+Updated by: QA
+Change: Cycle 2 QA sign-off — all checks PASS. `.sdlc-step-grid`, `.sdlc-step-card`, `.card-section-label`, `.card-section-content`, and all 5 `highlight-*` modifiers verified with correct CSS variables. No `.flow-row` or `.flow-cell` remnants. Mobile media query correctly targets `.sdlc-step-grid`. All 5 card contents verified (Plan/Orchestrator, Build/Builder(s), Auto-test/Guardian, Deploy/flag OFF, Monitor/flag ON) with correct labels and color tokens. GA4 tag, `nav.js?v=10`, fail-path callouts (×4), SDD callout, and Mermaid diagram all intact.
+
+Date: 2026-04-07
+Updated by: Fullstack Dev
+Change: Cycle 3 playbook clarity fixes (18 coded references resolved) — replaced all W-code, C-code, T-code, and R-code parenthetical references in playbook.html with explicit language; Instance 10 resolved as anchor hyperlink `<a href="#t4" style="color:var(--teal2);">System Memory template</a>`; R-code instances (14, 15, 16) resolved with inlined rule meanings per Orchestrator decision.
