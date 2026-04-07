@@ -938,6 +938,9 @@
     section { break-inside: avoid; }
   }
 
+  /* ── CONTRIBUTE SECTION ── */
+  .section-contribute { padding: 64px 80px; }
+
   /* ── MOBILE ── */
   @media (max-width: 767px) {
 
@@ -997,6 +1000,15 @@
     .ritual-row .ritual-cadence::before { content: 'Trigger Type: '; font-weight: 600; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
     .ritual-row .ritual-trigger::before { content: 'Trigger + Participants: '; font-weight: 600; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
     .ritual-row .ritual-output::before  { content: 'Output: ';  font-weight: 600; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
+
+    /* Principles grid → single column */
+    .principles-grid { grid-template-columns: 1fr; }
+
+    /* SDLC flow row → single column */
+    .flow-row { grid-template-columns: 1fr; }
+
+    /* Contribute section padding */
+    .section-contribute { padding: 40px 20px; }
 
     /* Artifacts grid → single column */
     .artifacts-grid { grid-template-columns: 1fr; }
@@ -2238,7 +2250,7 @@ saved card data. Consider one-click payment for returning users.</div>
 </section>
 
 <!-- ═══════════════════ CONTRIBUTE ═══════════════════ -->
-<section style="padding:64px 80px;border-top:1px solid var(--border);text-align:center;">
+<section class="section-contribute" style="border-top:1px solid var(--border);text-align:center;">
   <div style="max-width:560px;margin:0 auto;">
     <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;">Open for collaboration</div>
     <h2 style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600;letter-spacing:-0.01em;margin-bottom:16px;">Want to help build IDF?</h2>

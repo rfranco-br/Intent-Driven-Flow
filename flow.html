@@ -167,6 +167,16 @@
     letter-spacing: 0.08em;
   }
 
+  .scroll-hint {
+    display: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    padding: 8px 20px;
+    text-align: center;
+  }
+
   @media (max-width: 767px) {
     .page-header { padding: 32px 20px 24px; }
     .page-header h1 { font-size: 28px; }
@@ -175,6 +185,7 @@
     .version-title { font-size: 18px; }
     .diagram-outer { padding: 20px 20px 36px; }
     .page-footer { padding: 28px 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    .scroll-hint { display: block; }
   }
 </style>
 </head>
@@ -210,6 +221,7 @@
       <div class="version-desc">Autonomous decomposition and execution. Orchestrator plans from Intent; Builder agents execute; Guardian validates and reports.</div>
     </div>
   </div>
+  <div class="scroll-hint">← scroll to see full diagram →</div>
   <div class="diagram-outer">
     <div class="diagram-inner">
 
@@ -479,6 +491,7 @@
       <div class="version-desc">Orchestrator, Builder, and Guardian replaced by an SDD Execution block — human-led, AI-assisted SDLC. Governance, gates, and strategic loop are identical.</div>
     </div>
   </div>
+  <div class="scroll-hint">← scroll to see full diagram →</div>
   <div class="diagram-outer">
     <div class="diagram-inner">
 
@@ -699,6 +712,6 @@
   <span>intent-driven-flow.com</span>
 </div>
 
-<script src="nav.js"></script>
+<script src="nav.js?v=10"></script>
 </body>
 </html>

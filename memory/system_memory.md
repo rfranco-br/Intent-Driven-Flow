@@ -121,5 +121,5 @@
 ## Last Updated
 
 Date: 2026-04-07
-Updated by: Orchestrator (initial setup)
-Change: Initial system memory created for agent team workflow
+Updated by: Fullstack Dev
+Change: Cycle 1 mobile responsiveness fixes — added `.principles-grid` and `.flow-row` mobile collapse rules + `.section-contribute` class with mobile override to `idf.html`; added `.principles-grid` collapse and `[style*="grid-template-columns:140px"]` override to `playbook.html`; added `.scroll-hint` CSS + HTML before both diagram sections in `flow.html`; updated `flow.html` nav.js reference to `nav.js?v=10`.

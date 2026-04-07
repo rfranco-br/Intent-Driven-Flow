@@ -518,6 +518,9 @@
     /* Footer */
     footer { padding: 28px 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
 
+    /* Principles grid -> single column */
+    .principles-grid { grid-template-columns: 1fr; }
+
     /* Manifesto / values grid -> single column */
     .manifesto-grid { grid-template-columns: 1fr; }
 
@@ -555,6 +558,11 @@
 
     /* Inline layer grids (120px label + content) */
     [style*="grid-template-columns:120px"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Intent anti-patterns table -> single column */
+    [style*="grid-template-columns:140px"] {
       grid-template-columns: 1fr !important;
     }
   }
