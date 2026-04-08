@@ -171,3 +171,11 @@ Change: Cycle 6 QA sign-off — PASS. All 4 W5 content rewrites verified: emerge
 Date: 2026-04-08
 Updated by: Fullstack Dev
 Change: Cycle 7 Gate Rituals framework changes in idf.html — added rule A06 (human gates validate alignment not output); updated Section 06 signal events (Intent Injection, Craft Review, Context Reset rows updated; Context Integrity Gate row added); updated Craft Engineer + QA Advocate role descriptions to reference Gate Ritual participation.
+
+Date: 2026-04-08
+Updated by: QA
+Change: Cycle 7 QA sign-off — PASS. All Gate Rituals changes verified in idf.html: Section 02 intro reads "Six rules"; A06 block present after R5 with correct text; Intent Injection output references Intent Alignment Gate + 30–60 min read window; Craft Review output names Output Alignment Gate with Craft Engineer/QA Advocate role split; Context Reset cadence is "Event-triggered" with Craft Engineer leads; Context Integrity Gate row present with dot-execution class, per-cycle cadence, CLEAN/FLAGGED output and INTENT_LOG reference; Craft Engineer role card ends with Context Integrity Gate, Intent Alignment Gate, Output Alignment Gate; QA Advocate role card ends with Intent Alignment Gate and Output Alignment Gate. Regression clean: GA4 tag and nav.js?v=10 intact.
+
+Date: 2026-04-08
+Updated by: Fullstack Dev
+Change: Cycle 8 W3 Craft Review — replaced COMING SOON stub with full Output Alignment Gate procedure (6 steps, APPROVED/FLAGGED two-outcome format, independent review model, maturity graduation callout) in playbook.html.

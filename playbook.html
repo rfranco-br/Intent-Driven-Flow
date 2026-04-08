@@ -871,10 +871,100 @@ Status: [ACTIVE / ADDRESSED — Cycle [number] / ARCHIVED]</div>
 <section id="w3">
   <div class="section-label">W3 — Workflows</div>
   <h2>Craft Review</h2>
-  <p style="max-width:640px;">What the Craft Engineer actually does during a review, step by step, from receiving Builder output to writing a disposition and encoding corrections back into the Capability Library.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <p style="max-width:640px;">Craft Review is the Output Alignment Gate. It runs after the Guardian produces a passing gate report and before the PO reads it. Its job is to answer the question automated checks cannot: does this output actually match what was intended? The Guardian validates execution. Craft Review validates alignment. Both are required before the PO decides.</p>
+
+  <!-- PRECONDITION callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">PRECONDITION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Guardian has produced a gate report. All automated checks have passed. The cycle's intent statement is available. If the Guardian report shows any failed check, do not run Craft Review — return to Guardian first. Craft Review validates intent alignment, not check failures.</div>
+  </div>
+
+  <!-- WHEN TO RUN callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:16px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHEN TO RUN CRAFT REVIEW</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Run Craft Review after every Guardian passing gate report, before the gate report is shown to the PO. Do not skip on "low-risk" cycles — the Guardian cannot evaluate semantic alignment regardless of cycle risk level. The only exception: cycles where the PO and Craft Engineer are the same person (solo practitioner configuration) — in that case the PO's gate review absorbs the Craft Review questions.</div>
+  </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Open the gate report and intent statement</div>
+        <div class="qs-desc">Craft Engineer and QA Advocate each receive the gate report and the original intent statement for the cycle. Do not read them together — run independent reviews first, share results after. Independent review prevents anchoring: the first reader's conclusion should not shape the second reader's.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Craft Engineer: review against intent mechanism</div>
+        <div class="qs-desc">Read the intent statement mechanism clause: "[outcome] by [mechanism]". Then read the build output: does what was built match the mechanism the intent specified? Check against the Capability Library: did the Builder follow the patterns for this type of change? Produce one of two verdicts: APPROVED (mechanism matched, patterns followed) or FLAGGED (mechanism drifted, pattern violated, or a capability file needs updating based on what you see).</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">QA Advocate: validate client outcome</div>
+        <div class="qs-desc">Read the intent statement outcome clause: "[client outcome]". Then validate the build as a real client would experience it — not as a tester verifying a test case. Ask: if a client used this right now, would they experience the outcome the intent promised? Produce one of two verdicts: APPROVED (client would get the outcome) or FLAGGED (client would not get the outcome, or would get a different outcome than promised).</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Share and compare verdicts</div>
+        <div class="qs-desc">Craft Engineer and QA Advocate share their independent verdicts. If both APPROVED: gate report is annotated APPROVED and passed to PO. If either FLAGGED: gate report is annotated FLAGGED and does not go to PO — go to step 05.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">Write the FLAG annotation (if flagged)</div>
+        <div class="qs-desc">The role that raised the FLAG writes a one-sentence annotation to the gate report: what was misaligned, and what the intent said. This annotation is what the PO or Orchestrator will read to understand the issue. Do not write a fix list — write the misalignment fact. Return the flagged gate report to the Orchestrator for replanning. Do not proceed to PO.</div>
+        <div class="qs-artifact-label">GATE REPORT — FLAG annotation</div>
+        <div class="qs-artifact">FLAGGED by [Craft Engineer / QA Advocate]:
+[what the output does] — intent specified [what it should do].</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">06</div>
+      <div class="qs-body">
+        <div class="qs-title">Write the APPROVED annotation (if approved)</div>
+        <div class="qs-desc">Both roles write a one-sentence confirmation to the gate report. Gate report now goes to PO for final release gate decision.</div>
+        <div class="qs-artifact-label">GATE REPORT — APPROVED annotation</div>
+        <div class="qs-artifact">Craft Engineer: Mechanism matched: [one sentence].
+QA Advocate: Client outcome confirmed: [one sentence].</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Maturity graduation callout (amber) -->
+  <div style="background:rgba(191,143,58,0.06);border:1px solid rgba(191,143,58,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--amber2);margin-bottom:8px;letter-spacing:0.08em;">MATURITY GRADUATION — QA ADVOCATE STEP</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">QA Advocate validation in step 03 may be graduated out when: gate first-pass rate is above 95% for 15 consecutive cycles and no semantic drift escapes have occurred in 20 cycles. At that point, Craft Engineer review alone (step 02) is sufficient, and step 03 becomes optional. Record the graduation date in System Memory. Teams that have graduated and then experience a semantic escape should re-engage full Craft Review immediately.</div>
+  </div>
+
+  <!-- Scope sidebar -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">CRAFT REVIEW DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— How to fix a flagged build — that is Builder work, triggered by Orchestrator replanning</div>
+      <div>— Whether to pass the gate — that is the PO's decision in Gate Review Decision</div>
+      <div>— Whether all automated checks passed — see Guardian gate report</div>
+      <div>— How to update the Capability Library after a pattern violation — see Writing Capability Library Entries</div>
+      <div>— How to write the intent statement correctly — see Writing Intent Statements</div>
+    </div>
   </div>
 </section>
 
