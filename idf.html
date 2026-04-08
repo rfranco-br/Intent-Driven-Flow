@@ -1164,7 +1164,7 @@
 <section>
   <div class="section-label">02 — Operating principles</div>
   <h2>The rules that govern everything</h2>
-  <p style="max-width:640px;">Five rules. Not subject to team preference — they are what makes IDF work. Read them once. Return when something feels wrong.</p>
+  <p style="max-width:640px;">Six rules. Not subject to team preference — they are what makes IDF work. Read them once. Return when something feels wrong.</p>
 
   <div class="axioms">
     <div class="axiom"><span class="axiom-num">R1</span><span class="axiom-text"><strong>Express outcomes, not instructions.</strong> The right input to the system is a clear statement of desired client outcome. Task lists, acceptance criteria, and implementation instructions are outputs of decomposition — not inputs to it. State what needs to be true for the client. Let the system determine how.</span></div>
@@ -1172,6 +1172,7 @@
     <div class="axiom"><span class="axiom-num">R3</span><span class="axiom-text"><strong>Every client-observable change ships behind a flag.</strong> Deployment and release are separate events. A change is deployed when it exists in production behind a Pending-OFF flag. It is released when a human flips it to Live-ON. Changes that do not affect client-observable behaviour — content fixes, config corrections, dependency bumps — are governed by version control, not flags. Dead flags left in the codebase expand the active context surface and increase drift probability — they must be removed.</span></div>
     <div class="axiom"><span class="axiom-num">R4</span><span class="axiom-text"><strong>Context is data plus intent — and it decays.</strong> An agent's understanding of the system is built from data: written records, logs, code, dashboards, signals. Its direction comes from intent: the outcome humans committed to. Neither survives without maintenance. Data that isn't reviewed drifts from reality. Intent that isn't recorded gets reinvented. A system that treats memory as a substitute for current, clean data is running on context that corrupts with every cycle.</span></div>
     <div class="axiom"><span class="axiom-num">R5</span><span class="axiom-text"><strong>Measure what reaches the client, not what moves inside the system.</strong> Cycle throughput and escape rate tell you if the system is healthy. Story points, commit counts, and hours worked do not. Drift from intent is normal — the failure is not detecting it before it reaches the client.</span></div>
+    <div class="axiom"><span class="axiom-num">A06</span><span class="axiom-text"><strong>Human gates validate alignment, not output.</strong> An automated check validates that code runs. A human gate validates that what runs is what was intended. These are different questions and require different readers. No automated gate replaces a human alignment gate. No human alignment gate replaces an automated check. Each serves a function the other cannot perform.</span></div>
   </div>
 </section>
 
@@ -1327,7 +1328,7 @@
       },
       craft: {
         name: 'Craft Engineer', type: 'human',
-        desc: 'A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge.',
+        desc: 'A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge. Runs the Context Integrity Gate before every cycle, the Intent Alignment Gate after each intent injection, and the Output Alignment Gate before the gate report reaches the PO.',
         attrs: [
           { k: 'Accountable for', v: 'Capability Library quality, agent training, craft standards' },
           { k: 'Produces',       v: 'Capability file updates, pattern escalations, craft annotations on gate reports' },
@@ -1337,7 +1338,7 @@
       },
       qa: {
         name: 'Quality Advocate', type: 'human',
-        desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify — and validates each deploy as a real user before the flag turns ON.',
+        desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify — and validates each deploy as a real user before the flag turns ON. Participates in the Intent Alignment Gate (raising concerns about testability before agents run) and the Output Alignment Gate (validating the client outcome before the PO reads the gate report).',
         attrs: [
           { k: 'Accountable for', v: 'Acceptance criteria, quality gate criteria, exploratory validation pre-flag' },
           { k: 'Produces',       v: 'Quality gate criteria updates, quality signals to client signal log, flag-ON recommendation' },
@@ -1745,7 +1746,7 @@ flowchart LR
       </div>
       <div class="ritual-cadence">Per cycle</div>
       <div class="ritual-trigger">Triggered by: cycle start or release gate approval of previous cycle<br>Participants: PO (+ Orchestrator reads output)</div>
-      <div class="ritual-output">One intent statement framed as a client outcome, logged in the Intent Log. Use the template: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">[outcome] by [mechanism], measured by [signal]</span>. Derive from client signal log, True North, and stakeholder priorities. The human expresses what must be true for the client — not a task list, not a feature. Orchestrator consumes and produces task list.</div>
+      <div class="ritual-output">One intent statement framed as a client outcome, logged in the Intent Log. Use the template: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">[outcome] by [mechanism], measured by [signal]</span>. Derive from client signal log, True North, and stakeholder priorities. The human expresses what must be true for the client — not a task list, not a feature. Orchestrator consumes and produces task list. Before the Orchestrator begins, the intent is shared with Craft Engineer and QA Advocate for a 30–60 minute read window (Intent Alignment Gate). Either role may raise a concern; no concern means the cycle proceeds.</div>
     </div>
 
     <div class="ritual-row">
@@ -1761,9 +1762,18 @@ flowchart LR
       <div>
         <div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Reset</div>
       </div>
-      <div class="ritual-cadence">Every 5–10 cycles</div>
-      <div class="ritual-trigger">Triggered by: cycle count or detected context drift<br>Participants: Orchestrator + Tech Lead review</div>
+      <div class="ritual-cadence">Event-triggered</div>
+      <div class="ritual-trigger">Triggered by: detected context drift or staleness signal<br>Participants: Craft Engineer (leads) + PO (acknowledges at next intent injection)</div>
       <div class="ritual-output">Required output: pruned System Memory with a diff showing what was removed, confirmed Capability Library accuracy, Dead-OFF flags identified and removed with their System Memory entries. See Section 10 for the full audit checklist.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Integrity Gate</div>
+      </div>
+      <div class="ritual-cadence">Per cycle</div>
+      <div class="ritual-trigger">Triggered by: cycle start, before Orchestrator begins<br>Participants: Craft Engineer</div>
+      <div class="ritual-output">Craft Engineer confirms System Memory and Capability Library reflect current reality. Takes 10 minutes. Result logged as <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Context check: CLEAN / FLAGGED</span> in the cycle's INTENT_LOG entry. FLAGGED triggers a scoped Context Reset before the cycle proceeds. This is the Context Integrity Gate — not the full audit, but the pre-flight that prevents context noise from contaminating the next cycle.</div>
     </div>
 
     <div class="ritual-row">
@@ -1790,7 +1800,7 @@ flowchart LR
       </div>
       <div class="ritual-cadence">Per deploy, pre-flag</div>
       <div class="ritual-trigger">Triggered by: Guardian gate report passing auto-checks<br>Participants: Craft Engineer (output quality) + Quality Advocate (exploratory validation)</div>
-      <div class="ritual-output">Craft annotation on gate report + QA Advocate flag-ON recommendation. Issues either block the flag or generate a capability file update. Low-risk cycles (copy, styling, config) may have abbreviated craft review — exploratory validation always required.</div>
+      <div class="ritual-output">Craft Engineer validates output against the intent mechanism ('does this match how the intent said to achieve it?'). QA Advocate validates against the client outcome ('does this produce what the client was supposed to get?'). Both responses appended to gate report. Either may FLAG before the PO reads the report. This is the Output Alignment Gate.</div>
     </div>
 
     <div class="ritual-row">

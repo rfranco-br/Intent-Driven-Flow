@@ -163,3 +163,11 @@ Change: Cycle 5 QA sign-off — PASS. W5 full section verified (7 steps, both ca
 Date: 2026-04-08
 Updated by: Fullstack Dev
 Change: Cycle 6 W5 reframe — Context Reset repositioned from scheduled maintenance to emergency brake; removed proactive cadence trigger; narrowed default scope to single artifact; removed PO pre-approval gate from step 07.
+
+Date: 2026-04-08
+Updated by: QA
+Change: Cycle 6 QA sign-off — PASS. All 4 W5 content rewrites verified: emergency brake opening paragraph, 5-trigger WHEN TO RUN (proactive cadence absent), step 01 scope narrowed to single artifact, step 07 PO pre-approval gate removed. POST-RESET CHECKLIST unchanged (7 items). Regression clean: GA4 tag and nav.js?v=10 intact.
+
+Date: 2026-04-08
+Updated by: Fullstack Dev
+Change: Cycle 7 Gate Rituals framework changes in idf.html — added rule A06 (human gates validate alignment not output); updated Section 06 signal events (Intent Injection, Craft Review, Context Reset rows updated; Context Integrity Gate row added); updated Craft Engineer + QA Advocate role descriptions to reference Gate Ritual participation.
