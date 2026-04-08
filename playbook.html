@@ -1014,7 +1014,7 @@ Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of us
 <section id="w5">
   <div class="section-label">W5 — Workflows</div>
   <h2>Context Reset</h2>
-  <p style="max-width:640px;">Context Reset has one job: audit every persistent artifact for staleness, conflicts, and decay before the next cycle begins. It is not a retrospective. It is not a planning meeting. It is a targeted artifact hygiene operation — the step that ensures what agents read is still accurate before they execute. Stale context corrupts agent decisions. A Context Reset is how the team prevents that corruption from compounding across cycles.</p>
+  <p style="max-width:640px;">Context Reset is the emergency brake. It runs when something is visibly wrong — an agent is drifting, a cycle failed with an unclear cause, or a structural change happened that the artifacts do not yet reflect. It does not run on a schedule. Between resets, artifacts stay current because stewards update them as they work: System Memory after every significant decision, the Capability Library after every Craft Review, the Client Signal Log after every triage session. A team that runs Context Resets on a schedule has a maintenance problem, not a methodology.</p>
 
   <!-- PRECONDITION callout -->
   <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
@@ -1030,8 +1030,7 @@ Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of us
       — When System Memory has not been updated in 3 or more cycles<br>
       — When a role changed hands<br>
       — When the tech stack changed materially<br>
-      — When agents begin producing unexpected output patterns<br>
-      — Proactively every 5–7 cycles even if no trigger fires — artifact decay is gradual; waiting for a visible trigger means some decay has already affected work
+      — When agents begin producing unexpected output patterns
     </div>
   </div>
 
@@ -1043,7 +1042,7 @@ Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of us
       <div class="qs-num">01</div>
       <div class="qs-body">
         <div class="qs-title">Confirm scope</div>
-        <div class="qs-desc">PO and Craft Engineer agree on which artifacts are in scope for this reset. The default scope is: System Memory, Capability Library, Client Signal Log. Optional scope: Feature Governance Registry, Drift Register, TRUE_NORTH. Scope should match the trigger — if only System Memory is stale, a full five-artifact audit is waste. If a role changed hands, all artifacts are in scope because every artifact reflects assumptions made by the previous role-holder. Agree and write down the scope before any audit begins.</div>
+        <div class="qs-desc">Identify the artifact closest to the failure. Start there — do not open a five-artifact audit because one trigger fired. The default scope is one artifact: the one most likely to explain the symptom. Expand scope only if the audit reveals the problem is systemic — for example, a role handoff that touched every artifact, or a tech stack change that invalidated assumptions across multiple files. Write down the scope before beginning. A scope that grows during the audit is a sign of a different problem: the artifacts were not being maintained between cycles.</div>
       </div>
     </div>
 
@@ -1096,7 +1095,7 @@ Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of us
       <div class="qs-num">07</div>
       <div class="qs-body">
         <div class="qs-title">Signal reset complete</div>
-        <div class="qs-desc">Craft Engineer confirms to PO: all in-scope artifacts audited, no known conflicts, team ready to execute the next cycle. PO signs off. The next cycle's intent injection begins from the reset state — agents receive the updated context as their starting state, not the pre-reset state. Before sign-off, run the post-reset checklist.</div>
+        <div class="qs-desc">Craft Engineer confirms the audit is complete: in-scope artifacts updated, no known conflicts. The PO does not need to approve the reset before it begins — the Craft Engineer leads it. The PO acknowledges the result at the next intent injection, where the updated artifacts become the starting context for the new cycle. Before closing the reset, run the post-reset checklist.</div>
         <div class="qs-artifact-label">POST-RESET CHECKLIST</div>
         <div class="qs-artifact" style="background:rgba(191,143,58,0.06);border:1px solid rgba(191,143,58,0.2);border-left:3px solid var(--amber);">□  System Memory: last-reviewed date reflects this reset
 □  Capability Library: no files describing deprecated behavior
