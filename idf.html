@@ -956,31 +956,31 @@
   /* ── SECTION 06 THREE-ZONE DIAGRAM ── */
   .s06-diagram { margin-top: 40px; overflow-x: auto; }
   .s06-inner {
-    min-width: 980px;
+    min-width: 1300px;
     display: grid;
-    grid-template-columns: 1fr 174px;
-    gap: 20px;
+    grid-template-columns: 1fr 210px;
+    gap: 28px;
     align-items: start;
   }
   .s06-loops { display: flex; flex-direction: column; gap: 0; }
   .loop-zone {
-    border-radius: 12px;
-    padding: 18px 20px;
+    border-radius: 14px;
+    padding: 24px 28px;
     position: relative;
   }
   .loop-zone-header {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    margin-bottom: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 22px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
   .loop-zone-timescale {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 400;
     font-style: italic;
     color: var(--text3);
@@ -990,95 +990,130 @@
   .s06-flow-row {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
     flex-wrap: nowrap;
   }
-  .s06-arrow { font-size: 13px; color: var(--border2); flex-shrink: 0; }
-  /* Human-driven node — trapezoid via clip-path */
-  .node-human-wrap { filter: drop-shadow(0 0 1.5px rgba(232,115,74,0.45)); flex-shrink: 0; }
+  .s06-arrow { font-size: 16px; color: var(--border2); flex-shrink: 0; }
+  /* Human-driven node — trapezoid */
+  .node-human-wrap { filter: drop-shadow(0 0 2px rgba(232,115,74,0.5)); flex-shrink: 0; }
   .node-human-inner {
     clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-    background: rgba(232,115,74,0.13);
-    padding: 10px 14px;
-    text-align: center;
-    min-width: 90px;
-  }
-  /* Slow loop human nodes use blue tint */
-  .node-human-blue { filter: drop-shadow(0 0 1.5px rgba(74,122,191,0.5)); flex-shrink: 0; }
-  .node-human-blue-inner {
-    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-    background: rgba(74,122,191,0.15);
-    padding: 12px 18px;
+    background: rgba(232,115,74,0.15);
+    padding: 14px 20px;
     text-align: center;
     min-width: 110px;
+  }
+  /* Slow loop nodes — blue trapezoid */
+  .node-human-blue { filter: drop-shadow(0 0 2px rgba(74,122,191,0.55)); flex-shrink: 0; }
+  .node-human-blue-inner {
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    background: rgba(74,122,191,0.17);
+    padding: 18px 28px;
+    text-align: center;
+    min-width: 140px;
   }
   /* Agent node — rounded pill */
   .node-agent-pill {
     background: rgba(124,92,191,0.14);
-    border: 1px solid rgba(124,92,191,0.32);
-    border-radius: 20px;
-    padding: 7px 16px;
-    font-size: 11px;
+    border: 1px solid rgba(124,92,191,0.35);
+    border-radius: 24px;
+    padding: 10px 20px;
+    font-size: 13px;
     color: var(--purple2);
     font-family: 'IBM Plex Mono', monospace;
     text-align: center;
     white-space: nowrap;
   }
-  .node-label { font-size: 10px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .node-sub { font-family: 'IBM Plex Mono', monospace; font-size: 8px; color: var(--text3); margin-top: 2px; }
+  .node-label { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.35; }
+  .node-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3); margin-top: 5px; }
   .node-badge {
     display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px;
+    font-size: 10px;
     color: var(--teal2);
-    border: 1px solid rgba(91,191,149,0.3);
-    border-radius: 2px;
-    padding: 0 4px;
+    border: 1px solid rgba(91,191,149,0.35);
+    border-radius: 3px;
+    padding: 2px 7px;
     width: fit-content;
-    margin: 0 auto 4px;
+    margin: 0 auto 7px;
+    letter-spacing: 0.06em;
   }
   /* Agent Execution container */
   .agent-exec-box {
     border: 1px solid var(--border2);
-    border-radius: 10px;
+    border-radius: 12px;
     background: var(--surface2);
-    padding: 10px 14px;
+    padding: 16px 20px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     align-items: center;
   }
   .agent-exec-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px;
+    font-size: 10px;
     color: var(--text3);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+  }
+  /* Loop edge arrows (thick CSS arrows) */
+  .loop-arrow-left {
+    display: flex;
+    align-items: center;
+  }
+  .loop-arrow-left-head {
+    width: 0; height: 0;
+    border-right: 16px solid;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    flex-shrink: 0;
+  }
+  .loop-arrow-left-body {
+    flex: 1;
+    height: 4px;
+    border-radius: 0 2px 2px 0;
+  }
+  .loop-arrow-right {
+    display: flex;
+    align-items: center;
+  }
+  .loop-arrow-right-body {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px 0 0 2px;
+  }
+  .loop-arrow-right-head {
+    width: 0; height: 0;
+    border-left: 16px solid;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    flex-shrink: 0;
   }
   /* Memory sidebar */
   .s06-memory { display: flex; flex-direction: column; }
   .memory-header {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 600;
     color: var(--text3);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-align: center;
-    padding: 8px 6px 10px;
+    padding: 10px 6px 12px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .memory-item {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
     background: rgba(191,143,58,0.08);
-    border: 1px solid rgba(191,143,58,0.2);
-    border-radius: 4px;
-    padding: 5px 7px;
-    margin-bottom: 4px;
+    border: 1px solid rgba(191,143,58,0.22);
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 5px;
   }
   .memory-arrows {
     display: flex;
@@ -1087,11 +1122,11 @@
     align-items: center;
     flex-shrink: 0;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px;
+    font-size: 9px;
     color: var(--text3);
-    line-height: 1.2;
+    line-height: 1.4;
   }
-  .memory-name { font-size: 10px; color: var(--text2); line-height: 1.3; }
+  .memory-name { font-size: 11px; color: var(--text2); line-height: 1.4; }
   .gate-ritual-badge {
     display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
@@ -1975,153 +2010,183 @@ flowchart LR
       <!-- ═══ LEFT: LOOPS ═══ -->
       <div class="s06-loops">
 
-        <!-- SLOW LOOP — right-aligned -->
-        <div style="display:flex;justify-content:flex-end;margin-bottom:0;">
-          <div class="loop-zone" style="width:58%;border:1.5px solid rgba(74,122,191,0.4);background:rgba(74,122,191,0.04);">
-            <div style="position:absolute;top:10px;right:14px;font-size:16px;color:rgba(74,122,191,0.3);">↺</div>
-            <div class="loop-zone-header" style="color:var(--blue2);">
-              Strategy — Slow Loop
-              <span class="loop-zone-timescale">weeks/months</span>
+        <!-- ─── SLOW LOOP — right-aligned ─── -->
+        <div style="display:flex;justify-content:flex-end;">
+          <div style="width:62%;position:relative;">
+            <!-- Top loop arrow: ← spanning full width (loop recirculates True North → Strategic Alignment) -->
+            <div class="loop-arrow-left" style="position:absolute;top:-5px;left:24px;right:24px;z-index:2;">
+              <div class="loop-arrow-left-head" style="border-right-color:rgba(74,122,191,0.75);"></div>
+              <div class="loop-arrow-left-body" style="background:rgba(74,122,191,0.75);"></div>
             </div>
-            <div class="s06-flow-row" style="justify-content:center;">
-              <!-- Strategic Alignment -->
-              <div class="node-human-blue">
-                <div class="node-human-blue-inner">
-                  <div class="node-label" style="color:var(--blue2);">Strategic Alignment</div>
-                  <div class="node-sub">monthly / quarterly</div>
+            <div class="loop-zone" style="border:2px solid rgba(74,122,191,0.45);background:rgba(74,122,191,0.05);padding-top:28px;">
+              <div class="loop-zone-header" style="color:var(--blue2);">
+                Strategy — Slow Loop
+                <span class="loop-zone-timescale">weeks/months</span>
+              </div>
+              <div class="s06-flow-row" style="justify-content:center;gap:28px;">
+                <!-- Strategic Alignment -->
+                <div class="node-human-blue">
+                  <div class="node-human-blue-inner">
+                    <div class="node-label" style="font-size:13px;color:var(--blue2);">Strategic Alignment</div>
+                    <div class="node-sub">monthly / quarterly</div>
+                  </div>
+                </div>
+                <span class="s06-arrow" style="font-size:20px;">→</span>
+                <!-- True North -->
+                <div class="node-human-blue">
+                  <div class="node-human-blue-inner">
+                    <div style="font-size:16px;font-weight:700;color:var(--blue2);line-height:1.2;">True North</div>
+                    <div class="node-sub">strategy document</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Bottom loop arrow: → pointing right (feeds into fast loop below) -->
+              <div class="loop-arrow-right" style="margin-top:20px;">
+                <div class="loop-arrow-right-body" style="background:rgba(74,122,191,0.75);"></div>
+                <div class="loop-arrow-right-head" style="border-left-color:rgba(74,122,191,0.75);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONNECTOR: slow → fast (feeds intent) -->
+        <div style="display:flex;justify-content:flex-end;padding-right:calc(19% + 28px);">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 0;">
+            <div style="width:2px;height:16px;background:rgba(58,158,120,0.6);border-radius:1px;"></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);padding:2px 8px;border:1px solid var(--border);border-radius:3px;background:var(--surface2);">feeds intent</div>
+            <div style="font-size:12px;color:rgba(58,158,120,0.7);">↓</div>
+            <div style="width:2px;height:16px;background:rgba(58,158,120,0.6);border-radius:1px;"></div>
+          </div>
+        </div>
+
+        <!-- ─── FAST LOOP ─── -->
+        <div style="position:relative;">
+          <!-- Top loop arrow: ← pointing left (next cycle loops back to start) -->
+          <div class="loop-arrow-left" style="position:absolute;top:-5px;left:24px;right:24px;z-index:2;">
+            <div class="loop-arrow-left-head" style="border-right-color:rgba(58,158,120,0.75);"></div>
+            <div class="loop-arrow-left-body" style="background:rgba(58,158,120,0.75);"></div>
+          </div>
+          <div class="loop-zone" style="border:2px solid rgba(58,158,120,0.45);background:rgba(58,158,120,0.035);padding-top:28px;margin-bottom:20px;">
+            <div class="loop-zone-header" style="color:var(--teal2);">
+              Cycle — Fast Loop
+              <span class="loop-zone-timescale">hours/days</span>
+            </div>
+            <div class="s06-flow-row">
+
+              <!-- Gate 2: Context Integrity Gate -->
+              <div class="node-human-wrap">
+                <div class="node-human-inner">
+                  <div class="node-badge">Gate 2</div>
+                  <div class="node-label">Context Integrity Gate</div>
+                  <div class="node-sub">Craft Engineer · ~10 min</div>
                 </div>
               </div>
               <span class="s06-arrow">→</span>
-              <!-- True North -->
-              <div class="node-human-blue">
-                <div class="node-human-blue-inner">
-                  <div style="font-size:13px;font-weight:700;color:var(--blue2);line-height:1.2;">True North</div>
-                  <div class="node-sub">strategy document</div>
+
+              <!-- Intent Injection -->
+              <div class="node-human-wrap">
+                <div class="node-human-inner">
+                  <div class="node-label">Intent Injection</div>
+                  <div class="node-sub">Product Owner</div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+              <span class="s06-arrow">→</span>
 
-        <!-- CONNECTOR: slow → fast -->
-        <div style="display:flex;justify-content:flex-end;padding-right:calc(21% + 20px);">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 0;">
-            <div style="width:1px;height:14px;background:rgba(58,158,120,0.5);"></div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);padding:1px 6px;border:1px solid var(--border);border-radius:2px;background:var(--surface2);">feeds intent</div>
-            <div style="font-size:10px;color:rgba(58,158,120,0.6);">↓</div>
-            <div style="width:1px;height:14px;background:rgba(58,158,120,0.5);"></div>
-          </div>
-        </div>
-
-        <!-- FAST LOOP -->
-        <div class="loop-zone" style="border:1.5px solid rgba(58,158,120,0.4);background:rgba(58,158,120,0.03);margin-bottom:16px;">
-          <div style="position:absolute;top:10px;right:14px;font-size:16px;color:rgba(58,158,120,0.3);">↻</div>
-          <div class="loop-zone-header" style="color:var(--teal2);">
-            Cycle — Fast Loop
-            <span class="loop-zone-timescale">hours/days</span>
-          </div>
-          <div class="s06-flow-row">
-
-            <!-- Gate 2: Context Integrity Gate -->
-            <div class="node-human-wrap">
-              <div class="node-human-inner">
-                <div class="node-badge">Gate 2</div>
-                <div class="node-label">Context Integrity Gate</div>
-                <div class="node-sub">CE · ~10 min</div>
-              </div>
-            </div>
-            <span class="s06-arrow">→</span>
-
-            <!-- Intent Injection -->
-            <div class="node-human-wrap">
-              <div class="node-human-inner">
-                <div class="node-label">Intent Injection</div>
-                <div class="node-sub">Product Owner</div>
-              </div>
-            </div>
-            <span class="s06-arrow">→</span>
-
-            <!-- Gate 1: Intent Alignment Gate -->
-            <div class="node-human-wrap">
-              <div class="node-human-inner">
-                <div class="node-badge">Gate 1</div>
-                <div class="node-label">Intent Alignment Gate</div>
-                <div class="node-sub">CE + QA · 30–60 min</div>
-              </div>
-            </div>
-            <span class="s06-arrow">→</span>
-
-            <!-- Agent Execution -->
-            <div class="agent-exec-box">
-              <div class="agent-exec-title">Agent Execution</div>
-              <div style="display:flex;flex-direction:column;gap:4px;width:100%;">
-                <div class="node-agent-pill">Orchestrator</div>
-                <div class="node-agent-pill">Builder(s)</div>
-                <div class="node-agent-pill">Guardian(s)</div>
-              </div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--teal2);font-style:italic;margin-top:2px;">Can be replaced by SDD</div>
-            </div>
-            <span class="s06-arrow">→</span>
-
-            <!-- Gate 3: Craft Review -->
-            <div class="node-human-wrap">
-              <div class="node-human-inner">
-                <div class="node-badge">Gate 3</div>
-                <div class="node-label">Craft Review</div>
-                <div class="node-sub">CE + QA · pre-flag</div>
-              </div>
-            </div>
-            <span class="s06-arrow">→</span>
-
-            <!-- Release Gate -->
-            <div class="node-human-wrap" style="filter:drop-shadow(0 0 1.5px rgba(232,115,74,0.6));">
-              <div class="node-human-inner">
-                <div class="node-label">Release Gate</div>
-                <div class="node-sub">Product Owner</div>
-                <div style="margin-top:4px;display:flex;flex-direction:column;gap:1px;">
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--teal2);">PASS → flag ON</span>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--amber2);">FLAG → review</span>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--coral);">FAIL → re-plan</span>
+              <!-- Gate 1: Intent Alignment Gate -->
+              <div class="node-human-wrap">
+                <div class="node-human-inner">
+                  <div class="node-badge">Gate 1</div>
+                  <div class="node-label">Intent Alignment Gate</div>
+                  <div class="node-sub">CE + QA · 30–60 min</div>
                 </div>
               </div>
-            </div>
+              <span class="s06-arrow">→</span>
 
+              <!-- Agent Execution -->
+              <div class="agent-exec-box">
+                <div class="agent-exec-title">Agent Execution</div>
+                <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                  <div class="node-agent-pill">Orchestrator</div>
+                  <div class="node-agent-pill">Builder(s)</div>
+                  <div class="node-agent-pill">Guardian(s)</div>
+                </div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);font-style:italic;margin-top:6px;">Can be replaced by SDD</div>
+              </div>
+              <span class="s06-arrow">→</span>
+
+              <!-- Gate 3: Craft Review -->
+              <div class="node-human-wrap">
+                <div class="node-human-inner">
+                  <div class="node-badge">Gate 3</div>
+                  <div class="node-label">Craft Review</div>
+                  <div class="node-sub">CE + QA · pre-flag</div>
+                </div>
+              </div>
+              <span class="s06-arrow">→</span>
+
+              <!-- Release Gate -->
+              <div class="node-human-wrap" style="filter:drop-shadow(0 0 2px rgba(232,115,74,0.65));">
+                <div class="node-human-inner">
+                  <div class="node-label">Release Gate</div>
+                  <div class="node-sub">Product Owner</div>
+                  <div style="margin-top:6px;display:flex;flex-direction:column;gap:2px;">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);">PASS → flag ON</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);">FLAG → review</span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral);">FAIL → re-plan</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- Bottom loop arrow: → pointing right (cycle continues / feeds monitor) -->
+            <div class="loop-arrow-right" style="margin-top:20px;">
+              <div class="loop-arrow-right-body" style="background:rgba(58,158,120,0.75);"></div>
+              <div class="loop-arrow-right-head" style="border-left-color:rgba(58,158,120,0.75);"></div>
+            </div>
           </div>
         </div>
 
-        <!-- MONITOR — centered -->
+        <!-- ─── MONITOR — centered ─── -->
         <div style="display:flex;justify-content:center;">
-          <div class="loop-zone" style="width:68%;border:1.5px dashed rgba(106,104,120,0.45);background:transparent;">
-            <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:var(--bg);padding:0 8px;">
-              <span style="font-size:9px;color:rgba(106,104,120,0.5);">▷▷▷</span>
+          <div style="width:72%;position:relative;">
+            <!-- Top ▷▷▷ -->
+            <div style="display:flex;justify-content:center;gap:6px;margin-bottom:4px;">
+              <span style="font-size:14px;color:rgba(106,104,120,0.55);">▷</span>
+              <span style="font-size:14px;color:rgba(106,104,120,0.55);">▷</span>
+              <span style="font-size:14px;color:rgba(106,104,120,0.55);">▷</span>
             </div>
-            <div class="loop-zone-header" style="color:var(--text2);">Monitor — Continuous</div>
-            <div class="s06-flow-row" style="justify-content:center;gap:10px;flex-wrap:wrap;">
-              <div class="node-agent-pill">Client Signals</div>
-              <div class="node-agent-pill">Dependencies Sync</div>
-              <div class="node-agent-pill">Reported Issues</div>
+            <div class="loop-zone" style="border:2px dashed rgba(106,104,120,0.4);background:transparent;">
+              <div class="loop-zone-header" style="color:var(--text2);justify-content:center;">Monitor — Continuous</div>
+              <div class="s06-flow-row" style="justify-content:center;gap:16px;flex-wrap:wrap;">
+                <div class="node-agent-pill">Client Signals</div>
+                <div class="node-agent-pill">Dependencies Sync</div>
+                <div class="node-agent-pill">Reported Issues</div>
+              </div>
             </div>
-            <div style="position:absolute;bottom:-11px;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:var(--bg);padding:0 8px;">
-              <span style="font-size:9px;color:rgba(106,104,120,0.5);">▷▷▷</span>
+            <!-- Bottom ▷▷▷ -->
+            <div style="display:flex;justify-content:center;gap:6px;margin-top:4px;">
+              <span style="font-size:14px;color:rgba(106,104,120,0.55);">▷</span>
+              <span style="font-size:14px;color:rgba(106,104,120,0.55);">▷</span>
+              <span style="font-size:14px;color:rgba(106,104,120,0.55);">▷</span>
             </div>
           </div>
         </div>
 
         <!-- LEGEND -->
-        <div style="display:flex;gap:24px;margin-top:28px;padding-left:2px;flex-wrap:wrap;align-items:center;">
-          <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">
-            <div style="filter:drop-shadow(0 0 1px rgba(232,115,74,0.4));">
-              <div style="clip-path:polygon(10% 0%,90% 0%,100% 100%,0% 100%);background:rgba(232,115,74,0.13);width:34px;height:18px;"></div>
+        <div style="display:flex;gap:28px;margin-top:32px;padding-left:4px;flex-wrap:wrap;align-items:center;">
+          <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">
+            <div style="filter:drop-shadow(0 0 1.5px rgba(232,115,74,0.45));">
+              <div style="clip-path:polygon(10% 0%,90% 0%,100% 100%,0% 100%);background:rgba(232,115,74,0.15);width:42px;height:22px;"></div>
             </div>
             Human Driven + AI Assisted
           </div>
-          <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">
-            <div style="background:rgba(124,92,191,0.14);border:1px solid rgba(124,92,191,0.32);border-radius:20px;width:34px;height:18px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">
+            <div style="background:rgba(124,92,191,0.14);border:1px solid rgba(124,92,191,0.35);border-radius:24px;width:42px;height:22px;"></div>
             AI Execution
           </div>
-          <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">
-            <div style="position:relative;width:22px;height:18px;background:rgba(191,143,58,0.12);border:1px solid rgba(191,143,58,0.3);border-radius:2px;overflow:hidden;">
-              <div style="position:absolute;top:0;right:0;border-left:6px solid transparent;border-top:6px solid var(--bg);"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">
+            <div style="position:relative;width:26px;height:22px;background:rgba(191,143,58,0.12);border:1px solid rgba(191,143,58,0.3);border-radius:2px;overflow:hidden;">
+              <div style="position:absolute;top:0;right:0;border-left:8px solid transparent;border-top:8px solid var(--bg);"></div>
             </div>
             Artifacts
           </div>
