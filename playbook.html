@@ -1242,9 +1242,128 @@ Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of us
   <div class="section-label">W6 — Workflows</div>
   <h2>Escape Hatch Protocol</h2>
   <p style="max-width:640px;">When to correct intent mid-cycle versus completing the cycle and logging drift — the decision criteria and the exact steps for each path.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <!-- Path decision callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">TWO PATHS</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">When something changes mid-cycle, there are exactly two valid responses. <strong style="color:var(--text);">Path A</strong> stops the cycle and replans from scratch. <strong style="color:var(--text);">Path B</strong> lets the cycle finish and logs the drift for the next intent. The decision is not about severity — it is about whether the intent outcome itself is still valid.</div>
+  </div>
+
+  <!-- Two-path cards -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;max-width:860px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--coral);border-radius:8px;padding:20px 22px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.08em;margin-bottom:12px;">PATH A — INTERRUPT</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px;">Stop the Orchestrator. Issue a correction statement. The cycle replans from scratch against a corrected intent.</p>
+      <p style="font-size:12px;color:var(--text3);line-height:1.5;">Use when: the intent outcome itself is no longer valid, or a key constraint the intent assumed has changed. The build so far is discarded. A wrong cycle completed is worse than a replanned cycle.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--teal);border-radius:8px;padding:20px 22px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);letter-spacing:0.08em;margin-bottom:12px;">PATH B — COMPLETE AND LOG</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px;">Let the cycle finish. Capture the drift in the Drift Register. Feed it into the next intent.</p>
+      <p style="font-size:12px;color:var(--text3);line-height:1.5;">Use when: the intent was correct but execution drifted from it — the Builder made a different technical choice than the mechanism specified, but the outcome is still achievable. The build is done; assess it at the gate.</p>
+    </div>
+  </div>
+
+  <!-- Decision table -->
+  <h3 style="margin-top:48px;margin-bottom:12px;">The decision criteria</h3>
+  <div style="display:grid;grid-template-columns:1fr auto;gap:3px;border:1px solid var(--border);border-radius:8px;overflow:hidden;max-width:680px;">
+    <div style="background:var(--surface2);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Signal</div>
+    <div style="background:var(--surface2);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Path</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">The intent outcome itself is no longer valid</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--coral);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);white-space:nowrap;">A — Interrupt</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">A key constraint the intent assumed has changed</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--coral);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);white-space:nowrap;">A — Interrupt</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">The mechanism is wrong but the outcome is still achievable</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);white-space:nowrap;">B — Complete</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">The build drifted from the mechanism but the output is usable</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);white-space:nowrap;">B — Complete</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">The Orchestrator is executing against stale context</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--coral);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);white-space:nowrap;">A — Interrupt<br><span style="font-size:11px;color:var(--text3);font-weight:400;">+ trigger W8 before resuming</span></div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">A dependency blocked a task and remaining tasks would produce the wrong outcome</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--coral);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);white-space:nowrap;">A — Interrupt</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.5;border-top:1px solid var(--bg);">A dependency blocked a task but remaining tasks produce a valid partial outcome</div>
+    <div style="background:var(--surface);padding:12px 14px;font-size:13px;color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-weight:600;border-top:1px solid var(--bg);white-space:nowrap;">B — Complete</div>
+  </div>
+
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:14px 18px;margin-top:16px;font-size:13px;color:var(--text2);line-height:1.7;max-width:680px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.08em;">DEFAULT — </span>If uncertain which path applies, choose Path B and let the gate decide. The gate (W3 Craft Review) is designed to catch semantic drift. Do not interrupt unless the outcome itself is at risk.
+  </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Detect the signal</div>
+        <div class="qs-desc">Something changed or was discovered during the cycle. Before acting: write down what changed and why it matters. A correction made without a clear written reason is scope creep, not an escape hatch. The written reason is what distinguishes a legitimate mid-cycle correction from a team member changing their mind.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Apply the decision criteria</div>
+        <div class="qs-desc">Use the decision table above. If the outcome validity is affected: Path A. If only the mechanism drifted: Path B. If uncertain: default to Path B and let the gate decide. The Craft Engineer runs the gate (W3) specifically to catch semantic drift that the automated checks miss — that is the gate's job, not the escape hatch's.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Path A — Issue correction statement</div>
+        <div class="qs-desc">Write a correction statement to the Orchestrator. The Orchestrator stops, logs the correction in the Drift Register, and replans against the corrected intent. The cycle restarts from step 01 of the current cycle. The build so far is discarded — do not attempt to salvage partial work from a cycle that was running against wrong intent.</div>
+        <div class="qs-artifact-label">CORRECTION STATEMENT — format</div>
+        <div class="qs-artifact">CORRECTION: [original intent or constraint] is no longer valid
+because [reason].
+Correct intent: [new outcome or corrected constraint].</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Path B — Log and continue</div>
+        <div class="qs-desc">Write a drift entry in the Drift Register: what drifted, why, and what the next cycle should address. Continue the cycle. At the gate (W4), the PO will see the drift log as part of the gate report context. The PO may still FLAG or FAIL if the drift is severe — but that is the gate's job. Logging the drift is not a decision to accept it; it is a record for the gate to evaluate.</div>
+        <div class="qs-artifact-label">DRIFT REGISTER — escape entry</div>
+        <div class="qs-artifact">## Drift — Cycle [N]
+Date: YYYY-MM-DD
+Type: Mechanism drift (Path B escape)
+
+What drifted:
+[One sentence: what the mechanism specified vs. what the Builder did.]
+
+Why:
+[One sentence: the reason the mechanism was not followed.]
+
+Next cycle input:
+[One sentence: what the next intent should address as a result of this drift.]</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">Close the escape</div>
+        <div class="qs-desc">After either path: record the escape in the INTENT_LOG entry for this cycle under an <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral2);">Escape:</code> field. This record exists so the next Context Integrity Gate (W8) and any future Context Reset (W5) can account for the correction. An escape that is not logged here is invisible to future cycles.</div>
+        <div class="qs-artifact-label">INTENT_LOG — Escape field</div>
+        <div class="qs-artifact">Escape: ESCAPE — Path [A/B]: [one sentence describing what changed].</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scope sidebar -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">ESCAPE HATCH PROTOCOL DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— How to detect context drift — see System Memory (Artifact Templates) staleness signals</div>
+      <div>— How to run a Context Reset — see Context Reset (W5)</div>
+      <div>— How to rewrite a failed intent after the gate — see Gate Review Decision (W4)</div>
+      <div>— Whether to ship — that is the PO's gate decision, not the escape hatch's</div>
+    </div>
   </div>
 </section>
 
@@ -1913,9 +2032,135 @@ Reduce checkout abandonment at the payment step
   <div class="section-label">C4 — Communication Patterns</div>
   <h2>Orchestrator Escalation Messages</h2>
   <p style="max-width:640px;">What a well-formed ambiguity escalation looks like — the information a good escalation contains, the formats that get fast responses from humans, and the anti-patterns that stall cycles.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <!-- What triggers escalation -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHAT TRIGGERS ESCALATION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">The Orchestrator detects an ambiguity it cannot resolve — the intent is unclear enough that decomposition would require the Orchestrator to make a product decision. Per Rule A02, execution halts. The Orchestrator does not infer an answer and does not guess. It escalates. Escalation is not a failure — it is the system working correctly.</div>
+  </div>
+
+  <!-- Escalation message format -->
+  <h3 style="margin-top:48px;margin-bottom:8px;">The escalation message format</h3>
+  <p style="max-width:640px;margin-bottom:16px;font-size:14px;color:var(--text2);">What the Orchestrator produces when it escalates. All six fields are required. A message missing any field is malformed and should be returned.</p>
+  <div class="qs-artifact-label">ESCALATION — format</div>
+  <div class="qs-artifact">ESCALATION — [cycle ID or intent summary]
+Blocked step: [which task or decomposition step halted]
+Ambiguity: [one sentence stating exactly what is unclear]
+Options considered: [list of 2–3 interpretations the Orchestrator generated]
+Impact if unresolved: [what cannot proceed until this is clarified]
+Human input needed: [the exact question — one sentence]</div>
+
+  <!-- What makes a good escalation -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">What a good escalation contains</h3>
+  <div class="axioms" style="max-width:860px;">
+    <div class="axiom"><span class="axiom-num">01</span><span class="axiom-text">The specific step that halted — not "I'm confused", but "I cannot decompose task 3 because the mechanism clause specifies two contradictory scopes."</span></div>
+    <div class="axiom"><span class="axiom-num">02</span><span class="axiom-text">The ambiguity stated as a single question — not a paragraph of context. If the Orchestrator cannot reduce the ambiguity to one question, it has not understood the ambiguity yet.</span></div>
+    <div class="axiom"><span class="axiom-num">03</span><span class="axiom-text">Two to three interpretations already considered — so the human knows what the agent tried. This prevents the human from answering with an interpretation the Orchestrator already evaluated and rejected.</span></div>
+    <div class="axiom"><span class="axiom-num">04</span><span class="axiom-text">One clear question at the end — the human needs to answer exactly one thing. Multiple questions in a single escalation require multiple responses and stall the cycle.</span></div>
+  </div>
+
+  <!-- Anti-patterns -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">Anti-patterns — what makes escalations slow or useless</h3>
+  <div style="display:flex;flex-direction:column;gap:2px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:860px;">
+    <div style="display:grid;grid-template-columns:200px 1fr;background:var(--surface2);padding:10px 20px;gap:16px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Anti-pattern</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Why it fails</div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">NO BLOCKED STEP</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">The human cannot help without knowing exactly where execution stopped. A vague escalation about general confusion returns to the same ambiguity.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">MULTI-QUESTION</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">Asking two questions in one escalation requires two answers, produces two exchanges, and doubles the time blocked. One escalation, one question.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">NO INTERPRETATIONS</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">The human reads the intent too. If the Orchestrator provides no interpretations, the human cannot understand what the agent tried — and may simply restate the intent, which does not resolve anything.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;background:var(--surface);padding:16px 20px;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);">SKIPPED CONTEXT CHECK</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;">Escalating when the answer is already in System Memory or the Capability Library. The Orchestrator must check those first. An escalation that could have been resolved by reading System Memory is a context maintenance failure, not a genuine ambiguity.</div>
+    </div>
+  </div>
+
+  <!-- Human response format -->
+  <h3 style="margin-top:48px;margin-bottom:8px;">Human response format</h3>
+  <p style="max-width:640px;margin-bottom:16px;font-size:14px;color:var(--text2);">What the human sends back. Answer the exact question asked — no more, no less.</p>
+  <div class="qs-artifact-label">RESPONSE — format</div>
+  <div class="qs-artifact">RESPONSE — [cycle ID]
+Answer: [one sentence answering the exact question]
+Clarification: [optional — any context the Orchestrator should know]
+Proceed: YES / NO
+  (if NO: state what changes before the Orchestrator resumes)</div>
+
+  <!-- SLA -->
+  <div style="background:rgba(191,143,58,0.06);border:1px solid rgba(191,143,58,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--amber2);margin-bottom:8px;letter-spacing:0.08em;">RESPONSE SLA</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Human response within the window set by the team — default: <strong style="color:var(--text);">2 hours</strong> for a standard cycle; <strong style="color:var(--text);">30 minutes</strong> for a flagged cycle in progress. If no response within the window, the Orchestrator closes the current task and moves to the next non-blocked task in the queue. It does not infer an answer. The blocked task remains open and is re-evaluated at the next cycle's intent injection.</div>
+  </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Receive the escalation</div>
+        <div class="qs-desc">Read the escalation message. Confirm all six fields are present: cycle ID, blocked step, ambiguity, options considered, impact if unresolved, and human input needed. If the "Human input needed" field is missing, do not answer the escalation — send it back. A reformatted escalation is faster than an answer to a poorly formed question.</div>
+        <div class="qs-artifact-label">ESCALATION RETURN — format</div>
+        <div class="qs-artifact">ESCALATION RETURNED — reformat with explicit question.
+Missing field: Human input needed.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Check existing context</div>
+        <div class="qs-desc">Before answering: check whether the answer is already in System Memory or the Capability Library. If it is, respond with the reference, not just the answer. This matters: the Orchestrator should update its working context from the source rather than relying on the one-time response. A team with well-maintained System Memory will see most escalations resolve at this step.</div>
+        <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:14px 18px;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);letter-spacing:0.08em;">CONTEXT-SOURCED RESPONSE — </span>If the answer exists in System Memory or the Capability Library, format the response as: "RESPONSE — Answer: [answer]. Source: System Memory [entry name]." The Orchestrator reads the full entry, not just the answer.
+        </div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Compose the response</div>
+        <div class="qs-desc">Use the response format. Answer exactly the question asked. Do not add scope, do not address other concerns in the same message. If answering the question reveals a second ambiguity: answer the first question fully, then flag the second as a separate escalation to expect. Two separate exchanges are faster than one combined response that opens a new loop.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Log the exchange</div>
+        <div class="qs-desc">Append the escalation and response to the INTENT_LOG entry under an <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral2);">Escalation:</code> field. This record is used during W8 (Context Integrity Gate) and W5 (Context Reset) to identify patterns. A repeated escalation on the same topic across multiple cycles signals a missing Capability Library entry or a System Memory gap — the answer exists in someone's head, not in the artifacts. Log the exchange so that pattern becomes visible.</div>
+        <div class="qs-artifact-label">INTENT_LOG — Escalation field</div>
+        <div class="qs-artifact">Escalation:
+  Blocked step: [which step]
+  Question asked: [one sentence]
+  Answer given: [one sentence]
+  Source: [System Memory entry / direct answer]
+  Cycle impact: [none / [N] hours blocked]</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scope sidebar -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">ORCHESTRATOR ESCALATION MESSAGES DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— How to write an intent that avoids escalations — see Writing Intent Statements (C1)</div>
+      <div>— When to interrupt the cycle entirely — see Escape Hatch Protocol (W6)</div>
+      <div>— How to update System Memory after an escalation reveals a gap — see Writing System Memory Entries (C3)</div>
+      <div>— What to do if the Orchestrator escalates after the Intent Alignment Gate already passed — the gate is not a guarantee; escalations can happen at any decomposition step</div>
+    </div>
   </div>
 </section>
 

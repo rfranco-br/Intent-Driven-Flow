@@ -191,3 +191,15 @@ Change: Cycle 10 W8 Context Integrity Gate — new section added (Gate Ritual 2:
 Date: 2026-04-08
 Updated by: Fullstack Dev
 Change: Cycle 9 W1 Intent Alignment Gate — added step 07 (Intent Alignment Gate: 30-60 min async read window, Craft Engineer + QA Advocate concern-or-pass, maturity exit criterion) to W1 Intent Generation in playbook.html.
+
+Date: 2026-04-08
+Updated by: QA
+Change: Cycle 9 QA sign-off — PASS. W1 section verified: exactly 7 qs-step divs; steps 01–06 each have qs-line; step 07 omits qs-line; step 07 title "Open the Intent Alignment Gate"; 30–60 minute window present; Craft Engineer + QA Advocate roles named; CONCERN format confirmed; coral NOTE callout with "Silence = PASS" principle present; amber maturity graduation callout present with 90% first-pass rate / 10 consecutive cycles criterion. Regression clean: GA4 tag and nav.js?v=10 intact.
+
+Date: 2026-04-08
+Updated by: QA
+Change: Cycle 10 QA sign-off — PASS. W8 Context Integrity Gate full section verified: no COMING SOON within section; TOC entry `W8 — Context Integrity Gate` present; section label "W8 — Workflows"; WHEN TO RUN callout with coral border present; "THIS IS NOT THE CONTEXT RESET" callout with coral border and explicit distinction present; PRE-CYCLE CONTEXT CHECK qs-artifact template present; INTENT_LOG context check field format (CLEAN / FLAGGED) present; amber maturity graduation callout with 20 consecutive clean cycles criterion; scope sidebar with var(--surface2) background. Regression clean: GA4 tag and nav.js?v=10 intact.
+
+Date: 2026-04-08
+Updated by: Fullstack Dev
+Change: Cycle 11 W6 + C4 — W6 Escape Hatch Protocol (Path A/B decision framework, 5 steps, CORRECTION STATEMENT + DRIFT REGISTER templates) and C4 Orchestrator Escalation Messages (6-field ESCALATION format, 4-field RESPONSE format, SLA callout, 4 steps) both replaced COMING SOON stubs in playbook.html.
