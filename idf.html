@@ -953,43 +953,86 @@
   }
   .mermaid svg { max-width: 100%; }
 
-  /* ── SECTION 06 VISUAL REDESIGN ── */
-  .cycle-view { margin-top: 40px; overflow-x: auto; }
-  .cycle-track {
-    display: grid;
-    grid-template-columns: 120px 130px 160px 1fr 160px 140px;
-    gap: 3px;
+  /* ── SECTION 06 TWO-LOOP DIAGRAM ── */
+  .two-loop-diagram { margin-top: 40px; overflow-x: auto; }
+  .loop-band {
     min-width: 900px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
+    border-radius: 10px;
+    padding: 20px 24px;
+    position: relative;
   }
-  .cycle-track-label {
+  .loop-band-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
-  .cycle-col {
-    padding: 16px 14px;
-    background: var(--surface);
+  .loop-time-scale {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-style: italic;
+    color: var(--text3);
+    letter-spacing: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: none;
+    font-weight: 400;
+  }
+  .loop-time-scale-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--text3));
+  }
+  .loop-nodes {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    min-width: 860px;
+  }
+  .loop-node {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    min-width: 110px;
+    flex-shrink: 0;
   }
-  .cycle-col-agent {
-    background: rgba(74,122,191,0.08);
-    border-left: 1px solid rgba(74,122,191,0.2);
-    border-right: 1px solid rgba(74,122,191,0.2);
-    justify-content: center;
+  .loop-node-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .loop-node-role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text3);
+  }
+  .loop-node-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text3);
+  }
+  .loop-arrow {
+    font-size: 14px;
+    color: var(--border2);
+    padding: 0 6px;
+    flex-shrink: 0;
+    display: flex;
     align-items: center;
-    text-align: center;
   }
-  .cycle-col-human-pre { border-top: 2px solid var(--teal); }
-  .cycle-col-intent { border-top: 2px solid var(--purple); }
-  .cycle-col-gate { border-top: 2px solid var(--coral); }
+  .loop-connector {
+    display: flex;
+    align-items: center;
+    padding: 4px 24px;
+    min-width: 900px;
+  }
   .gate-ritual-badge {
     display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
@@ -1000,78 +1043,6 @@
     padding: 1px 5px;
     letter-spacing: 0.05em;
     width: fit-content;
-  }
-  .cycle-col-name { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .cycle-col-role { font-size: 10px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; }
-  .cycle-col-time { font-size: 10px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; }
-
-  .cycle-time-arrow {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    min-width: 900px;
-    margin-bottom: 8px;
-    color: var(--text3);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-  }
-  .cycle-time-arrow-label-left { flex-shrink: 0; }
-  .cycle-time-arrow-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border) 0%, var(--border2) 100%);
-    margin: 0 8px;
-    position: relative;
-  }
-  .cycle-time-arrow-line::after {
-    content: '›';
-    position: absolute;
-    right: -4px;
-    top: -7px;
-    color: var(--text3);
-    font-size: 14px;
-  }
-  .cycle-time-arrow-label-right { flex-shrink: 0; }
-
-  .rhythm-map { margin-top: 40px; }
-  .rhythm-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .rhythm-row:last-child { border-bottom: none; }
-  .rhythm-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    width: 110px;
-    flex-shrink: 0;
-    padding-top: 4px;
-    line-height: 1.4;
-  }
-  .rhythm-events { display: flex; flex-wrap: wrap; gap: 8px; }
-  .rhythm-chip {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 11px;
-    color: var(--text2);
-  }
-  .rhythm-chip-exception { border-style: dashed; color: var(--text3); }
-  .rhythm-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
   }
 
   .exception-grid {
@@ -1165,8 +1136,11 @@
 
   @media (max-width: 767px) {
     .exception-grid { grid-template-columns: 1fr; }
-    .rhythm-row { flex-direction: column; gap: 8px; }
-    .rhythm-label { width: auto; }
+    .two-loop-diagram { overflow-x: unset; }
+    .loop-band { min-width: unset; }
+    .loop-nodes { flex-direction: column; align-items: stretch; min-width: unset; }
+    .loop-arrow { transform: rotate(90deg); justify-content: center; padding: 4px 0; }
+    .loop-connector { min-width: unset; }
   }
 
   @media print {
@@ -1939,160 +1913,166 @@ flowchart LR
   <h2>Signal Events that calibrate, not coordinate</h2>
   <p style="max-width:640px;">That structure is maintained through event-driven checkpoints. IDF replaces scheduled ceremonies with event-driven triggers. A signal event fires when its condition is met — not because the calendar says so. Every signal event has a trigger, a specific output, and a clear owner. If a signal event produces no actionable output, it is skipped.</p>
 
-  <!-- ── ZONE 1: THE CYCLE VIEW ── -->
-  <div class="zone-header">Every Cycle</div>
+  <!-- ── TWO-LOOP DIAGRAM ── -->
+  <div class="two-loop-diagram">
 
-  <div class="cycle-view">
-    <div style="overflow-x:auto;">
-      <div class="cycle-time-arrow">
-        <span class="cycle-time-arrow-label-left">minutes</span>
-        <div class="cycle-time-arrow-line"></div>
-        <span class="cycle-time-arrow-label-right">days</span>
+    <!-- SLOW LOOP -->
+    <div class="loop-band" style="background:rgba(124,92,191,0.05);border:1px solid rgba(124,92,191,0.2);">
+      <div class="loop-band-label" style="color:var(--purple2);">
+        Slow Loop
+        <span class="loop-time-scale">
+          <span class="loop-time-scale-line"></span>
+          weeks · months
+        </span>
       </div>
-      <div class="cycle-track">
+      <div class="loop-nodes">
 
-        <!-- G2: Context Integrity Gate -->
-        <div class="cycle-col cycle-col-human-pre">
-          <span class="gate-ritual-badge">G2</span>
-          <span class="cycle-col-name">Context Integrity Gate</span>
-          <span class="cycle-col-role">Craft Engineer</span>
-          <span class="cycle-col-time">~10 min</span>
+        <!-- Client Signals -->
+        <div class="loop-node" style="background:rgba(124,92,191,0.1);border:1px solid rgba(124,92,191,0.25);">
+          <span class="loop-node-name">Client Signals</span>
+          <span class="loop-node-role">Client → PO</span>
+          <span class="loop-node-time">continuous</span>
         </div>
+        <span class="loop-arrow">→</span>
+
+        <!-- Client Signal Review -->
+        <div class="loop-node" style="background:rgba(124,92,191,0.08);border:1px solid rgba(124,92,191,0.2);">
+          <span class="loop-node-name">Signal Review</span>
+          <span class="loop-node-role">PO (+ UX/Research)</span>
+          <span class="loop-node-time">weekly</span>
+        </div>
+        <span class="loop-arrow">→</span>
+
+        <!-- Strategic Alignment -->
+        <div class="loop-node" style="background:rgba(124,92,191,0.08);border:1px solid rgba(124,92,191,0.2);">
+          <span class="loop-node-name">Strategic Alignment</span>
+          <span class="loop-node-role">Stakeholders + POs</span>
+          <span class="loop-node-time">monthly / quarterly</span>
+        </div>
+        <span class="loop-arrow">→</span>
+
+        <!-- True North -->
+        <div class="loop-node" style="background:rgba(191,143,58,0.1);border:1px dashed rgba(191,143,58,0.35);min-width:120px;">
+          <span class="loop-node-name" style="color:var(--amber2);">True North</span>
+          <span class="loop-node-role" style="color:var(--amber);">strategy document</span>
+          <span class="loop-node-time">updated on signal</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CONNECTOR: slow → fast -->
+    <div class="loop-connector">
+      <div style="flex:1;"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 52px 0 0;">
+        <div style="width:1px;height:18px;background:rgba(124,92,191,0.4);"></div>
+        <div style="font-size:11px;color:rgba(124,92,191,0.5);">↓</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.06em;padding:2px 8px;border:1px solid var(--border);border-radius:3px;background:var(--surface2);margin:2px 0;">feeds intent</div>
+        <div style="font-size:11px;color:rgba(91,191,149,0.5);">↓</div>
+        <div style="width:1px;height:18px;background:rgba(91,191,149,0.4);"></div>
+      </div>
+    </div>
+
+    <!-- FAST LOOP -->
+    <div class="loop-band" style="background:rgba(74,122,191,0.04);border:1px solid rgba(74,122,191,0.18);">
+      <div class="loop-band-label" style="color:var(--blue2);">
+        Fast Loop
+        <span class="loop-time-scale">
+          <span class="loop-time-scale-line" style="background:linear-gradient(90deg, transparent, var(--blue));"></span>
+          hours · days
+        </span>
+      </div>
+      <div class="loop-nodes">
+
+        <!-- Gate 2: Context Integrity Gate -->
+        <div class="loop-node" style="background:rgba(91,191,149,0.08);border:1px solid rgba(91,191,149,0.25);border-top:2px solid var(--teal);">
+          <span class="gate-ritual-badge" style="margin-bottom:2px;">Gate 2</span>
+          <span class="loop-node-name">Context Integrity Gate</span>
+          <span class="loop-node-role">Craft Engineer</span>
+          <span class="loop-node-time">~10 min</span>
+        </div>
+        <span class="loop-arrow">→</span>
 
         <!-- Intent Injection -->
-        <div class="cycle-col cycle-col-intent">
-          <span class="cycle-col-name">Intent Injection</span>
-          <span class="cycle-col-role">Product Owner</span>
-          <span class="cycle-col-time">per cycle</span>
+        <div class="loop-node" style="background:rgba(124,92,191,0.1);border:1px solid rgba(124,92,191,0.25);border-top:2px solid var(--purple);">
+          <span class="loop-node-name">Intent Injection</span>
+          <span class="loop-node-role">Product Owner</span>
+          <span class="loop-node-time">per cycle</span>
         </div>
+        <span class="loop-arrow">→</span>
 
-        <!-- G1: Intent Alignment Gate -->
-        <div class="cycle-col cycle-col-human-pre">
-          <span class="gate-ritual-badge">G1</span>
-          <span class="cycle-col-name">Intent Alignment Gate</span>
-          <span class="cycle-col-role">Craft Engineer + QA Advocate</span>
-          <span class="cycle-col-time">30–60 min</span>
+        <!-- Gate 1: Intent Alignment Gate -->
+        <div class="loop-node" style="background:rgba(91,191,149,0.08);border:1px solid rgba(91,191,149,0.25);border-top:2px solid var(--teal);">
+          <span class="gate-ritual-badge" style="margin-bottom:2px;">Gate 1</span>
+          <span class="loop-node-name">Intent Alignment Gate</span>
+          <span class="loop-node-role">Craft Engineer + QA Advocate</span>
+          <span class="loop-node-time">30–60 min</span>
         </div>
+        <span class="loop-arrow">→</span>
 
         <!-- Agent Execution Band -->
-        <div class="cycle-col cycle-col-agent">
+        <div class="loop-node" style="background:rgba(74,122,191,0.1);border:1px solid rgba(74,122,191,0.25);flex:1;min-width:160px;align-items:center;text-align:center;justify-content:center;">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--blue2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Agent Execution</div>
-          <div style="display:flex;flex-direction:column;gap:6px;align-items:center;">
-            <div style="display:flex;align-items:center;gap:8px;background:rgba(74,122,191,0.12);border:1px solid rgba(74,122,191,0.25);border-radius:20px;padding:5px 14px;">
-              <span style="width:7px;height:7px;border-radius:50%;background:var(--blue);flex-shrink:0;display:inline-block;"></span>
-              <span style="font-size:11px;color:var(--blue2);font-family:'IBM Plex Mono',monospace;">Orchestrator</span>
+          <div style="display:flex;flex-direction:column;gap:5px;align-items:center;">
+            <div style="display:flex;align-items:center;gap:6px;background:rgba(74,122,191,0.15);border:1px solid rgba(74,122,191,0.3);border-radius:20px;padding:4px 12px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:10px;color:var(--blue2);font-family:'IBM Plex Mono',monospace;">Orchestrator</span>
             </div>
             <div style="font-size:10px;color:var(--text3);">↓</div>
-            <div style="display:flex;align-items:center;gap:8px;background:rgba(74,122,191,0.12);border:1px solid rgba(74,122,191,0.25);border-radius:20px;padding:5px 14px;">
-              <span style="width:7px;height:7px;border-radius:50%;background:var(--blue);flex-shrink:0;display:inline-block;"></span>
-              <span style="font-size:11px;color:var(--blue2);font-family:'IBM Plex Mono',monospace;">Builder(s)</span>
+            <div style="display:flex;align-items:center;gap:6px;background:rgba(74,122,191,0.15);border:1px solid rgba(74,122,191,0.3);border-radius:20px;padding:4px 12px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:10px;color:var(--blue2);font-family:'IBM Plex Mono',monospace;">Builder(s)</span>
             </div>
             <div style="font-size:10px;color:var(--text3);">↓</div>
-            <div style="display:flex;align-items:center;gap:8px;background:rgba(74,122,191,0.12);border:1px solid rgba(74,122,191,0.25);border-radius:20px;padding:5px 14px;">
-              <span style="width:7px;height:7px;border-radius:50%;background:var(--blue);flex-shrink:0;display:inline-block;"></span>
-              <span style="font-size:11px;color:var(--blue2);font-family:'IBM Plex Mono',monospace;">Guardian</span>
+            <div style="display:flex;align-items:center;gap:6px;background:rgba(74,122,191,0.15);border:1px solid rgba(74,122,191,0.3);border-radius:20px;padding:4px 12px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:10px;color:var(--blue2);font-family:'IBM Plex Mono',monospace;">Guardian</span>
             </div>
           </div>
-          <div style="margin-top:12px;font-size:10px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;">hours → days</div>
         </div>
+        <span class="loop-arrow">→</span>
 
-        <!-- G3: Output Alignment Gate / Craft Review -->
-        <div class="cycle-col cycle-col-human-pre">
-          <span class="gate-ritual-badge">G3</span>
-          <span class="cycle-col-name">Craft Review</span>
-          <span class="cycle-col-role">Craft Engineer + QA Advocate</span>
-          <span class="cycle-col-time">pre-flag</span>
+        <!-- Gate 3: Craft Review -->
+        <div class="loop-node" style="background:rgba(91,191,149,0.08);border:1px solid rgba(91,191,149,0.25);border-top:2px solid var(--teal);">
+          <span class="gate-ritual-badge" style="margin-bottom:2px;">Gate 3</span>
+          <span class="loop-node-name">Craft Review</span>
+          <span class="loop-node-role">Craft Engineer + QA Advocate</span>
+          <span class="loop-node-time">pre-flag</span>
         </div>
+        <span class="loop-arrow">→</span>
 
         <!-- Release Gate -->
-        <div class="cycle-col cycle-col-gate">
-          <span class="cycle-col-name">Release Gate</span>
-          <span class="cycle-col-role">Product Owner</span>
-          <div style="margin-top:4px;display:flex;flex-direction:column;gap:3px;">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);">PASS → flag ON</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);">FLAG → review</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral);">FAIL → re-plan</span>
+        <div class="loop-node" style="background:rgba(232,115,74,0.08);border:1px solid rgba(232,115,74,0.25);border-top:2px solid var(--coral);min-width:120px;">
+          <span class="loop-node-name">Release Gate</span>
+          <span class="loop-node-role">Product Owner</span>
+          <div style="margin-top:4px;display:flex;flex-direction:column;gap:2px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal2);">PASS → flag ON</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--amber2);">FLAG → review</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--coral);">FAIL → re-plan</span>
           </div>
         </div>
+        <span class="loop-arrow">→</span>
+
+        <!-- Monitor -->
+        <div class="loop-node" style="background:rgba(91,191,149,0.06);border:1px solid rgba(91,191,149,0.2);">
+          <span class="loop-node-name">Monitor</span>
+          <span class="loop-node-role">Guardian · PO</span>
+          <span class="loop-node-time">post-ship</span>
+        </div>
 
       </div>
-    </div>
-    <div style="margin-top:10px;font-size:12px;color:var(--text3);font-style:italic;">The agent execution band occupies the majority of cycle time. Humans intervene at 3 bounded moments before execution and 2 after it — everything in between is agent-executed.</div>
-  </div>
 
-  <!-- ── ZONE 2: THE RHYTHM MAP ── -->
-  <div class="zone-header">Cadence</div>
-
-  <div class="rhythm-map">
-
-    <div class="rhythm-row">
-      <div class="rhythm-label">Every<br>Cycle</div>
-      <div class="rhythm-events">
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--teal);"></span>
-          Context Integrity Gate
-        </div>
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--purple);"></span>
-          Intent Injection
-        </div>
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--teal);"></span>
-          Intent Alignment Gate
-        </div>
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--blue);"></span>
-          Quality Gate
-        </div>
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--teal);"></span>
-          Craft Review
-        </div>
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--coral);"></span>
-          Release Gate
-        </div>
+      <!-- Feedback note -->
+      <div style="margin-top:10px;min-width:860px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.06em;">feeds signals back</span>
+        <span style="font-size:13px;color:rgba(232,115,74,0.45);margin-left:6px;">↺</span>
       </div>
+
     </div>
 
-    <div class="rhythm-row">
-      <div class="rhythm-label">Continuous</div>
-      <div class="rhythm-events">
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--coral);"></span>
-          Client Signal Review <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-left:4px;">weekly</span>
-        </div>
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--purple);"></span>
-          Strategic Alignment <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-left:4px;">monthly / quarterly</span>
-        </div>
-        <div class="rhythm-chip">
-          <span class="rhythm-dot" style="background:var(--amber);"></span>
-          Drift Check <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-left:4px;">every 10–20 cycles</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="rhythm-row">
-      <div class="rhythm-label">On<br>Signal</div>
-      <div class="rhythm-events">
-        <div class="rhythm-chip rhythm-chip-exception">
-          <span class="rhythm-dot" style="background:var(--blue);border:1px dashed var(--border2);background:none;"></span>
-          Context Reset
-        </div>
-        <div class="rhythm-chip rhythm-chip-exception">
-          <span class="rhythm-dot" style="background:var(--blue);border:1px dashed var(--border2);background:none;"></span>
-          Capability Harvest
-        </div>
-        <div class="rhythm-chip rhythm-chip-exception">
-          <span class="rhythm-dot" style="background:var(--amber);border:1px dashed var(--border2);background:none;"></span>
-          Dependency Sync
-        </div>
-      </div>
-    </div>
+    <div style="margin-top:12px;font-size:12px;color:var(--text3);font-style:italic;">The fast loop fires for every build cycle — hours to days. The slow loop calibrates direction — weeks to months. Intent Injection is the handoff point where strategy becomes execution.</div>
 
   </div>
-  <div style="margin-top:10px;font-size:12px;color:var(--text3);font-style:italic;">Events on signal fire when their trigger condition is met, not on a schedule.</div>
 
   <!-- ── ZONE 3: EXCEPTION EVENTS ── -->
   <div class="zone-header">Exception Events</div>
