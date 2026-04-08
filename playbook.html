@@ -628,7 +628,7 @@
       <ul class="toc-list">
         <li><a href="#p1"><span class="toc-id">P1</span>Team Configurations by Size</a></li>
         <li><a href="#p2"><span class="toc-id">P2</span>Running Your First Cycle</a></li>
-        <li><a href="#p3"><span class="toc-id">P3</span>Cycle Cadence Patterns</a></li>
+        <li><a href="#p3"><span class="toc-id">P3</span>Gate Maturity Model</a></li>
       </ul>
     </div>
 
@@ -2340,12 +2340,174 @@ Architects / TLs: [Name or "none designated yet"]</div>
 
 <section id="p3">
   <div class="section-label">P3 — Team Patterns</div>
-  <h2>Cycle Cadence Patterns</h2>
-  <p style="max-width:640px;">How fast to run cycles, how often to run Context Resets, and how to read the early signals — gate first-pass rate, intent clarity rate — that tell you your cadence is wrong before the escapes start.</p>
-  <div style="margin-top:32px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
-    <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
+  <h2>Gate Maturity Model</h2>
+  <p style="max-width:640px;">IDF's three Gate Rituals are not permanent overhead — they are full-intensity by default and graduate individually as a team's track record improves. The Gate Maturity Model defines when each ritual can be relaxed, how to record that decision, and what never graduates regardless of track record.</p>
+
+  <!-- OVERVIEW callout -->
+  <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:10px;letter-spacing:0.08em;">THREE STAGES — ONE DIRECTION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Teams enter IDF at Stage 1. Stages advance only when measured thresholds are met. Regression is always possible — a semantic escape at Stage 3 drops the affected gate back to full mandatory for the next cycle sequence. The model is not a ladder you climb and stay on; it is a live reading of where your team's evidence currently places it.</div>
   </div>
+
+  <!-- Stage summary table -->
+  <h3 style="margin-top:48px;margin-bottom:4px;">Stage summary</h3>
+  <p style="max-width:640px;margin-bottom:0;font-size:13px;color:var(--text3);">Each stage is defined by which rituals have graduated, not by cycle count alone.</p>
+
+  <div style="display:flex;flex-direction:column;gap:2px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:860px;margin-top:24px;">
+    <div style="background:var(--surface2);padding:12px 20px;display:grid;grid-template-columns:120px 160px 1fr;gap:16px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Stage</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Name</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Qualifying condition</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:120px 160px 1fr;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">Stage 1</div>
+      <div style="font-size:13px;color:var(--text);font-weight:500;">Structured</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">Running IDF for fewer than 10 cycles, OR gate first-pass rate below 80%, OR any semantic drift escape in the last 10 cycles. All three Gate Rituals run in full mandatory mode.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:120px 160px 1fr;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Stage 2</div>
+      <div style="font-size:13px;color:var(--text);font-weight:500;">Calibrated</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">At least one Gate Ritual has individually met its graduation criteria and been formally graduated. The remaining ungraduated rituals run in full mandatory mode. The team continues graduating rituals one at a time as criteria are met.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;display:grid;grid-template-columns:120px 160px 1fr;gap:16px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Stage 3</div>
+      <div style="font-size:13px;color:var(--text);font-weight:500;">Autonomous</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">All three Gate Rituals have individually met their graduation criteria and been formally graduated. All Gate Rituals run in background or optional mode. PO Release Gate (W4) remains mandatory — it is not a Gate Ritual and does not graduate.</div>
+    </div>
+  </div>
+
+  <!-- Individual graduation criteria -->
+  <h3 style="margin-top:48px;margin-bottom:4px;">Individual graduation criteria</h3>
+  <p style="max-width:640px;margin-bottom:24px;font-size:13px;color:var(--text3);">Each Gate Ritual graduates on its own schedule. Criteria are independent — meeting one does not advance the others.</p>
+
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">G1</div>
+      <div class="qs-body">
+        <div class="qs-title">Intent Alignment Gate — graduation criteria</div>
+        <div class="qs-desc">Gate first-pass rate above 90% for 10 consecutive cycles. When met: the 30–60 minute pre-cycle review window becomes optional. The PO may proceed directly to Orchestrator after logging intent. The Craft Engineer and QA Advocate retain the right to raise a concern at any time — the window's absence does not remove that right, it only removes the mandatory hold. See <a href="#w1" style="color:var(--teal2);">W1 — Intent Generation</a> for the gate detail.</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 16px;margin-top:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Graduation threshold</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.8;">Gate first-pass rate &gt;90% for 10 consecutive cycles<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Source: quality gate pass rate (Section 09 — Measurement in the framework)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">G2</div>
+      <div class="qs-body">
+        <div class="qs-title">Output Alignment Gate — QA Advocate step graduation criteria</div>
+        <div class="qs-desc">Gate first-pass rate above 95% for 15 consecutive cycles AND no semantic drift escapes for 20 consecutive cycles. When both criteria are met: QA Advocate exploratory validation (step 03 in W3) becomes optional. Craft Engineer output review (step 02 in W3) remains mandatory regardless of track record. The reasoning: the Craft Engineer review is mechanism validation — it catches the class of error that automated checks cannot. It does not graduate. See <a href="#w3" style="color:var(--teal2);">W3 — Craft Review</a> for the gate detail.</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 16px;margin-top:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Graduation threshold</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.8;">Gate first-pass rate &gt;95% for 15 consecutive cycles<br>AND no semantic drift escapes for 20 consecutive cycles<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Source: quality gate pass rate + semantic drift escape log</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">G3</div>
+      <div class="qs-body">
+        <div class="qs-title">Context Integrity Gate — graduation criteria</div>
+        <div class="qs-desc">No Context Reset triggered for 20 consecutive cycles. When met: the pre-cycle pre-flight becomes non-blocking. The Craft Engineer still runs the two-question check (System Memory current? Capability Library current?) but the cycle proceeds in parallel rather than waiting for a CLEAN result. If the check produces a flag, the targeted reset runs concurrently with early Orchestrator decomposition steps and must complete before Build begins. The gate does not disappear — it becomes background. See <a href="#w8" style="color:var(--teal2);">W8 — Context Integrity Gate</a> for the gate detail.</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 16px;margin-top:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Graduation threshold</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.8;">No Context Reset triggered for 20 consecutive cycles<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Source: INTENT_LOG context check field + Context Reset event log</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Graduation process -->
+  <h3 style="margin-top:48px;margin-bottom:4px;">The graduation process</h3>
+  <p style="max-width:640px;margin-bottom:24px;font-size:13px;color:var(--text3);">Graduation is a conscious decision recorded in System Memory. It does not happen automatically when thresholds are crossed.</p>
+
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Verify the threshold</div>
+        <div class="qs-desc">Confirm the qualifying metrics in the cycle record. The source is the INTENT_LOG — each entry carries a context check result, and gate reports track first-pass outcomes. Do not rely on memory. Pull the actual cycle sequence. If the threshold criterion spans 20 cycles, count 20 entries. A threshold that is "close enough" is not met.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">PO and Craft Engineer agree</div>
+        <div class="qs-desc">Graduation requires agreement from both the Product Owner and the Craft Engineer. The PO holds gate authority and owns the decision to reduce governance overhead. The Craft Engineer holds ritual accountability and owns the assessment of whether the data is valid and the team is ready. Either party may decline to graduate even if the numerical threshold is met — qualitative judgment is part of the decision. This is not a negotiation; it is a shared governance call.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Log the graduation in System Memory</div>
+        <div class="qs-desc">Record the graduation before the next cycle starts. The log entry is what makes the graduation auditable and reversible. Include the ritual name, the graduation date, the qualifying metric values, and the cycle range they cover.</div>
+        <div class="qs-artifact-label">SYSTEM MEMORY — graduation entry</div>
+        <div class="qs-artifact">## Gate Ritual Graduation Log
+
+[Date] — [Ritual name] graduated to [optional / non-blocking]
+  Qualifying metric: [metric name] = [value] over cycles [N–N]
+  Agreed by: [PO name] + [Craft Engineer name]
+  Regression trigger: any semantic escape re-engages full mandatory mode
+    for the affected gate, effective the next cycle.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Regression rule -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">REGRESSION RULE</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Any semantic drift escape after graduation triggers immediate re-engagement of the full ritual for the affected gate. Only the gate where the escape occurred reverts — not all three. The reversion is effective from the next cycle and continues until the graduation threshold is re-met and a new graduation decision is recorded. There is no grace period and no exception for one-off escapes. The model is binary: the threshold is met or it is not.</div>
+  </div>
+
+  <!-- What never graduates -->
+  <h3 style="margin-top:48px;margin-bottom:16px;">What never graduates</h3>
+
+  <div style="display:flex;flex-direction:column;gap:2px;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:680px;">
+    <div style="background:var(--surface2);padding:12px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;">Permanent obligations — no graduation path exists</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral2);margin-bottom:6px;">PO Release Gate (W4)</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">Sole gate authority is an IDF axiom (A03). The PO's binary approve/reject on every deploy is not overhead — it is the governance model. It does not graduate at Stage 3, at any cycle count, or under any metric condition. A team that eliminates the Release Gate is not running IDF.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral2);margin-bottom:6px;">Escalation response obligation (C4)</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">Agents that cannot escalate to a human are not IDF-compliant. The obligation to respond to Orchestrator escalation exists in every cycle, at every stage, regardless of track record. Reducing gate overhead does not reduce the obligation to answer when an agent asks.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral2);margin-bottom:6px;">Context Reset trigger (W5)</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">The event-triggered deep audit is always available. What graduates at Stage 2/3 is the pre-cycle pre-flight check (W8) — the blocking requirement before each cycle. Context Reset itself cannot be retired: if a structural event fires (role change, tech stack change, cycle FAIL), the full audit runs regardless of stage. The gate graduates; the audit does not.</div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;border-top:1px solid var(--bg);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral2);margin-bottom:6px;">Craft Engineer output review (Output Alignment Gate, step 02 in W3)</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">Only the QA Advocate exploratory validation step graduates. The Craft Engineer mechanism check — "does this output match how the intent said to achieve it?" — is not a coverage metric. It is a judgment that no automated system can perform. It runs at every stage, on every cycle, forever.</div>
+    </div>
+  </div>
+
+  <!-- Cross-reference -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">RELATED SECTIONS</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— Stage summary and the three-column overview: <a href="idf.html#measurement" style="color:var(--teal2);">IDF framework Section 09 — Measurement</a></div>
+      <div>— Intent Alignment Gate full criteria: <a href="#w1" style="color:var(--teal2);">W1 — Intent Generation</a></div>
+      <div>— Output Alignment Gate full criteria: <a href="#w3" style="color:var(--teal2);">W3 — Craft Review</a></div>
+      <div>— Context Integrity Gate full criteria: <a href="#w8" style="color:var(--teal2);">W8 — Context Integrity Gate</a></div>
+      <div>— Context Reset (the audit that never retires): <a href="#w5" style="color:var(--teal2);">W5 — Context Reset</a></div>
+      <div>— PO Release Gate (the gate that never graduates): <a href="#w4" style="color:var(--teal2);">W4 — Gate Review Decision</a></div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ═══════════════════ FOOTER ═══════════════════ -->

@@ -203,3 +203,11 @@ Change: Cycle 10 QA sign-off — PASS. W8 Context Integrity Gate full section ve
 Date: 2026-04-08
 Updated by: Fullstack Dev
 Change: Cycle 11 W6 + C4 — W6 Escape Hatch Protocol (Path A/B decision framework, 5 steps, CORRECTION STATEMENT + DRIFT REGISTER templates) and C4 Orchestrator Escalation Messages (6-field ESCALATION format, 4-field RESPONSE format, SLA callout, 4 steps) both replaced COMING SOON stubs in playbook.html.
+
+Date: 2026-04-08
+Updated by: QA
+Change: Cycle 11 QA sign-off — PASS. W6 full section verified: no COMING SOON; PATH A — INTERRUPT and PATH B — COMPLETE AND LOG cards present; decision table with 7 data rows confirmed; 5 qs-step divs with steps 01–04 having qs-line and step 05 omitting it; CORRECTION STATEMENT artifact correct; DRIFT REGISTER escape entry correct; INTENT_LOG Escape: field correct; scope sidebar with var(--surface2) background present. C4 full section verified: no COMING SOON; ESCALATION format with all 6 required fields present; RESPONSE format with 4 fields including Proceed: YES / NO present; SLA callout with amber border referencing 2-hour and 30-minute defaults present; 4 qs-step divs with steps 01–03 having qs-line and step 04 omitting it; anti-patterns table present; scope sidebar present. Regression clean: nav.js?v=10 before </body> (line 2357); GA4 tag G-MV9XNW7Y6V in <head> (lines 5, 10); TOC entries for W6 (line 597) and C4 (line 622) intact.
+
+Date: 2026-04-08
+Updated by: Fullstack Dev
+Change: Cycle 12 Gate Maturity Model — added Stage summary callout to idf.html Section 09; replaced P3 COMING SOON stub with full Gate Maturity Model section in playbook.html (3-stage model, graduation criteria for all Gate Rituals, graduation process, what-never-graduates table).
