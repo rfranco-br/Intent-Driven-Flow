@@ -583,7 +583,7 @@
 
 <!-- ═══════════════════ TABLE OF CONTENTS ═══════════════════ -->
 <div class="toc">
-  <div class="toc-eyebrow">Contents — 21 sections</div>
+  <div class="toc-eyebrow">Contents — 22 sections</div>
   <div class="toc-groups">
 
     <div>
@@ -596,6 +596,7 @@
         <li><a href="#w5"><span class="toc-id">W5</span>Context Reset</a></li>
         <li><a href="#w6"><span class="toc-id">W6</span>Escape Hatch Protocol</a></li>
         <li><a href="#w7"><span class="toc-id">W7</span>Onboarding a New Team Member</a></li>
+        <li><a href="#w8"><span class="toc-id">W8</span>Context Integrity Gate</a></li>
       </ul>
     </div>
 
@@ -708,6 +709,7 @@ Reduce checkout abandonment at the payment step
     </div>
 
     <div class="qs-step">
+      <div class="qs-line"></div>
       <div class="qs-num">06</div>
       <div class="qs-body">
         <div class="qs-title">Log and trigger</div>
@@ -727,6 +729,29 @@ Stakeholder priority: [Which priority this serves, or
 Orchestrator notes: [Optional. Context that prevents Orchestrator escalation.
   Not a task list. If the mechanism involves a technically novel approach,
   name it here so the Architect sees it during decomposition.]</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">07</div>
+      <div class="qs-body">
+        <div class="qs-title">Open the Intent Alignment Gate</div>
+        <div class="qs-desc">After logging the intent, share the INTENT_LOG entry with the Craft Engineer and QA Advocate. The window opens now and runs for 30–60 minutes — the team sets its own window length based on cycle complexity; 30 minutes is standard, 60 minutes for cycles touching multiple systems or unknown territory.</div>
+        <div class="qs-desc" style="margin-top:12px;">During the window, each role answers one question in silence — independent of each other:</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 16px;margin-top:12px;font-size:13px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);flex-shrink:0;padding-top:1px;white-space:nowrap;">CRAFT ENGINEER</span><span style="color:var(--text2);">"Can I build this against the current capability files without needing the intent rewritten?"</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);flex-shrink:0;padding-top:1px;white-space:nowrap;">QA ADVOCATE</span><span style="color:var(--text2);">"Can I validate this as a client outcome with the current test criteria?"</span></div>
+        </div>
+        <div class="qs-desc" style="margin-top:16px;">If both pass: no action needed. The Orchestrator begins when the window closes.</div>
+        <div class="qs-desc" style="margin-top:12px;">If either raises a concern: file a structured note in the INTENT_LOG entry under a <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--coral2);">Concern:</code> field. Format: <em>"CONCERN — [Craft Engineer / QA Advocate]: [one sentence stating the blocker]."</em> The PO reads the concern, updates the intent if the concern is valid, and restarts the window. The Orchestrator does not begin until the window closes with no open concerns.</div>
+        <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:14px 18px;margin-top:16px;font-size:13px;color:var(--text2);line-height:1.7;max-width:640px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.08em;">NOTE — </span>The window is bounded. Silence = PASS. If a role does not respond within the window, the cycle proceeds. The gate only blocks on an explicit concern — not on absence of confirmation.
+        </div>
+        <!-- Maturity graduation callout (amber) -->
+        <div style="background:rgba(191,143,58,0.06);border:1px solid rgba(191,143,58,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:20px 24px;margin-top:20px;max-width:640px;">
+          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--amber2);margin-bottom:8px;letter-spacing:0.08em;">MATURITY GRADUATION — INTENT ALIGNMENT GATE</div>
+          <div style="font-size:14px;color:var(--text2);line-height:1.7;">This step may be graduated out when: gate first-pass rate is above 90% for 10 consecutive cycles. At that point, the PO may proceed directly to Orchestrator after logging the intent, and the window becomes optional. Record the graduation date in System Memory.</div>
+        </div>
       </div>
     </div>
 
@@ -1231,6 +1256,123 @@ Rationale: [One sentence. E.g. "FLAG — performance outside budget for 8% of us
     <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;">COMING SOON</span>
     <span style="font-size:13px;color:var(--text3);">This section is in progress. Check back after the next framework update.</span>
   </div>
+</section>
+
+<section id="w8">
+  <div class="section-label">W8 — Workflows</div>
+  <h2>Context Integrity Gate</h2>
+  <p style="max-width:640px;">The Context Integrity Gate is a 10-minute pre-cycle pre-flight, not the full Context Reset. It answers two questions before the Orchestrator begins decomposition: is System Memory current, and is the Capability Library current? If both answers are yes, the cycle starts clean. If either answer is no, the Craft Engineer scopes and runs a targeted Context Reset before the cycle proceeds. A cycle that starts with stale context produces correct-but-wrong output — the agents follow the rules they were given, and the rules are wrong.</p>
+
+  <!-- WHEN TO RUN callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">WHEN TO RUN</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">Before every cycle — after intent is logged and the Intent Alignment Gate window closes, before the Orchestrator begins decomposition. The Craft Engineer runs it. It is not optional on "low-risk" cycles. The risk of a cycle is determined after decomposition, not before. Running the check takes 10 minutes; a cycle contaminated by stale context takes cycles to recover from.</div>
+  </div>
+
+  <!-- NOT THIS callout -->
+  <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;margin-top:16px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;">THIS IS NOT THE CONTEXT RESET</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">The Context Reset (W5) is an artifact audit that can take hours. The Context Integrity Gate asks two binary questions and takes 10 minutes. If the gate passes, no W5 is needed. If the gate fails on either question, the Craft Engineer scopes a targeted W5 — not a full audit, only the artifacts the gate flagged. The gate is the triage that prevents running a full audit when none is needed.</div>
+  </div>
+
+  <!-- Flow steps -->
+  <div class="qs-steps">
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">01</div>
+      <div class="qs-body">
+        <div class="qs-title">Confirm the timing</div>
+        <div class="qs-desc">The Context Integrity Gate runs after the intent is logged in INTENT_LOG and after the Intent Alignment Gate window has closed — meaning any concerns raised by Craft Engineer or QA Advocate about the intent have been resolved. It runs before the Orchestrator receives the intent for decomposition. If the Orchestrator has already started, the gate has been skipped. Log that fact in the INTENT_LOG entry and proceed — but note it as a process gap for the next cycle.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">02</div>
+      <div class="qs-body">
+        <div class="qs-title">Ask question one: System Memory</div>
+        <div class="qs-desc">Open System Memory. Read the header — check the Last reviewed date. Then read the Technical constraints, Architecture decisions, and Conventions sections. Ask one question: does this file describe the system as it exists right now? You are not auditing for completeness. You are checking for known inaccuracies — entries that describe decisions that were reversed, constraints that were lifted, conventions that the team stopped following. If you see nothing that is wrong, the answer is CLEAN. If you see something that is wrong, the answer is FLAGGED — write one sentence identifying what is out of date.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">03</div>
+      <div class="qs-body">
+        <div class="qs-title">Ask question two: Capability Library</div>
+        <div class="qs-desc">Open the Capability Library. You do not need to read every file — scan the index or file list. Ask one question: are there any files here that describe a capability the Builder no longer uses, or that are missing a pattern the Builder now follows consistently? If the answer is no known issues, the result is CLEAN. If you know of a file that describes deprecated behavior, or a pattern the team established last cycle that has not been encoded yet, the result is FLAGGED — write one sentence identifying what is stale or absent.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">04</div>
+      <div class="qs-body">
+        <div class="qs-title">Record the result</div>
+        <div class="qs-desc">Complete the PRE-CYCLE CONTEXT CHECK. This is a working document for the Craft Engineer — it is not a permanent artifact. Its purpose is to make the check explicit and force a binary result before the cycle starts. The result (CLEAN or FLAGGED) is logged as a single field in the cycle's INTENT_LOG entry. The working document itself is not filed or archived.</div>
+        <div class="qs-artifact-label">PRE-CYCLE CONTEXT CHECK</div>
+        <div class="qs-artifact">Context Integrity Check — Cycle [number]
+Date: YYYY-MM-DD
+Craft Engineer: [name]
+
+System Memory: [CLEAN / FLAGGED — one sentence if flagged]
+Capability Library: [CLEAN / FLAGGED — one sentence if flagged]
+
+Result: CLEAN — cycle proceeds
+        FLAGGED — Context Reset required before cycle starts</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">05</div>
+      <div class="qs-body">
+        <div class="qs-title">Log the result in INTENT_LOG</div>
+        <div class="qs-desc">Add one line to the cycle's INTENT_LOG entry. The result does not require a separate artifact — it is a field in the log entry that already exists for this cycle. This line is what makes the check auditable across cycles: a sequence of CLEAN entries confirms the context maintenance is working; a pattern of FLAGGED entries signals the team is not maintaining artifacts between cycles and relying on the gate to catch what should have been updated in real time.</div>
+        <div class="qs-artifact-label">INTENT_LOG — context check field</div>
+        <div class="qs-artifact">Context check: CLEAN
+  — or —
+Context check: FLAGGED — [one sentence: System Memory / Capability Library, what was stale]</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-line"></div>
+      <div class="qs-num">06</div>
+      <div class="qs-body">
+        <div class="qs-title">If FLAGGED: scope and run a targeted Context Reset</div>
+        <div class="qs-desc">A FLAGGED result does not trigger a full Context Reset (W5). It triggers a scoped reset — the Craft Engineer updates only the specific artifact and entries identified in the flag. If System Memory was flagged for one stale constraint, that entry is updated. If the Capability Library was flagged for one deprecated file, that file is removed or rewritten. The Orchestrator does not begin until the targeted reset is complete and the Craft Engineer confirms the artifact is current. Update the INTENT_LOG context check field from FLAGGED to CLEAN once the reset is done.</div>
+      </div>
+    </div>
+
+    <div class="qs-step">
+      <div class="qs-num">07</div>
+      <div class="qs-body">
+        <div class="qs-title">Release to Orchestrator</div>
+        <div class="qs-desc">With the result logged as CLEAN — either because no issues were found, or because the targeted reset resolved the flags — the Orchestrator may now receive the intent and begin decomposition. The gate is complete. No further action is required from the Craft Engineer until the Output Alignment Gate, which runs after the Guardian produces a passing gate report.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Maturity graduation callout (amber) -->
+  <div style="background:rgba(191,143,58,0.06);border:1px solid rgba(191,143,58,0.2);border-left:3px solid var(--amber);border-radius:6px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--amber2);margin-bottom:8px;letter-spacing:0.08em;">MATURITY GRADUATION</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">When no Context Reset has been triggered for 20 consecutive cycles, the Context Integrity Gate may be run as a non-blocking background review. The Craft Engineer notes observations but does not hold the cycle if a minor issue is found — instead, the fix is queued for immediate completion in parallel with the early Orchestrator decomposition steps. Record the graduation date in System Memory. Teams that graduate and then trigger a Context Reset should return to the blocking gate for the next 5 cycles.</div>
+  </div>
+
+  <!-- Scope sidebar -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">CONTEXT INTEGRITY GATE DOES NOT COVER</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <div>— Full artifact audit — see Context Reset (W5)</div>
+      <div>— How to update System Memory entries — see Writing System Memory Entries</div>
+      <div>— How to update Capability Library files — see Writing Capability Library Entries</div>
+      <div>— Whether to run the cycle at all — that is Intent Generation and the Intent Alignment Gate</div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ═══════════════════ ARTIFACT TEMPLATES ═══════════════════ -->

@@ -179,3 +179,11 @@ Change: Cycle 7 QA sign-off — PASS. All Gate Rituals changes verified in idf.h
 Date: 2026-04-08
 Updated by: Fullstack Dev
 Change: Cycle 8 W3 Craft Review — replaced COMING SOON stub with full Output Alignment Gate procedure (6 steps, APPROVED/FLAGGED two-outcome format, independent review model, maturity graduation callout) in playbook.html.
+
+Date: 2026-04-08
+Updated by: QA
+Change: Cycle 8 QA sign-off — PASS. W3 Craft Review full section verified: opening paragraph names Output Alignment Gate; PRECONDITION callout has coral border, references Guardian gate report, no solo practitioner exception; WHEN TO RUN callout has coral border, correct header, solo practitioner exception present; exactly 6 qs-step divs; steps 01–05 each have qs-line, step 06 omits it; step 05 FLAG annotation template correct; step 06 APPROVED annotation with paired CE/QA confirmations correct; maturity graduation callout present with amber border; scope sidebar has var(--surface2) background and correct header; TOC W3 entry intact. Regression clean: nav.js?v=10 before </body> (line 1970); GA4 tag G-MV9XNW7Y6V in <head> (lines 5, 10).
+
+Date: 2026-04-08
+Updated by: Fullstack Dev
+Change: Cycle 10 W8 Context Integrity Gate — new section added (Gate Ritual 2: 10-minute pre-cycle pre-flight, PRE-CYCLE CONTEXT CHECK artifact, INTENT_LOG field, maturity exit criterion) to playbook.html.
