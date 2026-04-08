@@ -187,3 +187,7 @@ Change: Cycle 8 QA sign-off — PASS. W3 Craft Review full section verified: ope
 Date: 2026-04-08
 Updated by: Fullstack Dev
 Change: Cycle 10 W8 Context Integrity Gate — new section added (Gate Ritual 2: 10-minute pre-cycle pre-flight, PRE-CYCLE CONTEXT CHECK artifact, INTENT_LOG field, maturity exit criterion) to playbook.html.
+
+Date: 2026-04-08
+Updated by: Fullstack Dev
+Change: Cycle 9 W1 Intent Alignment Gate — added step 07 (Intent Alignment Gate: 30-60 min async read window, Craft Engineer + QA Advocate concern-or-pass, maturity exit criterion) to W1 Intent Generation in playbook.html.
