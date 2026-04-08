@@ -211,3 +211,11 @@ Change: Cycle 11 QA sign-off — PASS. W6 full section verified: no COMING SOON;
 Date: 2026-04-08
 Updated by: Fullstack Dev
 Change: Cycle 12 Gate Maturity Model — added Stage summary callout to idf.html Section 09; replaced P3 COMING SOON stub with full Gate Maturity Model section in playbook.html (3-stage model, graduation criteria for all Gate Rituals, graduation process, what-never-graduates table).
+
+Date: 2026-04-08
+Updated by: QA
+Change: Cycle 12 QA sign-off — PASS. idf.html Section 09 verified: three-stage grid (Stage 1 Structured / Stage 2 Calibrated / Stage 3 Autonomous) present; GRADUATION IS NOT AUTOMATIC callout with cross-reference link to playbook.html#p3 present; GA4 tag and nav.js?v=10 intact. playbook.html P3 verified: full content present (no COMING SOON); TOC entry correctly reads "Gate Maturity Model"; stage summary table has 3 data rows (Structured, Calibrated, Autonomous); individual graduation criteria for G1 (>90% first-pass rate for 10 consecutive cycles), G2 (>95% for 15 cycles AND no drift escapes for 20 cycles), and G3 (no Context Reset for 20 consecutive cycles) all present with thresholds; 3-step graduation process with System Memory log template present; "What never graduates" table has all 4 required rows — PO Release Gate (W4), Escalation response obligation (C4), Context Reset trigger (W5), and Craft Engineer output review (W3 step 02); cross-reference sidebar links to idf.html Section 09 and all four gate ritual sections (W1, W3, W4, W5, W8); GA4 tag and nav.js?v=10 intact.
+
+Date: 2026-04-08
+Updated by: Fullstack Dev
+Change: Section 06 visual redesign — replaced flat rituals table with three-zone visual system: Cycle View (horizontal flow diagram showing one complete cycle with human gate markers and agent execution band), Rhythm Map (cadence view by frequency tier), Exception Events (3 cards for event-triggered rituals). Reference table preserved below the visuals.
