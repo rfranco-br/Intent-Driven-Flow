@@ -1230,6 +1230,16 @@
     gap: 16px;
     margin-bottom: 0;
   }
+  .ref-zone-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 14px 0 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
   .ref-divider-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
@@ -1625,7 +1635,7 @@
         desc: 'Hold the portfolio horizon, strategic intent, and investment decisions. Do not manage features or sprints — they set the direction within which product decisions are made.',
         attrs: [
           { k: 'Accountable for', v: 'True north, portfolio map, cross-team priorities' },
-          { k: 'Interfaces',   v: 'PO (downward), dependency broker (cross-team)' },
+          { k: 'Interfaces',   v: 'PO (downward), dependencies broker (cross-team)' },
           { k: 'Touch points', v: 'North star sync, portfolio review, escalations' }
         ]
       },
@@ -1701,7 +1711,7 @@
         ]
       },
       broker: {
-        name: 'Dependency Broker', type: 'agent',
+        name: 'Dependencies Broker', type: 'agent',
         desc: 'Monitors cross-team signals. When a team\'s Orchestrator detects a cross-team need during decomposition, the broker routes the request, notifies affected POs, and tracks resolution.',
         attrs: [
           { k: 'Monitors',  v: 'All Orchestrator task lists and cycle plans across teams in scope' },
@@ -1810,7 +1820,7 @@
         <div class="step-name">Deploy</div>
         <div class="step-sub">flag OFF</div>
         <div class="card-section-label">GATE</div>
-        <div class="card-section-content">All checks pass<br>Guardian report ready<br><span style="color:var(--purple2);">Craft Engineer reviews</span><br><span style="color:var(--purple2);">QA Advocate validates</span><br>PO reads + approves<br>Flag stays OFF<br>Live on server</div>
+        <div class="card-section-content">All checks pass<br>Guardian report ready<br><span style="color:var(--purple2);">Craft Engineer reviews</span><br><span style="color:var(--purple2);">Quality Advocate validates</span><br>PO reads + approves<br>Flag stays OFF<br>Live on server</div>
         <div class="card-section-label">OUTPUT</div>
         <div class="card-section-content">Preview URL for PO<br>Gate report surfaced<br>Awaiting approval</div>
       </div>
@@ -1819,7 +1829,7 @@
         <div class="step-name">Monitor</div>
         <div class="step-sub">flag ON</div>
         <div class="card-section-label">SIGNALS</div>
-        <div class="card-section-content">PO flips flag ON<br>Error rates<br>Perf metrics<br>Usage patterns<br>Client feedback<br>Cost actuals</div>
+        <div class="card-section-content">Monitoring is a continuous zone — it runs from the moment the first flag goes ON and never stops. The flag flip extends what the zone watches, not when it starts. Error rates<br>Perf metrics<br>Usage patterns<br>Client feedback<br>Cost actuals<br>Signals feed continuously back into the slow loop</div>
         <div class="card-section-label">OUTPUT</div>
         <div class="card-section-content">Signals → client log<br>System Memory updated<br>Intent log entry<br>↻ next cycle begins</div>
       </div>
@@ -2038,6 +2048,8 @@ flowchart LR
   <div class="section-label">06 — Signal Events</div>
   <h2>Signal Events that calibrate, not coordinate</h2>
   <p style="max-width:640px;">That structure is maintained through event-driven checkpoints. IDF replaces scheduled ceremonies with event-driven triggers. A signal event fires when its condition is met — not because the calendar says so. Every signal event has a trigger, a specific output, and a clear owner. If a signal event produces no actionable output, it is skipped.</p>
+
+  <p style="max-width:640px;">IDF operates two loops at different time scales. The slow loop runs on weeks and months: client signals inform stakeholders, stakeholders update True North, True North shapes the next intent injection. The fast loop runs on hours and days: each cycle begins with a context check, moves through agent execution, and closes at a human gate decision. The loops are independent in tempo but connected in purpose — the slow loop determines what matters, the fast loop delivers it.</p>
 
   <!-- ── THREE-ZONE DIAGRAM ── -->
   <div class="s06-diagram">
@@ -2265,6 +2277,8 @@ flowchart LR
       <span>Output</span>
     </div>
 
+    <div class="ref-zone-header">Slow Loop</div>
+
     <div class="ritual-row">
       <div>
         <div class="ritual-name"><span class="layer-dot dot-strategic"></span>Strategic Alignment</div>
@@ -2276,30 +2290,14 @@ flowchart LR
 
     <div class="ritual-row">
       <div>
-        <div class="ritual-name"><span class="layer-dot dot-product"></span>Intent Injection</div>
+        <div class="ritual-name"><span class="layer-dot dot-cross"></span>Client Signal Review</div>
       </div>
-      <div class="ritual-cadence">Per cycle</div>
-      <div class="ritual-trigger">Triggered by: cycle start or release gate approval of previous cycle<br>Participants: PO (+ Orchestrator reads output)</div>
-      <div class="ritual-output">One intent statement framed as a client outcome, logged in the Intent Log. Use the template: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">[outcome] by [mechanism], measured by [signal]</span>. Derive from client signal log, True North, and stakeholder priorities. The human expresses what must be true for the client — not a task list, not a feature. Orchestrator consumes and produces task list. Before the Orchestrator begins, the intent is shared with Craft Engineer and QA Advocate for a 30–60 minute read window (Intent Alignment Gate). Either role may raise a concern; no concern means the cycle proceeds.</div>
+      <div class="ritual-cadence">Weekly minimum</div>
+      <div class="ritual-trigger">Triggered by: new feedback, usage data, support signals<br>Participants: PO (+ UX/Research if available)</div>
+      <div class="ritual-output">Updated client signal log. Priority adjustments fed into next intent injection. Immediate issues escalate to stakeholders.</div>
     </div>
 
-    <div class="ritual-row">
-      <div>
-        <div class="ritual-name"><span class="layer-dot dot-product"></span>Release Gate</div>
-      </div>
-      <div class="ritual-cadence">Per deploy</div>
-      <div class="ritual-trigger">Triggered by: Guardian producing a gate report<br>Participants: PO (decision), Tech Lead (if flagged)</div>
-      <div class="ritual-output">The formal hand-off from Execution to human governance. Nothing ships to users without this signal. Pass: feature flag toggled ON, cycle closes. Fail: Orchestrator re-plans with Guardian notes.</div>
-    </div>
-
-    <div class="ritual-row">
-      <div>
-        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Reset</div>
-      </div>
-      <div class="ritual-cadence">Event-triggered</div>
-      <div class="ritual-trigger">Triggered by: detected context drift or staleness signal<br>Participants: Craft Engineer (leads) + PO (acknowledges at next intent injection)</div>
-      <div class="ritual-output">Required output: pruned System Memory with a diff showing what was removed, confirmed Capability Library accuracy, Dead-OFF flags identified and removed with their System Memory entries. See Section 10 for the full audit checklist.</div>
-    </div>
+    <div class="ref-zone-header">Fast Loop</div>
 
     <div class="ritual-row">
       <div>
@@ -2312,11 +2310,11 @@ flowchart LR
 
     <div class="ritual-row">
       <div>
-        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Capability Harvest</div>
+        <div class="ritual-name"><span class="layer-dot dot-product"></span>Intent Injection</div>
       </div>
-      <div class="ritual-cadence">When pattern repeats</div>
-      <div class="ritual-trigger">Triggered by: Guardian or Orchestrator detecting a repeated pattern<br>Participants: Craft Engineer + Orchestrator</div>
-      <div class="ritual-output">New or updated capability file added to the Capability Library. Reduces re-teaching same conventions each cycle.</div>
+      <div class="ritual-cadence">Per cycle</div>
+      <div class="ritual-trigger">Triggered by: cycle start or release gate approval of previous cycle<br>Participants: PO (+ Orchestrator reads output)</div>
+      <div class="ritual-output">One intent statement framed as a client outcome, logged in the Intent Log. Use the template: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">[outcome] by [mechanism], measured by [signal]</span>. Derive from client signal log, True North, and stakeholder priorities. The human expresses what must be true for the client — not a task list, not a feature. Orchestrator consumes and produces task list. Before the Orchestrator begins, the intent is shared with Craft Engineer and Quality Advocate for a 30–60 minute read window (Intent Alignment Gate). Either role may raise a concern; no concern means the cycle proceeds.</div>
     </div>
 
     <div class="ritual-row">
@@ -2334,7 +2332,36 @@ flowchart LR
       </div>
       <div class="ritual-cadence">Per deploy, pre-flag</div>
       <div class="ritual-trigger">Triggered by: Guardian gate report passing auto-checks<br>Participants: Craft Engineer (output quality) + Quality Advocate (exploratory validation)</div>
-      <div class="ritual-output">Craft Engineer validates output against the intent mechanism ('does this match how the intent said to achieve it?'). QA Advocate validates against the client outcome ('does this produce what the client was supposed to get?'). Both responses appended to gate report. Either may FLAG before the PO reads the report. This is the Output Alignment Gate.</div>
+      <div class="ritual-output">Craft Engineer validates output against the intent mechanism ('does this match how the intent said to achieve it?'). Quality Advocate validates against the client outcome ('does this produce what the client was supposed to get?'). Both responses appended to gate report. Either may FLAG before the PO reads the report. This is the Output Alignment Gate.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-product"></span>Release Gate</div>
+      </div>
+      <div class="ritual-cadence">Per deploy</div>
+      <div class="ritual-trigger">Triggered by: Guardian producing a gate report<br>Participants: PO (decision), Tech Lead (if flagged)</div>
+      <div class="ritual-output">The formal hand-off from Execution to human governance. Nothing ships to users without this signal. Pass: feature flag toggled ON, cycle closes. Fail: Orchestrator re-plans with Guardian notes.</div>
+    </div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Capability Harvest</div>
+      </div>
+      <div class="ritual-cadence">When pattern repeats</div>
+      <div class="ritual-trigger">Triggered by: Guardian or Orchestrator detecting a repeated pattern<br>Participants: Craft Engineer + Orchestrator</div>
+      <div class="ritual-output">New or updated capability file added to the Capability Library. Reduces re-teaching same conventions each cycle.</div>
+    </div>
+
+    <div class="ref-zone-header">Continuous &amp; Exception</div>
+
+    <div class="ritual-row">
+      <div>
+        <div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Reset</div>
+      </div>
+      <div class="ritual-cadence">Event-triggered</div>
+      <div class="ritual-trigger">Triggered by: detected context drift or staleness signal<br>Participants: Craft Engineer (leads) + PO (acknowledges at next intent injection)</div>
+      <div class="ritual-output">Required output: pruned System Memory with a diff showing what was removed, confirmed Capability Library accuracy, Dead-OFF flags identified and removed with their System Memory entries. See Section 10 for the full audit checklist.</div>
     </div>
 
     <div class="ritual-row">
@@ -2355,15 +2382,6 @@ flowchart LR
       <div class="ritual-output">Resolution path defined within same cycle. Blocker log updated. Teams work around while awaiting resolution.</div>
     </div>
 
-    <div class="ritual-row">
-      <div>
-        <div class="ritual-name"><span class="layer-dot dot-cross"></span>Client Signal Review</div>
-      </div>
-      <div class="ritual-cadence">Weekly minimum</div>
-      <div class="ritual-trigger">Triggered by: new feedback, usage data, support signals<br>Participants: PO (+ UX/Research if available)</div>
-      <div class="ritual-output">Updated client signal log. Priority adjustments fed into next intent injection. Immediate issues escalate to stakeholders.</div>
-    </div>
-
   </div>
 </section>
 
@@ -2371,7 +2389,7 @@ flowchart LR
 <section>
   <div class="section-label">07 — Artifacts</div>
   <h2>The system's persistent memory</h2>
-  <p style="max-width:640px;">Those events produce and consume a small set of persistent files. Artifacts are the connective tissue of the framework. Unlike Scrum's artifacts (which compensate for human memory loss), IDF artifacts are the actual memory of the system. They must be kept current — a stale artifact is worse than no artifact because it generates confidently wrong outputs.</p>
+  <p style="max-width:640px;">Those events read and write a shared layer called Persistent Memory. This is not a filing system or documentation — it is the active working memory the system depends on every cycle. Agents read it at the start of every session. Humans write to it at every gate. Both loops — the slow strategic loop and the fast execution loop — draw from it and contribute back to it continuously. Keep it current. A stale artifact is worse than no artifact because it generates confidently wrong outputs.</p>
 
   <div class="artifacts-grid">
 
@@ -2442,8 +2460,8 @@ flowchart LR
     <div class="artifact-card">
       <h3>Dependency registry</h3>
       <span class="artifact-filename">DEPENDENCIES.md</span>
-      <p>Cross-team contracts, shared components, and API agreements. Maintained by the dependency broker. Teams pull from it before planning a cycle to identify potential blockers early. The broker writes to it whenever a new dependency is detected.</p>
-      <div class="artifact-owner">Steward:Dependency broker · Reviewed: per dependency sync</div>
+      <p>Cross-team contracts, shared components, and API agreements. Maintained by the dependencies broker. Teams pull from it before planning a cycle to identify potential blockers early. The broker writes to it whenever a new dependency is detected.</p>
+      <div class="artifact-owner">Steward:Dependencies broker · Reviewed: per dependency sync</div>
     </div>
 
   </div>
@@ -2503,7 +2521,7 @@ flowchart LR
         <span class="comm-arrow">→</span>
         <span class="comm-to">Team B</span>
       </div>
-      <p>All cross-team communication is mediated by the Dependency Broker. No direct team-to-team coordination channels — this creates noise and missed signals. The broker routes, tracks, and escalates.</p>
+      <p>All cross-team communication is mediated by the Dependencies Broker. No direct team-to-team coordination channels — this creates noise and missed signals. The broker routes, tracks, and escalates.</p>
       <div class="comm-payload">Trigger: Orchestrator detects cross-team need during decompose<br>Format: Dependency alert via broker<br>Resolution: Affected POs within 1 cycle</div>
     </div>
 
