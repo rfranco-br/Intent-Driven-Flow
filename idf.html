@@ -994,25 +994,27 @@
     flex-wrap: nowrap;
   }
   .s06-arrow { font-size: 16px; color: var(--border2); flex-shrink: 0; }
-  /* Human-driven node — trapezoid */
-  .node-human-wrap { filter: drop-shadow(0 0 2px rgba(232,115,74,0.5)); flex-shrink: 0; }
-  .node-human-inner {
-    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-    background: rgba(232,115,74,0.15);
-    padding: 14px 20px;
+  /* Human-driven + AI-assisted node — rounded rectangle, coral tint */
+  .node-rect {
+    background: rgba(232,115,74,0.13);
+    border: 1px solid rgba(232,115,74,0.35);
+    border-radius: 10px;
+    padding: 14px 18px;
     text-align: center;
     min-width: 110px;
+    flex-shrink: 0;
   }
-  /* Slow loop nodes — blue trapezoid */
-  .node-human-blue { filter: drop-shadow(0 0 2px rgba(74,122,191,0.55)); flex-shrink: 0; }
-  .node-human-blue-inner {
-    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-    background: rgba(74,122,191,0.17);
+  /* Slow loop nodes — same rect, blue tint */
+  .node-rect-blue {
+    background: rgba(74,122,191,0.13);
+    border: 1px solid rgba(74,122,191,0.35);
+    border-radius: 10px;
     padding: 18px 28px;
     text-align: center;
     min-width: 140px;
+    flex-shrink: 0;
   }
-  /* Agent node — rounded pill */
+  /* Agent node — rounded pill, purple tint */
   .node-agent-pill {
     background: rgba(124,92,191,0.14);
     border: 1px solid rgba(124,92,191,0.35);
@@ -2025,19 +2027,15 @@ flowchart LR
               </div>
               <div class="s06-flow-row" style="justify-content:center;gap:28px;">
                 <!-- Strategic Alignment -->
-                <div class="node-human-blue">
-                  <div class="node-human-blue-inner">
-                    <div class="node-label" style="font-size:13px;color:var(--blue2);">Strategic Alignment</div>
-                    <div class="node-sub">monthly / quarterly</div>
-                  </div>
+                <div class="node-rect-blue">
+                  <div class="node-label" style="font-size:13px;color:var(--blue2);">Strategic Alignment</div>
+                  <div class="node-sub">monthly / quarterly</div>
                 </div>
                 <span class="s06-arrow" style="font-size:20px;">→</span>
                 <!-- True North -->
-                <div class="node-human-blue">
-                  <div class="node-human-blue-inner">
-                    <div style="font-size:16px;font-weight:700;color:var(--blue2);line-height:1.2;">True North</div>
-                    <div class="node-sub">strategy document</div>
-                  </div>
+                <div class="node-rect-blue">
+                  <div style="font-size:16px;font-weight:700;color:var(--blue2);line-height:1.2;">True North</div>
+                  <div class="node-sub">strategy document</div>
                 </div>
               </div>
               <!-- Bottom loop arrow: → pointing right (feeds into fast loop below) -->
@@ -2074,31 +2072,25 @@ flowchart LR
             <div class="s06-flow-row">
 
               <!-- Gate 2: Context Integrity Gate -->
-              <div class="node-human-wrap">
-                <div class="node-human-inner">
-                  <div class="node-badge">Gate 2</div>
-                  <div class="node-label">Context Integrity Gate</div>
-                  <div class="node-sub">Craft Engineer · ~10 min</div>
-                </div>
+              <div class="node-rect">
+                <div class="node-badge">Gate 2</div>
+                <div class="node-label">Context Integrity Gate</div>
+                <div class="node-sub">Craft Engineer · ~10 min</div>
               </div>
               <span class="s06-arrow">→</span>
 
               <!-- Intent Injection -->
-              <div class="node-human-wrap">
-                <div class="node-human-inner">
-                  <div class="node-label">Intent Injection</div>
-                  <div class="node-sub">Product Owner</div>
-                </div>
+              <div class="node-rect">
+                <div class="node-label">Intent Injection</div>
+                <div class="node-sub">Product Owner</div>
               </div>
               <span class="s06-arrow">→</span>
 
               <!-- Gate 1: Intent Alignment Gate -->
-              <div class="node-human-wrap">
-                <div class="node-human-inner">
-                  <div class="node-badge">Gate 1</div>
-                  <div class="node-label">Intent Alignment Gate</div>
-                  <div class="node-sub">CE + QA · 30–60 min</div>
-                </div>
+              <div class="node-rect">
+                <div class="node-badge">Gate 1</div>
+                <div class="node-label">Intent Alignment Gate</div>
+                <div class="node-sub">CE + QA · 30–60 min</div>
               </div>
               <span class="s06-arrow">→</span>
 
@@ -2115,25 +2107,21 @@ flowchart LR
               <span class="s06-arrow">→</span>
 
               <!-- Gate 3: Craft Review -->
-              <div class="node-human-wrap">
-                <div class="node-human-inner">
-                  <div class="node-badge">Gate 3</div>
-                  <div class="node-label">Craft Review</div>
-                  <div class="node-sub">CE + QA · pre-flag</div>
-                </div>
+              <div class="node-rect">
+                <div class="node-badge">Gate 3</div>
+                <div class="node-label">Craft Review</div>
+                <div class="node-sub">CE + QA · pre-flag</div>
               </div>
               <span class="s06-arrow">→</span>
 
               <!-- Release Gate -->
-              <div class="node-human-wrap" style="filter:drop-shadow(0 0 2px rgba(232,115,74,0.65));">
-                <div class="node-human-inner">
-                  <div class="node-label">Release Gate</div>
-                  <div class="node-sub">Product Owner</div>
-                  <div style="margin-top:6px;display:flex;flex-direction:column;gap:2px;">
-                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);">PASS → flag ON</span>
-                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);">FLAG → review</span>
-                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral);">FAIL → re-plan</span>
-                  </div>
+              <div class="node-rect">
+                <div class="node-label">Release Gate</div>
+                <div class="node-sub">Product Owner</div>
+                <div style="margin-top:6px;display:flex;flex-direction:column;gap:2px;">
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);">PASS → flag ON</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);">FLAG → review</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral);">FAIL → re-plan</span>
                 </div>
               </div>
 
@@ -2158,9 +2146,15 @@ flowchart LR
             <div class="loop-zone" style="border:2px dashed rgba(106,104,120,0.4);background:transparent;">
               <div class="loop-zone-header" style="color:var(--text2);justify-content:center;">Monitor — Continuous</div>
               <div class="s06-flow-row" style="justify-content:center;gap:16px;flex-wrap:wrap;">
-                <div class="node-agent-pill">Client Signals</div>
-                <div class="node-agent-pill">Dependencies Sync</div>
-                <div class="node-agent-pill">Reported Issues</div>
+                <div class="node-rect" style="background:rgba(124,92,191,0.13);border-color:rgba(124,92,191,0.35);">
+                  <div class="node-label" style="color:var(--purple2);">Client Signals</div>
+                </div>
+                <div class="node-rect" style="background:rgba(124,92,191,0.13);border-color:rgba(124,92,191,0.35);">
+                  <div class="node-label" style="color:var(--purple2);">Dependencies Sync</div>
+                </div>
+                <div class="node-rect" style="background:rgba(124,92,191,0.13);border-color:rgba(124,92,191,0.35);">
+                  <div class="node-label" style="color:var(--purple2);">Reported Issues</div>
+                </div>
               </div>
             </div>
             <!-- Bottom ▷▷▷ -->
@@ -2175,9 +2169,7 @@ flowchart LR
         <!-- LEGEND -->
         <div style="display:flex;gap:28px;margin-top:32px;padding-left:4px;flex-wrap:wrap;align-items:center;">
           <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">
-            <div style="filter:drop-shadow(0 0 1.5px rgba(232,115,74,0.45));">
-              <div style="clip-path:polygon(10% 0%,90% 0%,100% 100%,0% 100%);background:rgba(232,115,74,0.15);width:42px;height:22px;"></div>
-            </div>
+            <div style="background:rgba(232,115,74,0.13);border:1px solid rgba(232,115,74,0.35);border-radius:6px;width:42px;height:22px;"></div>
             Human Driven + AI Assisted
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">
