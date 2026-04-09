@@ -2833,6 +2833,125 @@ saved card data. Consider one-click payment for returning users.</div>
   </div>
 </section>
 
+<!-- ═══════════════════ ADAPTING IDF ═══════════════════ -->
+<section id="adapting-idf">
+  <div class="section-label">12 — Adapting IDF</div>
+  <h2>Adapting IDF to your organization</h2>
+  <p style="max-width:640px;">Every organization that adopts IDF operates within constraints IDF did not anticipate. Some of those constraints are moveable with time. Others are fixed: regulatory requirements, legacy approval workflows, team size. The question is not whether to adapt — it is whether your adaptation preserves the framework or replaces it. IDF has a load-bearing core and an extensible surface. The core is small. If you leave it intact, what you are running is IDF. If you remove any part of it, you are running something else — which may be fine, but you should know the difference.</p>
+
+  <!-- THE LOAD-BEARING CORE -->
+  <div style="margin-top:40px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:20px;">The load-bearing core</div>
+    <div class="axioms">
+      <div class="axiom"><span class="axiom-num">C1</span><span class="axiom-text"><strong>Humans govern; agents execute.</strong> Agents decompose, build, and test. They do not approve, release, or decide when the client sees a change. Relocating any of those decisions to an agent is not an optimization — it is a structural replacement of the model.</span></div>
+      <div class="axiom"><span class="axiom-num">C2</span><span class="axiom-text"><strong>The three human gates must fire, in order.</strong> Intent Alignment Gate, Output Alignment (Craft Review), and Release Gate are not optional stages. They can be preceded, extended, or made more rigorous. They cannot be skipped, merged into automated checks, or handed to agents.</span></div>
+      <div class="axiom"><span class="axiom-num">C3</span><span class="axiom-text"><strong>Deploy and release are separate events.</strong> A change exists in production before the client sees it. The flag is the mechanism. The PO's Release Gate decision is the moment of release. Collapsing these removes the human decision point between "technically correct" and "client-ready."</span></div>
+      <div class="axiom"><span class="axiom-num">C4</span><span class="axiom-text"><strong>The cycle is the unit of work.</strong> One intent. One execution run. One gate decision. Splitting a cycle into parallel streams, or merging multiple intents into one cycle, makes the alignment check ambiguous and the Release Gate meaningless.</span></div>
+      <div class="axiom"><span class="axiom-num">C5</span><span class="axiom-text"><strong>Ambiguity stops execution. It does not shape it.</strong> When intent is unclear, the correct response is to surface it and wait — at any stage. Allowing agents to infer through ambiguity removes the Intent Alignment Gate in practice, even if it still fires nominally.</span></div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU CAN CHANGE -->
+  <div style="margin-top:48px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:20px;">What you can change</div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Roles can be merged.</div>
+        <p style="font-size:14px;color:var(--text2);margin:0;line-height:1.7;">IDF defines roles by decision authority, not headcount. A two-person team can have one person hold Craft Engineer and Quality Advocate authority. The work those roles perform still happens — at the same gate positions. The constraint is function, not staffing.</p>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Ceremonies can precede the cycle.</div>
+        <p style="font-size:14px;color:var(--text2);margin:0;line-height:1.7;">Planning meetings, sprint reviews, quarterly business reviews — any existing ceremony can feed IDF without replacing it. The ceremony produces input; the PO writes a written intent from that input; the intent enters the cycle at Intent Injection. IDF governs from Intent Injection forward.</p>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Additional gates can follow the Release Gate.</div>
+        <p style="font-size:14px;color:var(--text2);margin:0;line-height:1.7;">Regulated environments, legal review, UAT, external sign-off — these sit after the PO's Release Gate decision and delay the flag flip. They do not replace or precede the Release Gate. The PO's decision is still the Release Gate.</p>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Tooling is unconstrained.</div>
+        <p style="font-size:14px;color:var(--text2);margin:0;line-height:1.7;">IDF specifies no tools or AI providers. The artifact names are framework concepts; teams implement them in whatever medium fits. Format is free. Function is not.</p>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Cycle cadence can vary.</div>
+        <p style="font-size:14px;color:var(--text2);margin:0;line-height:1.7;">A high-throughput team may run 5 cycles per day. A regulated team may run 2 per week. Both are valid. Cycles are completion-triggered, not time-boxed. What does not vary is that every cycle runs the full gate sequence.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPATIBILITY TEST -->
+  <div style="margin-top:48px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--teal2);border-radius:6px;padding:20px 24px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal2);margin-bottom:16px;">Compatibility test</div>
+    <p style="font-size:13px;color:var(--text2);margin:0 0 16px;line-height:1.65;">Three questions. All three yes → the adaptation is IDF. Any one no → it is a fork.</p>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);padding-top:2px;flex-shrink:0;">01</span>
+        <div style="font-size:13px;color:var(--text2);line-height:1.65;"><strong style="color:var(--text);">Does this preserve human gate authority at all three gates?</strong> The intent check, the output check, and the release decision must each be made by a human. If the adaptation automates any of these decisions, the answer is no.</div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);padding-top:2px;flex-shrink:0;">02</span>
+        <div style="font-size:13px;color:var(--text2);line-height:1.65;"><strong style="color:var(--text);">Does this keep deploy and release as separate events?</strong> Is there still a moment where the change exists in production but is not client-visible, during which a human makes the release decision? If not — if deploy and release are one step — the answer is no.</div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);padding-top:2px;flex-shrink:0;">03</span>
+        <div style="font-size:13px;color:var(--text2);line-height:1.65;"><strong style="color:var(--text);">Does this keep the cycle intact as the unit of work?</strong> Does each cycle begin with a single intent, proceed through a single execution run, and close with a single gate decision? If the adaptation splits the cycle, merges intents, or makes gate decisions conditional on other cycles, the answer is no.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKED EXAMPLES -->
+  <div style="margin-top:48px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:20px;">Examples</div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+      <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:20px 24px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Planning meetings</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Constraint</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The organization runs quarterly planning and sprint planning meetings. Eliminating them is not politically viable.</p></div>
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Adaptation</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">Planning meetings continue unchanged. Their output — prioritized topics or candidate features — is what the PO uses to write the cycle intent. The meeting informs Intent Injection; it does not replace it. The PO still writes a single, outcome-framed intent statement before the cycle begins.</p></div>
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal2);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Why IDF is intact</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The three human gates fire as normal. The cycle begins with a written intent, not a meeting output. IDF governs from that written intent forward. What preceded it is the organization's planning process, not IDF's.</p></div>
+        </div>
+      </div>
+
+      <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:20px 24px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Regulatory UAT</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Constraint</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">A compliance requirement mandates formal User Acceptance Testing before any change goes live. UAT is conducted by a compliance team and takes 3–5 business days.</p></div>
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Adaptation</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The PO's Release Gate fires as normal: the PO reads the gate report and makes the go/no-go decision. If approved, the cycle closes — the change is deployed and flag-ready. UAT then runs against the deployed, flag-OFF change. Only after UAT sign-off does the flag flip to Live-ON.</p></div>
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal2);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Why IDF is intact</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The Release Gate still fires. The PO still makes the alignment decision. The flag is still the mechanism. UAT is a downstream constraint on when the flag turns ON — it delays release but does not replace the Release Gate.</p></div>
+        </div>
+      </div>
+
+      <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:20px 24px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Two-person team</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Constraint</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The team has two people: one engineer and one product owner. IDF's role model defines Craft Engineer, Quality Advocate, and Architect as distinct roles.</p></div>
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Adaptation</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The engineer holds Craft Engineer, Quality Advocate, and Architect authority. The PO holds PO authority. The work each role performs still happens — code craft review, quality validation, architectural oversight — performed by one person at the gate positions where each normally fires.</p></div>
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal2);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Why IDF is intact</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">Roles are defined by decision authority, not headcount. The gates still fire in order. The PO still holds sole Release Gate authority. The engineer performs Craft Review and QA validation at the Output Alignment Gate — the function is preserved, the staffing is adapted.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- THIS BREAKS IDF -->
+  <div style="margin-top:48px;max-width:680px;background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.2);border-left:3px solid var(--coral);border-radius:6px;padding:20px 24px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">This breaks IDF</div>
+    <p style="font-size:13px;color:var(--text2);margin:0 0 16px;line-height:1.65;">These are not edge cases. If your adaptation includes any of the following, you are running something else — which may be useful, but it is not IDF.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">— Removing the Release Gate, or making it advisory to an automated check</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">— Allowing agents to make decisions at any human gate</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">— Deploying directly to live — no flag, no separate release decision</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">— Merging two intents into one cycle</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">— Skipping the Intent Alignment Gate when intent "seems obvious"</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;">— Running a cycle without a written intent statement</div>
+    </div>
+    <p style="font-size:12px;color:var(--text3);margin:16px 0 0;line-height:1.65;font-style:italic;">The last two are the most common failure modes. Teams rarely announce they are removing a gate. They announce they are "moving fast this cycle."</p>
+  </div>
+
+</section>
+
 <!-- ═══════════════════ CONTRIBUTE ═══════════════════ -->
 <section class="section-contribute" style="border-top:1px solid var(--border);text-align:center;">
   <div style="max-width:560px;margin:0 auto;">
