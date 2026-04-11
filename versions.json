@@ -2,19 +2,16 @@
   {
     "version": "alpha",
     "file": "idf.html",
-    "date": "2026-04-06",
+    "date": "2026-04-11",
     "title": "Alpha",
-    "description": "Decouples artifact language from role ownership — 'Owns' becomes 'Accountable for' in role cards, 'Owner' becomes 'Steward' in artifact cards, role-prefixed artifact names removed.",
+    "description": "Introduces three-level hierarchy (Intent / Cycle / Iteration) with revised gate behavior — Gate 2 becomes a human-reviewable iteration loop, Gate 3 no longer closes the intent, and intent completion is an explicit PO signal-confirmation action.",
     "highlights": [
-      "Site restructured to three pages: index (5-min), framework, playbook",
-      "Old versions archived",
-      "Interactive role map with spatial human/agent zones and detail panel",
-      "Predictability reframe in Scrum callout: gate model as guarantee, not forecast",
-      "Capacity forecasting callout in Section 09: throughput as observed signal, not declared estimate",
-      "SDD execution path: Cycle Spec artifact + Orchestrator as spec executor, not planner",
-      "Gate nomenclature: Quality Gate (automated) and Release Gate (human) replace role-named gates",
-      "Artifact-role decoupling: 'Owns' → 'Accountable for' in role cards; 'Owner' → 'Steward' in artifact cards",
-      "Removed role-prefixed artifact names (e.g. 'PO intent statement' → 'Intent Statement')"
+      "Three-level model: Intent (outcome goal) → Cycle (delivery unit) → Iteration (implementation pass)",
+      "Intent lifecycle: open → in-progress → monitoring → completed (Gate 3 no longer closes the intent)",
+      "Gate 2 renamed to Iteration Review Gate — human reviewer can approve or request iteration with feedback",
+      "New artifact: Iteration Record (trigger, feedback, task list, status)",
+      "Intent Completion added as explicit PO signal-confirmation event in Section 06",
+      "Role updates: PO owns intent lifecycle; Orchestrator creates Iterations; QA/Craft Eng own Gate 2 decision"
     ]
   }
 ]
