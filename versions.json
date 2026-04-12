@@ -4,13 +4,15 @@
     "file": "idf.html",
     "date": "2026-04-11",
     "title": "Alpha",
-    "description": "Narrative consistency pass — three-level model introduced clearly in Section 04, feature flag explained for non-IT readers, gate naming consistent across all sections; Playbook hidden from nav.",
+    "description": "Full narrative rebuild — journey-first structure: see it first (S03), learn the levels (S04), understand the gates (S05), then go deeper. Reference sections clearly separated.",
     "highlights": [
-      "Section 04 intro rewritten to explain Intent / Cycle / Iteration clearly for non-IT readers",
-      "Feature flag defined in plain language in R3 and Quickstart Step 03",
-      "Gate naming consistent throughout — Gate 1/2/3 used everywhere",
-      "index.html updated: intent vs. cycle completion correctly separated",
-      "Playbook removed from nav (file retained)"
+      "New S03: simplified 5-step cycle walkthrough — concrete story before any vocabulary",
+      "New S05: three gates as standalone section — Gate 1/2/3 with clear owner, trigger, and outcome",
+      "S04 stripped to intro paragraph + diagram only — phase card detail moved to full walkthrough",
+      "Roles, Artifacts, Adapting moved up before reference sections",
+      "Reference zone divider added — Layers/Signal Events/Comms/Metrics/Noise clearly marked as depth material",
+      "Signal Events diagram nodes updated to current gate names — no more legacy labels",
+      "Full walkthrough moved to S14 — serves as 'go deeper' for readers who want every artifact"
     ]
   }
 ]
