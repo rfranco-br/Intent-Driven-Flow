@@ -83,7 +83,6 @@
   const pages = [
     { file: 'index.html',      label: 'Overview' },
     { file: 'idf.html',  label: 'Framework' },
-    { file: 'playbook.html',   label: 'Playbook'  },
   ];
 
   const pills = pages.map(p => {

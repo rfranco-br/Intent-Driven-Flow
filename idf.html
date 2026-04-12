@@ -1477,7 +1477,7 @@
   <div style="background:rgba(106,104,120,0.08);border:1px solid var(--border);border-left:3px solid var(--text3);border-radius:6px;padding:20px 24px;margin-top:40px;max-width:680px;">
     <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:10px;letter-spacing:0.08em;">IF YOU ARE COMING FROM SCRUM</div>
     <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:8px;">IDF does not estimate. This is deliberate.</div>
-    <div style="font-size:13px;color:var(--text2);line-height:1.7;">Story points and velocity exist because human teams have limited bandwidth — estimation is how they manage it. When agents handle execution, that constraint disappears. Estimating before a cycle produces false confidence: it is almost always wrong, and it only matters if you planned around it.<br><br>IDF's answer is simpler: run the cycle, read the gate report, adjust. The gate report tells you how complex it was. Cycles end when the outcome is reached — not when a timer runs out.<br><br>What estimation actually provides is a feeling of control — a rhythm stakeholders can point to. IDF replaces that rhythm with evidence. Before anything reaches clients, a human approves it against a gate report: what was built, what the signals show, pass or fail. That is not a guess about what will happen. It is a record of what did happen. Predictability in IDF is not a forecast. It is a guarantee — nothing ships without a human decision.</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;">Story points and velocity exist because human teams have limited bandwidth — estimation is how they manage it. When agents handle execution, that constraint disappears. Estimating before a cycle produces false confidence: it is almost always wrong, and it only matters if you planned around it.<br><br>IDF's answer is simpler: run the cycle, review the output at each gate, adjust. The gate report tells you how complex it was. Cycles close when the feature ships — not when a timer runs out. The intent closes when the PO confirms the outcome signal was actually achieved.<br><br>What estimation actually provides is a feeling of control — a rhythm stakeholders can point to. IDF replaces that rhythm with evidence. Before anything reaches clients, a human approves it against a gate report: what was built, what the signals show, pass or fail. That is not a guess about what will happen. It is a record of what did happen. Predictability in IDF is not a forecast. It is a guarantee — nothing ships without a human decision.</div>
   </div>
 
   <div style="background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.15);border-radius:8px;padding:20px 24px;margin-top:40px;max-width:680px;">
@@ -1495,7 +1495,7 @@
   <div class="axioms">
     <div class="axiom"><span class="axiom-num">R1</span><span class="axiom-text"><strong>Express outcomes, not instructions.</strong> The right input to the system is a clear statement of desired client outcome. Task lists, acceptance criteria, and implementation instructions are outputs of decomposition — not inputs to it. State what needs to be true for the client. Let the system determine how.</span></div>
     <div class="axiom"><span class="axiom-num">R2</span><span class="axiom-text"><strong>Ambiguity stops execution. It never shapes it.</strong> When intent is unclear, the correct response is to surface the ambiguity and wait for clarification. A system that infers its way through unclear intent will be confidently wrong. Execution pauses. Humans resolve. Execution resumes.</span></div>
-    <div class="axiom"><span class="axiom-num">R3</span><span class="axiom-text"><strong>Every client-observable change ships behind a flag.</strong> Deployment and release are separate events. A change is deployed when it exists in production behind a Pending-OFF flag. It is released when a human flips it to Live-ON. Changes that do not affect client-observable behaviour — content fixes, config corrections, dependency bumps — are governed by version control, not flags. Dead flags left in the codebase expand the active context surface and increase drift probability — they must be removed.</span></div>
+    <div class="axiom"><span class="axiom-num">R3</span><span class="axiom-text"><strong>Every client-observable change ships behind a feature flag — a switch in the code that controls whether a new feature is visible to users.</strong> Deployment and release are separate events. A change is deployed when it exists in production behind a Pending-OFF flag. It is released when a human flips it to Live-ON. Changes that do not affect client-observable behaviour — content fixes, config corrections, dependency bumps — are governed by version control, not flags. Dead flags left in the codebase expand the active context surface and increase drift probability — they must be removed.</span></div>
     <div class="axiom"><span class="axiom-num">R4</span><span class="axiom-text"><strong>Context is data plus intent — and it decays.</strong> An agent's understanding of the system is built from data: written records, logs, code, dashboards, signals. Its direction comes from intent: the outcome humans committed to. Neither survives without maintenance. Data that isn't reviewed drifts from reality. Intent that isn't recorded gets reinvented. A system that treats memory as a substitute for current, clean data is running on context that corrupts with every cycle.</span></div>
     <div class="axiom"><span class="axiom-num">R5</span><span class="axiom-text"><strong>Measure what reaches the client, not what moves inside the system.</strong> Cycle throughput and escape rate tell you if the system is healthy. Story points, commit counts, and hours worked do not. Drift from intent is normal — the failure is not detecting it before it reaches the client.</span></div>
     <div class="axiom"><span class="axiom-num">A06</span><span class="axiom-text"><strong>Human gates validate alignment, not output.</strong> An automated check validates that code runs. A human gate validates that what runs is what was intended. These are different questions and require different readers. No automated gate replaces a human alignment gate. No human alignment gate replaces an automated check. Each serves a function the other cannot perform. Gate 1 validates that the intent and cycle scope are worth executing. Gate 2 validates that an iteration's output is ready to advance to release authorization. Gate 3 validates that the PO authorizes the client-visible change.</span></div>
@@ -1775,8 +1775,7 @@
 <section>
   <div class="section-label">04 — The delivery cycle</div>
   <h2>Plan to monitor — one intent, one or more cycles</h2>
-  <p style="max-width:640px;">Those roles interact through a single repeatable cycle. Each cycle is a complete, self-contained unit of delivery. A cycle begins with intent and ends with a monitored, flag-controlled release. Cycles are not time-boxed — they are completion-triggered. A simple feature may complete in 2 hours. A complex one may span multiple sub-cycles with intermediate gates.</p>
-  <p style="max-width:640px;margin-top:16px;">Intent describes the outcome and the measurement signal — it is time-unbounded and PO-owned. One intent can span multiple cycles. A cycle is a coherent delivery unit with one feature flag; it closes at Gate 3. Inside each cycle, one or more iterations handle the actual implementation — each iteration is a Builder pass that ends at Gate 2. The iteration loop runs until Gate 2 approves, then the cycle advances to Gate 3.</p>
+  <p style="max-width:680px;">Those roles interact through three nested levels of work. At the top: an <strong>intent</strong> — the outcome the team is working toward, owned by the PO and measured by a real signal. An intent stays open until the PO confirms the signal was achieved; one intent can take multiple cycles. In the middle: a <strong>cycle</strong> — one delivery unit with one feature flag. A cycle starts with Gate 1 (intent and scope alignment) and closes at Gate 3 (the PO authorizes the flag flip). At the bottom: an <strong>iteration</strong> — one implementation pass. After each iteration, Gate 2 runs: if the reviewer approves, the cycle advances to Gate 3; if not, they provide feedback and a new iteration begins. Cycles are not time-boxed — they are completion-triggered. A simple feature may close in one iteration. A complex one may take several.</p>
 
   <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;margin-bottom:4px;max-width:860px;">
     <div style="flex:1;min-width:280px;background:rgba(232,115,74,0.06);border:1px solid rgba(232,115,74,0.18);border-left:3px solid var(--coral);border-radius:6px;padding:16px 20px;">
@@ -2057,8 +2056,8 @@ flowchart TD
 
   <!-- ── THREE-ZONE DIAGRAM ── -->
   <div class="s06-diagram">
-    <img src="s06-diagram.png" alt="IDF Signal Events — three-zone flow diagram" style="max-width:100%;border-radius:10px;display:block;">
-    <div class="s06-inner" style="display:none;">
+    <img src="s06-diagram.png" alt="IDF Signal Events — three-zone flow diagram" style="max-width:100%;border-radius:10px;display:none;">
+    <div class="s06-inner">
 
       <!-- ═══ LEFT: LOOPS ═══ -->
       <div class="s06-loops">
@@ -2101,8 +2100,8 @@ flowchart TD
             <div class="arr-head-right" style="border-left-color:rgba(58,158,120,0.9);"></div>
           </div>
           <div class="loop-zone" style="border:2px solid rgba(58,158,120,0.5);background:rgba(58,158,120,0.03);padding-top:26px;margin-bottom:16px;">
-            <div class="loop-zone-label">Cycle - Fast Loop (hours/days)</div>
-            <div class="loop-zone-title" style="color:var(--teal2);">Cycles - Fast Loop <span class="loop-zone-timescale">hours/days</span></div>
+            <div class="loop-zone-label">Cycle / Iteration Loop (hours/days)</div>
+            <div class="loop-zone-title" style="color:var(--teal2);">Cycle / Iteration Loop <span class="loop-zone-timescale">hours/days</span></div>
             <div class="s06-flow-row">
 
               <!-- Context Integrity Gate -->
@@ -2504,7 +2503,7 @@ flowchart TD
         <span class="comm-to">Execution</span>
       </div>
       <p>Cycle intent travels as a written outcome statement — not a feature list. The Orchestrator converts it to tasks.</p>
-      <div class="comm-payload">Trigger: Release Gate approval closes previous cycle<br>Format: Intent statement in INTENT_LOG.md<br>Frequency: Per cycle</div>
+      <div class="comm-payload">Trigger: Gate 3 authorization closes previous cycle<br>Format: Intent statement in INTENT_LOG.md<br>Frequency: Per cycle</div>
     </div>
 
     <div class="comm-card">
@@ -2599,7 +2598,7 @@ flowchart TD
   <div style="background:rgba(58,158,120,0.06);border:1px solid rgba(58,158,120,0.2);border-left:3px solid var(--teal);border-radius:6px;padding:20px 24px;margin-top:32px;max-width:680px;">
     <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--teal2);margin-bottom:10px;letter-spacing:0.08em;">CAPACITY FORECASTING</div>
     <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:8px;">After a few cycles, throughput becomes a forecasting signal.</div>
-    <div style="font-size:13px;color:var(--text2);line-height:1.7;">Scrum derives capacity from estimation — teams declare what they can do, then track how often they're right. IDF derives it from observation — after 5–10 cycles, intent-to-flag time stabilizes into a range. That range is your capacity signal: not a commitment, but a calibrated expectation. A team running cycles at 2–6 hours per intent can forecast portfolio throughput without a planning ceremony. The signal improves with cycle volume. It does not require a separate process — it is a byproduct of running IDF correctly.</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;">Scrum derives capacity from estimation — teams declare what they can do, then track how often they're right. IDF derives it from observation — after 5–10 cycles, cycle time (Gate 1 to Gate 3) stabilizes into a range. That range is your capacity signal: not a commitment, but a calibrated expectation. A team running cycles at 2–6 hours per intent can forecast portfolio throughput without a planning ceremony. The signal improves with cycle volume. It does not require a separate process — it is a byproduct of running IDF correctly.</div>
   </div>
 
   <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral);letter-spacing:0.12em;text-transform:uppercase;margin-top:48px;margin-bottom:8px;">IDF-native</div>
@@ -2721,7 +2720,7 @@ flowchart TD
 <section>
   <div class="section-label">11 — Quickstart</div>
   <h2>Your first intent-driven cycle</h2>
-  <p style="max-width:640px;">Theory without a concrete example is architecture fiction. Below is a complete cycle walkthrough — from writing an intent to monitoring a live flag — using a real scenario: <em>reducing checkout drop-off by simplifying the payment step.</em> End-to-end in five minutes.</p>
+  <p style="max-width:640px;">Theory without a concrete example is architecture fiction. Below is a complete walkthrough — from writing an intent to declaring it complete — using a real scenario: <em>reducing checkout drop-off by simplifying the payment step.</em> Seven steps.</p>
 
   <div class="qs-steps">
 
@@ -2768,7 +2767,7 @@ T5 · Update CLIENT_SIGNALS with cycle reference</div>
       <div class="qs-num">03</div>
       <div class="qs-body">
         <div class="qs-title">Builder executes Iteration 1 — flag Pending-OFF</div>
-        <div class="qs-desc">Builder agents execute each task within Iteration 1. The feature ships behind a flag in the Pending-OFF state — deployed but not exposed. Code and tests are committed as a unit. The PO sees nothing yet.</div>
+        <div class="qs-desc">Builder agents execute each task within Iteration 1. The feature ships behind a feature flag — a software switch that controls whether users can see the new feature. It starts in the Pending-OFF state: the code is deployed on the server, but the switch is off. Users see nothing. Code and tests are committed as a unit.</div>
         <div class="qs-artifact-label">FEATURE_GOVERNANCE_REGISTRY — updated</div>
         <div class="qs-artifact">{
   "checkout_simplified_payment": {
@@ -2948,7 +2947,7 @@ Declared by: Product Owner</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Constraint</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">A compliance requirement mandates formal User Acceptance Testing before any change goes live. UAT is conducted by a compliance team and takes 3–5 business days.</p></div>
           <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Adaptation</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The PO's Release Gate fires as normal: the PO reads the gate report and makes the go/no-go decision. If approved, the cycle closes — the change is deployed and flag-ready. UAT then runs against the deployed, flag-OFF change. Only after UAT sign-off does the flag flip to Live-ON.</p></div>
-          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal2);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Why IDF is intact</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">The Release Gate still fires. The PO still makes the alignment decision. The flag is still the mechanism. UAT is a downstream constraint on when the flag turns ON — it delays release but does not replace the Release Gate.</p></div>
+          <div><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal2);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;">Why IDF is intact</span><p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">Gate 3 still fires. The PO still makes the authorization decision. The flag is still the mechanism. UAT is a downstream constraint on when the flag turns ON — it delays release but does not replace the Release Gate.</p></div>
         </div>
       </div>
 
@@ -3006,6 +3005,6 @@ Declared by: Product Owner</div>
   </span>
 </footer>
 
-<script src="nav.js?v=10"></script>
+<script src="nav.js?v=11"></script>
 </body>
 </html>
