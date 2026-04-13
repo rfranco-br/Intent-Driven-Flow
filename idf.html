@@ -2006,7 +2006,7 @@ Closed by: Product Owner · 2026-04-13</div>
       </div>
       <div class="gate-field">
         <div class="gate-field-key">Participants</div>
-        <div class="gate-field-val">Product Owner · Craft Engineer (concern-or-pass) · Quality Advocate (concern-or-pass)</div>
+        <div class="gate-field-val">Product Owner (approves intent and scope) · Delivery Team (concern-or-pass)</div>
       </div>
       <div class="gate-field">
         <div class="gate-field-key">Decision shape</div>
@@ -2031,7 +2031,7 @@ Closed by: Product Owner · 2026-04-13</div>
       </div>
       <div class="gate-field">
         <div class="gate-field-key">Participants</div>
-        <div class="gate-field-val">Product Owner · Craft Engineer</div>
+        <div class="gate-field-val">Product Owner · Delivery Team</div>
       </div>
       <div class="gate-field">
         <div class="gate-field-key">Decision shape</div>
@@ -2077,7 +2077,7 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="loop-connector"><div class="loop-line"></div><div class="loop-label">↓ report + hands-on review</div><div class="loop-line"></div></div>
 
     <div style="margin-bottom:6px;padding:10px 16px;border:1px solid var(--border2);border-radius:6px;background:var(--surface2);">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;margin-bottom:4px;text-transform:uppercase;">Craft Engineer uses the feature · reads the report · decides</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;margin-bottom:4px;text-transform:uppercase;">Delivery Team reviews — the team decides who, based on what the iteration needs</div>
       <div style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:10px;">PO may join — especially for outcome or UX concerns</div>
       <div class="loop-decision-row">
         <div class="loop-node-teal" style="text-align:center;">
@@ -2106,7 +2106,7 @@ Closed by: Product Owner · 2026-04-13</div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:6px;padding:16px 20px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">Step 2 — Use the feature</div>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0;">The Craft Engineer accesses the deployed feature (behind its Pending-OFF flag) and uses it. Does it serve the intent? Does the interaction feel right? Are there hidden errors, awkward flows, or implementation choices that the automated report couldn't surface?</p>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0;">A Delivery Team member accesses the deployed feature (behind its release switch) and uses it. Does it serve the intent? Does the interaction feel right? Are there hidden errors, awkward flows, or implementation choices that the automated report couldn't surface?</p>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:6px;padding:16px 20px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">If approving</div>
@@ -2118,7 +2118,7 @@ Closed by: Product Owner · 2026-04-13</div>
         <div style="background:var(--bg);border-radius:4px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;">REQUEST ITERATION<br>Feedback: Keyboard overlaps card input on iOS 15 Safari — add scroll-padding-bottom to the form container.<br><br>REQUEST ITERATION<br>Feedback: The flow requires three taps where one would do. Billing address should default to saved address, not blank.</div>
       </div>
     </div>
-    <p style="margin-top:16px;font-size:13px;color:var(--text3);max-width:640px;">The PO may join Gate 2 to assess outcome fit or UX concerns — their perspective on whether it serves the client is valid input. The final decision authority at Gate 2 rests with the Craft Engineer. The release decision belongs to the PO at Gate 3.</p>
+    <p style="margin-top:16px;font-size:13px;color:var(--text3);max-width:640px;">The PO may join Gate 2 to assess outcome fit or UX concerns — their perspective on whether it serves the client is valid input. Gate 2 decision authority sits with the Delivery Team. The team decides who reviews based on what the iteration needs — a developer for technical output, a UX designer for interaction quality, a BA for domain fit. The release decision belongs to the PO at Gate 3.</p>
   </div>
 </section>
 
@@ -2227,34 +2227,52 @@ Closed by: Product Owner · 2026-04-13</div>
 <!-- ═══════════════════ §08 — ROLES ═══════════════════ -->
 <section id="s08">
   <div class="section-label">11 — Roles</div>
-  <h2>Eleven roles — five human, six AI</h2>
-  <p style="max-width:640px;">One person can hold multiple human roles. Each role has a defined scope — crossing that scope is how the system breaks. The Product Owner explicitly owns the monitoring state, signal observation, and intent closure decisions that sit outside the delivery cycle itself.</p>
+  <h2>Governance roles and the Delivery Team</h2>
+  <p style="max-width:640px;">IDF separates governance authority from delivery skills. Governance roles are IDF-defined and gate-bound — they cannot be delegated to an agent, collapsed, or renamed without changing what the framework says. The Delivery Team is assembled per product: IDF defines which responsibilities must be covered inside it; the team decides who covers them. AI agents may assist or fully cover some responsibilities depending on the work.</p>
 
   <div style="margin-top:32px;margin-bottom:40px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-bottom:1px solid var(--border);padding:12px 24px;gap:24px;">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">If you are currently...</span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">In IDF you become...</span>
+
+    <div style="background:var(--surface2);border-bottom:1px solid var(--border);padding:10px 24px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple2);">Governance layer — IDF-defined, gate-bound</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
-      <span style="font-size:13px;color:var(--text2);">Developer / Engineer</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Craft Engineer</strong> — encodes how agents should build; catches what automated checks cannot judge</span>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--purple);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Stakeholder</span>
+      <span style="font-size:13px;color:var(--text2);">Portfolio horizon and strategic direction</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
-      <span style="font-size:13px;color:var(--text2);">QA Engineer / Tester</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Quality Advocate</strong> — sets quality gate criteria and validates as a real user before any flag turns ON</span>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--purple);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Product Owner</span>
+      <span style="font-size:13px;color:var(--text2);">Full intent lifecycle; sole Gate 3 authority</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
-      <span style="font-size:13px;color:var(--text2);">Product Manager / PO</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Product Owner</strong> — owns the full intent lifecycle: writes outcomes, holds gate authority, observes signals, closes intents</span>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--purple);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Architect</span>
+      <span style="font-size:13px;color:var(--text2);">Technical guardrails agents operate within</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);">
-      <span style="font-size:13px;color:var(--text2);">Tech Lead / Architect</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Architect</strong> — defines the constraints agents operate within; decisions live in capability files, not tickets</span>
+
+    <div style="background:var(--surface2);border-bottom:1px solid var(--border);border-top:1px solid var(--border);padding:10px 24px;display:flex;align-items:baseline;gap:16px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue2);">Delivery Team — responsibilities are IDF-defined, titles are not</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">who covers each is team-defined</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;padding:14px 24px;gap:24px;background:var(--surface);">
-      <span style="font-size:13px;color:var(--text2);">Manager / Director</span>
-      <span style="font-size:13px;color:var(--text);"><strong>Stakeholder</strong> — holds the portfolio horizon; sets the direction within which product decisions are made</span>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--blue);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Code craft and technical standards</span>
+      <span style="font-size:13px;color:var(--text2);">Review iteration output for quality, maintainability, and intent fit</span>
     </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--blue);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Quality and acceptance</span>
+      <span style="font-size:13px;color:var(--text2);">Define gate criteria; validate before the release switch activates</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--blue);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Domain and requirements</span>
+      <span style="font-size:13px;color:var(--text2);">Translate business context into cycle scope</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--blue);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Design and experience</span>
+      <span style="font-size:13px;color:var(--text2);">Define what "serves the intent" looks like for the user</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;background:var(--surface);border-left:3px solid var(--blue);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Delivery infrastructure</span>
+      <span style="font-size:13px;color:var(--text2);">Own pipelines, environments, and the release switch mechanism</span>
+    </div>
+
   </div>
 
   <div class="role-map-wrap">
@@ -2275,15 +2293,10 @@ Closed by: Product Owner · 2026-04-13</div>
           <span class="role-node-fn">Intent lifecycle + release authority</span>
           <span class="role-node-tag human">human</span>
         </div>
-        <div class="role-node human" data-role="craft" id="node-craft">
-          <span class="role-node-name">Craft Engineer</span>
-          <span class="role-node-fn">Code craft governor</span>
-          <span class="role-node-tag human">human</span>
-        </div>
-        <div class="role-node human" data-role="qa" id="node-qa">
-          <span class="role-node-name">Quality Advocate</span>
-          <span class="role-node-fn">Gate criteria &amp; validation</span>
-          <span class="role-node-tag human">human</span>
+        <div class="role-node agent" data-role="deliveryteam" id="node-deliveryteam">
+          <span class="role-node-name">Delivery Team</span>
+          <span class="role-node-fn">Skills assembled per product</span>
+          <span class="role-node-tag agent">team</span>
         </div>
         <div class="role-node human" data-role="arch" id="node-arch">
           <span class="role-node-name">Architects / TLs</span>
@@ -2364,24 +2377,16 @@ Closed by: Product Owner · 2026-04-13</div>
           { k: 'Backup',         v: 'A named delegate in System Memory holds release gate authority when PO is away. No delegate = cycle holds at Deploy.' }
         ]
       },
-      craft: {
-        name: 'Craft Engineer', type: 'human',
-        desc: 'A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge. Runs the Context Integrity Gate before every cycle, participates in Gate 1 (Intent + Cycle Alignment), and runs Gate 2 (Iteration Review) — reading the Guardian gate report AND using the feature hands-on before deciding: Approved (technically sound and serves the intent) or Request iteration with specific feedback.',
+      deliveryteam: {
+        name: 'Delivery Team', type: 'agent',
+        desc: 'The human-and-agent unit that executes cycles. IDF defines which responsibilities must be covered — the team decides who covers them. One person may hold multiple responsibilities. AI agents may assist or fully cover some depending on the work. The team declares coverage before Gate 1.',
         attrs: [
-          { k: 'Accountable for', v: 'Capability Library quality, agent training, craft standards' },
-          { k: 'Gates',          v: 'Gate 1 (concern-or-pass on intent and scope) · Gate 2 (reads report + uses feature → Approved or Request iteration with feedback)' },
-          { k: 'Produces',       v: 'Capability file updates, Gate 2 decisions with feedback text (technical or experiential)' },
-          { k: 'Key discipline', v: 'Noticing "the Builder keeps solving this wrong" and encoding the fix into a capability file — not fixing it manually each time' }
-        ]
-      },
-      qa: {
-        name: 'Quality Advocate', type: 'human',
-        desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify. Participates in Gate 1 (raising concerns about testability) and may join Gate 2 (Iteration Review) — especially for complex features where a second perspective on outcome fit or client experience is warranted.',
-        attrs: [
-          { k: 'Accountable for', v: 'Acceptance criteria, quality gate criteria, exploratory validation pre-flag' },
-          { k: 'Gate 2 role', v: 'May join as second reviewer — particularly useful for outcome fit or UX concerns that automated checks cannot surface. Primary Gate 2 authority rests with the Craft Engineer.' },
-          { k: 'Produces',       v: 'Quality gate criteria updates, Gate 2 decisions with feedback text' },
-          { k: 'Key discipline', v: 'Encoding discovered issues into quality gate criteria so the Guardian catches the same class of problem automatically next iteration' }
+          { k: 'Code craft and technical standards', v: 'Review iteration output for quality, maintainability, and intent fit. Typically a developer or tech lead.' },
+          { k: 'Quality and acceptance',             v: 'Define gate criteria; validate before the release switch activates. Typically a QA engineer, BA, or UX designer.' },
+          { k: 'Domain and requirements',            v: 'Translate business context into cycle scope. Typically a BA or domain expert.' },
+          { k: 'Design and experience',              v: 'Define what "serves the intent" looks like for the user. Typically a UX/UI designer; may be AI-assisted.' },
+          { k: 'Delivery infrastructure',            v: 'Own pipelines, environments, and the release switch mechanism. Typically a DevOps or platform engineer; often AI-assisted.' },
+          { k: 'Gate 2 authority',                   v: 'Sits with the Delivery Team. The team decides who reviews each iteration — based on what the iteration needs, not a fixed role assignment.' }
         ]
       },
       arch: {
