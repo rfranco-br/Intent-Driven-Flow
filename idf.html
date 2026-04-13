@@ -2561,6 +2561,71 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 </section>
 
+<!-- ═══════════════════ §13 — EXECUTION MODELS ═══════════════════ -->
+<section id="s13">
+  <div class="section-label">13 — Execution models</div>
+  <h2>Three ways to run IDF</h2>
+  <p style="max-width:680px;">IDF's execution layer is model-agnostic. The four functions must be covered in every team — what changes is who or what performs each one. The gate structure, the three-level hierarchy, and human governance at every gate are constant across all three models.</p>
+
+  <div style="margin-top:40px;overflow-x:auto;">
+    <div style="min-width:680px;">
+
+      <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;background:var(--surface2);border:1px solid var(--border);border-radius:8px 8px 0 0;">
+        <div style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);border-right:1px solid var(--border);">Function</div>
+        <div style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal2);border-right:1px solid var(--border);">Fully Agentic</div>
+        <div style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue2);border-right:1px solid var(--border);">Hybrid</div>
+        <div style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple2);">Spec-Driven</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border:1px solid var(--border);border-top:none;background:var(--surface);">
+        <div style="padding:16px;border-right:1px solid var(--border);">
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Decompose and route</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Orchestrator</div>
+        </div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI agent reads the intent, decomposes scope into tasks, creates iteration records, and routes work to Builders.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">Human tech lead defines scope and task breakdown; AI may draft the iteration record or assist routing decisions.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">Human tech lead writes the spec and task list; work is assigned manually with no agent involvement.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border:1px solid var(--border);border-top:none;background:var(--surface);">
+        <div style="padding:16px;border-right:1px solid var(--border);">
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Execute tasks</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Builder</div>
+        </div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI builder agents implement tasks from the iteration record; stateless per task; code and tests produced as a unit.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">Human developers use AI pair programming or code generation tools; the human owns the output.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">Human developers implement from spec; no agent involvement in the execution itself.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border:1px solid var(--border);border-top:none;background:var(--surface);">
+        <div style="padding:16px;border-right:1px solid var(--border);">
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Automated quality gate</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Guardian</div>
+        </div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI quality agent runs the full check suite and produces a gate report per iteration for Delivery Team review.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">CI/CD pipeline and test suite run automatically; AI may assist with report generation and summarisation.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">CI/CD pipeline and test suite; Delivery Team reads results and writes the gate report manually.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--surface);">
+        <div style="padding:16px;border-right:1px solid var(--border);">
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Cross-team dependency tracking</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Dependencies Broker</div>
+        </div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI broker monitors all cycle plans, detects cross-team dependencies automatically, and routes requests to affected POs.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">Project coordinator uses AI monitoring tools to surface dependencies; routing and tracking remain human-led.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">PO or project manager handles cross-team coordination manually; dependencies flagged during Gate 1 review.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin-top:24px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;max-width:680px;">
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Teams often start spec-driven and move toward hybrid or fully agentic as confidence in the tooling grows. IDF doesn't prescribe a starting point — it requires the four functions to be covered and the gates to be honored. The execution model can evolve without changing the framework.</p>
+  </div>
+
+</section>
+
 <!-- ═══════════════════ REFERENCE ZONE DIVIDER ═══════════════════ -->
 <div style="padding:60px 80px 0;border-top:1px solid var(--border);">
   <div style="display:flex;align-items:center;gap:24px;margin-bottom:0;">
