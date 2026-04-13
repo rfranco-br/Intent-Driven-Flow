@@ -2228,7 +2228,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s08">
   <div class="section-label">11 — Roles</div>
   <h2>Governance roles and the Delivery Team</h2>
-  <p style="max-width:640px;">IDF separates governance authority from delivery skills. Governance roles are IDF-defined and gate-bound — they cannot be delegated to an agent, collapsed, or renamed without changing what the framework says. The Delivery Team is assembled per product: IDF defines which responsibilities must be covered inside it; the team decides who covers them. AI agents may assist or fully cover some responsibilities depending on the work.</p>
+  <p style="max-width:640px;">IDF separates governance authority from delivery skills from execution. Governance roles are IDF-defined and gate-bound — they cannot be delegated to an agent, collapsed, or renamed without changing what the framework says. The Delivery Team is assembled per product: IDF defines which responsibilities must be covered; the team decides who covers them. The execution layer follows the same principle — IDF defines four functions that must be covered in every team; how each is implemented (AI agent, human, or pipeline tool) depends on the execution model.</p>
 
   <div style="margin-top:32px;margin-bottom:40px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
 
@@ -2273,6 +2273,27 @@ Closed by: Product Owner · 2026-04-13</div>
       <span style="font-size:13px;color:var(--text2);">Own pipelines, environments, and the release switch mechanism</span>
     </div>
 
+    <div style="background:var(--surface2);border-bottom:1px solid var(--border);border-top:1px solid var(--border);padding:10px 24px;display:flex;align-items:baseline;gap:16px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal2);">Execution layer — functions are IDF-defined, implementation is flexible</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">AI agent · human · pipeline tool · any combination</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--teal);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Decompose and route<br><span style="font-weight:400;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Orchestrator</span></span>
+      <span style="font-size:13px;color:var(--text2);">Break cycle scope into iteration tasks; route to executors; track completion</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--teal);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Execute tasks<br><span style="font-weight:400;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Builder</span></span>
+      <span style="font-size:13px;color:var(--text2);">Implement iteration tasks; produce code and tests; operate without cross-task state</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--teal);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Automated quality gate<br><span style="font-weight:400;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Guardian</span></span>
+      <span style="font-size:13px;color:var(--text2);">Run checks after each iteration; produce a gate report keyed to Cycle + Iteration for human review</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;background:var(--surface);border-left:3px solid var(--teal);">
+      <span style="font-size:13px;color:var(--text);font-weight:600;">Cross-team dependency tracking<br><span style="font-weight:400;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Dependencies Broker</span></span>
+      <span style="font-size:13px;color:var(--text2);">Monitor cross-team needs; route requests; track resolution so teams don't wait</span>
+    </div>
+
   </div>
 
   <div class="role-map-wrap">
@@ -2308,7 +2329,8 @@ Closed by: Product Owner · 2026-04-13</div>
         <span class="role-map-boundary-label">Intent flows down &nbsp;·&nbsp; Approval flows up</span>
       </div>
       <div class="role-map-zone">
-        <span class="role-map-zone-label agent">Agents — Execute</span>
+        <span class="role-map-zone-label agent">Execution layer</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.06em;">AI agent · human · pipeline tool · any combination</span>
         <div class="role-map-zone-line"></div>
       </div>
       <div class="role-map-row" id="agentRow">
@@ -2394,39 +2416,42 @@ Closed by: Product Owner · 2026-04-13</div>
         ]
       },
       orchestrator: {
-        name: 'Orchestrator', type: 'agent', sub: 'Execution Planner / Task Router',
-        desc: 'Routes tasks to the correct Builder agents, tracks in-flight work, and updates System Memory at cycle close. Decomposes the cycle scope into the first Iteration (trigger: initial) containing a sequenced task list. On Gate 2 feedback: creates additional Iterations (trigger: gate-2-feedback) with the feedback text attached. Tracks Iteration status (pending → executing → completed) throughout the cycle.',
+        name: 'Orchestrator', type: 'agent', sub: 'Decompose and route',
+        desc: 'The function responsible for breaking a cycle scope into iteration tasks, routing them to the right executor, and tracking completion. Decomposes the cycle scope into the first Iteration (trigger: initial) containing a sequenced task list. On Gate 2 feedback: creates additional Iterations (trigger: gate-2-feedback) with the feedback text attached.',
         attrs: [
-          { k: 'Reads',      v: 'Intent statement, System Memory, Capability Library' },
-          { k: 'Produces',   v: 'Iteration records (including trigger and feedback fields), task lists, routing decisions, memory updates' },
-          { k: 'Fails when', v: 'Intent is ambiguous — surfaces to PO and waits. Never infers.' }
+          { k: 'Implementation', v: 'AI orchestrator agent (fully agentic) · human tech lead writing specs (spec-driven) · combination (hybrid)' },
+          { k: 'Reads',          v: 'Intent statement, System Memory, Capability Library' },
+          { k: 'Produces',       v: 'Iteration records (including trigger and feedback fields), task lists, routing decisions, memory updates' },
+          { k: 'Fails when',     v: 'Intent is ambiguous — surfaces to PO and waits. Never infers.' }
         ]
       },
       builder: {
-        name: 'Builder(s)', type: 'agent', sub: 'Execution Entity',
-        desc: 'Execute individual tasks within an Iteration. Can be a single agent, a swarm of specialized agents, or human-assisted execution. Each Builder reads the relevant capability files before starting, produces code and tests as a single unit, and operates without state between tasks.',
+        name: 'Builder(s)', type: 'agent', sub: 'Execute tasks',
+        desc: 'The function responsible for implementing iteration tasks and producing the output. Operates without state between tasks — each task is self-contained. Can be a single agent, a swarm of specialized agents, a human developer, or any combination.',
         attrs: [
-          { k: 'Reads',      v: 'Task brief from Iteration record, domain capability file, System Memory' },
-          { k: 'Produces',   v: 'Code + tests, wrapped in a feature flag by default' },
-          { k: 'Constraint', v: 'Stateless — no opinion carried between tasks or cycles' }
+          { k: 'Implementation', v: 'AI builder agent (fully agentic) · human developer (spec-driven) · AI-assisted human (hybrid)' },
+          { k: 'Reads',          v: 'Task brief from Iteration record, domain capability file, System Memory' },
+          { k: 'Produces',       v: 'Code + tests, wrapped in a release switch by default' },
+          { k: 'Constraint',     v: 'Stateless — no opinion carried between tasks or cycles' }
         ]
       },
       guardian: {
-        name: 'Guardian', type: 'agent', sub: 'Automated Quality / Policy Governor',
-        desc: 'Runs automated checks after each Iteration completes and produces a gate report keyed to Cycle + Iteration. The report is reviewed by Craft Engineer or Quality Advocate (not PO). On their approval, Cycle advances to Gate 3. On their request for another iteration, Guardian runs again after the next Iteration completes.',
+        name: 'Guardian', type: 'agent', sub: 'Automated quality gate',
+        desc: 'The function responsible for running automated checks after each Iteration completes and producing a gate report keyed to Cycle + Iteration. The report goes to the Delivery Team for human review — Guardian does not approve or reject; it informs the decision.',
         attrs: [
-          { k: 'Checks',    v: 'Tests pass, sec scan clean, perf budget, cost delta, client impact' },
-          { k: 'Produces',  v: 'Gate report per iteration (GATE_REPORT_{cycle}_{iteration}.md, ≤3 paragraphs)' },
-          { k: 'Escalates', v: 'Architectural concerns to Craft Engineer, dependency conflicts to broker' }
+          { k: 'Implementation', v: 'AI quality agent (fully agentic) · CI/CD pipeline + test suite (spec-driven or hybrid) · combination' },
+          { k: 'Checks',         v: 'Tests pass, sec scan clean, perf budget, cost delta, client impact' },
+          { k: 'Produces',       v: 'Gate report per iteration (≤3 paragraphs): what was built, automated signals, recommendation' },
+          { k: 'Escalates',      v: 'Architectural concerns and dependency conflicts to appropriate humans' }
         ]
       },
       broker: {
-        name: 'Dependencies Broker', type: 'agent',
-        desc: 'Monitors cross-team signals. When a team\'s Orchestrator detects a cross-team need during decomposition, the broker routes the request, notifies affected POs, and tracks resolution.',
+        name: 'Dependencies Broker', type: 'agent', sub: 'Cross-team dependency tracking',
+        desc: 'The function responsible for monitoring cross-team signals. When decomposition surfaces a dependency on another team, the broker routes the request, notifies affected POs, and tracks resolution. Teams don\'t wait — they work around while the broker resolves.',
         attrs: [
-          { k: 'Monitors',  v: 'All Orchestrator task lists and cycle plans across teams in scope' },
-          { k: 'Produces',  v: 'Dependency alerts, blocker log, handoff checklists' },
-          { k: 'Key value', v: "Teams don't wait — they work around while the broker resolves" }
+          { k: 'Implementation', v: 'AI broker agent (fully agentic) · project coordinator or PO (spec-driven) · dedicated coordination role (large orgs)' },
+          { k: 'Monitors',       v: 'All task lists and cycle plans across teams in scope' },
+          { k: 'Produces',       v: 'Dependency alerts, blocker log, handoff checklists' }
         ]
       },
     };
