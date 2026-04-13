@@ -1089,21 +1089,21 @@
   <div class="s01-cards">
 
     <div class="s01-card" style="border-left:3px solid var(--purple);">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 1 — Intents over tasks</div>
-      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">You govern outcomes. Agents figure out how.</div>
-      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">The PO writes one outcome statement: what needs to be true for the client, and the signal that will confirm it. The team commits to that outcome, not to implementation steps. An intent closes only when the PO declares the signal was observed. Shipping the feature is not the same as achieving the outcome.</p>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 1 — Outcomes, not tasks</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Define what success looks like. Let the team figure out how.</div>
+      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">The person responsible for the product writes one statement: what needs to change for the client, and how you'll know it happened. The team works toward that outcome — not a list of tasks. The work isn't done when a feature ships. It's done when the outcome is confirmed.</p>
     </div>
 
     <div class="s01-card" style="border-left:3px solid var(--amber);">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 2 — Deployment and release are separate decisions</div>
-      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Code ships behind a flag. A human decides when it goes live.</div>
-      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Every Cycle produces exactly one feature flag. Agents deploy the code with the flag set to OFF — it reaches production but is invisible to users. Gate 3 is the moment a human (the PO) reads the gate report and authorizes the flag to flip ON. This separation eliminates the "deploy and pray" model. The flag going Live-ON starts the measurement window; it does not confirm the outcome.</p>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 2 — Deploy first. Release when ready.</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">What's built and what users see are two separate decisions.</div>
+      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Every piece of work reaches production invisible to users, behind a switch. A responsible person reviews the completed work, then decides when — and whether — to turn it on. This keeps risky releases out of the equation: work can ship continuously without exposing anything until a human says it's ready.</p>
     </div>
 
     <div class="s01-card" style="border-left:3px solid var(--coral);">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 3 — Three gates, nothing skipped</div>
-      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Human checkpoints govern every transition.</div>
-      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">IDF has three gates: Gate 1 aligns intent and scope before any execution begins. Gate 2 reviews each implementation pass — the Craft Engineer reads the automated report and uses the feature, and can request another iteration with written feedback. Gate 3 authorizes the flag flip. No transition happens without a human decision at the gate. Rework is not an informal loop — it is a named Iteration with a recorded reason.</p>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 3 — Three checkpoints, nothing skipped</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Every transition requires a human decision.</div>
+      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Before work starts: the team aligns on what they're building and why. When work is done: a reviewer reads the results and tries the feature — approving it or sending it back with written feedback. Before users see it: a responsible person authorizes the release. No step is automatic. No feedback disappears.</p>
     </div>
 
   </div>
