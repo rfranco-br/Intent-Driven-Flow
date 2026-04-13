@@ -1214,8 +1214,8 @@ Status: open</div>
       <div class="tl-marker tl-marker-cycle">C1</div>
       <div class="tl-content">
         <div class="tl-phase-label">Cycle 1 — Iteration 1</div>
-        <div class="tl-title">Agents build, Guardian reports, Gate 2 approves</div>
-        <div class="tl-body">The Orchestrator decomposes the intent into a task list within Iteration 1. Builders execute. The Guardian runs automated checks and produces a gate report. The Craft Engineer reads the report — the output looks correct, tests pass, performance within budget. Gate 2 decision: <span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;">APPROVED</span>. Cycle status advances to gate-3.</div>
+        <div class="tl-title">Agents build · Guardian reports · Craft Engineer reviews and uses it · Gate 2 approves</div>
+        <div class="tl-body">The Orchestrator decomposes the intent into a task list within Iteration 1. Builders execute. The Guardian runs automated checks and produces a gate report. The Craft Engineer reads the report — tests pass, performance within budget, no security issues — then opens the deployed feature and uses it. The simplified card input works as intended. Gate 2 decision: <span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;">APPROVED</span>. Cycle status advances to gate-3.</div>
         <div class="tl-artifact-label" style="color:var(--blue2);">GATE_REPORT — Cycle 1 / Iteration 1</div>
         <div class="tl-artifact">What was built: Single-field card input, billing address deferred.
 Tests: PASS · Security: CLEAN · Perf: within budget
@@ -1253,7 +1253,7 @@ Recommendation: APPROVED — ready for Gate 3.</div>
       <div class="tl-content">
         <div class="tl-phase-label">Cycle 2 — Iteration 2a (trigger: initial)</div>
         <div class="tl-title">Gate 2 requests a rework iteration</div>
-        <div class="tl-body">Cycle 2 aims to improve the mobile checkout experience — the hypothesis is that mobile users are abandoning due to keyboard overlap on the card input. Iteration 2a builds the fix. The Guardian produces a gate report. The Quality Advocate reviews it: automated tests pass, but the mobile keyboard behaviour on older iOS devices is broken. Gate 2 decision: <span style="color:var(--coral2);font-family:'IBM Plex Mono',monospace;font-size:11px;">REQUEST ITERATION</span> with written feedback.</div>
+        <div class="tl-body">Cycle 2 aims to improve the mobile checkout experience. Iteration 2a builds a keyboard scroll fix. The Guardian produces a gate report — automated tests pass. The Craft Engineer then opens the feature on a mobile device and uses it: the keyboard obscures the card input field on older iOS, making it impossible to complete the form. The automated tests couldn't catch this. Gate 2 decision: <span style="color:var(--coral2);font-family:'IBM Plex Mono',monospace;font-size:11px;">REQUEST ITERATION</span> with written feedback from hands-on experience.</div>
         <div class="tl-artifact-label" style="color:var(--coral2);">GATE_REPORT — Cycle 2 / Iteration 2a</div>
         <div class="tl-artifact">What was built: Mobile keyboard scroll fix on card input.
 Tests: PASS · Security: CLEAN · Perf: PASS
@@ -1372,7 +1372,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s05">
   <div class="section-label">05 — Gate 2</div>
   <h2>The Iteration Review Loop</h2>
-  <p style="max-width:680px;">Gate 2 is where human judgment meets execution output. It runs after every Iteration completes — not once per cycle. The key insight in v2 is that Gate 2 is not binary. A reviewer can approve (cycle advances) or request another iteration with written feedback (the loop repeats). This makes rework explicit and named rather than invisible.</p>
+  <p style="max-width:680px;">Gate 2 is where human judgment meets execution output. It runs after every Iteration completes — not once per cycle. The decision has two inputs: the Guardian's automated report (what was built, test results, performance, security) and the reviewer's hands-on experience — they actually use the feature before deciding. APPROVED means both: technically sound, and serves the intent. Either signal can trigger a REQUEST ITERATION.</p>
 
   <div class="gate2-loop">
 
@@ -1392,18 +1392,19 @@ Closed by: Product Owner · 2026-04-13</div>
       <div class="loop-node-blue" style="flex:1;text-align:center;">Gate report (≤3 paragraphs)<br><span style="font-size:11px;font-family:'IBM Plex Mono',monospace;">what was built · automated signals · recommendation</span></div>
     </div>
 
-    <div class="loop-connector"><div class="loop-line"></div><div class="loop-label">↓ human reviews</div><div class="loop-line"></div></div>
+    <div class="loop-connector"><div class="loop-line"></div><div class="loop-label">↓ report + hands-on review</div><div class="loop-line"></div></div>
 
     <div style="margin-bottom:6px;padding:10px 16px;border:1px solid var(--border2);border-radius:6px;background:var(--surface2);">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;margin-bottom:8px;text-transform:uppercase;">Human decision — Craft Engineer or Quality Advocate</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;margin-bottom:4px;text-transform:uppercase;">Craft Engineer uses the feature · reads the report · decides</div>
+      <div style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:10px;">PO may join — especially for outcome or UX concerns</div>
       <div class="loop-decision-row">
         <div class="loop-node-teal" style="text-align:center;">
           <div style="font-weight:600;margin-bottom:4px;">APPROVED</div>
-          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;">Cycle advances to Gate 3</div>
+          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;">Technically sound + serves the intent. Cycle advances to Gate 3.</div>
         </div>
         <div class="loop-node-coral" style="text-align:center;">
           <div style="font-weight:600;margin-bottom:4px;">REQUEST ITERATION</div>
-          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;">Human writes feedback text. Orchestrator creates new Iteration with trigger: gate-2-feedback.</div>
+          <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;">Technical issue or intent mismatch. Feedback text written. Orchestrator creates new Iteration with trigger: gate-2-feedback.</div>
         </div>
       </div>
     </div>
@@ -1415,19 +1416,27 @@ Closed by: Product Owner · 2026-04-13</div>
   </div><!-- end gate2-loop -->
 
   <div style="margin-top:40px;max-width:680px;">
-    <h3 style="font-size:16px;margin-bottom:16px;">What Gate 2 reviewer access looks like</h3>
+    <h3 style="font-size:16px;margin-bottom:16px;">What the Gate 2 review involves</h3>
     <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:6px;padding:16px 20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">Step 1 — Read the gate report</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0;">Review what the Guardian automated checks found: test results, security scan, performance, architectural signals. Catch anything technically unsound before touching the feature.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:6px;padding:16px 20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">Step 2 — Use the feature</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0;">The Craft Engineer accesses the deployed feature (behind its Pending-OFF flag) and uses it. Does it serve the intent? Does the interaction feel right? Are there hidden errors, awkward flows, or implementation choices that the automated report couldn't surface?</p>
+      </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:6px;padding:16px 20px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">If approving</div>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0;">Write: <code style="font-family:'IBM Plex Mono',monospace;color:var(--teal2);">APPROVED</code>. No additional annotation required. The cycle advances to Gate 3.</p>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0;">Write: <code style="font-family:'IBM Plex Mono',monospace;color:var(--teal2);">APPROVED</code>. Both conditions met: technically sound and serves the intent. Cycle advances to Gate 3.</p>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--coral);border-radius:6px;padding:16px 20px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">If requesting another iteration</div>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0 0 10px;">Write: <code style="font-family:'IBM Plex Mono',monospace;color:var(--coral2);">REQUEST ITERATION</code> followed by your specific feedback. Be precise. The feedback text becomes the <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">feedback</code> field in the new Iteration record — vague feedback produces vague rework.</p>
-        <div style="background:var(--bg);border-radius:4px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;">REQUEST ITERATION<br>Feedback: Keyboard overlaps card input on iOS 15 Safari — add scroll-padding-bottom to the form container. Test on iPhone SE viewport before resubmitting.</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0 0 10px;">Write: <code style="font-family:'IBM Plex Mono',monospace;color:var(--coral2);">REQUEST ITERATION</code> followed by specific feedback — technical finding or experiential observation, either is valid. The feedback text becomes the <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">feedback</code> field in the new Iteration record. Vague feedback produces vague rework.</p>
+        <div style="background:var(--bg);border-radius:4px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;">REQUEST ITERATION<br>Feedback: Keyboard overlaps card input on iOS 15 Safari — add scroll-padding-bottom to the form container.<br><br>REQUEST ITERATION<br>Feedback: The flow requires three taps where one would do. Billing address should default to saved address, not blank.</div>
       </div>
     </div>
-    <p style="margin-top:16px;font-size:13px;color:var(--text3);max-width:640px;">The PO is not involved at Gate 2. Gate 2 is an output quality check — it validates that what was built is technically sound and ready for a release decision. The release decision belongs to the PO at Gate 3.</p>
+    <p style="margin-top:16px;font-size:13px;color:var(--text3);max-width:640px;">The PO may join Gate 2 to assess outcome fit or UX concerns — their perspective on whether it serves the client is valid input. The final decision authority at Gate 2 rests with the Craft Engineer. The release decision belongs to the PO at Gate 3.</p>
   </div>
 </section>
 
@@ -1675,20 +1684,20 @@ Closed by: Product Owner · 2026-04-13</div>
       },
       craft: {
         name: 'Craft Engineer', type: 'human',
-        desc: 'A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge. Runs the Context Integrity Gate before every cycle, participates in Gate 1 (Intent + Cycle Alignment), and runs Gate 2 (Iteration Review) — reading the Guardian gate report and deciding: Approved or Request iteration with feedback text.',
+        desc: 'A developer who governs how agents write code — not a code reviewer, a craft governor. Catches naming, structure, and long-term maintainability issues that no automated check can judge. Runs the Context Integrity Gate before every cycle, participates in Gate 1 (Intent + Cycle Alignment), and runs Gate 2 (Iteration Review) — reading the Guardian gate report AND using the feature hands-on before deciding: Approved (technically sound and serves the intent) or Request iteration with specific feedback.',
         attrs: [
           { k: 'Accountable for', v: 'Capability Library quality, agent training, craft standards' },
-          { k: 'Gates',          v: 'Gate 1 (concern-or-pass on intent and scope) · Gate 2 (Approved or Request iteration with feedback)' },
-          { k: 'Produces',       v: 'Capability file updates, Gate 2 decisions with feedback text' },
+          { k: 'Gates',          v: 'Gate 1 (concern-or-pass on intent and scope) · Gate 2 (reads report + uses feature → Approved or Request iteration with feedback)' },
+          { k: 'Produces',       v: 'Capability file updates, Gate 2 decisions with feedback text (technical or experiential)' },
           { k: 'Key discipline', v: 'Noticing "the Builder keeps solving this wrong" and encoding the fix into a capability file — not fixing it manually each time' }
         ]
       },
       qa: {
         name: 'Quality Advocate', type: 'human',
-        desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify. Participates in Gate 1 (raising concerns about testability) and runs Gate 2 (Iteration Review) — reading the Guardian gate report and deciding: Approved or Request iteration with feedback text.',
+        desc: 'A QA engineer who defines what good looks like rather than running tests. The Guardian runs the suite; the Quality Advocate decides what it must verify. Participates in Gate 1 (raising concerns about testability) and may join Gate 2 (Iteration Review) — especially for complex features where a second perspective on outcome fit or client experience is warranted.',
         attrs: [
           { k: 'Accountable for', v: 'Acceptance criteria, quality gate criteria, exploratory validation pre-flag' },
-          { k: 'Gate 2 authority', v: 'Two responses: Approved (cycle advances to Gate 3) or Request iteration (writes feedback; new Iteration created; Cycle holds at gate-2). PO not involved at Gate 2.' },
+          { k: 'Gate 2 role', v: 'May join as second reviewer — particularly useful for outcome fit or UX concerns that automated checks cannot surface. Primary Gate 2 authority rests with the Craft Engineer.' },
           { k: 'Produces',       v: 'Quality gate criteria updates, Gate 2 decisions with feedback text' },
           { k: 'Key discipline', v: 'Encoding discovered issues into quality gate criteria so the Guardian catches the same class of problem automatically next iteration' }
         ]
@@ -1969,7 +1978,7 @@ Closed by: Product Owner · 2026-04-13</div>
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Gate 2 — Iteration Review</div></div>
       <div class="ritual-cadence">Per iteration</div>
       <div class="ritual-trigger">Triggered by: Iteration completes<br>Participants: Guardian (automated checks) · Craft Engineer or Quality Advocate (human decision)</div>
-      <div class="ritual-output">Guardian produces gate report. Human reviewer: Approved → Cycle advances to Gate 3. Request iteration → feedback text written; new Iteration created with trigger: gate-2-feedback; Cycle holds. Loop repeats until Approved. PO not involved.</div>
+      <div class="ritual-output">Guardian produces gate report. Craft Engineer reads report and uses the feature. Decision: Approved (technically sound + serves intent) → Cycle advances to Gate 3. Request iteration (technical or experiential feedback) → new Iteration created with trigger: gate-2-feedback; Cycle holds. Loop repeats until Approved. PO may join; final Gate 2 authority is the Craft Engineer.</div>
     </div>
 
     <div class="ritual-row">
@@ -2040,7 +2049,7 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
     <div class="comm-card">
       <div class="comm-direction"><span class="comm-from">Execution</span><span class="comm-arrow">→</span><span class="comm-to">Product</span></div>
-      <p>Gate reports surface from Guardian to the Gate 2 human reviewer. The reviewer's decision (Approved or Request iteration with feedback) travels back into the cycle. Gate reports do not go directly to the PO — the PO is not involved at Gate 2.</p>
+      <p>Gate reports surface from Guardian to the Craft Engineer. The Craft Engineer reads the report and uses the feature before deciding. Feedback — whether from the report or from hands-on experience — travels back as a REQUEST ITERATION with written text. The PO may join for outcome or UX assessment but is not the decision authority at Gate 2. The PO's release decision happens at Gate 3.</p>
       <div class="comm-payload">Trigger: Iteration completes<br>Format: Gate report (≤3 paragraphs) keyed to Cycle + Iteration<br>Frequency: Per iteration</div>
     </div>
     <div class="comm-card">
