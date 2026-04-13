@@ -638,7 +638,7 @@
     margin-bottom: 1rem;
     text-transform: uppercase;
   }
-  .mermaid svg { max-width: 100%; }
+  .mermaid svg { max-width: 100%; min-width: 600px; }
 
   /* ── SECTION-CONTRIBUTE ── */
   .section-contribute { padding: 64px 80px; }
@@ -688,6 +688,44 @@
     border-color: rgba(58,158,120,0.4);
     background: rgba(58,158,120,0.04);
   }
+  .twoflow-band.monitoring {
+    border: 1.5px dashed rgba(191,143,58,0.5);
+    background: rgba(191,143,58,0.03);
+    border-radius: 10px;
+    padding: 20px 32px;
+  }
+  .twoflow-tempo.monitoring { color: var(--amber2); }
+  .twoflow-node.n-monitor { border-color: rgba(191,143,58,0.5); color: var(--amber2); }
+  .twoflow-monitor-feedback {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .twoflow-monitor-arrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .twoflow-monitor-arrow .arrow-label {
+    color: var(--text2);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .twoflow-monitor-arrow .arrow-dest {
+    background: var(--surface2);
+    border: 1px dashed var(--border2);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .twoflow-monitor-arrow .arrow-dest.to-slow { border-color: rgba(74,122,191,0.4); color: var(--blue2); }
+  .twoflow-monitor-arrow .arrow-dest.to-fast { border-color: rgba(58,158,120,0.4); color: var(--teal2); }
   .twoflow-tempo {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
@@ -716,6 +754,7 @@
     white-space: nowrap;
   }
   .twoflow-node.n-slow  { border-color: rgba(74,122,191,0.5); color: var(--blue2); }
+  .twoflow-node.n-truenorth { border: 1px dashed rgba(74,122,191,0.4); color: var(--blue2); opacity: 0.7; font-style: italic; }
   .twoflow-node.n-intent{ border-color: rgba(124,92,191,0.6); color: var(--purple2); font-weight: 600; }
   .twoflow-node.n-fast  { border-color: rgba(58,158,120,0.5); color: var(--teal2); }
   .twoflow-node.n-gate  { border-color: rgba(232,115,74,0.4); color: var(--coral2); }
@@ -734,33 +773,41 @@
     letter-spacing: 0.06em;
     white-space: nowrap;
   }
-  .twoflow-cards {
+  .flow-strip {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
     margin-top: 40px;
   }
-  .twoflow-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px 28px;
+  .flow-strip-col {
+    padding: 28px 28px;
+    border-right: 1px solid var(--border);
   }
-  .twoflow-card-label {
+  .flow-strip-col:last-child { border-right: none; }
+  .flow-strip-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
-  .twoflow-card-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: var(--text2);
-    line-height: 1.5;
+  .flow-strip-headline {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.55;
+    margin-bottom: 20px;
   }
+  .flow-strip-fact {
+    font-size: 12px;
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.9;
+  }
+  .flow-strip-fact span { color: var(--text2); }
+  /* legacy card classes — unused but kept for safety */
   .twoflow-card-key {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
@@ -771,6 +818,34 @@
   }
 
   /* ── §03 INTENT SECTION ── */
+  .intent-template {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--purple);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .intent-template-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 14px;
+  }
+  .intent-template-formula {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .intent-template-formula em {
+    color: var(--purple2);
+    font-style: normal;
+    font-weight: 600;
+  }
   .intent-example {
     background: var(--bg);
     border: 1px solid var(--border2);
@@ -896,6 +971,57 @@
     gap: 6px;
   }
   .hier-mult::before { content: '1:N'; color: var(--coral2); font-weight: 600; font-size: 12px; }
+  /* ── §04 RELEASE SWITCH TABLE ── */
+  .release-switch {
+    margin-top: 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .release-switch-header {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    gap: 16px;
+  }
+  .release-switch-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+    align-items: start;
+  }
+  .release-switch-row:last-child { border-bottom: none; }
+  .release-switch-pattern {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+  }
+  .rsp-toggle   { background: rgba(58,158,120,0.12); color: var(--teal2);   border: 1px solid rgba(58,158,120,0.3); }
+  .rsp-canary   { background: rgba(191,143,58,0.12); color: var(--amber2);  border: 1px solid rgba(191,143,58,0.3); }
+  .rsp-alwayson { background: rgba(106,104,120,0.12); color: var(--text2);  border: 1px solid rgba(106,104,120,0.3); }
+  .release-switch-cell {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  @media (max-width: 720px) {
+    .release-switch-header { display: none; }
+    .release-switch-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+
   .hier-cycle {
     border: 2px solid rgba(74,122,191,0.45);
     background: rgba(74,122,191,0.05);
@@ -909,6 +1035,126 @@
     border-radius: 8px;
     padding: 16px 18px 18px;
   }
+
+  /* ── PROGRESSIVE PIECE DIAGRAMS §03–05 ── */
+  .piece-flow {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 22px;
+    margin-bottom: 36px;
+  }
+  .piece-flow-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+  .piece-flow-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pf-node {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 7px 13px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .pf-node.n-intent  { border-color: rgba(124,92,191,0.6); color: var(--purple2); }
+  .pf-node.n-cycle   { border-color: rgba(74,122,191,0.5); color: var(--blue2); }
+  .pf-node.n-iter    { border-color: rgba(58,158,120,0.5); color: var(--teal2); }
+  .pf-node.n-gate    { border-color: rgba(232,115,74,0.4); color: var(--coral2); }
+  .pf-node.n-monitor { border-color: rgba(191,143,58,0.5); color: var(--amber2); }
+  .pf-node.n-done    { border-color: rgba(90,158,74,0.4);  color: var(--green); }
+  .pf-dim { opacity: 0.25; pointer-events: none; }
+  .pf-arrow { color: var(--text3); font-size: 13px; flex-shrink: 0; }
+
+  /* ── FULL ASSEMBLED DIAGRAM (before §06) ── */
+  .full-flow-section {
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .ff-wrap {
+    border: 2px solid rgba(124,92,191,0.4);
+    background: rgba(124,92,191,0.03);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 32px;
+  }
+  .ff-level-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ff-level-label.intent  { color: var(--purple2); }
+  .ff-level-label.cycle   { color: var(--blue2); }
+  .ff-level-label.iter    { color: var(--teal2); }
+  .ff-level-label.monitor { color: var(--amber2); }
+  .ff-sub {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .ff-gate-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .ff-gate-divider-line { flex: 1; height: 1px; background: rgba(232,115,74,0.2); }
+  .ff-gate-divider-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--coral2);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .ff-cycle-box {
+    border: 2px solid rgba(74,122,191,0.4);
+    background: rgba(74,122,191,0.03);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .ff-iter-box {
+    border: 2px solid rgba(58,158,120,0.35);
+    background: rgba(58,158,120,0.03);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 4px;
+  }
+  .ff-monitor-box {
+    border: 1.5px dashed rgba(191,143,58,0.45);
+    background: rgba(191,143,58,0.03);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+  .ff-feedback-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .ff-feedback-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .ff-feedback-item span { color: var(--text2); }
 
   /* ── INTENT LIFECYCLE STRIP (§07) ── */
   .lifecycle-strip {
@@ -1193,6 +1439,9 @@
     .role-detail-inner { padding: 20px 16px; }
     .s01-cards { grid-template-columns: 1fr; }
     .twoflow-cards { grid-template-columns: 1fr; }
+    .flow-strip { grid-template-columns: 1fr; }
+    .flow-strip-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .flow-strip-col:last-child { border-bottom: none; }
     .intent-fields { grid-template-columns: 1fr; }
     .twoflow-nodes { gap: 6px; }
     .twoflow-node { font-size: 12px; padding: 8px 12px; }
@@ -1207,8 +1456,12 @@
     [style*="grid-template-columns:120px"] { grid-template-columns: 1fr !important; }
   }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { background: '#13131e', primaryColor: '#1a1a2a', primaryTextColor: '#f0ede8', primaryBorderColor: '#3a3a50', lineColor: '#6a6878', edgeLabelBackground: '#13131e', tertiaryColor: '#13131e' } });</script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs';
+  mermaid.registerLayoutLoaders(elkLayouts);
+  mermaid.initialize({ startOnLoad: true, layout: 'elk', theme: 'dark', themeVariables: { background: '#13131e', primaryColor: '#1a1a2a', primaryTextColor: '#f0ede8', primaryBorderColor: '#3a3a50', lineColor: '#6a6878', edgeLabelBackground: '#13131e', tertiaryColor: '#13131e' } });
+</script>
 </head>
 <body>
 
@@ -1274,21 +1527,18 @@
     <div class="twoflow-band slow">
       <div class="twoflow-tempo slow">Slow Flow — strategy · weeks to months</div>
       <div class="twoflow-nodes">
-        <div class="twoflow-node n-slow">Client signals</div>
+        <div class="twoflow-node n-slow">Ideation</div>
         <span class="twoflow-arrow">→</span>
-        <div class="twoflow-node n-slow">Direction</div>
+        <div class="twoflow-node n-truenorth">True North</div>
         <span class="twoflow-arrow">→</span>
-        <div class="twoflow-node n-intent">Intent created</div>
-        <span class="twoflow-arrow">→</span>
-        <div class="twoflow-node n-slow">Signal observed</div>
-        <span class="twoflow-arrow">→</span>
-        <div class="twoflow-node n-slow">Intent closed</div>
+        <div class="twoflow-node n-intent">Intent</div>
       </div>
+      <div style="text-align:center;margin-top:12px;font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:0.04em;">True North = OKRs, strategy, roadmap — IDF consumes this layer, it does not define it</div>
     </div>
 
     <div class="twoflow-connector">
       <div class="twoflow-connector-line"></div>
-      <div class="twoflow-connector-label">Intent enters Fast Flow at Gate 1 · returns to Slow Flow at Gate 3</div>
+      <div class="twoflow-connector-label">Intent enters Fast Flow at Gate 1</div>
       <div class="twoflow-connector-line"></div>
     </div>
 
@@ -1302,8 +1552,34 @@
         <div class="twoflow-node n-gate">Gate 2</div>
         <span class="twoflow-arrow">→</span>
         <div class="twoflow-node n-gate">Gate 3</div>
+      </div>
+      <div style="text-align:center;margin-top:12px;font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:0.04em;">Execute = Cycles and Iterations, spec-driven, AI-assisted, or fully agentic — whatever the team uses. Gates govern the transitions, not the method.</div>
+    </div>
+
+    <div class="twoflow-connector">
+      <div class="twoflow-connector-line"></div>
+      <div class="twoflow-connector-label">Gate 3 triggers monitoring — the flag is live, the signal window is open</div>
+      <div class="twoflow-connector-line"></div>
+    </div>
+
+    <div class="twoflow-band monitoring">
+      <div class="twoflow-tempo monitoring">Monitoring — continuous · triggered by Gate 3</div>
+      <div class="twoflow-nodes">
+        <div class="twoflow-node n-monitor">Flag live · signal window open</div>
         <span class="twoflow-arrow">→</span>
-        <div class="twoflow-node n-fast">Monitor</div>
+        <div class="twoflow-node n-monitor">PO watches signal</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-monitor">Signal observed?</div>
+      </div>
+      <div class="twoflow-monitor-feedback">
+        <div class="twoflow-monitor-arrow">
+          <span class="arrow-dest to-slow">↑ Slow Flow</span>
+          <span class="arrow-label">Signal achieved → intent closed or new intent begins</span>
+        </div>
+        <div class="twoflow-monitor-arrow">
+          <span class="arrow-dest to-fast">↺ Fast Flow</span>
+          <span class="arrow-label">Signal not achieved → new cycle begins</span>
+        </div>
       </div>
     </div>
 
@@ -1314,20 +1590,24 @@
     <p style="font-size:14px;color:var(--text2);line-height:1.75;margin:0;">Gates are the three human checkpoints in the Fast Flow. Each one is a decision point — nothing moves to the next phase without a person making the call. <strong style="color:var(--text);">Gate 1</strong> aligns intent and scope before execution begins. <strong style="color:var(--text);">Gate 2</strong> reviews each implementation pass. <strong style="color:var(--text);">Gate 3</strong> authorizes the release and activates value for clients. The full definition of each gate is in §07–09.</p>
   </div>
 
-  <div class="twoflow-cards">
-    <div class="twoflow-card" style="border-top:3px solid var(--blue2);">
-      <div class="twoflow-card-label" style="color:var(--blue2);">Slow Flow — Strategic</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Tempo</span>Weeks to months</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Who</span>Product Owner and stakeholders</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Output</span>An Intent — a committed outcome with a measurable signal</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Closes when</span>The PO observes the signal and declares it achieved</div>
+  <div class="flow-strip">
+    <div class="flow-strip-col" style="border-top:3px solid var(--blue2);">
+      <div class="flow-strip-label" style="color:var(--blue2);">Slow Flow</div>
+      <div class="flow-strip-headline">Where strategic goals become committed Intents.</div>
+      <div class="flow-strip-fact">⟶ Tempo: <span>weeks to months</span></div>
+      <div class="flow-strip-fact">⟶ Produces: <span>Intent — outcome statement + measurable signal</span></div>
     </div>
-    <div class="twoflow-card" style="border-top:3px solid var(--teal2);">
-      <div class="twoflow-card-label" style="color:var(--teal2);">Fast Flow — Execution</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Tempo</span>Hours to days</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Who</span>The delivery team</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Output</span>Working software behind a feature switch, ready for release</div>
-      <div class="twoflow-card-row"><span class="twoflow-card-key">Governed by</span>Three gates — nothing reaches users without human authorization</div>
+    <div class="flow-strip-col" style="border-top:3px solid var(--teal2);">
+      <div class="flow-strip-label" style="color:var(--teal2);">Fast Flow</div>
+      <div class="flow-strip-headline">Where Intents become working software behind a feature switch.</div>
+      <div class="flow-strip-fact">⟶ Tempo: <span>hours to days</span></div>
+      <div class="flow-strip-fact">⟶ Produces: <span>feature ready for release — execution model is yours to choose</span></div>
+    </div>
+    <div class="flow-strip-col" style="border-top:3px solid var(--amber2);">
+      <div class="flow-strip-label" style="color:var(--amber2);">Monitoring</div>
+      <div class="flow-strip-headline">Where the flag is live and the outcome is being measured.</div>
+      <div class="flow-strip-fact">⟶ Triggered by: <span>Gate 3 — flag goes Live-ON</span></div>
+      <div class="flow-strip-fact">⟶ Closes when: <span>PO confirms signal achieved or initiates a new cycle</span></div>
     </div>
   </div>
 
@@ -1336,8 +1616,32 @@
 <!-- ═══════════════════ §03 — THE INTENT ═══════════════════ -->
 <section id="s03">
   <div class="section-label">03 — The Intent</div>
+
+  <div class="piece-flow">
+    <div class="piece-flow-label">Where Intent fits in the flow</div>
+    <div class="piece-flow-row">
+      <div class="pf-node n-intent">Intent</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-gate pf-dim">Gate 1</div>
+      <span class="pf-arrow pf-dim">→</span>
+      <div class="pf-node n-cycle pf-dim">Cycle</div>
+      <span class="pf-arrow pf-dim">→</span>
+      <div class="pf-node n-gate pf-dim">Gate 3</div>
+      <span class="pf-arrow pf-dim">→</span>
+      <div class="pf-node n-monitor pf-dim">Monitoring</div>
+      <span class="pf-arrow pf-dim">→</span>
+      <div class="pf-node n-done pf-dim">completed</div>
+    </div>
+  </div>
+
   <h2>An Intent is a commitment to a client outcome — not a feature, not a task.</h2>
-  <p style="font-size:16px;line-height:1.8;">Everything in IDF starts with an Intent. An Intent answers two questions: what needs to change for the client, and how will you know it happened? Both must be answered before any work begins. If you can't state the outcome and measure it, you don't have an intent yet — you have an idea.</p>
+  <p style="font-size:16px;line-height:1.8;">Everything in IDF starts with an Intent. An Intent answers two questions: what needs to change for the client, and how will you know it happened? Both must be answered before any work begins.</p>
+
+  <div class="intent-template">
+    <div class="intent-template-label">Intent template</div>
+    <div class="intent-template-formula">[Client outcome] &nbsp;·&nbsp; by [mechanism] &nbsp;·&nbsp; measured by <em>[signal]</em></div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0;">Every intent must define how the outcome will be measured. IDF calls that instrument a <strong style="color:var(--text);">signal</strong> — a specific, observable fact declared before delivery begins, not chosen after. If you can name the outcome but not the signal, you don't have an intent yet.</p>
+  </div>
 
   <div class="intent-example">
     <div style="color:var(--text3);margin-bottom:6px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;">Example</div>
@@ -1376,15 +1680,35 @@
     <strong style="color:var(--text);">An Intent is not closed when the feature ships.</strong> It enters monitoring when the flag goes live — that is when the measurement window begins. It closes only when the Product Owner observes the signal and explicitly declares it complete. No one else can close an Intent.
   </div>
 
-  <p style="margin-top:32px;color:var(--text2);font-size:14px;line-height:1.75;">A feature is what you built. An Intent is why you built it. IDF tracks both — but only the Intent tells you whether the work was worth it.</p>
+  <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--border);text-align:center;">
+    <p style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--text);line-height:1.65;max-width:640px;margin:0 auto;">A feature is what you built.<br>An Intent is why you built it.<br><span style="color:var(--purple2);">IDF tracks both — but only the Intent tells you whether the work was worth it.</span></p>
+  </div>
 
 </section>
 
 <!-- ═══════════════════ §04 — THE CYCLE ═══════════════════ -->
 <section id="s04">
   <div class="section-label">04 — The Cycle</div>
-  <h2>One delivery unit. One switch. Starts at Gate 1, ends at Gate 3.</h2>
-  <p style="font-size:16px;line-height:1.8;">A Cycle is one end-to-end delivery run toward an Intent. It begins when the team aligns on scope at Gate 1 and ends when the Product Owner authorizes the release at Gate 3. Every Cycle produces exactly one feature switch. Cycles are not time-boxed — they close when the work is done and authorized, not when a timer runs out.</p>
+
+  <div class="piece-flow">
+    <div class="piece-flow-label">Where Cycle fits in the flow</div>
+    <div class="piece-flow-row">
+      <div class="pf-node n-intent pf-dim">Intent</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-gate">Gate 1</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-cycle">Cycle</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-gate">Gate 2</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-gate">Gate 3</div>
+      <span class="pf-arrow pf-dim">→</span>
+      <div class="pf-node n-monitor pf-dim">Monitoring</div>
+    </div>
+  </div>
+
+  <h2>One delivery unit. One controlled release. Starts at Gate 1, ends at Gate 3.</h2>
+  <p style="font-size:16px;line-height:1.8;">A Cycle is one end-to-end delivery run toward an Intent. It begins when the team aligns on scope at Gate 1 and ends when the Product Owner authorizes the release at Gate 3. Work deploys continuously to production behind a release switch — accumulated safely, released when the PO decides. Cycles are not time-boxed — they close when the work is done and authorized, not when a timer runs out.</p>
 
   <div class="hier-cycle" style="margin-top:40px;border-radius:10px;">
     <div class="hier-label hier-label-cycle">Cycle <span style="color:var(--text3);font-size:10px;font-weight:400;">— one delivery unit, one feature switch</span></div>
@@ -1406,11 +1730,60 @@
     <div class="hier-mult">An Intent contains one or more Cycles. A complex outcome may require several Cycles before the signal is achieved.</div>
   </div>
 
+  <div style="margin-top:48px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Release switch — how the Cycle's output reaches users</div>
+
+    <div class="release-switch">
+      <div class="release-switch-header">
+        <span>Pattern</span>
+        <span>What it means</span>
+        <span>Gate 3 action</span>
+      </div>
+      <div class="release-switch-row">
+        <div><span class="release-switch-pattern rsp-toggle">Toggle</span></div>
+        <div class="release-switch-cell">Deployed OFF, held in production. The default IDF pattern — continuous deployment without continuous exposure. Work accumulates safely until the PO is ready.</div>
+        <div class="release-switch-cell">Flip ON for all users.</div>
+      </div>
+      <div class="release-switch-row">
+        <div><span class="release-switch-pattern rsp-canary">Canary</span></div>
+        <div class="release-switch-cell">Deployed OFF, released to a controlled subset first — a percentage of users, a beta cohort, or a specific region. Monitoring opens on partial audience. The PO broadens the rollout as the signal builds confidence.</div>
+        <div class="release-switch-cell">Authorize rollout scope. PO defines the audience before Gate 3 passes.</div>
+      </div>
+      <div class="release-switch-row">
+        <div><span class="release-switch-pattern rsp-alwayson">Always-on</span></div>
+        <div class="release-switch-cell">No switch. Core system changes — infrastructure, database migrations, architectural refactors — cannot be toggled off without breaking the application. They deploy directly.</div>
+        <div class="release-switch-cell">Authorize deployment. No flag to flip — Gate 3 approves the deployment itself.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue2);border-radius:8px;padding:18px 24px;">
+      <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0;">The release pattern is agreed at Gate 1 — before execution begins. For canary releases, monitoring opens on the subset immediately after Gate 3. For always-on work, Gate 3 authorizes the deployment, not a flag flip. The governance is identical across all three patterns; only the mechanism differs.</p>
+    </div>
+  </div>
+
 </section>
 
 <!-- ═══════════════════ §05 — THE ITERATION ═══════════════════ -->
 <section id="s05">
   <div class="section-label">05 — The Iteration</div>
+
+  <div class="piece-flow">
+    <div class="piece-flow-label">Where Iteration fits in the flow</div>
+    <div class="piece-flow-row">
+      <div class="pf-node n-cycle pf-dim">Cycle</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-iter">Iteration</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-gate">Gate 2</div>
+      <span class="pf-arrow">→</span>
+      <div class="pf-node n-iter" style="font-size:11px;">↺ rework → new Iteration</div>
+      <span class="pf-arrow pf-dim" style="margin-left:4px;">or</span>
+      <div class="pf-node n-gate pf-dim">Gate 3</div>
+      <span class="pf-arrow pf-dim">→</span>
+      <div class="pf-node n-monitor pf-dim">Monitoring</div>
+    </div>
+  </div>
+
   <h2>One implementation pass. Every rework is named, not hidden.</h2>
   <p style="font-size:16px;line-height:1.8;">An Iteration is one complete execution run within a Cycle. The team builds, tests, and produces a gate report. That report goes to Gate 2, where a human reviews it and tries the feature. If it passes, the Cycle advances. If not, feedback is written down and a new Iteration begins. Rework is never informal — every pass is a recorded artifact with a reason.</p>
 
@@ -1438,6 +1811,39 @@
     </div>
 
     <div class="hier-mult" style="margin-top:18px;">A Cycle contains one or more Iterations. The first is always <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">initial</code>. Each rework pass is <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">gate-2-feedback</code> with the specific issue recorded.</div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════ FULL PICTURE INTERSTITIAL ═══════════════════ -->
+<section class="full-flow-section">
+  <div class="section-label" style="color:var(--text3);">The complete picture</div>
+  <h2>Intent, Cycle, Iteration — assembled</h2>
+  <p style="font-size:15px;color:var(--text2);line-height:1.75;max-width:680px;">Every piece from §03–05, in one view. An Intent contains one or more Cycles. Each Cycle contains one or more Iterations. Gate 3 opens the monitoring window. Monitoring closes the Intent — or starts a new Cycle if the signal isn't achieved.</p>
+
+  <div class="mermaid-wrap" style="margin-top:40px;">
+    <div class="mermaid">
+flowchart LR
+  classDef intent  stroke:#7c5cbf,stroke-width:2px
+  classDef cycle   stroke:#4a7abf,stroke-width:2px
+  classDef iter    stroke:#3a9e78,stroke-width:2px
+  classDef gate    stroke:#e8734a,stroke-width:2px
+  classDef monitor stroke:#bf8f3a,stroke-width:2px
+  classDef done    stroke:#5a9e4a,stroke-width:1px
+  classDef abandon stroke:#6a6878,stroke-width:1px
+
+  I([Intent]):::intent --> G1{Gate 1}:::gate
+  G1 -->|approved| C[Cycle]:::cycle
+  C --> IT[Iteration]:::iter
+  IT --> G2{Gate 2}:::gate
+  G2 -->|approved| G3{Gate 3}:::gate
+  G2 -->|not approved| RI([↺ new Iteration]):::iter
+  G3 -->|approved| M[Monitoring]:::monitor
+  G3 -->|not approved| RC([↺ new Cycle]):::cycle
+  M -->|signal achieved| DONE([completed]):::done
+  M -->|abandoned| AB([abandoned]):::abandon
+  M -->|not achieved| NC([↺ new Cycle]):::cycle
+    </div>
   </div>
 
 </section>
