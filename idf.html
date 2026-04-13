@@ -1834,6 +1834,7 @@ flowchart LR
 
   I([Intent]):::intent --> G1{Gate 1}:::gate
   G1 -->|approved| C[Cycle]:::cycle
+  G1 -->|not approved| RV([↺ Review Intent]):::intent
   C --> IT[Iteration]:::iter
   IT --> G2{Gate 2}:::gate
   G2 -->|approved| G3{Gate 3}:::gate
