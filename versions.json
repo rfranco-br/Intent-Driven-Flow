@@ -2,17 +2,17 @@
   {
     "version": "alpha",
     "file": "idf.html",
-    "date": "2026-04-11",
+    "date": "2026-04-13",
     "title": "Alpha",
-    "description": "Full narrative rebuild — journey-first structure: see it first (S03), learn the levels (S04), understand the gates (S05), then go deeper. Reference sections clearly separated.",
+    "description": "Three-level hierarchy rebuild — Intent/Cycle/Iteration model with revised gate behavior: Gate 2 loops on rework, Gate 3 authorizes the flag without closing the intent, and monitoring state bridges live release to confirmed outcome.",
     "highlights": [
-      "New S03: simplified 5-step cycle walkthrough — concrete story before any vocabulary",
-      "New S05: three gates as standalone section — Gate 1/2/3 with clear owner, trigger, and outcome",
-      "S04 stripped to intro paragraph + diagram only — phase card detail moved to full walkthrough",
-      "Roles, Artifacts, Adapting moved up before reference sections",
-      "Reference zone divider added — Layers/Signal Events/Comms/Metrics/Noise clearly marked as depth material",
-      "Signal Events diagram nodes updated to current gate names — no more legacy labels",
-      "Full walkthrough moved to S14 — serves as 'go deeper' for readers who want every artifact"
+      "New three-level model: Intent (outcome goal) → Cycle (one flag, one gate sequence) → Iteration (one implementation pass)",
+      "Intent lifecycle extended: open → in-progress → monitoring → completed; monitoring state explicitly separates flag go-live from outcome confirmation",
+      "Gate 2 is now a loop — Guardian presents report, human can approve or request another iteration with written feedback; new iteration spawned with trigger: gate-2-feedback",
+      "Gate 3 closes the cycle, not the intent — intent enters monitoring state after flag flip",
+      "Gate 1 has two modes: first cycle (approve intent + scope) vs. subsequent cycles (scope only)",
+      "Intent Log and Iteration Record gain clearer responsibilities to support multi-cycle intent tracking",
+      "Intent Completion added as a first-class signal event — explicit PO declaration that the outcome signal was observed"
     ]
   }
 ]

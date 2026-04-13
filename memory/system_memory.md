@@ -50,6 +50,7 @@
 /
 ├── index.html              — Version landing page (reads versions.json)
 ├── idf.html                — Main framework documentation (current: Alpha)
+├── idf-v2.html             — Hidden draft — three-level model rebuild (untracked, not in nav)
 ├── playbook.html           — Supplementary practices and templates
 ├── flow.html               — End-to-end flow reference diagram
 ├── nav.js                  — Shared sticky nav (injected in all pages)
@@ -83,17 +84,22 @@
 **Date:** 2026-04-07
 **Status:** Active development
 
-**Key framework sections in idf.html:**
-- Section 01: Cover
-- Section 02: Rules (A01–A06)
-- Section 03: Roles (Stakeholders, PO, Craft Engineer, QA Advocate, Architects, Orchestrator, Builder, Guardian, Dependency Broker, Client)
-- Section 04: Delivery Cycle (Mermaid flow + SDLC detail)
-- Section 05: Structure
-- Section 06: Signal Events + Rituals
-- Section 07: Artifacts
-- Section 08: Communication
-- Section 09: Measurement
-- Section 10: Quickstart
+**Key framework sections in idf.html (journey-first structure):**
+- Section 01: Getting started (Why IDF + manifesto)
+- Section 02: Operating principles (Rules R1–A06)
+- Section 03: See it first — one concrete cycle, 5 steps (NEW)
+- Section 04: Delivery Cycle — intro paragraph + Mermaid diagram only (stripped of phase cards)
+- Section 05: Three gates — Gate 1/2/3 as standalone section (NEW)
+- Section 06: Roles (11 roles — 5 human, 6 AI)
+- Section 07: Artifacts (7 persistent records)
+- Section 08: Adapting IDF to your organization
+- [Reference zone divider]
+- Section 09: Structure — four layers (Reference)
+- Section 10: Signal Events (Reference) — diagram nodes updated to current gate names
+- Section 11: Communication patterns (Reference)
+- Section 12: Measurement (Reference)
+- Section 13: Context Debt (Reference)
+- Section 14: Full cycle walkthrough — with every artifact
 - Contribute section
 - Footer
 
@@ -119,6 +125,14 @@
 ---
 
 ## Last Updated
+
+Date: 2026-04-13
+Updated by: Fullstack Dev
+Change: Created hidden page `idf-v2.html` (2207 lines) — full rebuild of IDF framework doc around the three-level Intent/Cycle/Iteration model. Sections: §01 three problems (intent closure, Gate 2 rework, conversational gates); §02 nested hierarchy diagram with status lifecycles and trigger fields; §03 walkthrough timeline (one intent, two cycles, Gate 2 failure + rework iteration, intent completion); §04 Gate 1 (first-cycle vs subsequent-cycle behaviour); §05 Gate 2 iteration review loop diagram; §06 Gate 3 flag authorization (closes cycle, not intent); §07 intent lifecycle beyond the flag (monitoring, signal observation, explicit completion, abandoned path); §08 Roles (11 roles, PO updated to own monitoring + intent closure); §09 Artifacts (Intent Log and Iteration Record updated); §10–14 reference zone (Layers, Signal Events, Communication, Measurement, Context Debt) with vocabulary adjusted for three-level model. File is hidden: NOT listed in nav.js, index.html, or versions.json. nav.js?v=11, GA4 G-MV9XNW7Y6V, no hardcoded hex outside :root. No git commit — file left untracked for user review.
+
+Date: 2026-04-11
+Updated by: Fullstack Dev
+Change: Full narrative rebuild of idf.html — journey-first section reorder. Added new S03 (one cycle walkthrough, 5 steps) and S05 (three gates standalone). Stripped S04 to intro + Mermaid diagram only (removed phase cards, gate callouts). Moved Roles to S06 (after Three Gates), Artifacts to S07, Adapting IDF to S08. Added reference zone divider before Layers. Renumbered reference sections: Layers=S09, Signal Events=S10, Communication=S11, Measurement=S12, Context Debt=S13. Moved full walkthrough to S14. Updated Signal Events diagram node labels to current gate names (Context Integrity Check, Gate 1/2/3). Updated versions.json description and highlights. Committed and pushed to main.
 
 Date: 2026-04-07
 Updated by: Fullstack Dev
