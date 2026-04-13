@@ -2332,11 +2332,6 @@ Closed by: Product Owner · 2026-04-13</div>
           <span class="role-node-fn">Cross-team signals</span>
           <span class="role-node-tag agent">agent</span>
         </div>
-        <div class="role-node human" data-role="client" id="node-client">
-          <span class="role-node-name">Client</span>
-          <span class="role-node-fn">Ultimate measure</span>
-          <span class="role-node-tag human">human</span>
-        </div>
       </div>
     </div>
     <div class="role-map-detail" id="roleMapDetail">
@@ -2434,15 +2429,6 @@ Closed by: Product Owner · 2026-04-13</div>
           { k: 'Key value', v: "Teams don't wait — they work around while the broker resolves" }
         ]
       },
-      client: {
-        name: 'Client', type: 'human',
-        desc: 'Not a workflow participant, but the ultimate measure of all decisions. Client signals flow continuously into the client signal log. The monitoring state is explicitly about watching client behaviour — the client\'s response to the released feature is what closes an intent.',
-        attrs: [
-          { k: 'Provides',       v: 'Real needs, usage signals, feedback, priority by behaviour' },
-          { k: 'Represented by', v: 'PO (in cycle intent), Guardian (in gate report per iteration)' },
-          { k: 'Validated by',   v: 'Feature flag rollout, usage metrics post-deploy, intent signal observation' }
-        ]
-      }
     };
     function renderDetail(roleKey) {
       var r = roles[roleKey];
