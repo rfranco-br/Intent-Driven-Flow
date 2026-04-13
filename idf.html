@@ -673,7 +673,153 @@
     color: var(--text2);
   }
 
-  /* ── HIERARCHY DIAGRAM (§02) ── */
+  /* ── §02 TWO-FLOW DIAGRAM ── */
+  .twoflow { margin-top: 40px; width: 100%; }
+  .twoflow-band {
+    border: 1.5px solid var(--border2);
+    border-radius: 10px;
+    padding: 24px 32px;
+  }
+  .twoflow-band.slow {
+    border-color: rgba(74,122,191,0.4);
+    background: rgba(74,122,191,0.04);
+  }
+  .twoflow-band.fast {
+    border-color: rgba(58,158,120,0.4);
+    background: rgba(58,158,120,0.04);
+  }
+  .twoflow-tempo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .twoflow-tempo.slow { color: var(--blue2); }
+  .twoflow-tempo.fast { color: var(--teal2); }
+  .twoflow-nodes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .twoflow-node {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .twoflow-node.n-slow  { border-color: rgba(74,122,191,0.5); color: var(--blue2); }
+  .twoflow-node.n-intent{ border-color: rgba(124,92,191,0.6); color: var(--purple2); font-weight: 600; }
+  .twoflow-node.n-fast  { border-color: rgba(58,158,120,0.5); color: var(--teal2); }
+  .twoflow-node.n-gate  { border-color: rgba(232,115,74,0.4); color: var(--coral2); }
+  .twoflow-arrow { color: var(--text3); font-size: 14px; flex-shrink: 0; }
+  .twoflow-connector {
+    display: flex;
+    align-items: center;
+    padding: 10px 32px;
+    gap: 16px;
+  }
+  .twoflow-connector-line { flex: 1; height: 1px; background: var(--border); }
+  .twoflow-connector-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--purple2);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .twoflow-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .twoflow-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+  }
+  .twoflow-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .twoflow-card-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .twoflow-card-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    min-width: 72px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  /* ── §03 INTENT SECTION ── */
+  .intent-example {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--purple);
+    border-radius: 6px;
+    padding: 16px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.8;
+    margin: 32px 0;
+  }
+  .intent-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .intent-field {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .intent-field-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 8px;
+  }
+  .intent-field-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .intent-rule {
+    margin-top: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 6px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* ── HIERARCHY DIAGRAM (§04/§05) ── */
   .hierarchy-diagram {
     margin-top: 48px;
     max-width: 760px;
@@ -1044,6 +1190,10 @@
     .role-node-fn { font-size: 9px; }
     .role-detail-inner { padding: 20px 16px; }
     .s01-cards { grid-template-columns: 1fr; }
+    .twoflow-cards { grid-template-columns: 1fr; }
+    .intent-fields { grid-template-columns: 1fr; }
+    .twoflow-nodes { gap: 6px; }
+    .twoflow-node { font-size: 12px; padding: 8px 12px; }
     .gate-cards-grid { grid-template-columns: 1fr; }
     .loop-decision-row { grid-template-columns: 1fr; }
     .lifecycle-row { flex-wrap: wrap; }
@@ -1111,98 +1261,183 @@
   <p class="s01-closing">Every piece of work is an Intent (the outcome), a Cycle (one delivery unit), or an Iteration (one implementation pass). The sections that follow define each level, each gate, and each role in full.</p>
 </section>
 
-<!-- ═══════════════════ §02 — THREE-LEVEL HIERARCHY ═══════════════════ -->
+<!-- ═══════════════════ §02 — TWO FLOWS ═══════════════════ -->
 <section id="s02">
-  <div class="section-label">02 — The three-level hierarchy</div>
-  <h2>Intent → Cycle → Iteration</h2>
-  <p style="max-width:680px;font-size:16px;line-height:1.8;">Every piece of work in IDF lives at exactly one of three levels. The levels nest: an Intent contains one or more Cycles; a Cycle contains one or more Iterations. Understanding which level you are operating at determines which gate fires, which artifact you are writing, and who owns the decision.</p>
+  <div class="section-label">02 — Two flows</div>
+  <h2>Strategy moves slowly. Delivery moves fast. Both are necessary.</h2>
+  <p style="font-size:16px;line-height:1.8;">IDF operates at two different tempos. The Slow Flow is where direction is set — understanding what clients need, deciding which outcomes matter, writing the intent. The Fast Flow is where delivery happens — building, reviewing, releasing. They run independently but serve the same goal: the Slow Flow decides what to pursue, the Fast Flow delivers it.</p>
 
-  <div class="hierarchy-diagram">
+  <div class="twoflow">
 
-    <!-- INTENT -->
-    <div class="hier-intent">
-      <div class="hier-label hier-label-intent">Intent <span style="color:var(--text3);font-size:10px;font-weight:400;">— the outcome you are working toward</span></div>
-      <div class="hier-title hier-title-intent">Intent</div>
-      <div class="hier-desc">A single client outcome the team has committed to, owned by the Product Owner and measured by a real observable signal. An intent opens when the PO creates it and closes only when the PO explicitly declares that the signal was achieved — or abandons it. A flag going Live-ON is not intent completion. A flag going Live-ON starts the measurement window.</div>
-
-      <div style="margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Status lifecycle</div>
-      <div class="hier-status-row">
-        <span class="status-pill sp-open">open</span>
-        <span style="font-size:12px;color:var(--text3);">→</span>
-        <span class="status-pill sp-progress">in-progress</span>
-        <span style="font-size:12px;color:var(--text3);">→</span>
-        <span class="status-pill sp-monitor">monitoring</span>
-        <span style="font-size:12px;color:var(--text3);">→</span>
-        <span class="status-pill sp-done">completed</span>
-        <span style="font-size:12px;color:var(--text3);">or</span>
-        <span class="status-pill sp-abandon">abandoned</span>
+    <div class="twoflow-band slow">
+      <div class="twoflow-tempo slow">Slow Flow — strategy · weeks to months</div>
+      <div class="twoflow-nodes">
+        <div class="twoflow-node n-slow">Client signals</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-slow">Direction</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-intent">Intent created</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-slow">Signal observed</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-slow">Intent closed</div>
       </div>
-      <div style="font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:18px;">open → in-progress at Gate 1 · monitoring at Gate 3 · completed/abandoned by explicit PO declaration after signal observation</div>
+    </div>
 
-      <!-- CYCLE inside intent -->
-      <div class="hier-mult">An Intent contains one or more Cycles. Each Cycle addresses the same intent.</div>
-      <div class="hier-cycle">
-        <div class="hier-label hier-label-cycle">Cycle <span style="color:var(--text3);font-size:10px;font-weight:400;">— one delivery unit, one flag</span></div>
-        <div class="hier-title hier-title-cycle">Cycle</div>
-        <div class="hier-desc">One end-to-end delivery run for the current intent. A Cycle starts at Gate 1 (Intent + Cycle Alignment) and ends at Gate 3 (Flag Authorization). Each Cycle produces exactly one feature flag. Cycles are not time-boxed — they are completion-triggered. A simple intent may close in a single Cycle; a complex intent may require several.</div>
+    <div class="twoflow-connector">
+      <div class="twoflow-connector-line"></div>
+      <div class="twoflow-connector-label">Intent enters Fast Flow at Gate 1 · returns to Slow Flow at Gate 3</div>
+      <div class="twoflow-connector-line"></div>
+    </div>
 
-        <div style="margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Status lifecycle</div>
-        <div class="hier-status-row">
-          <span class="status-pill sp-planned">planned</span>
-          <span style="font-size:12px;color:var(--text3);">→</span>
-          <span class="status-pill sp-exec">executing</span>
-          <span style="font-size:12px;color:var(--text3);">→</span>
-          <span class="status-pill sp-gate2">gate-2</span>
-          <span style="font-size:12px;color:var(--text3);">→</span>
-          <span class="status-pill sp-gate3">gate-3</span>
-          <span style="font-size:12px;color:var(--text3);">→</span>
-          <span class="status-pill sp-done">completed</span>
-        </div>
-        <div style="font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:18px;">executing after Gate 1 · gate-2 after each iteration completes · gate-3 after Gate 2 approved · completed after Gate 3 authorized</div>
+    <div class="twoflow-band fast">
+      <div class="twoflow-tempo fast">Fast Flow — execution · hours to days</div>
+      <div class="twoflow-nodes">
+        <div class="twoflow-node n-gate">Gate 1</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-fast">Execute</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-gate">Gate 2</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-gate">Gate 3</div>
+        <span class="twoflow-arrow">→</span>
+        <div class="twoflow-node n-fast">Monitor</div>
+      </div>
+    </div>
 
-        <!-- ITERATION inside cycle -->
-        <div class="hier-mult">A Cycle contains one or more Iterations. Each Iteration is one implementation pass.</div>
-        <div class="hier-iter">
-          <div class="hier-label hier-label-iter">Iteration <span style="color:var(--text3);font-size:10px;font-weight:400;">— one implementation pass</span></div>
-          <div class="hier-title hier-title-iter">Iteration</div>
-          <div class="hier-desc">One execution run within a Cycle — the Orchestrator decomposes scope into a task list, Builder agents execute it, the Guardian runs automated checks. An Iteration is the unit that reaches Gate 2. If Gate 2 approves, the Cycle advances to Gate 3. If Gate 2 requests changes, a new Iteration is created — and Gate 2 runs again when it completes. Rework is never invisible: every pass is a named, recorded Iteration.</div>
+  </div>
 
-          <div style="margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Status lifecycle</div>
-          <div class="hier-status-row">
-            <span class="status-pill sp-pending">pending</span>
-            <span style="font-size:12px;color:var(--text3);">→</span>
-            <span class="status-pill sp-exec">executing</span>
-            <span style="font-size:12px;color:var(--text3);">→</span>
-            <span class="status-pill sp-done">completed</span>
-          </div>
-          <div style="font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:10px;">pending on creation · executing when Builder starts · completed when Guardian report is produced</div>
+  <div class="twoflow-cards">
+    <div class="twoflow-card" style="border-top:3px solid var(--blue2);">
+      <div class="twoflow-card-label" style="color:var(--blue2);">Slow Flow — Strategic</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Tempo</span>Weeks to months</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Who</span>Product Owner and stakeholders</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Output</span>An Intent — a committed outcome with a measurable signal</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Closes when</span>The PO observes the signal and declares it achieved</div>
+    </div>
+    <div class="twoflow-card" style="border-top:3px solid var(--teal2);">
+      <div class="twoflow-card-label" style="color:var(--teal2);">Fast Flow — Execution</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Tempo</span>Hours to days</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Who</span>The delivery team</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Output</span>Working software behind a feature switch, ready for release</div>
+      <div class="twoflow-card-row"><span class="twoflow-card-key">Governed by</span>Three gates — nothing reaches users without human authorization</div>
+    </div>
+  </div>
 
-          <div style="margin-bottom:4px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Trigger field (distinguishes first pass from rework)</div>
-          <div class="hier-status-row">
-            <span class="status-pill sp-trigger">initial</span>
-            <span style="font-size:12px;color:var(--text3);">— first Iteration in the Cycle</span>
-          </div>
-          <div class="hier-status-row">
-            <span class="status-pill sp-gate2">gate-2-feedback</span>
-            <span style="font-size:12px;color:var(--text3);">— created by Gate 2 request with feedback text</span>
-          </div>
+</section>
 
-        </div><!-- end hier-iter -->
-      </div><!-- end hier-cycle -->
-    </div><!-- end hier-intent -->
+<!-- ═══════════════════ §03 — THE INTENT ═══════════════════ -->
+<section id="s03">
+  <div class="section-label">03 — The Intent</div>
+  <h2>An Intent is a commitment to a client outcome — not a feature, not a task.</h2>
+  <p style="font-size:16px;line-height:1.8;">Everything in IDF starts with an Intent. An Intent answers two questions: what needs to change for the client, and how will you know it happened? Both must be answered before any work begins. If you can't state the outcome and measure it, you don't have an intent yet — you have an idea.</p>
 
-  </div><!-- end hierarchy-diagram -->
+  <div class="intent-example">
+    <div style="color:var(--text3);margin-bottom:6px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;">Example</div>
+    Intent: Reduce checkout abandonment at the payment step.<br>
+    Signal: abandonment rate drops below 12% (currently at 22%).
+  </div>
 
-  <div style="margin-top:40px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--text3);border-radius:6px;padding:20px 24px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Key distinction</div>
-    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">An intent is a long-lived commitment that may span multiple cycles — it only closes when the PO confirms the outcome signal was actually observed. Gate 3 closes the <em>cycle</em>, not the intent. The flag going Live-ON starts the measurement window; it does not end the work.</p>
+  <div class="intent-fields">
+    <div class="intent-field">
+      <div class="intent-field-label">Outcome statement</div>
+      <div class="intent-field-title">What needs to change for the client</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">One sentence. Not what to build — what to achieve. The team commits to this statement, not to any specific implementation. How it gets built is the Fast Flow's job.</p>
+    </div>
+    <div class="intent-field">
+      <div class="intent-field-label">Measurement signal</div>
+      <div class="intent-field-title">The observable fact that confirms it</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">A number, a rate, a behaviour — something real that can be observed after the work ships. If the signal can't be measured, the intent can't be closed. Vague signals produce open-ended commitments.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Intent lifecycle</div>
+  <div class="hier-status-row">
+    <span class="status-pill sp-open">open</span>
+    <span style="font-size:12px;color:var(--text3);">→</span>
+    <span class="status-pill sp-progress">in-progress</span>
+    <span style="font-size:12px;color:var(--text3);">→</span>
+    <span class="status-pill sp-monitor">monitoring</span>
+    <span style="font-size:12px;color:var(--text3);">→</span>
+    <span class="status-pill sp-done">completed</span>
+    <span style="font-size:12px;color:var(--text3);">or</span>
+    <span class="status-pill sp-abandon">abandoned</span>
+  </div>
+  <div style="font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:32px;margin-top:8px;">open → in-progress when Gate 1 passes · monitoring when the flag goes live · completed or abandoned by explicit PO declaration</div>
+
+  <div class="intent-rule">
+    <strong style="color:var(--text);">An Intent is not closed when the feature ships.</strong> It enters monitoring when the flag goes live — that is when the measurement window begins. It closes only when the Product Owner observes the signal and explicitly declares it complete. No one else can close an Intent.
+  </div>
+
+  <p style="margin-top:32px;color:var(--text2);font-size:14px;line-height:1.75;">A feature is what you built. An Intent is why you built it. IDF tracks both — but only the Intent tells you whether the work was worth it.</p>
+
+</section>
+
+<!-- ═══════════════════ §04 — THE CYCLE ═══════════════════ -->
+<section id="s04">
+  <div class="section-label">04 — The Cycle</div>
+  <h2>One delivery unit. One switch. Starts at Gate 1, ends at Gate 3.</h2>
+  <p style="font-size:16px;line-height:1.8;">A Cycle is one end-to-end delivery run toward an Intent. It begins when the team aligns on scope at Gate 1 and ends when the Product Owner authorizes the release at Gate 3. Every Cycle produces exactly one feature switch. Cycles are not time-boxed — they close when the work is done and authorized, not when a timer runs out.</p>
+
+  <div class="hier-cycle" style="margin-top:40px;border-radius:10px;">
+    <div class="hier-label hier-label-cycle">Cycle <span style="color:var(--text3);font-size:10px;font-weight:400;">— one delivery unit, one feature switch</span></div>
+
+    <div style="margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Status lifecycle</div>
+    <div class="hier-status-row">
+      <span class="status-pill sp-planned">planned</span>
+      <span style="font-size:12px;color:var(--text3);">→</span>
+      <span class="status-pill sp-exec">executing</span>
+      <span style="font-size:12px;color:var(--text3);">→</span>
+      <span class="status-pill sp-gate2">gate-2</span>
+      <span style="font-size:12px;color:var(--text3);">→</span>
+      <span class="status-pill sp-gate3">gate-3</span>
+      <span style="font-size:12px;color:var(--text3);">→</span>
+      <span class="status-pill sp-done">completed</span>
+    </div>
+    <div style="font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:18px;">executing after Gate 1 · gate-2 after each iteration completes · gate-3 after Gate 2 approved · completed after Gate 3 authorized</div>
+
+    <div class="hier-mult">An Intent contains one or more Cycles. A complex outcome may require several Cycles before the signal is achieved.</div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════ §05 — THE ITERATION ═══════════════════ -->
+<section id="s05">
+  <div class="section-label">05 — The Iteration</div>
+  <h2>One implementation pass. Every rework is named, not hidden.</h2>
+  <p style="font-size:16px;line-height:1.8;">An Iteration is one complete execution run within a Cycle. The team builds, tests, and produces a gate report. That report goes to Gate 2, where a human reviews it and tries the feature. If it passes, the Cycle advances. If not, feedback is written down and a new Iteration begins. Rework is never informal — every pass is a recorded artifact with a reason.</p>
+
+  <div class="hier-iter" style="margin-top:40px;border-radius:10px;">
+    <div class="hier-label hier-label-iter">Iteration <span style="color:var(--text3);font-size:10px;font-weight:400;">— one implementation pass</span></div>
+
+    <div style="margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Status lifecycle</div>
+    <div class="hier-status-row">
+      <span class="status-pill sp-pending">pending</span>
+      <span style="font-size:12px;color:var(--text3);">→</span>
+      <span class="status-pill sp-exec">executing</span>
+      <span style="font-size:12px;color:var(--text3);">→</span>
+      <span class="status-pill sp-done">completed</span>
+    </div>
+    <div style="font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-bottom:18px;">pending on creation · executing when the team starts · completed when the gate report is produced</div>
+
+    <div style="margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Trigger — distinguishes first pass from rework</div>
+    <div class="hier-status-row" style="margin-bottom:6px;">
+      <span class="status-pill sp-trigger">initial</span>
+      <span style="font-size:12px;color:var(--text3);">— first Iteration in the Cycle</span>
+    </div>
+    <div class="hier-status-row">
+      <span class="status-pill sp-gate2">gate-2-feedback</span>
+      <span style="font-size:12px;color:var(--text3);">— created from Gate 2 feedback, with the reviewer's written reason attached</span>
+    </div>
+
+    <div class="hier-mult" style="margin-top:18px;">A Cycle contains one or more Iterations. The first is always <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">initial</code>. Each rework pass is <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">gate-2-feedback</code> with the specific issue recorded.</div>
   </div>
 
 </section>
 
 <!-- ═══════════════════ §03 — WALKTHROUGH ═══════════════════ -->
 <section id="s03">
-  <div class="section-label">03 — See it in one delivery</div>
+  <div class="section-label">06 — See it in one delivery</div>
   <h2>One intent, two cycles, one rework iteration</h2>
   <p style="max-width:680px;">This walkthrough traces a single intent through its complete lifecycle — from the first cycle to monitoring, to a second cycle with a Gate 2 failure and a rework iteration, through to signal observation and intent closure. It is the same pattern every non-trivial delivery follows.</p>
   <p style="color:var(--text3);font-size:13px;margin-bottom:8px;max-width:680px;">Intent: Reduce checkout abandonment at the payment step. Signal: abandonment rate below 12% (currently 22%).</p>
@@ -1336,7 +1571,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §04 — GATE 1 ═══════════════════ -->
 <section id="s04">
-  <div class="section-label">04 — Gate 1</div>
+  <div class="section-label">07 — Gate 1</div>
   <h2>Intent &amp; Cycle Alignment</h2>
   <p style="max-width:680px;">Gate 1 runs before any execution begins. Its job is to confirm two things: that the intent is worth pursuing, and that the proposed cycle scope is coherent. Gate 1 has slightly different behaviour depending on whether this is the first cycle for an intent or a subsequent one.</p>
 
@@ -1397,7 +1632,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §05 — GATE 2 ═══════════════════ -->
 <section id="s05">
-  <div class="section-label">05 — Gate 2</div>
+  <div class="section-label">08 — Gate 2</div>
   <h2>The Iteration Review Loop</h2>
   <p style="max-width:680px;">Gate 2 is where human judgment meets execution output. It runs after every Iteration completes — not once per cycle. The decision has two inputs: the Guardian's automated report (what was built, test results, performance, security) and the reviewer's hands-on experience — they actually use the feature before deciding. APPROVED means both: technically sound, and serves the intent. Either signal can trigger a REQUEST ITERATION.</p>
 
@@ -1469,7 +1704,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §06 — GATE 3 ═══════════════════ -->
 <section id="s06">
-  <div class="section-label">06 — Gate 3</div>
+  <div class="section-label">09 — Gate 3</div>
   <h2>Flag Authorization</h2>
   <p style="max-width:680px;">Gate 3 is binary and belongs exclusively to the Product Owner. It has one question: authorize this feature to go live? The PO reads the gate report and makes the call. There is no partial approval, no conditional pass. The flag either flips or it doesn't.</p>
   <p style="max-width:680px;">Gate 3 closes the <strong style="color:var(--text);">cycle</strong>, not the intent. When the flag flips to Live-ON, the cycle completes and the intent enters the <span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:12px;">monitoring</span> state. The intent stays open. Signal observation starts.</p>
@@ -1509,7 +1744,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §07 — INTENT LIFECYCLE BEYOND THE FLAG ═══════════════════ -->
 <section id="s07">
-  <div class="section-label">07 — Intent lifecycle beyond the flag</div>
+  <div class="section-label">10 — Intent lifecycle beyond the flag</div>
   <h2>Monitoring, signal observation, and explicit closure</h2>
   <p style="max-width:680px;">The flag going Live-ON is not the end of the story. It is the beginning of the measurement window. An intent in monitoring state is an active commitment — the PO is watching signals and waiting for evidence that the outcome was actually achieved. This is the part of delivery that the 1:1 model skipped entirely.</p>
 
@@ -1571,7 +1806,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §08 — ROLES ═══════════════════ -->
 <section id="s08">
-  <div class="section-label">08 — Roles</div>
+  <div class="section-label">11 — Roles</div>
   <h2>Eleven roles — five human, six AI</h2>
   <p style="max-width:640px;">One person can hold multiple human roles. Each role has a defined scope — crossing that scope is how the system breaks. The Product Owner explicitly owns the monitoring state, signal observation, and intent closure decisions that sit outside the delivery cycle itself.</p>
 
@@ -1818,7 +2053,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §09 — ARTIFACTS ═══════════════════ -->
 <section id="s09">
-  <div class="section-label">09 — Artifacts</div>
+  <div class="section-label">12 — Artifacts</div>
   <h2>Persistent records</h2>
   <p style="max-width:640px;">The system's memory doesn't live in anyone's head. These records are maintained across every cycle — they are what allows agents to operate without being retrained after each conversation. The Intent Log and Iteration Record are the two artifacts that carry the three-level model's state across cycles.</p>
 
@@ -1901,7 +2136,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §10 — LAYERS ═══════════════════ -->
 <section id="s10">
-  <div class="section-label">10 — Reference</div>
+  <div class="section-label">16 — Reference</div>
   <h2>Four layers, one client thread</h2>
   <p style="max-width:640px;">The three-level delivery model (Intent/Cycle/Iteration) operates within a four-layer organizational structure. Each layer has clear ownership, distinct decision authority, and defined interfaces to the layers above and below. The client is not a layer — it is the vertical thread that runs through all of them.</p>
 
@@ -1957,7 +2192,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §11 — SIGNAL EVENTS ═══════════════════ -->
 <section id="s11">
-  <div class="section-label">11 — Reference</div>
+  <div class="section-label">17 — Reference</div>
   <h2>Signal Events</h2>
   <p style="max-width:640px;">IDF replaces scheduled ceremonies with event-driven triggers. A signal event fires when its condition is met — not because the calendar says so. Every signal event has a trigger, a specific output, and a clear owner. Intent Completion is a first-class signal event — the explicit PO declaration that an intent's outcome signal was observed.</p>
 
@@ -2059,7 +2294,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §12 — COMMUNICATION ═══════════════════ -->
 <section id="s12">
-  <div class="section-label">12 — Reference</div>
+  <div class="section-label">18 — Reference</div>
   <h2>How layers talk to each other</h2>
   <p style="max-width:640px;">Inter-layer communication is explicit, documented, and async by default. No layer should require a synchronous meeting to receive information from another layer. These defined communication patterns are what make fast cycles possible without creating noise or missed signals.</p>
 
@@ -2099,7 +2334,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §13 — MEASUREMENT ═══════════════════ -->
 <section id="s13">
-  <div class="section-label">13 — Reference</div>
+  <div class="section-label">19 — Reference</div>
   <h2>What good looks like — in numbers</h2>
   <p style="max-width:640px;">In an agent-driven system, execution effort is nearly free — what matters is how fast intent becomes client value, how stable releases are, and how well the system learns from each cycle. Intent completion rate is a key signal: are intents actually achieving their outcomes, or just shipping features?</p>
 
@@ -2163,7 +2398,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
 <!-- ═══════════════════ §14 — CONTEXT DEBT ═══════════════════ -->
 <section id="s14">
-  <div class="section-label">14 — Reference</div>
+  <div class="section-label">20 — Reference</div>
   <h2>Noise is the primary cause of agent failure</h2>
   <p style="max-width:680px;font-size:16px;line-height:1.8;">Technical debt accumulates silently and reveals itself as bugs. Context debt accumulates silently and reveals itself as agent confusion — correct behavior executed against the wrong understanding of the system. An agent running against a polluted System Memory does not know it is confused. It produces confident, wrong output.</p>
 
