@@ -647,6 +647,32 @@
      NEW COMPONENTS — v2 additions
   ═══════════════════════════════════════════════════════ */
 
+  /* ── §01 CORE IDEAS GRID ── */
+  .s01-intro {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+  .s01-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    width: 100%;
+  }
+  .s01-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 28px;
+  }
+  .s01-closing {
+    margin-top: 40px;
+    width: 100%;
+    color: var(--text2);
+  }
+
   /* ── HIERARCHY DIAGRAM (§02) ── */
   .hierarchy-diagram {
     margin-top: 48px;
@@ -1017,6 +1043,7 @@
     .role-node-name { font-size: 11px; }
     .role-node-fn { font-size: 9px; }
     .role-detail-inner { padding: 20px 16px; }
+    .s01-cards { grid-template-columns: 1fr; }
     .gate-cards-grid { grid-template-columns: 1fr; }
     .loop-decision-row { grid-template-columns: 1fr; }
     .lifecycle-row { flex-wrap: wrap; }
@@ -1057,23 +1084,23 @@
 <section id="s01">
   <div class="section-label">01 — What is IDF</div>
   <h2>A governance framework for teams where agents execute and humans govern.</h2>
-  <p style="max-width:680px;font-size:16px;line-height:1.8;">IDF — Intent Driven Flow — is a delivery framework built for small teams that use AI agents as the primary execution force. Agents write the code. Humans set the direction, review the output, and decide what reaches users. The framework defines exactly where those human decisions happen, what they require, and what they produce.</p>
+  <p class="s01-intro">IDF — Intent Driven Flow — is a delivery framework built for small teams that use AI agents as the primary execution force. Agents write the code. Humans set the direction, review the output, and decide what reaches users. The framework defines exactly where those human decisions happen, what they require, and what they produce.</p>
 
-  <div style="display:flex;flex-direction:column;gap:24px;margin-top:48px;max-width:720px;">
+  <div class="s01-cards">
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:8px;padding:24px 28px;">
+    <div class="s01-card" style="border-left:3px solid var(--purple);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 1 — Intents over tasks</div>
       <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">You govern outcomes. Agents figure out how.</div>
       <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Instead of writing a list of tasks, the Product Owner writes a single outcome statement: what needs to be true for the client, and the signal that will confirm it was achieved. The team commits to that outcome — not to a set of implementation steps. An intent stays open until the PO observes the signal and explicitly declares it complete. Shipping the feature is not the same as achieving the outcome.</p>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:24px 28px;">
+    <div class="s01-card" style="border-left:3px solid var(--amber);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 2 — Deployment and release are separate decisions</div>
       <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Code ships behind a flag. A human decides when it goes live.</div>
       <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Every Cycle produces exactly one feature flag. Agents deploy the code with the flag set to OFF — it reaches production but is invisible to users. Gate 3 is the moment a human (the PO) reads the gate report and authorizes the flag to flip ON. This separation eliminates the "deploy and pray" model. The flag going Live-ON starts the measurement window; it does not confirm the outcome.</p>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--coral);border-radius:8px;padding:24px 28px;">
+    <div class="s01-card" style="border-left:3px solid var(--coral);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 3 — Three gates, nothing skipped</div>
       <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Human checkpoints govern every transition.</div>
       <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">IDF has three gates: Gate 1 aligns intent and scope before any execution begins. Gate 2 reviews each implementation pass — the Craft Engineer reads the automated report and uses the feature, and can request another iteration with written feedback. Gate 3 authorizes the flag flip. No transition happens without a human decision at the gate. Rework is not an informal loop — it is a named Iteration with a recorded reason.</p>
@@ -1081,7 +1108,7 @@
 
   </div>
 
-  <p style="margin-top:40px;max-width:680px;color:var(--text2);">These three ideas are expressed through the three-level model described in §02: every piece of work is an Intent (the outcome), a Cycle (one delivery unit), or an Iteration (one implementation pass). The sections that follow define each level, each gate, and each role in full.</p>
+  <p class="s01-closing">These three ideas are expressed through the three-level model described in §02: every piece of work is an Intent (the outcome), a Cycle (one delivery unit), or an Iteration (one implementation pass). The sections that follow define each level, each gate, and each role in full.</p>
 </section>
 
 <!-- ═══════════════════ §02 — THREE-LEVEL HIERARCHY ═══════════════════ -->
