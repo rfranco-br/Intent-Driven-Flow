@@ -2126,7 +2126,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s06">
   <div class="section-label">09 — Gate 3</div>
   <h2>Flag Authorization</h2>
-  <p style="max-width:680px;">Gate 3 is binary and belongs exclusively to the Product Owner. It has one question: authorize this feature to go live? The PO reads the gate report and makes the call. There is no partial approval, no conditional pass. The flag either flips or it doesn't.</p>
+  <p style="max-width:680px;">Gate 3 is binary and belongs exclusively to the Product Owner. It has one question: authorize this feature to go live? The PO reads the gate report and makes the call. There is no partial approval, no conditional pass. The release switch activates or it doesn't. The specific mechanism — toggle flip, canary rollout, always-on — was fixed at Gate 1. Gate 3 authorizes the activation, not the mechanism.</p>
   <p style="max-width:680px;">Gate 3 closes the <strong style="color:var(--text);">cycle</strong>, not the intent. When the flag flips to Live-ON, the cycle completes and the intent enters the <span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:12px;">monitoring</span> state. The intent stays open. Signal observation starts.</p>
 
   <div class="gate-cards-grid" style="grid-template-columns:1fr;">
@@ -2135,7 +2135,7 @@ Closed by: Product Owner · 2026-04-13</div>
       <div class="gate-card-title">Release Decision</div>
       <div class="gate-field">
         <div class="gate-field-key">Trigger</div>
-        <div class="gate-field-val">Gate 2 approved. Feature deployed behind Pending-OFF flag.</div>
+        <div class="gate-field-val">Gate 2 approved. Feature deployed and ready for release via the switch pattern authorized at Gate 1.</div>
       </div>
       <div class="gate-field">
         <div class="gate-field-key">Participants</div>
@@ -2147,7 +2147,7 @@ Closed by: Product Owner · 2026-04-13</div>
       </div>
       <div class="gate-field">
         <div class="gate-field-key">Authorized</div>
-        <div class="gate-field-val" style="color:var(--teal2);">Flag: Pending-OFF → Live-ON. Cycle status: completed. Intent status: monitoring. PO begins signal observation.</div>
+        <div class="gate-field-val" style="color:var(--teal2);">Release switch activated. Cycle status: completed. Intent status: monitoring. PO begins signal observation.</div>
       </div>
       <div class="gate-field">
         <div class="gate-field-key">Rejected</div>
