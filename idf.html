@@ -1041,7 +1041,7 @@
   <div class="cover-meta">
     <div class="cover-meta-item"><label>Model</label><span>Intent → Cycle → Iteration</span></div>
     <div class="cover-meta-item"><label>Key shift</label><span>Intents survive flag go-live and close on signal observation</span></div>
-    <div class="cover-meta-item"><label>Origin</label><span>Built on IDF Alpha — one structural upgrade</span></div>
+    <div class="cover-meta-item"><label>Team size</label><span>1–15 people</span></div>
   </div>
 </div>
 
@@ -1053,42 +1053,42 @@
   <p>The Pilot looked up at the black expanse of the stars and shook his head. <em>"Friend,"</em> he said, <em>"where we are going, there are no roads. There is no air. There is no friction."</em></p>
 </div>
 
-<!-- ═══════════════════ §01 — WHY THE OLD MODEL BREAKS ═══════════════════ -->
+<!-- ═══════════════════ §01 — WHAT IS IDF ═══════════════════ -->
 <section id="s01">
-  <div class="section-label">01 — Why the single-level model breaks</div>
-  <h2>Three problems the old model cannot solve</h2>
-  <p style="max-width:680px;font-size:16px;line-height:1.8;">IDF Alpha introduced the right instincts — human gates, feature flags, outcome-based intent. But it mapped each intent to exactly one cycle. That 1:1 assumption works when outcomes are small. It quietly fails when they aren't. Three failure modes surface reliably.</p>
+  <div class="section-label">01 — What is IDF</div>
+  <h2>A governance framework for teams where agents execute and humans govern.</h2>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">IDF — Intent Driven Flow — is a delivery framework built for small teams that use AI agents as the primary execution force. Agents write the code. Humans set the direction, review the output, and decide what reaches users. The framework defines exactly where those human decisions happen, what they require, and what they produce.</p>
 
   <div style="display:flex;flex-direction:column;gap:24px;margin-top:48px;max-width:720px;">
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--coral);border-radius:8px;padding:24px 28px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Problem 1 — Intent closure at the wrong moment</div>
-      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Intents shouldn't close at Gate 3</div>
-      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">When the flag flips to Live-ON, a feature is in production — but the outcome hasn't been confirmed yet. Abandonment rates, conversion changes, and user-behaviour signals take days or weeks to appear. Closing the intent at Gate 3 treats deployment as success. It is not. The outcome is what you were working toward. The flag flip is a prerequisite for measuring it, not a substitute for measuring it.</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:8px;padding:24px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 1 — Intents over tasks</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">You govern outcomes. Agents figure out how.</div>
+      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Instead of writing a list of tasks, the Product Owner writes a single outcome statement: what needs to be true for the client, and the signal that will confirm it was achieved. The team commits to that outcome — not to a set of implementation steps. An intent stays open until the PO observes the signal and explicitly declares it complete. Shipping the feature is not the same as achieving the outcome.</p>
     </div>
 
     <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:24px 28px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Problem 2 — Gate 2 rework has no clean home</div>
-      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">A bug found in iteration review is in limbo</div>
-      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">When Gate 2 surfaces a real problem — a broken flow, a performance regression, a UX issue — the reviewer's feedback has nowhere to land. It can extend the current cycle indefinitely (making Gate 2 a soft loop with no artifact), or force a new "fix X" intent (which breaks outcome-based thinking by treating an implementation correction as a new business outcome). Neither is right. Rework needs to be a first-class, named artifact within the same intent.</p>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 2 — Deployment and release are separate decisions</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Code ships behind a flag. A human decides when it goes live.</div>
+      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Every Cycle produces exactly one feature flag. Agents deploy the code with the flag set to OFF — it reaches production but is invisible to users. Gate 3 is the moment a human (the PO) reads the gate report and authorizes the flag to flip ON. This separation eliminates the "deploy and pray" model. The flag going Live-ON starts the measurement window; it does not confirm the outcome.</p>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:8px;padding:24px 28px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Problem 3 — Gates are binary in code but conversational in practice</div>
-      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Humans need to request more work, not just approve or deny</div>
-      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">A gate that can only pass or fail puts the reviewer in an awkward position: reject a cycle that's mostly correct and lose the work, or approve something that isn't ready. In practice, human reviewers do something more useful — they write a comment: "fix the edge case on mobile and re-submit." That conversational loop is how good teams actually work. The model needs to name it formally instead of pretending it doesn't exist.</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--coral);border-radius:8px;padding:24px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Core idea 3 — Three gates, nothing skipped</div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;">Human checkpoints govern every transition.</div>
+      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">IDF has three gates: Gate 1 aligns intent and scope before any execution begins. Gate 2 reviews each implementation pass — the Craft Engineer reads the automated report and uses the feature, and can request another iteration with written feedback. Gate 3 authorizes the flag flip. No transition happens without a human decision at the gate. Rework is not an informal loop — it is a named Iteration with a recorded reason.</p>
     </div>
 
   </div>
 
-  <p style="margin-top:40px;max-width:680px;color:var(--text2);">The three-level hierarchy introduced in §02 solves all three: intents persist past Gate 3 and close on signal observation; Gate 2 rework creates an explicit new Iteration artifact; and the gate decision vocabulary is extended from two options (pass/fail) to three (approved, request iteration, reject).</p>
+  <p style="margin-top:40px;max-width:680px;color:var(--text2);">These three ideas are expressed through the three-level model described in §02: every piece of work is an Intent (the outcome), a Cycle (one delivery unit), or an Iteration (one implementation pass). The sections that follow define each level, each gate, and each role in full.</p>
 </section>
 
 <!-- ═══════════════════ §02 — THREE-LEVEL HIERARCHY ═══════════════════ -->
 <section id="s02">
   <div class="section-label">02 — The three-level hierarchy</div>
   <h2>Intent → Cycle → Iteration</h2>
-  <p style="max-width:680px;font-size:16px;line-height:1.8;">Every piece of work in IDF v2 lives at exactly one of three levels. The levels nest: an Intent contains one or more Cycles; a Cycle contains one or more Iterations. Understanding which level you are operating at determines which gate fires, which artifact you are writing, and who owns the decision.</p>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">Every piece of work in IDF lives at exactly one of three levels. The levels nest: an Intent contains one or more Cycles; a Cycle contains one or more Iterations. Understanding which level you are operating at determines which gate fires, which artifact you are writing, and who owns the decision.</p>
 
   <div class="hierarchy-diagram">
 
@@ -1167,8 +1167,8 @@
   </div><!-- end hierarchy-diagram -->
 
   <div style="margin-top:40px;max-width:680px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--text3);border-radius:6px;padding:20px 24px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Key distinction from the old model</div>
-    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">In IDF Alpha, one intent mapped to one cycle. Gate 3 closed both. In v2, an intent is a long-lived commitment that may span multiple cycles — and it only closes when the PO confirms the outcome signal was actually observed. Gate 3 now closes the <em>cycle</em>, not the intent. This single structural change resolves all three problems described in §01.</p>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Key distinction</div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">An intent is a long-lived commitment that may span multiple cycles — it only closes when the PO confirms the outcome signal was actually observed. Gate 3 closes the <em>cycle</em>, not the intent. The flag going Live-ON starts the measurement window; it does not end the work.</p>
   </div>
 
 </section>
@@ -1311,7 +1311,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s04">
   <div class="section-label">04 — Gate 1</div>
   <h2>Intent &amp; Cycle Alignment</h2>
-  <p style="max-width:680px;">Gate 1 runs before any execution begins. Its job is to confirm two things: that the intent is worth pursuing, and that the proposed cycle scope is coherent. In v2, Gate 1 has slightly different behaviour depending on whether this is the first cycle for an intent or a subsequent one.</p>
+  <p style="max-width:680px;">Gate 1 runs before any execution begins. Its job is to confirm two things: that the intent is worth pursuing, and that the proposed cycle scope is coherent. Gate 1 has slightly different behaviour depending on whether this is the first cycle for an intent or a subsequent one.</p>
 
   <div class="gate-cards-grid">
 
@@ -1445,7 +1445,7 @@ Closed by: Product Owner · 2026-04-13</div>
   <div class="section-label">06 — Gate 3</div>
   <h2>Flag Authorization</h2>
   <p style="max-width:680px;">Gate 3 is binary and belongs exclusively to the Product Owner. It has one question: authorize this feature to go live? The PO reads the gate report and makes the call. There is no partial approval, no conditional pass. The flag either flips or it doesn't.</p>
-  <p style="max-width:680px;">The most important change from IDF Alpha: Gate 3 closes the <strong style="color:var(--text);">cycle</strong>, not the intent. When the flag flips to Live-ON, the cycle completes and the intent enters the <span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:12px;">monitoring</span> state. The intent stays open. Signal observation starts.</p>
+  <p style="max-width:680px;">Gate 3 closes the <strong style="color:var(--text);">cycle</strong>, not the intent. When the flag flips to Live-ON, the cycle completes and the intent enters the <span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:12px;">monitoring</span> state. The intent stays open. Signal observation starts.</p>
 
   <div class="gate-cards-grid" style="grid-template-columns:1fr;">
     <div class="gate-card" style="border-top:3px solid var(--coral);max-width:640px;">
@@ -1546,7 +1546,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s08">
   <div class="section-label">08 — Roles</div>
   <h2>Eleven roles — five human, six AI</h2>
-  <p style="max-width:640px;">The role model is unchanged from IDF Alpha. One person can hold multiple human roles. Each role has a defined scope — crossing that scope is how the system breaks. The only material update is to the Product Owner role, which now explicitly owns the monitoring state, signal observation, and intent closure decisions that the three-level model makes visible.</p>
+  <p style="max-width:640px;">One person can hold multiple human roles. Each role has a defined scope — crossing that scope is how the system breaks. The Product Owner explicitly owns the monitoring state, signal observation, and intent closure decisions that sit outside the delivery cycle itself.</p>
 
   <div style="margin-top:32px;margin-bottom:40px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
     <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-bottom:1px solid var(--border);padding:12px 24px;gap:24px;">
@@ -1749,7 +1749,7 @@ Closed by: Product Owner · 2026-04-13</div>
       },
       client: {
         name: 'Client', type: 'human',
-        desc: 'Not a workflow participant, but the ultimate measure of all decisions. Client signals flow continuously into the client signal log. In v2, the monitoring state is explicitly about watching client behaviour — the client\'s response to the released feature is what closes an intent.',
+        desc: 'Not a workflow participant, but the ultimate measure of all decisions. Client signals flow continuously into the client signal log. The monitoring state is explicitly about watching client behaviour — the client\'s response to the released feature is what closes an intent.',
         attrs: [
           { k: 'Provides',       v: 'Real needs, usage signals, feedback, priority by behaviour' },
           { k: 'Represented by', v: 'PO (in cycle intent), Guardian (in gate report per iteration)' },
@@ -1793,7 +1793,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s09">
   <div class="section-label">09 — Artifacts</div>
   <h2>Persistent records</h2>
-  <p style="max-width:640px;">The system's memory doesn't live in anyone's head. These records are maintained across every cycle — they are what allows agents to operate without being retrained after each conversation. In v2, the Intent Log and Iteration Record gain clearer responsibilities to support the three-level model.</p>
+  <p style="max-width:640px;">The system's memory doesn't live in anyone's head. These records are maintained across every cycle — they are what allows agents to operate without being retrained after each conversation. The Intent Log and Iteration Record are the two artifacts that carry the three-level model's state across cycles.</p>
 
   <div class="artifacts-grid">
 
@@ -1828,7 +1828,7 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="artifact-card">
       <h3>Intent Log</h3>
       <span class="artifact-filename">INTENT_LOG.md</span>
-      <p>A chronological record of every intent across its full lifecycle — including the monitoring state and explicit completion or abandonment. Carries intent status (open, in-progress, monitoring, completed, abandoned), all associated Cycles, and the observed signal value at closure. Updated at Gate 1, Gate 3, and Intent Completion. In v2, an intent entry is not complete until the PO records the signal observation.</p>
+      <p>A chronological record of every intent across its full lifecycle — including the monitoring state and explicit completion or abandonment. Carries intent status (open, in-progress, monitoring, completed, abandoned), all associated Cycles, and the observed signal value at closure. Updated at Gate 1, Gate 3, and Intent Completion. An intent entry is not complete until the PO records the signal observation.</p>
       <div class="artifact-owner">Steward: Orchestrator (writes) · PO (owns monitoring entries and closure)</div>
     </div>
 
@@ -1881,7 +1881,7 @@ Closed by: Product Owner · 2026-04-13</div>
   <div class="client-bar" style="background:linear-gradient(90deg,rgba(232,115,74,0.08) 0%,rgba(232,115,74,0.03) 100%);border:1px solid rgba(232,115,74,0.2);border-radius:12px;padding:24px 32px;margin-top:48px;display:flex;align-items:center;gap:32px;">
     <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--coral);white-space:nowrap;">Client</div>
     <div style="width:1px;height:40px;background:rgba(232,115,74,0.3);"></div>
-    <p style="font-size:14px;color:var(--text2);margin:0;">The client is the reason every decision is made. The PO translates client signals into cycle intent. Executors validate that built features serve real client needs. In v2, the monitoring state is explicitly about watching the client's response — the signal the intent was written around is a client outcome, and the PO confirms it by observing real client behaviour, not internal metrics.</p>
+    <p style="font-size:14px;color:var(--text2);margin:0;">The client is the reason every decision is made. The PO translates client signals into cycle intent. Executors validate that built features serve real client needs. The monitoring state is explicitly about watching the client's response — the signal the intent was written around is a client outcome, and the PO confirms it by observing real client behaviour, not internal metrics.</p>
   </div>
 
   <div style="margin-top:32px;">
@@ -1932,7 +1932,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s11">
   <div class="section-label">11 — Reference</div>
   <h2>Signal Events</h2>
-  <p style="max-width:640px;">IDF replaces scheduled ceremonies with event-driven triggers. A signal event fires when its condition is met — not because the calendar says so. Every signal event has a trigger, a specific output, and a clear owner. In v2, Intent Completion is a first-class signal event — the explicit PO declaration that an intent's outcome signal was observed.</p>
+  <p style="max-width:640px;">IDF replaces scheduled ceremonies with event-driven triggers. A signal event fires when its condition is met — not because the calendar says so. Every signal event has a trigger, a specific output, and a clear owner. Intent Completion is a first-class signal event — the explicit PO declaration that an intent's outcome signal was observed.</p>
 
   <div class="rituals-table">
     <div class="rituals-header">
@@ -2064,7 +2064,7 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
     <div class="comm-card">
       <div class="comm-direction"><span class="comm-from">Client</span><span class="comm-arrow">→</span><span class="comm-to">Product</span></div>
-      <p>Client signals travel to the PO continuously through whatever feedback channel exists. In v2, these signals are also what closes intents — the PO is explicitly looking for the measurement signal defined in the intent statement.</p>
+      <p>Client signals travel to the PO continuously through whatever feedback channel exists. These signals are also what closes intents — the PO is explicitly looking for the measurement signal defined in the intent statement.</p>
       <div class="comm-payload">Trigger: Any client feedback, usage data, support pattern<br>Format: Entry in CLIENT_SIGNALS.md<br>Frequency: Continuous</div>
     </div>
   </div>
@@ -2074,7 +2074,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s13">
   <div class="section-label">13 — Reference</div>
   <h2>What good looks like — in numbers</h2>
-  <p style="max-width:640px;">In an agent-driven system, execution effort is nearly free — what matters is how fast intent becomes client value, how stable releases are, and how well the system learns from each cycle. In v2, intent completion rate becomes a key signal: are intents actually achieving their outcomes, or just shipping features?</p>
+  <p style="max-width:640px;">In an agent-driven system, execution effort is nearly free — what matters is how fast intent becomes client value, how stable releases are, and how well the system learns from each cycle. Intent completion rate is a key signal: are intents actually achieving their outcomes, or just shipping features?</p>
 
   <div style="background:rgba(106,104,120,0.08);border:1px solid var(--border);border-left:3px solid var(--text3);border-radius:6px;padding:16px 24px;margin-top:32px;max-width:680px;">
     <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text3);margin-bottom:8px;letter-spacing:0.08em;">DO NOT TRACK</div>
@@ -2128,7 +2128,7 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="artifact-card">
       <h3>Intent completion rate</h3>
       <span class="artifact-filename">% intents reaching completed vs. abandoned</span>
-      <p>In v2, this is the primary outcome signal. An intent that ships a flag but never reaches completed status means the outcome wasn't confirmed. This metric is unique to the three-level model.</p>
+      <p>The primary outcome signal in IDF. An intent that ships a flag but never reaches completed status means the outcome wasn't confirmed. This is the metric that separates delivery from outcomes.</p>
       <div class="artifact-owner">Target: &gt;70% completed · Review abandoned intents at drift check</div>
     </div>
   </div>
@@ -2190,7 +2190,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section class="section-contribute">
   <div class="section-label">Contribute</div>
   <h2>This framework is a living document</h2>
-  <p style="max-width:640px;">IDF v2 is a draft. The three-level model is the core structural change — Intent/Cycle/Iteration, with intent lifecycle that survives flag go-live. If you are using IDF in practice and find that something doesn't hold, or that the model needs to extend further, the right move is to surface it.</p>
+  <p style="max-width:640px;">IDF is a working framework — not a finished specification. If you are using it in practice and find that something doesn't hold, or that the model needs to extend further, the right move is to surface it.</p>
   <p style="max-width:640px;">This page is hidden by design — direct URL only, not listed in the nav. It exists for review before any promotion decision. If the model holds up under your delivery scenario, raise a promotion request.</p>
   <div style="margin-top:40px;display:flex;gap:24px;flex-wrap:wrap;">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;max-width:280px;">
