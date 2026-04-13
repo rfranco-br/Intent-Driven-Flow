@@ -2491,7 +2491,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s12">
   <div class="section-label">12 — Execution models</div>
   <h2>Three ways to run IDF</h2>
-  <p style="max-width:680px;">IDF's execution layer is model-agnostic. The four functions must be covered in every team — what changes is who or what performs each one. The gate structure, the three-level hierarchy, and human governance at every gate are constant across all three models.</p>
+  <p style="max-width:680px;">IDF's execution layer is model-agnostic. The four functions must be covered in every team — what changes is who or what performs each one. The gate structure, the three-level hierarchy, and human governance at every gate are constant across all three models. All three models involve AI execution. The spectrum is about how much human specification work happens before agents begin.</p>
 
   <div style="margin-top:40px;overflow-x:auto;">
     <div style="min-width:680px;">
@@ -2510,7 +2510,7 @@ Closed by: Product Owner · 2026-04-13</div>
         </div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI agent reads the intent, decomposes scope into tasks, creates iteration records, and routes work to Builders.</div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">Human tech lead defines scope and task breakdown; AI may draft the iteration record or assist routing decisions.</div>
-        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">Human tech lead writes the spec and task list; work is assigned manually with no agent involvement.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">Human writes a detailed spec — outcomes, scope boundaries, constraints, task breakdown, and verification criteria. An AI Coordinator agent reads the spec and decomposes it into sub-tasks routed to Implementor agents.</div>
       </div>
 
       <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border:1px solid var(--border);border-top:none;background:var(--surface);">
@@ -2520,7 +2520,7 @@ Closed by: Product Owner · 2026-04-13</div>
         </div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI builder agents implement tasks from the iteration record; stateless per task; code and tests produced as a unit.</div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">Human developers use AI pair programming or code generation tools; the human owns the output.</div>
-        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">Human developers implement from spec; no agent involvement in the execution itself.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">AI Implementor agents execute tasks within the spec's constraints. Scope boundaries and verification criteria in the spec govern what agents build — and what they don't.</div>
       </div>
 
       <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border:1px solid var(--border);border-top:none;background:var(--surface);">
@@ -2530,7 +2530,7 @@ Closed by: Product Owner · 2026-04-13</div>
         </div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI quality agent runs the full check suite and produces a gate report per iteration for Delivery Team review.</div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">CI/CD pipeline and test suite run automatically; AI may assist with report generation and summarisation.</div>
-        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">CI/CD pipeline and test suite; Delivery Team reads results and writes the gate report manually.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">AI Verifier agent checks output against the spec's verification criteria and produces the gate report. Delivery Team reviews alignment with spec intent before Gate 3.</div>
       </div>
 
       <div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--surface);">
@@ -2540,7 +2540,7 @@ Closed by: Product Owner · 2026-04-13</div>
         </div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI broker monitors all cycle plans, detects cross-team dependencies automatically, and routes requests to affected POs.</div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">Project coordinator uses AI monitoring tools to surface dependencies; routing and tracking remain human-led.</div>
-        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">PO or project manager handles cross-team coordination manually; dependencies flagged during Gate 1 review.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">Dependencies are surfaced at spec-writing time — the spec's scope boundaries define what's in and out. Cross-team needs are resolved before execution begins, reducing mid-cycle blockers.</div>
       </div>
 
     </div>
