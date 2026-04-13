@@ -2556,23 +2556,10 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s13">
   <div class="section-label">13 — Artifacts</div>
   <h2>Persistent records</h2>
-  <p style="max-width:640px;">The system's memory doesn't live in anyone's head. These records are maintained across every cycle — they are what allows agents to operate without being retrained after each conversation. The Intent Log and Iteration Record are the two artifacts that carry the three-level model's state across cycles.</p>
+  <p style="max-width:640px;">The system's memory doesn't live in anyone's head. Some artifacts are governance records — they track what was decided and what happened. Two are specifically about agent continuity — they exist because AI agents have no memory between sessions.</p>
 
+  <div style="margin-top:12px;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple2);">Framework records — required by IDF regardless of execution model</div>
   <div class="artifacts-grid">
-
-    <div class="artifact-card">
-      <h3>System Memory</h3>
-      <span class="artifact-filename">SYSTEM_MEMORY.md (or equivalent)</span>
-      <p>The single file every agent reads at the start of every session. Contains stack, folder structure, run commands, architectural decisions, conventions, and a running log of what was built. Updated by the Orchestrator after every cycle close.</p>
-      <div class="artifact-owner">Steward: Orchestrator (writes) · Tech Lead (governs)</div>
-    </div>
-
-    <div class="artifact-card">
-      <h3>Capability Library</h3>
-      <span class="artifact-filename">CAPABILITY_LIBRARY/*.md (or equivalent)</span>
-      <p>Domain-specific instruction sets that encode how this team builds things. Frontend components, API patterns, deploy procedures, auth conventions. Each capability is a short markdown file. Grows through Capability Harvests, governed by Tech Lead, audited at every Context Reset.</p>
-      <div class="artifact-owner">Steward: Tech Lead (governs) · Orchestrator (reads, triggers harvest)</div>
-    </div>
 
     <div class="artifact-card">
       <h3>True North document</h3>
@@ -2596,13 +2583,6 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
 
     <div class="artifact-card">
-      <h3>Gate report</h3>
-      <span class="artifact-filename">GATE_REPORT_{cycle}_{iteration}.md</span>
-      <p>Produced by the Guardian after each Iteration completes. Three paragraphs maximum: what was built in this iteration, automated check signals, and a clear Approved/Request recommendation. Reviewed by the Delivery Team. Expires when the Gate 3 decision is made for the Cycle.</p>
-      <div class="artifact-owner">Steward: Guardian (produces) · Delivery Team (reviews and decides)</div>
-    </div>
-
-    <div class="artifact-card">
       <h3>Iteration Record</h3>
       <span class="artifact-filename">ITERATION_{cycle}_{n}.md</span>
       <p>A record of one implementation pass within a Cycle. Fields: trigger (initial or gate-2-feedback), feedback (the Gate 2 issue that spawned this iteration, if applicable), task list, status (pending → executing → completed). Created by the Orchestrator at cycle start (trigger: initial) or on Gate 2 Request Iteration. Every rework pass is an explicit named artifact — this is what makes Gate 2 rework visible and traceable.</p>
@@ -2610,10 +2590,17 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
 
     <div class="artifact-card">
+      <h3>Gate report</h3>
+      <span class="artifact-filename">GATE_REPORT_{cycle}_{iteration}.md</span>
+      <p>Produced by the Guardian after each Iteration completes. Three paragraphs maximum: what was built in this iteration, automated check signals, and a clear Approved/Request recommendation. Reviewed by the Delivery Team. Expires when the Gate 3 decision is made for the Cycle.</p>
+      <div class="artifact-owner">Steward: Guardian (produces) · Delivery Team (reviews and decides)</div>
+    </div>
+
+    <div class="artifact-card">
       <h3>Feature Governance Registry</h3>
       <span class="artifact-filename">FEATURE_GOVERNANCE_REGISTRY</span>
-      <p>Every flag carries a lifecycle state: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Pending-OFF</span> — deployed, not yet released; <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Live-ON</span> — active, released; <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">Dead-OFF</span> — abandoned, must be pruned. A flag reaching Live-ON closes the Cycle. It does not close the Intent.</p>
-      <div class="artifact-owner">Steward: PO (toggle decision) · Builder (creates flag) · Tech Lead (dead flag cleanup)</div>
+      <p>Every release switch carries a lifecycle state: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Pending-OFF</span> — deployed, not yet released; <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Live-ON</span> — active, released; <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">Dead-OFF</span> — abandoned, must be pruned. A switch reaching Live-ON closes the Cycle. It does not close the Intent.</p>
+      <div class="artifact-owner">Steward: PO (release decision) · Builder (creates switch) · Tech Lead (dead switch cleanup)</div>
     </div>
 
     <div class="artifact-card">
@@ -2621,6 +2608,25 @@ Closed by: Product Owner · 2026-04-13</div>
       <span class="artifact-filename">DRIFT_REGISTER.md</span>
       <p>A log of detected divergences between intent and implementation, with the correction taken. Carries entries for abandoned intents with the logged reason. The most valuable long-term document in the project — it maps where the system's judgment differs from the PO's and teaches better intent writing over time.</p>
       <div class="artifact-owner">Steward: PO · Updated: at drift checks, gate failures, and intent abandonment</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:32px;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal2);">Execution context — required for AI agents to operate without institutional decay</div>
+  <div class="artifacts-grid">
+
+    <div class="artifact-card">
+      <h3>System Memory</h3>
+      <span class="artifact-filename">SYSTEM_MEMORY.md (or equivalent)</span>
+      <p>The single file every agent reads at the start of every session. Contains stack, folder structure, run commands, architectural decisions, conventions, and a running log of what was built. Without it, agents start each session with no knowledge of prior decisions. Updated by the Orchestrator after every cycle close.</p>
+      <div class="artifact-owner">Steward: Orchestrator (writes) · Tech Lead (governs)</div>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Capability Library</h3>
+      <span class="artifact-filename">CAPABILITY_LIBRARY/*.md (or equivalent)</span>
+      <p>Domain-specific instruction sets that encode how this team builds things. Frontend components, API patterns, deploy procedures, auth conventions. Each capability is a short markdown file. Grows through Capability Harvests, governed by Tech Lead, audited at every Context Reset. Without it, agents default to generic patterns instead of team conventions.</p>
+      <div class="artifact-owner">Steward: Tech Lead (governs) · Orchestrator (reads, triggers harvest)</div>
     </div>
 
   </div>
