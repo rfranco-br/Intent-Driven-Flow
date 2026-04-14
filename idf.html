@@ -2668,62 +2668,6 @@ Closed by: Product Owner · 2026-04-13</div>
   <p style="color:var(--text3);font-size:13px;margin-top:12px;max-width:640px;">The sections below are technical reference material. Most readers won't need them on a first read.</p>
 </div>
 
-<!-- ═══════════════════ §10 — LAYERS ═══════════════════ -->
-<section id="s10">
-  <div class="section-label">16 — Reference</div>
-  <h2>Four layers, one client thread</h2>
-  <p style="max-width:640px;">The three-level delivery model (Intent/Cycle/Iteration) operates within a four-layer organizational structure. Each layer has clear ownership, distinct decision authority, and defined interfaces to the layers above and below. The client is not a layer — it is the vertical thread that runs through all of them.</p>
-
-  <div class="client-bar" style="background:linear-gradient(90deg,rgba(232,115,74,0.08) 0%,rgba(232,115,74,0.03) 100%);border:1px solid rgba(232,115,74,0.2);border-radius:12px;padding:24px 32px;margin-top:48px;display:flex;align-items:center;gap:32px;">
-    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--coral);white-space:nowrap;">Client</div>
-    <div style="width:1px;height:40px;background:rgba(232,115,74,0.3);"></div>
-    <p style="font-size:14px;color:var(--text2);margin:0;">The client is the reason every decision is made. The PO translates client signals into cycle intent. Executors validate that built features serve real client needs. The monitoring state is explicitly about watching the client's response — the signal the intent was written around is a client outcome, and the PO confirms it by observing real client behaviour, not internal metrics.</p>
-  </div>
-
-  <div style="margin-top:32px;">
-    <div style="margin-bottom:3px;">
-      <div class="layer-row">
-        <div class="layer-label strategic">Strategic</div>
-        <div class="layer-content">
-          <div class="layer-cell"><h4>Roles</h4><ul><li><span class="role-tag human">human</span> Stakeholders — portfolio, strategy</li><li><span class="role-tag human">human</span> Business owners — goals, investment</li><li><span class="role-tag agent">agent</span> Strategy agent — horizon synthesis</li></ul></div>
-          <div class="layer-cell"><h4>Signal Events</h4><ul><li>Strategic alignment <span class="role-tag human">human</span> monthly/quarterly</li><li>Portfolio review <span class="role-tag human">human</span> cross-team, as needed</li><li>Dependency escalation <span class="role-tag agent">auto</span> on detection</li></ul></div>
-          <div class="layer-cell"><h4>Artifacts</h4><ul><li>True north document</li><li>Portfolio map</li><li>Strategic intent log</li><li>Dependency registry</li></ul></div>
-        </div>
-      </div>
-    </div>
-    <div style="margin-bottom:3px;">
-      <div class="layer-row">
-        <div class="layer-label product">Product</div>
-        <div class="layer-content">
-          <div class="layer-cell"><h4>Roles</h4><ul><li><span class="role-tag human">human</span> Product Owner — intent lifecycle + release gate</li><li><span class="role-tag human">human</span> UX / Research — client signal capture</li><li><span class="role-tag agent">agent</span> Orchestrator — intent decomposition</li></ul></div>
-          <div class="layer-cell"><h4>Signal Events</h4><ul><li>Intent injection <span class="role-tag human">human</span> PO writes, per cycle</li><li>Client signal review <span class="role-tag human">human</span> PO/UX, ongoing</li><li>Gate 3 — Release Gate <span class="role-tag human">human</span> PO authorizes flag flip</li><li>Intent Completion <span class="role-tag human">human</span> PO declares signal achieved</li><li>Drift check <span class="role-tag human">human</span> PO + Architect, every 10–20 cycles</li></ul></div>
-          <div class="layer-cell"><h4>Artifacts</h4><ul><li>Client signal log</li><li>Intent Log (with lifecycle status)</li><li>Gate report (from Guardian)</li><li>Drift register</li></ul></div>
-        </div>
-      </div>
-    </div>
-    <div style="margin-bottom:3px;">
-      <div class="layer-row">
-        <div class="layer-label execution">Execution</div>
-        <div class="layer-content">
-          <div class="layer-cell"><h4>Roles</h4><ul><li><span class="role-tag agent">agent</span> Orchestrator — task decomposition</li><li><span class="role-tag agent">agent</span> Builder — code + tests</li><li><span class="role-tag agent">agent</span> Guardian — automated review + gate report</li><li><span class="role-tag human">human</span> Architects — tech guardrails</li><li><span class="role-tag human">human</span> Craft Engineers — output quality</li><li><span class="role-tag human">human</span> Quality Advocates — acceptance criteria</li></ul></div>
-          <div class="layer-cell"><h4>Signal Events</h4><ul><li>Cycle kick-off <span class="role-tag agent">auto</span> Orchestrator, on intent received</li><li>Gate 2 — Iteration Review <span class="role-tag human">human</span> per iteration (may loop)</li><li>Context reset <span class="role-tag human">human</span> Architect, event-triggered</li><li>Capability harvest <span class="role-tag human">human</span> Craft Eng, on repeated pattern</li></ul></div>
-          <div class="layer-cell"><h4>Artifacts</h4><ul><li>System Memory</li><li>Capability Library</li><li>Feature Governance Registry</li><li>Iteration Record (with trigger + feedback)</li></ul></div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="layer-row">
-        <div class="layer-label dependency">Dependencies</div>
-        <div class="layer-content">
-          <div class="layer-cell"><h4>Roles</h4><ul><li><span class="role-tag agent">agent</span> Dependency broker — cross-team detection</li><li><span class="role-tag human">human</span> Affected POs — resolution owners</li><li><span class="role-tag human">human</span> Tech leads — handoff coordinators</li></ul></div>
-          <div class="layer-cell"><h4>Signal Events</h4><ul><li>Dependency sync <span class="role-tag agent">auto</span> broker, on detection</li><li>Handoff review <span class="role-tag human">human</span> Tech leads + POs, on cross-team release</li><li>Blocker escalation <span class="role-tag agent">auto</span> broker → PO, within 1 cycle</li></ul></div>
-          <div class="layer-cell"><h4>Artifacts</h4><ul><li>Dependency registry</li><li>Cross-team contract docs</li><li>Blocker log</li><li>Handoff checklist</li></ul></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════════════ §11 — SIGNAL EVENTS ═══════════════════ -->
 <section id="s11">
   <div class="section-label">17 — Reference</div>
