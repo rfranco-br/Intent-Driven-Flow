@@ -1429,6 +1429,65 @@
     [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
     [style*="grid-template-columns:120px"] { grid-template-columns: 1fr !important; }
   }
+
+  /* ── SIDEBAR NAV ── */
+  #section-nav {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    width: 200px;
+    height: calc(100vh - 48px);
+    overflow-y: auto;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    padding: 28px 0 48px;
+    z-index: 100;
+  }
+  #section-nav .snav-group {
+    margin-bottom: 4px;
+  }
+  #section-nav .snav-group-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 12px 20px 4px;
+    display: block;
+  }
+  #section-nav a {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    text-decoration: none;
+    padding: 5px 16px 5px 18px;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    border-left: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  #section-nav a:hover { color: var(--text2); background: var(--surface); }
+  #section-nav a.is-active {
+    color: var(--coral);
+    border-left-color: var(--coral);
+    background: rgba(232,115,74,0.07);
+  }
+  #section-nav .snav-num {
+    font-size: 9px;
+    margin-right: 5px;
+    opacity: 0.6;
+  }
+  #section-nav a.is-active .snav-num { opacity: 1; }
+
+  .has-sidebar-content {
+    margin-left: 200px;
+  }
+
+  @media (max-width: 960px) {
+    #section-nav { display: none; }
+    .has-sidebar-content { margin-left: 0; }
+  }
 </style>
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
@@ -1451,6 +1510,41 @@
   </div>
 </div>
 
+
+<!-- ═══════════════════ SECTION NAV ═══════════════════ -->
+<nav id="section-nav">
+  <div class="snav-group">
+    <span class="snav-group-label">Core model</span>
+    <a href="#s01" data-section="s01"><span class="snav-num">01</span>What is IDF</a>
+    <a href="#s02" data-section="s02"><span class="snav-num">02</span>Two flows</a>
+    <a href="#s03" data-section="s03"><span class="snav-num">03</span>The Intent</a>
+    <a href="#s04" data-section="s04"><span class="snav-num">04</span>The Cycle</a>
+    <a href="#s05" data-section="s05"><span class="snav-num">05</span>The Iteration</a>
+  </div>
+  <div class="snav-group">
+    <span class="snav-group-label">How it works</span>
+    <a href="#s06" data-section="s06"><span class="snav-num">06</span>Walkthrough</a>
+    <a href="#s07" data-section="s07"><span class="snav-num">07</span>Gate 1</a>
+    <a href="#s08" data-section="s08"><span class="snav-num">08</span>Gate 2</a>
+    <a href="#s09" data-section="s09"><span class="snav-num">09</span>Gate 3</a>
+    <a href="#s10" data-section="s10"><span class="snav-num">10</span>Intent lifecycle</a>
+  </div>
+  <div class="snav-group">
+    <span class="snav-group-label">Team</span>
+    <a href="#s11" data-section="s11"><span class="snav-num">11</span>Roles</a>
+    <a href="#s12" data-section="s12"><span class="snav-num">12</span>Execution models</a>
+    <a href="#s13" data-section="s13"><span class="snav-num">13</span>Artifacts</a>
+  </div>
+  <div class="snav-group">
+    <span class="snav-group-label">Reference</span>
+    <a href="#s14" data-section="s14"><span class="snav-num">14</span>Signal Events</a>
+    <a href="#s15" data-section="s15"><span class="snav-num">15</span>Communication</a>
+    <a href="#s16" data-section="s16"><span class="snav-num">16</span>Measurement</a>
+    <a href="#s17" data-section="s17"><span class="snav-num">17</span>Context Debt</a>
+  </div>
+</nav>
+
+<div class="has-sidebar-content">
 
 <!-- ═══════════════════ §01 — WHAT IS IDF ═══════════════════ -->
 <section id="s01">
@@ -1816,8 +1910,8 @@ flowchart LR
 
 </section>
 
-<!-- ═══════════════════ §03 — WALKTHROUGH ═══════════════════ -->
-<section id="s03">
+<!-- ═══════════════════ §06 — WALKTHROUGH ═══════════════════ -->
+<section id="s06">
   <div class="section-label">06 — See it in one delivery</div>
   <div style="display:inline-block;background:rgba(232,115,74,0.1);border:1px solid rgba(232,115,74,0.3);border-radius:4px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;">Example walkthrough</div>
   <h2>One intent, two cycles, one rework iteration</h2>
@@ -1956,8 +2050,8 @@ Closed by: Product Owner · 2026-04-13</div>
 
 </section>
 
-<!-- ═══════════════════ §04 — GATE 1 ═══════════════════ -->
-<section id="s04">
+<!-- ═══════════════════ §07 — GATE 1 ═══════════════════ -->
+<section id="s07">
   <div class="section-label">07 — Gate 1</div>
   <h2>Intent &amp; Cycle Alignment</h2>
   <p style="max-width:680px;">Gate 1 runs before any execution begins. Its job is to confirm two things: that the intent is worth pursuing, and that the proposed cycle scope is coherent. Gate 1 has slightly different behaviour depending on whether this is the first cycle for an intent or a subsequent one.</p>
@@ -2017,8 +2111,8 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 </section>
 
-<!-- ═══════════════════ §05 — GATE 2 ═══════════════════ -->
-<section id="s05">
+<!-- ═══════════════════ §08 — GATE 2 ═══════════════════ -->
+<section id="s08">
   <div class="section-label">08 — Gate 2</div>
   <h2>The Iteration Review Loop</h2>
   <p style="max-width:680px;">Gate 2 is where human judgment meets execution output. It runs after every Iteration completes — not once per cycle. The decision has two inputs: the Guardian's automated report (what was built, test results, performance, security) and the reviewer's hands-on experience — they actually use the feature before deciding. APPROVED means both: technically sound, and serves the intent. Either signal can trigger a REQUEST ITERATION.</p>
@@ -2089,8 +2183,8 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 </section>
 
-<!-- ═══════════════════ §06 — GATE 3 ═══════════════════ -->
-<section id="s06">
+<!-- ═══════════════════ §09 — GATE 3 ═══════════════════ -->
+<section id="s09">
   <div class="section-label">09 — Gate 3</div>
   <h2>Flag Authorization</h2>
   <p style="max-width:680px;">Gate 3 is binary and belongs exclusively to the Product Owner. It has one question: authorize this feature to go live? The PO reads the gate report and makes the call. There is no partial approval, no conditional pass. The release switch activates or it doesn't. The specific mechanism — toggle flip, canary rollout, always-on — was fixed at Gate 1. Gate 3 authorizes the activation, not the mechanism.</p>
@@ -2129,8 +2223,8 @@ Closed by: Product Owner · 2026-04-13</div>
 </section>
 
 
-<!-- ═══════════════════ §07 — INTENT LIFECYCLE BEYOND THE FLAG ═══════════════════ -->
-<section id="s07">
+<!-- ═══════════════════ §10 — INTENT LIFECYCLE BEYOND THE FLAG ═══════════════════ -->
+<section id="s10">
   <div class="section-label">10 — Intent lifecycle beyond the flag</div>
   <h2>Monitoring, signal observation, and explicit closure</h2>
   <p style="max-width:680px;">The flag going Live-ON is not the end of the story. It is the beginning of the measurement window. An intent in monitoring state is an active commitment — the PO is watching signals and waiting for evidence that the outcome was actually achieved. This is the part of delivery that the 1:1 model skipped entirely.</p>
@@ -2191,8 +2285,8 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 </section>
 
-<!-- ═══════════════════ §08 — ROLES ═══════════════════ -->
-<section id="s08">
+<!-- ═══════════════════ §11 — ROLES ═══════════════════ -->
+<section id="s11">
   <div class="section-label">11 — Roles</div>
   <h2>Governance roles and the Delivery Team</h2>
   <p style="max-width:640px;">IDF separates governance authority from delivery skills from execution. Governance roles are IDF-defined and gate-bound — they cannot be delegated to an agent, collapsed, or renamed without changing what the framework says. The Delivery Team is assembled per product: IDF defines which responsibilities must be covered; the team decides who covers them. The execution layer follows the same principle — IDF defines four functions that must be covered in every team; how each is implemented (AI agent, human, or pipeline tool) depends on the execution model.</p>
@@ -2636,9 +2730,9 @@ Closed by: Product Owner · 2026-04-13</div>
   <p style="color:var(--text3);font-size:13px;margin-top:12px;max-width:640px;">The sections below are technical reference material. Most readers won't need them on a first read.</p>
 </div>
 
-<!-- ═══════════════════ §11 — SIGNAL EVENTS ═══════════════════ -->
-<section id="s11">
-  <div class="section-label">17 — Reference</div>
+<!-- ═══════════════════ §14 — SIGNAL EVENTS ═══════════════════ -->
+<section id="s14">
+  <div class="section-label">14 — Reference</div>
   <h2>Signal Events</h2>
   <p style="max-width:640px;">IDF replaces scheduled ceremonies with event-driven triggers. A signal event fires when its condition is met — not because the calendar says so. Every signal event has a trigger, a specific output, and a clear owner. Intent Completion is a first-class signal event — the explicit PO declaration that an intent's outcome signal was observed.</p>
 
@@ -2738,9 +2832,9 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 </section>
 
-<!-- ═══════════════════ §12 — COMMUNICATION ═══════════════════ -->
-<section id="s12">
-  <div class="section-label">18 — Reference</div>
+<!-- ═══════════════════ §15 — COMMUNICATION ═══════════════════ -->
+<section id="s15">
+  <div class="section-label">15 — Reference</div>
   <h2>Information flow and communication</h2>
   <p style="max-width:640px;">Communication across the team is explicit, documented, and async by default. No role should require a synchronous meeting to receive information from another. These defined communication patterns are what make fast cycles possible without creating noise or missed signals.</p>
 
@@ -2778,9 +2872,9 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 </section>
 
-<!-- ═══════════════════ §13 — MEASUREMENT ═══════════════════ -->
-<section id="s13">
-  <div class="section-label">19 — Reference</div>
+<!-- ═══════════════════ §16 — MEASUREMENT ═══════════════════ -->
+<section id="s16">
+  <div class="section-label">16 — Reference</div>
   <h2>What good looks like — in numbers</h2>
   <p style="max-width:640px;">In an agent-driven system, execution effort is nearly free — what matters is how fast intent becomes client value, how stable releases are, and how well the system learns from each cycle. Intent completion rate is a key signal: are intents actually achieving their outcomes, or just shipping features?</p>
 
@@ -2842,9 +2936,9 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 </section>
 
-<!-- ═══════════════════ §14 — CONTEXT DEBT ═══════════════════ -->
-<section id="s14">
-  <div class="section-label">20 — Reference</div>
+<!-- ═══════════════════ §17 — CONTEXT DEBT ═══════════════════ -->
+<section id="s17">
+  <div class="section-label">17 — Reference</div>
   <h2>Noise is the primary cause of agent failure</h2>
   <p style="max-width:680px;font-size:16px;line-height:1.8;">Technical debt accumulates silently and reveals itself as bugs. Context debt accumulates silently and reveals itself as agent confusion — correct behavior executed against the wrong understanding of the system. An agent running against a polluted System Memory does not know it is confused. It produces confident, wrong output.</p>
 
@@ -2918,6 +3012,58 @@ Closed by: Product Owner · 2026-04-13</div>
   <span>Roberto Pillon Franco · CC BY 4.0</span>
 </footer>
 
+</div><!-- /.has-sidebar-content -->
+
+<script>
+(function() {
+  var links = document.querySelectorAll('#section-nav a[data-section]');
+  var sectionIds = Array.from(links).map(function(a) { return a.dataset.section; });
+
+  function setActive(id) {
+    links.forEach(function(a) {
+      a.classList.toggle('is-active', a.dataset.section === id);
+    });
+  }
+
+  // Smooth scroll + URL hash on click
+  links.forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById(a.dataset.section);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + a.dataset.section);
+        setActive(a.dataset.section);
+      }
+    });
+  });
+
+  // IntersectionObserver — highlight active section on scroll
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+        if (history.replaceState) {
+          history.replaceState(null, null, '#' + entry.target.id);
+        }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+  sectionIds.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // On load, activate section matching URL hash
+  if (window.location.hash) {
+    var initial = window.location.hash.replace('#', '');
+    setActive(initial);
+  } else {
+    setActive('s01');
+  }
+})();
+</script>
 <script src="nav.js?v=11"></script>
 </body>
 </html>

@@ -128,6 +128,10 @@
 
 Date: 2026-04-13
 Updated by: Fullstack Dev
+Change: Fixed all duplicate/wrong section IDs in idf.html (s01–s17 now unique and sequential); added sticky left sidebar nav (#section-nav, 200px fixed, hidden below 960px) with 4 grouped sections (Core model, How it works, Team, Reference) and IntersectionObserver-driven active state + URL hash sync; wrapped all sections in .has-sidebar-content div (margin-left: 200px); JS placed before nav.js?v=11.
+
+Date: 2026-04-13
+Updated by: Fullstack Dev
 Change: Created hidden page `idf-v2.html` (2207 lines) — full rebuild of IDF framework doc around the three-level Intent/Cycle/Iteration model. Sections: §01 three problems (intent closure, Gate 2 rework, conversational gates); §02 nested hierarchy diagram with status lifecycles and trigger fields; §03 walkthrough timeline (one intent, two cycles, Gate 2 failure + rework iteration, intent completion); §04 Gate 1 (first-cycle vs subsequent-cycle behaviour); §05 Gate 2 iteration review loop diagram; §06 Gate 3 flag authorization (closes cycle, not intent); §07 intent lifecycle beyond the flag (monitoring, signal observation, explicit completion, abandoned path); §08 Roles (11 roles, PO updated to own monitoring + intent closure); §09 Artifacts (Intent Log and Iteration Record updated); §10–14 reference zone (Layers, Signal Events, Communication, Measurement, Context Debt) with vocabulary adjusted for three-level model. File is hidden: NOT listed in nav.js, index.html, or versions.json. nav.js?v=11, GA4 G-MV9XNW7Y6V, no hardcoded hex outside :root. No git commit — file left untracked for user review.
 
 Date: 2026-04-11
