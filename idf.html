@@ -2563,50 +2563,71 @@ Closed by: Product Owner · 2026-04-13</div>
 
     <div class="artifact-card">
       <h3>True North document</h3>
-      <span class="artifact-filename">TRUE_NORTH.md</span>
-      <p>Strategic direction and portfolio context maintained by Stakeholders. Sets the horizon against which all client signals are prioritised. Updated at Strategic Alignment. Referenced during every intent injection.</p>
+      <p>The strategic horizon for the product — objectives, positioning, and constraints that define where the team is going. Without it, intents are written in a vacuum; the PO has no reference point for evaluating whether a client signal is worth pursuing.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Strategic objectives (OKRs or equivalent) · Product positioning and key constraints · What is explicitly out of scope at portfolio level · Update date and next review date</div>
+      </div>
       <div class="artifact-owner">Steward: Stakeholders</div>
     </div>
 
     <div class="artifact-card">
       <h3>Client signal log</h3>
-      <span class="artifact-filename">CLIENT_SIGNALS.md</span>
-      <p>A continuously updated record of real client feedback, usage patterns, support issues, and research findings. Primary input for intent injection. Referenced by the Guardian at Gate 2 to evaluate client impact. The PO also reads this log during monitoring to assess whether intent signals are moving.</p>
+      <p>A continuously updated record of real client feedback, usage patterns, support issues, and research findings. Without it, intents are written from memory or assumption — and the PO has nothing to read during monitoring to assess whether the released feature is moving the intended signal.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Signal date and source · Signal description · Signal type (complaint / request / behavioral / research) · Priority flag · Related intent ID if applicable</div>
+      </div>
       <div class="artifact-owner">Steward: PO · Updated: continuously</div>
     </div>
 
     <div class="artifact-card">
       <h3>Intent Log</h3>
-      <span class="artifact-filename">INTENT_LOG.md</span>
-      <p>A chronological record of every intent across its full lifecycle — including the monitoring state and explicit completion or abandonment. Carries intent status (open, in-progress, monitoring, completed, abandoned), all associated Cycles, and the observed signal value at closure. Updated at Gate 1, Gate 3, and Intent Completion. An intent entry is not complete until the PO records the signal observation.</p>
+      <p>The single source of truth for every intent the team has pursued — open, in-progress, monitoring, completed, or abandoned. Without it, the team loses track of whether outcomes were actually achieved; an intent that went Live-ON but was never closed is an unchecked assumption about delivery.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains — per entry</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Intent statement · Status · Associated cycle IDs · Signal target and observed value · Closed by and closure date · Abandonment reason if applicable</div>
+      </div>
       <div class="artifact-owner">Steward: Orchestrator (writes) · PO (owns monitoring entries and closure)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Iteration Record</h3>
-      <span class="artifact-filename">ITERATION_{cycle}_{n}.md</span>
-      <p>A record of one implementation pass within a Cycle. Fields: trigger (initial or gate-2-feedback), feedback (the Gate 2 issue that spawned this iteration, if applicable), task list, status (pending → executing → completed). Created by the Orchestrator at cycle start (trigger: initial) or on Gate 2 Request Iteration. Every rework pass is an explicit named artifact — this is what makes Gate 2 rework visible and traceable.</p>
+      <p>A record of one implementation pass within a Cycle — every Gate 2 rework produces a new one. Without it, rework is invisible; the Gate 2 reviewer's feedback exists only as oral instruction and the loop cannot be traced or learned from.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Cycle ID and iteration number · Trigger (initial / gate-2-feedback) · Feedback text if rework · Task list with status per task · Overall status (pending / executing / completed)</div>
+      </div>
       <div class="artifact-owner">Steward: Orchestrator (creates and updates) · Builder (executes against)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Gate report</h3>
-      <span class="artifact-filename">GATE_REPORT_{cycle}_{iteration}.md</span>
-      <p>Produced by the Guardian after each Iteration completes. Three paragraphs maximum: what was built in this iteration, automated check signals, and a clear Approved/Request recommendation. Reviewed by the Delivery Team. Expires when the Gate 3 decision is made for the Cycle.</p>
+      <p>A structured report produced after each Iteration completes — the Delivery Team reads it alongside hands-on review to make the Gate 2 decision. Without it, Gate 2 decisions are made without evidence; the report also creates an audit trail for every evaluation made during a cycle.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">What was built in this iteration · Automated check results (tests, security, performance, cost, client impact) · Recommendation: Approved or Request Iteration with specific reason</div>
+      </div>
       <div class="artifact-owner">Steward: Guardian (produces) · Delivery Team (reviews and decides)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Feature Governance Registry</h3>
-      <span class="artifact-filename">FEATURE_GOVERNANCE_REGISTRY</span>
-      <p>Every release switch carries a lifecycle state: <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">Pending-OFF</span> — deployed, not yet released; <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Live-ON</span> — active, released; <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">Dead-OFF</span> — abandoned, must be pruned. A switch reaching Live-ON closes the Cycle. It does not close the Intent.</p>
+      <p>A record of every release switch in the product — its current state, the intent it serves, and its cleanup status. Without it, release switches accumulate silently; dead switches become untraceable technical debt and the audit trail for when each feature went live is lost.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains — per entry</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Feature name and switch ID · Switch pattern (toggle / canary / always-on) · State (<span style="color:var(--amber2);">Pending-OFF</span> / <span style="color:var(--teal2);">Live-ON</span> / <span style="color:var(--text3);">Dead-OFF</span>) · Intent ID it serves · Activation date · Cleanup deadline for Dead-OFF entries</div>
+      </div>
       <div class="artifact-owner">Steward: PO (release decision) · Builder (creates switch) · Tech Lead (dead switch cleanup)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Drift register</h3>
-      <span class="artifact-filename">DRIFT_REGISTER.md</span>
-      <p>A log of detected divergences between intent and implementation, with the correction taken. Carries entries for abandoned intents with the logged reason. The most valuable long-term document in the project — it maps where the system's judgment differs from the PO's and teaches better intent writing over time.</p>
+      <p>A log of detected divergences between what was intended and what was built, with the correction taken and the root cause recorded. Without it, the same drift patterns recur silently — it is the primary mechanism for improving intent writing and agent training over time.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Date detected · Intent ID and Cycle ID · What was intended vs. what was built · Root cause (ambiguous intent / agent interpretation / scope creep / external change) · Correction taken · Pattern flag if the same class of drift has appeared before</div>
+      </div>
       <div class="artifact-owner">Steward: PO · Updated: at drift checks, gate failures, and intent abandonment</div>
     </div>
 
@@ -2617,15 +2638,21 @@ Closed by: Product Owner · 2026-04-13</div>
 
     <div class="artifact-card">
       <h3>System Memory</h3>
-      <span class="artifact-filename">SYSTEM_MEMORY.md (or equivalent)</span>
-      <p>The single file every agent reads at the start of every session. Contains stack, folder structure, run commands, architectural decisions, conventions, and a running log of what was built. Without it, agents start each session with no knowledge of prior decisions. Updated by the Orchestrator after every cycle close.</p>
+      <p>The persistent record every agent reads at the start of every session to reconstruct project context. Without it, agents begin each session with no knowledge of prior decisions — every session is day one.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Tech stack and folder structure · Run and deploy commands · Architectural decisions and their reasons · Conventions the team follows · Running log of what was built and when</div>
+      </div>
       <div class="artifact-owner">Steward: Orchestrator (writes) · Tech Lead (governs)</div>
     </div>
 
     <div class="artifact-card">
       <h3>Capability Library</h3>
-      <span class="artifact-filename">CAPABILITY_LIBRARY/*.md (or equivalent)</span>
-      <p>Domain-specific instruction sets that encode how this team builds things. Frontend components, API patterns, deploy procedures, auth conventions. Each capability is a short markdown file. Grows through Capability Harvests, governed by Tech Lead, audited at every Context Reset. Without it, agents default to generic patterns instead of team conventions.</p>
+      <p>A collection of domain-specific instruction sets that encode how this team builds things. Without it, agents default to generic patterns — ignoring the conventions, constraints, and decisions the team has made.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains — one entry per domain</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Domain name and scope · How to build in this domain (patterns, conventions, constraints) · What to avoid and why · Examples of correct output</div>
+      </div>
       <div class="artifact-owner">Steward: Tech Lead (governs) · Orchestrator (reads, triggers harvest)</div>
     </div>
 
