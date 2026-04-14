@@ -47,8 +47,11 @@
 
   /* ── SHARED LAYOUT ── */
   .page-gutter {
-    padding-left: 80px;
-    padding-right: 80px;
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .section-label {
@@ -573,7 +576,7 @@
 
   /* ── FOOTER ── */
   footer {
-    padding: 32px 80px;
+    padding: 32px 40px;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
@@ -596,6 +599,35 @@
   }
 
   footer a:hover { color: var(--coral2); }
+
+  /* ── PARABLE ── */
+  .parable {
+    padding-top: 72px;
+    padding-bottom: 72px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .parable-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .parable-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .parable p {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+  .parable p:last-child { margin-bottom: 0; }
+  .parable em { color: var(--text); font-style: normal; }
 
   /* ── MOBILE ── */
   @media (max-width: 767px) {
@@ -641,7 +673,7 @@
     .closing { padding-top: 56px; padding-bottom: 56px; }
     .closing-inner { text-align: left; align-items: flex-start; }
     .pull-quote { font-size: 16px; }
-    footer { padding: 28px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    footer { max-width: 920px; margin: 0 auto; padding: 28px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
 
     /* ── HOW IT WORKS — mobile ── */
     .hiw-dots { gap: 6px; }
@@ -661,7 +693,7 @@
 <!-- ═══════════════════ BLOCK 1: BYLINE HEADER ═══════════════════ -->
 <header class="byline page-gutter">
   <div class="byline-mono">IDF · Intent Driven Flow · 2026</div>
-  <p class="byline-tagline">A delivery framework for teams where agents execute and humans govern.</p>
+  <p class="byline-tagline">A delivery framework where AI agents execute and humans govern outcomes. Work is organized around what the client needs to be true — not around what needs to be built.</p>
 </header>
 
 <!-- ═══════════════════ BLOCK 2: THE CONTRAST ═══════════════════ -->
@@ -714,7 +746,17 @@
       <span class="part-muted">Agents execute.</span><br>
       <span class="part-coral">Humans govern.</span>
     </p>
-    <p class="mental-model-sub">Feature flags separate "it's deployed" from "it's live." Deployment and release are separate decisions.</p>
+    <p class="mental-model-sub">Feature flags separate "it's deployed" from "it's live." And an Intent doesn't close when the feature ships — it closes when the outcome is confirmed. Delivery and success are two different events.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ PARABLE ═══════════════════ -->
+<section class="parable page-gutter">
+  <div class="parable-inner">
+    <div class="parable-title">The Driver and the Pilot</div>
+    <p>A seasoned Driver and a young Pilot stood before a gleaming, chrome vessel at the edge of the atmosphere.</p>
+    <p>The Driver held a leather-wrapped steering wheel, a heavy brake pedal, and a map of the local highways. <em>"I've spent twenty years mastering the road,"</em> the Driver said. <em>"I know exactly when to hit the gas to overcome friction, when to turn the wheel to stay in the lane, and when to slam the brakes to avoid a crash. I am ready to lead this mission."</em></p>
+    <p>The Pilot looked up at the black expanse of the stars and shook his head. <em>"Friend,"</em> he said, <em>"where we are going, there are no roads. There is no air. There is no friction."</em></p>
   </div>
 </section>
 
@@ -737,8 +779,8 @@
 
     <div class="change-card">
       <div class="card-number">03</div>
-      <div class="card-claim">Complexity is learned, not predicted.</div>
-      <div class="card-body">No estimates before a cycle. The gate report tells you if it was simple or hard.</div>
+      <div class="card-claim">Intents outlive delivery cycles.</div>
+      <div class="card-body">One goal can take multiple cycles to achieve. The Intent stays open — in monitoring — until the outcome signal is confirmed. The feature shipping is the middle, not the end.</div>
     </div>
 
   </div>
@@ -817,7 +859,7 @@
       <div class="hiw-card-text">
         <div class="hiw-card-step">Step 03 — Execution</div>
         <div class="hiw-card-title">Agents write the code. Humans watch the direction.</div>
-        <div class="hiw-card-body">AI agents execute: they plan tasks, write code, run tests. The human role here is governance — watching for drift, not typing. The feature ships behind a flag set to OFF.</div>
+        <div class="hiw-card-body">AI agents execute — planning, coding, testing — within whatever model fits the team: autonomous, hybrid, or spec-driven. The human role is governance: watching for drift, not typing. The feature ships behind a flag set to OFF.</div>
         <div class="hiw-card-note">The flag being OFF means it's deployed to production but invisible to users — until a human decides to release it.</div>
       </div>
     </div>
@@ -980,7 +1022,7 @@
     <div class="fit-col no">
       <div class="fit-col-label no">Not a fit — yet</div>
       <ul class="fit-list">
-        <li><span class="fit-marker">—</span>Your team uses AI only for autocomplete or code review assistance — execution is still fully human</li>
+        <li><span class="fit-marker">—</span>Your team has no AI agent involvement in delivery — execution is entirely human with no plans to change that</li>
         <li><span class="fit-marker">—</span>You're in a regulated release environment where monthly or quarterly cycles are a hard constraint</li>
         <li><span class="fit-marker">—</span>You need a framework that manages dozens of squads and cross-programme dependencies at scale</li>
         <li><span class="fit-marker">—</span>You're looking for a code architecture pattern or a routing library — IDF is a team process, not a software pattern</li>
@@ -994,7 +1036,7 @@
 <section class="closing page-gutter">
   <div class="closing-inner">
     <p class="pull-quote">"The artifacts carry the context. The agents carry the execution. The PO governs the outcome."</p>
-    <span class="closing-sub">Five rules. Eleven roles. Three gates.</span>
+    <span class="closing-sub">Intent. Cycle. Iteration. Three gates. One outcome loop.</span>
     <a class="cta-pill" href="idf.html">Read the framework →</a>
   </div>
 </section>
