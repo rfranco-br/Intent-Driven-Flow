@@ -31,7 +31,7 @@
     }
     #idf-nav .nav-brand .brand-id  { font-size: 13px; font-weight: 500; color: #e8734a; letter-spacing: 0.04em; }
     #idf-nav .nav-brand .brand-sub { font-size: 11px; color: #3a3a50; letter-spacing: 0.06em; }
-    #idf-nav .nav-brand:hover .brand-sub { color: #6a6878; }
+    #idf-nav .nav-brand:hover .brand-sub { color: #8a8898; }
 
     #idf-nav .nav-links {
       display: flex;
@@ -45,7 +45,7 @@
       padding: 5px 13px;
       border-radius: 5px;
       text-decoration: none;
-      color: #6a6878;
+      color: #8a8898;
       transition: color 0.15s, background 0.15s;
       white-space: nowrap;
       cursor: pointer;
