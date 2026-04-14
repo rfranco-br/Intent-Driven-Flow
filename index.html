@@ -404,11 +404,11 @@
     flex-shrink: 0;
   }
   .hiw-dot.active {
-    border-color: var(--dot-color, var(--coral));
-    color: var(--dot-color, var(--coral));
-    background: var(--surface2);
+    border-color: var(--amber2);
+    color: var(--bg);
+    background: var(--amber2);
     transform: scale(1.15);
-    box-shadow: 0 0 0 4px rgba(232,115,74,0.12);
+    box-shadow: 0 0 0 4px rgba(191,143,58,0.2);
   }
   .hiw-dot.done {
     border-color: var(--teal);
@@ -432,7 +432,7 @@
   /* card area */
   .hiw-card-area {
     position: relative;
-    min-height: 220px;
+    min-height: 160px;
     margin-bottom: 32px;
   }
   .hiw-card {
@@ -442,9 +442,6 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 36px 40px;
-    display: flex;
-    gap: 32px;
-    align-items: flex-start;
     opacity: 0;
     transform: translateY(12px);
     transition: opacity 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1);
@@ -456,13 +453,7 @@
     transform: translateY(0);
     pointer-events: auto;
   }
-  .hiw-card-icon {
-    font-size: 44px;
-    line-height: 1;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .hiw-card-text { flex: 1; }
+  .hiw-card-text { }
   .hiw-card-step {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
@@ -847,62 +838,50 @@
   <div class="hiw-card-area" id="hiwCards">
 
     <div class="hiw-card active" data-step="0" style="--card-color:var(--purple2)">
-      <div class="hiw-card-icon">🎯</div>
       <div class="hiw-card-text">
         <div class="hiw-card-step">Step 01 — Intent</div>
         <div class="hiw-card-title">Set a goal, not a task list.</div>
-        <div class="hiw-card-body">The Product Owner writes one outcome statement: what needs to be true for the client, and how you'll know it worked. No Jira tickets. No implementation instructions.</div>
-        <div class="hiw-card-note">Example: Reduce checkout abandonment at the payment step below 12%. Currently at 22%.</div>
+        <div class="hiw-card-body">Write what needs to be true for the client, and how you'll know it worked.</div>
       </div>
     </div>
 
     <div class="hiw-card" data-step="1" style="--card-color:var(--blue2)">
-      <div class="hiw-card-icon">🤝</div>
       <div class="hiw-card-text">
         <div class="hiw-card-step">Step 02 — Gate 1</div>
-        <div class="hiw-card-title">Align before anyone builds anything.</div>
-        <div class="hiw-card-body">A short sync: is this the right goal? Is the scope coherent? Every person on the team agrees before execution starts. If it's not clear, it gets rewritten — not estimated.</div>
-        <div class="hiw-card-note">Nothing starts until Gate 1 passes. No exceptions.</div>
+        <div class="hiw-card-title">Align before anyone builds.</div>
+        <div class="hiw-card-body">Is this the right goal? Is the scope coherent? Nothing starts until everyone agrees.</div>
       </div>
     </div>
 
     <div class="hiw-card" data-step="2" style="--card-color:var(--teal2)">
-      <div class="hiw-card-icon">🤖</div>
       <div class="hiw-card-text">
         <div class="hiw-card-step">Step 03 — Execution</div>
-        <div class="hiw-card-title">Agents write the code. Humans watch the direction.</div>
-        <div class="hiw-card-body">AI agents execute — planning, coding, testing — within whatever model fits the team: autonomous, hybrid, or spec-driven. The human role is governance: watching for drift, not typing. The feature ships behind a flag set to OFF.</div>
-        <div class="hiw-card-note">The flag being OFF means it's deployed to production but invisible to users — until a human decides to release it.</div>
+        <div class="hiw-card-title">Agents build. Humans govern.</div>
+        <div class="hiw-card-body">AI agents execute. The human role is direction, not typing. The feature ships behind a flag — deployed but invisible to users.</div>
       </div>
     </div>
 
     <div class="hiw-card" data-step="3" style="--card-color:var(--blue2)">
-      <div class="hiw-card-icon">🔍</div>
       <div class="hiw-card-text">
         <div class="hiw-card-step">Step 04 — Gate 2</div>
-        <div class="hiw-card-title">Read the report. Then actually use it.</div>
-        <div class="hiw-card-body">An automated report is generated: test results, security, performance. A human reads it — then opens the feature and uses it. Both must pass: no technical issues, and it genuinely serves the goal. Anything off gets written as feedback. Agents fix it. The loop runs until both conditions are met.</div>
-        <div class="hiw-card-note">Automated tests can't tell you if three taps feel like too many. That's what the hands-on review is for.</div>
+        <div class="hiw-card-title">Read the report. Use the feature.</div>
+        <div class="hiw-card-body">Automated checks run. A human reviews results then opens the feature and uses it. Feedback goes back to agents. Loop repeats until it passes.</div>
       </div>
     </div>
 
     <div class="hiw-card" data-step="4" style="--card-color:var(--amber2)">
-      <div class="hiw-card-icon">🚦</div>
       <div class="hiw-card-text">
         <div class="hiw-card-step">Step 05 — Gate 3</div>
-        <div class="hiw-card-title">One human, one decision: flip the switch.</div>
-        <div class="hiw-card-body">The Product Owner reads the final report and authorizes the release. The feature flag flips from OFF to ON. Users can now see the feature. This closes the delivery cycle — but not the goal.</div>
-        <div class="hiw-card-note">Deployment (behind the flag) and release (flipping the flag) are always two separate decisions.</div>
+        <div class="hiw-card-title">One decision: flip the switch.</div>
+        <div class="hiw-card-body">The PO authorizes. The release switch activates. Users see the feature. The cycle closes — not the goal.</div>
       </div>
     </div>
 
     <div class="hiw-card" data-step="5" style="--card-color:var(--teal2)">
-      <div class="hiw-card-icon">📈</div>
       <div class="hiw-card-text">
         <div class="hiw-card-step">Step 06 — Monitoring</div>
-        <div class="hiw-card-title">Watch the real number. Close when it moves.</div>
-        <div class="hiw-card-body">The goal isn't closed when the feature ships — it's closed when the outcome is confirmed. The PO watches the signal. If it hits the target, the intent is marked complete. If not, a new cycle starts under the same goal.</div>
-        <div class="hiw-card-note">Example: Abandonment drops from 22% → 9.4%. PO confirms. Intent closed.</div>
+        <div class="hiw-card-title">Watch the signal. Close when it moves.</div>
+        <div class="hiw-card-body">The goal closes when the outcome is confirmed, not when the feature ships. If the signal doesn't move, a new cycle starts under the same intent.</div>
       </div>
     </div>
 
