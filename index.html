@@ -403,14 +403,14 @@
     z-index: 1;
     flex-shrink: 0;
   }
-  .hiw-dot.active {
+  .hiw-dot-wrap.active .hiw-dot {
     border-color: var(--amber2);
     color: var(--bg);
     background: var(--amber2);
     transform: scale(1.15);
     box-shadow: 0 0 0 4px rgba(191,143,58,0.2);
   }
-  .hiw-dot.done {
+  .hiw-dot-wrap.done .hiw-dot {
     border-color: var(--teal);
     color: var(--teal);
     background: var(--surface2);
@@ -889,34 +889,25 @@
 
   <!-- navigation -->
   <div class="hiw-nav">
-    <button class="hiw-btn" id="hiwPrev" disabled>&#8592;</button>
     <div class="hiw-progress"><div class="hiw-progress-bar" id="hiwBar"></div></div>
-    <button class="hiw-btn" id="hiwNext">&#8594;</button>
-    <span class="hiw-counter" id="hiwCounter">1 / 6</span>
   </div>
 </section>
 
 <script>
 (function() {
   var TOTAL = 6;
-  var DURATION = 4000; // ms per step
+  var DURATION = 4000;
+  var RESTART_DELAY = 5000;
   var current = 0;
-  var timer = null;
-  var paused = false;
+  var restartTimer = null;
   var barStart = null;
   var barRaf = null;
 
-  var dots     = document.querySelectorAll('#hiwDots .hiw-dot-wrap');
-  var cards    = document.querySelectorAll('#hiwCards .hiw-card');
-  var prevBtn  = document.getElementById('hiwPrev');
-  var nextBtn  = document.getElementById('hiwNext');
-  var bar      = document.getElementById('hiwBar');
-  var counter  = document.getElementById('hiwCounter');
+  var dots  = document.querySelectorAll('#hiwDots .hiw-dot-wrap');
+  var cards = document.querySelectorAll('#hiwCards .hiw-card');
+  var bar   = document.getElementById('hiwBar');
 
-  function show(n) {
-    cancelAnimationFrame(barRaf);
-    clearTimeout(timer);
-
+  function updateUI(n) {
     dots.forEach(function(d, i) {
       d.classList.toggle('active', i === n);
       d.classList.toggle('done', i < n);
@@ -924,20 +915,19 @@
     cards.forEach(function(c, i) {
       c.classList.toggle('active', i === n);
     });
-    prevBtn.disabled = (n === 0);
-    nextBtn.disabled = (n === TOTAL - 1);
-    counter.textContent = (n + 1) + ' / ' + TOTAL;
     current = n;
+  }
 
-    if (!paused && n < TOTAL - 1) startBar();
-    else { bar.style.transition = 'none'; bar.style.width = '0%'; }
+  function stopBar() {
+    cancelAnimationFrame(barRaf);
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
   }
 
   function startBar() {
     bar.style.transition = 'none';
     bar.style.width = '0%';
     barStart = null;
-
     barRaf = requestAnimationFrame(function tick(ts) {
       if (!barStart) barStart = ts;
       var pct = Math.min(((ts - barStart) / DURATION) * 100, 100);
@@ -946,38 +936,25 @@
       if (pct < 100) {
         barRaf = requestAnimationFrame(tick);
       } else {
-        show(current + 1);
+        updateUI((current + 1) % TOTAL);
+        startBar();
       }
     });
   }
 
-  prevBtn.addEventListener('click', function() { paused = true; show(current - 1); });
-  nextBtn.addEventListener('click', function() { paused = true; show(current + 1); });
-
-  // dot click
+  // dot click — pause, jump to step, restart after 5s
   dots.forEach(function(d) {
     d.addEventListener('click', function() {
-      paused = true;
-      show(parseInt(d.dataset.step));
+      stopBar();
+      clearTimeout(restartTimer);
+      updateUI(parseInt(d.dataset.step));
+      restartTimer = setTimeout(startBar, RESTART_DELAY);
     });
   });
 
-  // pause on hover
-  var area = document.querySelector('.how-it-works');
-  area.addEventListener('mouseenter', function() {
-    paused = true;
-    cancelAnimationFrame(barRaf);
-    clearTimeout(timer);
-    bar.style.transition = 'none';
-    bar.style.width = '0%';
-  });
-  area.addEventListener('mouseleave', function() {
-    paused = false;
-    if (current < TOTAL - 1) startBar();
-  });
-
   // init
-  show(0);
+  updateUI(0);
+  startBar();
 })();
 </script>
 
