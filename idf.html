@@ -2447,11 +2447,12 @@ Closed by: Product Owner · 2026-04-13</div>
       },
       broker: {
         name: 'Dependencies Broker', type: 'agent', sub: 'Cross-team dependency tracking',
-        desc: 'The function responsible for monitoring cross-team signals. When decomposition surfaces a dependency on another team, the broker routes the request, notifies affected POs, and tracks resolution. Teams don\'t wait — they work around while the broker resolves.',
+        desc: 'The function responsible for surfacing and routing cross-team dependencies. When decomposition surfaces a need from another team, the broker routes the request, notifies affected POs, and tracks resolution. Teams don\'t wait — they work around while the broker resolves.',
         attrs: [
-          { k: 'Implementation', v: 'AI broker agent (fully agentic) · project coordinator or PO (spec-driven) · dedicated coordination role (large orgs)' },
+          { k: 'Implementation', v: 'Human coordinator today (Delivery Manager, Release Train Engineer, or PO managing cross-team manually). AI-assisted monitoring exists but full automation of this function is nascent — it is the most aspirational of the four execution functions.' },
           { k: 'Monitors',       v: 'All task lists and cycle plans across teams in scope' },
-          { k: 'Produces',       v: 'Dependency alerts, blocker log, handoff checklists' }
+          { k: 'Produces',       v: 'Dependency alerts, blocker log, handoff checklists' },
+          { k: 'Note',           v: 'The function must be covered regardless of how. The AI agent version is a direction, not a current requirement.' }
         ]
       },
     };
@@ -2538,7 +2539,7 @@ Closed by: Product Owner · 2026-04-13</div>
           <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Cross-team dependency tracking</div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Dependencies Broker</div>
         </div>
-        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI broker monitors all cycle plans, detects cross-team dependencies automatically, and routes requests to affected POs.</div>
+        <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">AI-assisted monitoring surfaces cross-team dependencies during decomposition; routing and escalation may still require human judgment. Full automation of this function is aspirational.</div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;border-right:1px solid var(--border);">Project coordinator uses AI monitoring tools to surface dependencies; routing and tracking remain human-led.</div>
         <div style="padding:16px;font-size:13px;color:var(--text2);line-height:1.6;">Dependencies are surfaced at spec-writing time — the spec's scope boundaries define what's in and out. Cross-team needs are resolved before execution begins, reducing mid-cycle blockers.</div>
       </div>
