@@ -2,9 +2,9 @@
   {
     "version": "alpha",
     "file": "idf.html",
-    "date": "2026-04-13",
+    "date": "2026-04-14",
     "title": "Alpha",
-    "description": "Three-level hierarchy rebuild — Intent/Cycle/Iteration model with revised gate behavior: Gate 2 loops on rework, Gate 3 authorizes the flag without closing the intent, and monitoring state bridges live release to confirmed outcome.",
+    "description": "§01 expanded with two foundational operating principles — Iterate to the Signal and Zero Block — making explicit the philosophy behind IDF's short cycles and unblocking posture.",
     "highlights": [
       "New three-level model: Intent (outcome goal) → Cycle (one flag, one gate sequence) → Iteration (one implementation pass)",
       "Intent lifecycle extended: open → in-progress → monitoring → completed; monitoring state explicitly separates flag go-live from outcome confirmation",
@@ -12,7 +12,9 @@
       "Gate 3 closes the cycle, not the intent — intent enters monitoring state after flag flip",
       "Gate 1 has two modes: first cycle (approve intent + scope) vs. subsequent cycles (scope only)",
       "Intent Log and Iteration Record gain clearer responsibilities to support multi-cycle intent tracking",
-      "Intent Completion added as a first-class signal event — explicit PO declaration that the outcome signal was observed"
+      "Intent Completion added as a first-class signal event — explicit PO declaration that the outcome signal was observed",
+      "Core idea 4 added: Iterate to the signal, not to perfection — the first cycle is directional; progress is measured by evidence, not plans",
+      "Core idea 5 added: The only block is 'not ready for production' — mock what you don't have, build around constraints, replace workarounds next cycle"
     ]
   }
 ]
