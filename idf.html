@@ -1891,8 +1891,8 @@ Status: open</div>
       <div class="tl-marker tl-marker-cycle">C1</div>
       <div class="tl-content">
         <div class="tl-phase-label">Cycle 1 — Iteration 1</div>
-        <div class="tl-title">Agents build · Guardian reports · Craft Engineer reviews and uses it · Gate 2 approves</div>
-        <div class="tl-body">The Orchestrator decomposes the intent into a task list within Iteration 1. Builders execute. The Guardian runs automated checks and produces a gate report. The Craft Engineer reads the report — tests pass, performance within budget, no security issues — then opens the deployed feature and uses it. The simplified card input works as intended. Gate 2 decision: <span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;">APPROVED</span>. Cycle status advances to gate-3.</div>
+        <div class="tl-title">Agents build · Guardian reports · Delivery Team reviews and uses it · Gate 2 approves</div>
+        <div class="tl-body">The Orchestrator decomposes the intent into a task list within Iteration 1. Builders execute. The Guardian runs automated checks and produces a gate report. The Delivery Team reads the report — tests pass, performance within budget, no security issues — then opens the deployed feature and uses it. The simplified card input works as intended. Gate 2 decision: <span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;">APPROVED</span>. Cycle status advances to gate-3.</div>
         <div class="tl-artifact-label" style="color:var(--blue2);">GATE_REPORT — Cycle 1 / Iteration 1</div>
         <div class="tl-artifact">What was built: Single-field card input, billing address deferred.
 Tests: PASS · Security: CLEAN · Perf: within budget
@@ -1930,7 +1930,7 @@ Recommendation: APPROVED — ready for Gate 3.</div>
       <div class="tl-content">
         <div class="tl-phase-label">Cycle 2 — Iteration 2a (trigger: initial)</div>
         <div class="tl-title">Gate 2 requests a rework iteration</div>
-        <div class="tl-body">Cycle 2 aims to improve the mobile checkout experience. Iteration 2a builds a keyboard scroll fix. The Guardian produces a gate report — automated tests pass. The Craft Engineer then opens the feature on a mobile device and uses it: the keyboard obscures the card input field on older iOS, making it impossible to complete the form. The automated tests couldn't catch this. Gate 2 decision: <span style="color:var(--coral2);font-family:'IBM Plex Mono',monospace;font-size:11px;">REQUEST ITERATION</span> with written feedback from hands-on experience.</div>
+        <div class="tl-body">Cycle 2 aims to improve the mobile checkout experience. Iteration 2a builds a keyboard scroll fix. The Guardian produces a gate report — automated tests pass. A Delivery Team member then opens the feature on a mobile device and uses it: the keyboard obscures the card input field on older iOS, making it impossible to complete the form. The automated tests couldn't catch this. Gate 2 decision: <span style="color:var(--coral2);font-family:'IBM Plex Mono',monospace;font-size:11px;">REQUEST ITERATION</span> with written feedback from hands-on experience.</div>
         <div class="tl-artifact-label" style="color:var(--coral2);">GATE_REPORT — Cycle 2 / Iteration 2a</div>
         <div class="tl-artifact">What was built: Mobile keyboard scroll fix on card input.
 Tests: PASS · Security: CLEAN · Perf: PASS
@@ -1946,7 +1946,7 @@ Feedback: Keyboard overlaps input on iOS 15 Safari — needs scroll padding fix.
       <div class="tl-content">
         <div class="tl-phase-label">Cycle 2 — Iteration 2b (trigger: gate-2-feedback)</div>
         <div class="tl-title">Rework iteration — addresses the iOS keyboard issue</div>
-        <div class="tl-body">The Orchestrator creates Iteration 2b with <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">trigger: gate-2-feedback</code> and the Quality Advocate's feedback text attached. Builders apply the scroll padding fix. Guardian re-runs automated checks. Gate 2 reviews again — this time the fix is clean. Gate 2 decision: <span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;">APPROVED</span>.</div>
+        <div class="tl-body">The Orchestrator creates Iteration 2b with <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">trigger: gate-2-feedback</code> and the Delivery Team's feedback text attached. Builders apply the scroll padding fix. Guardian re-runs automated checks. Gate 2 reviews again — this time the fix is clean. Gate 2 decision: <span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;">APPROVED</span>.</div>
         <div class="tl-artifact-label" style="color:var(--teal2);">ITERATION — Cycle 2 / 2b</div>
         <div class="tl-artifact">trigger: gate-2-feedback
 feedback: "Keyboard overlaps input on iOS 15 Safari — needs scroll padding fix."
@@ -2704,8 +2704,8 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="ritual-row">
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Integrity Gate</div></div>
       <div class="ritual-cadence">Per cycle</div>
-      <div class="ritual-trigger">Triggered by: cycle start, before Orchestrator begins<br>Participants: Craft Engineer</div>
-      <div class="ritual-output">10-minute pre-flight. Craft Engineer confirms System Memory and Capability Library reflect current reality. Logged as <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Context check: CLEAN / FLAGGED</span> in INTENT_LOG. FLAGGED triggers a scoped Context Reset before cycle proceeds.</div>
+      <div class="ritual-trigger">Triggered by: cycle start, before Orchestrator begins<br>Participants: Delivery Team</div>
+      <div class="ritual-output">10-minute pre-flight. Delivery Team confirms System Memory and Capability Library reflect current reality. Logged as <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Context check: CLEAN / FLAGGED</span>. FLAGGED triggers a scoped Context Reset before cycle proceeds.</div>
     </div>
 
     <div class="ritual-row">
@@ -2718,15 +2718,15 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="ritual-row">
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Gate 2 — Iteration Review</div></div>
       <div class="ritual-cadence">Per iteration</div>
-      <div class="ritual-trigger">Triggered by: Iteration completes<br>Participants: Guardian (automated checks) · Craft Engineer or Quality Advocate (human decision)</div>
-      <div class="ritual-output">Guardian produces gate report. Craft Engineer reads report and uses the feature. Decision: Approved (technically sound + serves intent) → Cycle advances to Gate 3. Request iteration (technical or experiential feedback) → new Iteration created with trigger: gate-2-feedback; Cycle holds. Loop repeats until Approved. PO may join; final Gate 2 authority is the Craft Engineer.</div>
+      <div class="ritual-trigger">Triggered by: Iteration completes<br>Participants: Guardian (automated checks) · Delivery Team (human decision)</div>
+      <div class="ritual-output">Guardian produces gate report. Delivery Team reviews the report and uses the feature. Decision: Approved (technically sound + serves intent) → Cycle advances to Gate 3. Request iteration (technical or experiential feedback) → new Iteration created with trigger: gate-2-feedback; Cycle holds. Loop repeats until Approved. PO may join; final Gate 2 authority is the Delivery Team.</div>
     </div>
 
     <div class="ritual-row">
       <div><div class="ritual-name"><span class="layer-dot dot-product"></span>Gate 3 — Release Gate</div></div>
       <div class="ritual-cadence">Per cycle</div>
       <div class="ritual-trigger">Triggered by: Gate 2 approved, Deploy (flag OFF) complete<br>Participants: PO (sole decision authority)</div>
-      <div class="ritual-output">Authorized: flag Pending-OFF → Live-ON. Cycle status: completed. Intent status: monitoring. Outcome NOT yet confirmed — that is Intent Completion, a separate event. Rejected: Orchestrator re-plans with Guardian notes.</div>
+      <div class="ritual-output">Authorized: release switch activated. Cycle status: completed. Intent status: monitoring. Outcome NOT yet confirmed — that is Intent Completion, a separate event. Rejected: Orchestrator re-plans with Guardian notes.</div>
     </div>
 
     <div class="ref-zone-header" style="padding:10px 24px;">Monitoring &amp; Completion</div>
@@ -2743,8 +2743,8 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="ritual-row">
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Reset</div></div>
       <div class="ritual-cadence">Event-triggered</div>
-      <div class="ritual-trigger">Triggered by: detected context drift or staleness signal<br>Participants: Craft Engineer (leads) + PO (acknowledges)</div>
-      <div class="ritual-output">Pruned System Memory with a diff showing what was removed. Confirmed Capability Library accuracy. Dead-OFF flags identified and removed.</div>
+      <div class="ritual-trigger">Triggered by: detected context drift or staleness signal<br>Participants: Delivery Team (leads) + PO (acknowledges)</div>
+      <div class="ritual-output">Pruned System Memory with a diff showing what was removed. Confirmed Capability Library accuracy. Dead-OFF release switches identified and removed.</div>
     </div>
 
     <div class="ritual-row">
@@ -2757,7 +2757,7 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="ritual-row">
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Capability Harvest</div></div>
       <div class="ritual-cadence">When pattern repeats</div>
-      <div class="ritual-trigger">Triggered by: Guardian or Orchestrator detecting a repeated pattern<br>Participants: Craft Engineer + Orchestrator</div>
+      <div class="ritual-trigger">Triggered by: Guardian or Orchestrator detecting a repeated pattern<br>Participants: Delivery Team + Orchestrator</div>
       <div class="ritual-output">New or updated capability file added to the Capability Library. Reduces re-teaching same conventions each cycle.</div>
     </div>
 
