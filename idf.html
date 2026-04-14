@@ -2773,23 +2773,23 @@ Closed by: Product Owner · 2026-04-13</div>
 <!-- ═══════════════════ §12 — COMMUNICATION ═══════════════════ -->
 <section id="s12">
   <div class="section-label">18 — Reference</div>
-  <h2>How layers talk to each other</h2>
-  <p style="max-width:640px;">Inter-layer communication is explicit, documented, and async by default. No layer should require a synchronous meeting to receive information from another layer. These defined communication patterns are what make fast cycles possible without creating noise or missed signals.</p>
+  <h2>Information flow and communication</h2>
+  <p style="max-width:640px;">Communication across the team is explicit, documented, and async by default. No role should require a synchronous meeting to receive information from another. These defined communication patterns are what make fast cycles possible without creating noise or missed signals.</p>
 
   <div class="comm-grid">
     <div class="comm-card">
       <div class="comm-direction"><span class="comm-from">Strategic</span><span class="comm-arrow">→</span><span class="comm-to">Product</span></div>
       <p>Direction flows down as updates to the True North document. POs read it before intent injection. No meeting required — PO is responsible for tracking changes.</p>
-      <div class="comm-payload">Trigger: Strategic Alignment output or strategic pivot<br>Format: Updated TRUE_NORTH.md<br>Frequency: Monthly or on strategic change</div>
+      <div class="comm-payload">Trigger: Strategic Alignment output or strategic pivot<br>Format: Updated True North document<br>Frequency: Monthly or on strategic change</div>
     </div>
     <div class="comm-card">
       <div class="comm-direction"><span class="comm-from">Product</span><span class="comm-arrow">→</span><span class="comm-to">Execution</span></div>
       <p>Cycle intent travels as a written outcome statement. The Orchestrator converts it to an Iteration task list. The intent's lifecycle status travels back through the Intent Log — Orchestrator writes it, PO acts on it.</p>
-      <div class="comm-payload">Trigger: Gate 3 closes previous cycle<br>Format: Intent statement in INTENT_LOG.md<br>Frequency: Per cycle</div>
+      <div class="comm-payload">Trigger: Gate 3 closes previous cycle<br>Format: Intent statement in the Intent Log<br>Frequency: Per cycle</div>
     </div>
     <div class="comm-card">
       <div class="comm-direction"><span class="comm-from">Execution</span><span class="comm-arrow">→</span><span class="comm-to">Product</span></div>
-      <p>Gate reports surface from Guardian to the Craft Engineer. The Craft Engineer reads the report and uses the feature before deciding. Feedback — whether from the report or from hands-on experience — travels back as a REQUEST ITERATION with written text. The PO may join for outcome or UX assessment but is not the decision authority at Gate 2. The PO's release decision happens at Gate 3.</p>
+      <p>Gate reports surface from Guardian to the Delivery Team. A Delivery Team member reads the report and uses the feature before deciding. Feedback — whether from the report or from hands-on experience — travels back as a REQUEST ITERATION with written text. The PO may join for outcome or UX assessment but is not the decision authority at Gate 2. The PO's release decision happens at Gate 3.</p>
       <div class="comm-payload">Trigger: Iteration completes<br>Format: Gate report (≤3 paragraphs) keyed to Cycle + Iteration<br>Frequency: Per iteration</div>
     </div>
     <div class="comm-card">
@@ -2805,7 +2805,7 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="comm-card">
       <div class="comm-direction"><span class="comm-from">Client</span><span class="comm-arrow">→</span><span class="comm-to">Product</span></div>
       <p>Client signals travel to the PO continuously through whatever feedback channel exists. These signals are also what closes intents — the PO is explicitly looking for the measurement signal defined in the intent statement.</p>
-      <div class="comm-payload">Trigger: Any client feedback, usage data, support pattern<br>Format: Entry in CLIENT_SIGNALS.md<br>Frequency: Continuous</div>
+      <div class="comm-payload">Trigger: Any client feedback, usage data, support pattern<br>Format: Entry in the Client signal log<br>Frequency: Continuous</div>
     </div>
   </div>
 </section>
