@@ -81,8 +81,9 @@
 
   // ── Render nav ─────────────────────────────────────────────────────────────
   const pages = [
-    { file: 'index.html',      label: 'Overview' },
-    { file: 'idf.html',  label: 'Framework' },
+    { file: 'index.html',          label: 'Overview' },
+    { file: 'idf.html',            label: 'Framework' },
+    { file: 'idf-corporate.html',  label: 'Corporate' },
   ];
 
   const pills = pages.map(p => {
