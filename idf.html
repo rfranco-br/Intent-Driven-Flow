@@ -1730,7 +1730,7 @@
 
   <div class="intent-example">
     <div style="color:var(--text3);margin-bottom:6px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;">Example</div>
-    Intent: Reduce checkout abandonment at the payment step by simplifying card input.<br>
+    Intent: Reduce checkout abandonment at the payment step by pre-filling saved payment details for returning customers.<br>
     Signal: abandonment rate drops below 12% (currently at 22%).
   </div>
 
@@ -1940,7 +1940,7 @@ flowchart LR
   <div style="display:inline-block;background:rgba(232,115,74,0.1);border:1px solid rgba(232,115,74,0.3);border-radius:4px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;">Example walkthrough</div>
   <h2>One intent, two cycles, one rework iteration</h2>
   <p style="max-width:680px;">This is an example — not a new concept. The model is already complete. This walkthrough traces a single intent through its full lifecycle using everything from §03–05: two cycles, a Gate 2 failure with rework, and a signal observation that closes the intent.</p>
-  <p style="color:var(--text3);font-size:13px;margin-bottom:8px;max-width:680px;">Intent: Reduce checkout abandonment at the payment step. Signal: abandonment rate below 12% (currently 22%).</p>
+  <p style="color:var(--text3);font-size:13px;margin-bottom:8px;max-width:680px;">Intent: Reduce checkout abandonment at the payment step by pre-filling saved payment details for returning customers. Signal: abandonment rate below 12% (currently 22%).</p>
 
   <div class="timeline">
 
@@ -1953,7 +1953,7 @@ flowchart LR
         <div class="tl-title">PO writes the intent and logs it</div>
         <div class="tl-body">The Product Owner translates a client signal (22% abandonment rate at payment step) into a single outcome statement. Status: <span style="color:var(--purple2);font-family:'IBM Plex Mono',monospace;font-size:11px;">open</span>. The intent enters the system but no work begins until Gate 1.</div>
         <div class="tl-artifact-label" style="color:var(--purple2);">INTENT_LOG — new entry</div>
-        <div class="tl-artifact">Intent: Reduce abandonment at payment step by simplifying card input.
+        <div class="tl-artifact">Intent: Reduce abandonment at payment step by pre-filling saved payment details for returning customers.
 Signal: abandonment rate below 12% (currently 22%)
 Status: open</div>
       </div>
