@@ -388,6 +388,125 @@
     letter-spacing: 0.08em;
   }
 
+  /* ── CASCADE TREE ── */
+  .ct-layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 32px;
+    margin-top: 40px;
+    align-items: start;
+  }
+  .ct-tree-col { min-width: 0; }
+  .ct-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .ct-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .ct-card-tn { border-left: 3px solid var(--blue); }
+  .ct-card-si { border-left: 3px solid var(--purple); }
+  .ct-card-di { border-left: 3px solid var(--teal); }
+  .ct-card-ti { border-left: 3px solid var(--coral); }
+  .ct-badge-tn { background: rgba(74,122,191,0.15);  color: var(--blue2); }
+  .ct-badge-si { background: rgba(124,92,191,0.15);  color: var(--purple2); }
+  .ct-badge-di { background: rgba(58,158,120,0.15);  color: var(--teal2); }
+  .ct-badge-ti { background: rgba(232,115,74,0.15);  color: var(--coral2); }
+  .ct-outcome {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .ct-signal {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.5;
+  }
+  .ct-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    margin-left: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  .ct-btn:hover { color: var(--text2); border-color: var(--border2); }
+  .ct-btn-icon { font-size: 14px; line-height: 1; font-weight: 300; }
+  .ct-children {
+    display: none;
+    margin-left: 22px;
+    padding-left: 24px;
+    border-left: 1px dashed var(--border2);
+    margin-top: 4px;
+  }
+  .ct-children.is-open { display: block; }
+  .ct-child {
+    position: relative;
+    padding-top: 12px;
+  }
+  .ct-child::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 24px;
+    width: 24px;
+    height: 1px;
+    background: var(--border2);
+  }
+  .ct-aside {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+    position: sticky;
+    top: 64px;
+  }
+  .ct-aside-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 16px;
+  }
+  .ct-aside-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text2);
+  }
+  .ct-aside-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .cover { padding: 48px 24px; }
@@ -400,6 +519,8 @@
     .cover-meta { flex-direction: column; gap: 16px; }
     .link-block { flex-direction: column; align-items: flex-start; }
     footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
+    .ct-layout { grid-template-columns: 1fr; }
+    .ct-aside { position: static; }
   }
 </style>
 </head>
@@ -511,6 +632,158 @@
   </div>
 
   <p><strong style="color:var(--text);">How do you know you're spending money in the right place?</strong> Every funded intent traces to a Domain Intent. Every Domain Intent traces to a Strategic Intent. Every Strategic Intent traces to True North. If a team intent can't be traced upward to True North, it shouldn't be funded. If a signal hasn't moved after two cycles, the intent needs review — not more execution.</p>
+
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-top:48px;margin-bottom:4px;">The cascade in practice</div>
+  <p style="font-size:13px;color:var(--text2);margin-bottom:0;">Expand each layer to see how a single True North becomes team-level delivery.</p>
+
+  <div class="ct-layout">
+    <!-- ── TREE ── -->
+    <div class="ct-tree-col">
+
+      <!-- True North -->
+      <div class="ct-card ct-card-tn">
+        <span class="ct-badge ct-badge-tn">True North</span>
+        <div class="ct-outcome">Become the default payment layer for LATAM SMBs</div>
+        <div class="ct-signal">Signal: 40% of LATAM SMBs with under 50 employees as active merchants</div>
+      </div>
+      <button class="ct-btn is-open" data-target="ct-si" aria-expanded="true">
+        <span class="ct-btn-icon">−</span>
+        <span class="ct-btn-label">2 Strategic Intents</span>
+      </button>
+
+      <div id="ct-si" class="ct-children is-open">
+
+        <!-- SI 1 -->
+        <div class="ct-child">
+          <div class="ct-card ct-card-si">
+            <span class="ct-badge ct-badge-si">Strategic Intent</span>
+            <div class="ct-outcome">Grow active LATAM merchant base by 20% this year</div>
+            <div class="ct-signal">Signal: active merchant count above 12,000</div>
+          </div>
+          <button class="ct-btn" data-target="ct-di-1" aria-expanded="false">
+            <span class="ct-btn-icon">+</span>
+            <span class="ct-btn-label">2 Domain Intents</span>
+          </button>
+          <div id="ct-di-1" class="ct-children">
+
+            <!-- DI 1.1 -->
+            <div class="ct-child">
+              <div class="ct-card ct-card-di">
+                <span class="ct-badge ct-badge-di">Domain Intent</span>
+                <div class="ct-outcome">Reduce merchant onboarding drop-off by 40%</div>
+                <div class="ct-signal">Signal: onboarding completion rate above 65%</div>
+              </div>
+              <button class="ct-btn" data-target="ct-ti-1-1" aria-expanded="false">
+                <span class="ct-btn-icon">+</span>
+                <span class="ct-btn-label">2 Team Intents</span>
+              </button>
+              <div id="ct-ti-1-1" class="ct-children">
+                <div class="ct-child">
+                  <div class="ct-card ct-card-ti">
+                    <span class="ct-badge ct-badge-ti">Team Intent</span>
+                    <div class="ct-outcome">Reduce checkout abandonment at the payment step by pre-filling saved payment details for returning customers</div>
+                    <div class="ct-signal">Signal: abandonment rate below 12% (currently 22%)</div>
+                  </div>
+                </div>
+                <div class="ct-child">
+                  <div class="ct-card ct-card-ti">
+                    <span class="ct-badge ct-badge-ti">Team Intent</span>
+                    <div class="ct-outcome">Simplify KYC document upload on mobile by replacing file picker with camera capture</div>
+                    <div class="ct-signal">Signal: KYC completion rate on mobile above 80% (currently 54%)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DI 1.2 -->
+            <div class="ct-child">
+              <div class="ct-card ct-card-di">
+                <span class="ct-badge ct-badge-di">Domain Intent</span>
+                <div class="ct-outcome">Launch in two new LATAM markets</div>
+                <div class="ct-signal">Signal: 500 active merchants per new market within 90 days of launch</div>
+              </div>
+              <button class="ct-btn" data-target="ct-ti-1-2" aria-expanded="false">
+                <span class="ct-btn-icon">+</span>
+                <span class="ct-btn-label">1 Team Intent</span>
+              </button>
+              <div id="ct-ti-1-2" class="ct-children">
+                <div class="ct-child">
+                  <div class="ct-card ct-card-ti">
+                    <span class="ct-badge ct-badge-ti">Team Intent</span>
+                    <div class="ct-outcome">Launch Brazilian Portuguese onboarding flow by translating and adapting all onboarding screens</div>
+                    <div class="ct-signal">Signal: BR onboarding completion rate above 60% within 30 days of launch</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SI 2 -->
+        <div class="ct-child">
+          <div class="ct-card ct-card-si">
+            <span class="ct-badge ct-badge-si">Strategic Intent</span>
+            <div class="ct-outcome">Reduce annual merchant churn below 3%</div>
+            <div class="ct-signal">Signal: annual churn rate below 3%</div>
+          </div>
+          <button class="ct-btn" data-target="ct-di-2" aria-expanded="false">
+            <span class="ct-btn-icon">+</span>
+            <span class="ct-btn-label">1 Domain Intent</span>
+          </button>
+          <div id="ct-di-2" class="ct-children">
+
+            <!-- DI 2.1 -->
+            <div class="ct-child">
+              <div class="ct-card ct-card-di">
+                <span class="ct-badge ct-badge-di">Domain Intent</span>
+                <div class="ct-outcome">Improve first-month merchant activation rate</div>
+                <div class="ct-signal">Signal: 70% of new merchants complete first transaction within 7 days</div>
+              </div>
+              <button class="ct-btn" data-target="ct-ti-2-1" aria-expanded="false">
+                <span class="ct-btn-icon">+</span>
+                <span class="ct-btn-label">1 Team Intent</span>
+              </button>
+              <div id="ct-ti-2-1" class="ct-children">
+                <div class="ct-child">
+                  <div class="ct-card ct-card-ti">
+                    <span class="ct-badge ct-badge-ti">Team Intent</span>
+                    <div class="ct-outcome">Reduce time to first transaction by pre-populating merchant profile from registration data</div>
+                    <div class="ct-signal">Signal: median time from activation to first transaction below 4 hours (currently 11 hours)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── ASIDE ── -->
+    <div class="ct-aside">
+      <div class="ct-aside-label">Signal flow</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:20px;">Every intent at every layer carries a signal. Signals travel upward — when a team signal achieves target, the domain layer observes it. When the domain signal validates, the strategic layer observes.</p>
+      <div class="ct-aside-item">
+        <span class="ct-aside-dot" style="background:var(--blue);"></span>
+        <span>True North is reviewed when Strategic Intent signal cohorts close.</span>
+      </div>
+      <div class="ct-aside-item">
+        <span class="ct-aside-dot" style="background:var(--purple);"></span>
+        <span>Strategic Intents close when their own signal validates.</span>
+      </div>
+      <div class="ct-aside-item">
+        <span class="ct-aside-dot" style="background:var(--teal);"></span>
+        <span>Domain Intents close when team signal movement confirms direction.</span>
+      </div>
+      <div class="ct-aside-item">
+        <span class="ct-aside-dot" style="background:var(--coral);"></span>
+        <span>Team Intents are governed by IDF delivery mechanics — cycles, gates, monitoring.</span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ═══════════════════ §C03 — THE ORG MODEL ═══════════════════ -->
@@ -673,5 +946,17 @@
 </footer>
 
 <script src="nav.js?v=12"></script>
+<script>
+  document.querySelectorAll('.ct-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = btn.dataset.target;
+      var wrap = document.getElementById(targetId);
+      if (!wrap) return;
+      var isOpen = wrap.classList.toggle('is-open');
+      btn.querySelector('.ct-btn-icon').textContent = isOpen ? '−' : '+';
+      btn.setAttribute('aria-expanded', isOpen);
+    });
+  });
+</script>
 </body>
 </html>
