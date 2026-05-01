@@ -2319,6 +2319,7 @@ Closed by: Product Owner · 2026-04-13</div>
   <div class="section-label">11 — Roles</div>
   <h2>Governance roles and the Delivery Team</h2>
   <p style="max-width:640px;">IDF separates governance authority from delivery skills from execution. Governance roles are IDF-defined and gate-bound — they cannot be delegated to an agent, collapsed, or renamed without changing what the framework says. The Delivery Team is assembled per product: IDF defines which responsibilities must be covered; the team decides who covers them. The execution layer follows the same principle — IDF defines four functions that must be covered in every team; how each is implemented (AI agent, human, or pipeline tool) depends on the execution model.</p>
+  <p style="max-width:640px;margin-top:16px;">Within their gate-bound functions, governance roles can leverage Skills — for analysis, signal review, or technical assessment. Skills augment human judgment; they do not replace governance authority.</p>
 
   <div style="margin-top:32px;margin-bottom:40px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
 
@@ -2365,7 +2366,7 @@ Closed by: Product Owner · 2026-04-13</div>
 
     <div style="background:var(--surface2);border-bottom:1px solid var(--border);border-top:1px solid var(--border);padding:10px 24px;display:flex;align-items:baseline;gap:16px;">
       <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal2);">Execution layer — functions are IDF-defined, implementation is flexible</span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">AI agent · human · pipeline tool · any combination</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">AI agent · human · pipeline tool · any combination — each function's effective capability is defined by the Skills it can invoke</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 2fr;padding:14px 24px;gap:24px;border-bottom:1px solid var(--border);background:var(--surface);border-left:3px solid var(--teal);">
       <span style="font-size:13px;color:var(--text);font-weight:600;">Decompose and route<br><span style="font-weight:400;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Orchestrator</span></span>
@@ -2384,6 +2385,10 @@ Closed by: Product Owner · 2026-04-13</div>
       <span style="font-size:13px;color:var(--text2);">Monitor cross-team needs; route requests; track resolution so teams don't wait</span>
     </div>
 
+  </div>
+
+  <div style="margin-top:24px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;max-width:680px;">
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Agents perform execution functions by invoking Skills from the team's Skills Catalog. Skills are loaded progressively as relevant — the Orchestrator invokes a decomposition skill when scope analysis begins; Builders invoke domain skills when implementation starts; the Guardian invokes verification skills when checking gate criteria. The team's Plugin bundles the Skills and connectors available to all functions. Plugin setup happens at team configuration time; skill invocation happens dynamically at execution time.</p>
   </div>
 
   <div class="role-map-wrap">
@@ -2498,11 +2503,11 @@ Closed by: Product Owner · 2026-04-13</div>
       },
       arch: {
         name: 'Architects &amp; Tech Leads', type: 'human',
-        desc: 'Define and maintain the technical guardrails that agents work within. They do not build features — they own the conventions, constraints, and capability files that shape how the team builds everything.',
+        desc: 'Define and maintain the technical guardrails that agents work within. They do not build features — they own the conventions, constraints, and skills that shape how the team builds everything.',
         attrs: [
-          { k: 'Accountable for', v: 'Capability Library, System Memory conventions, tech constraints' },
-          { k: 'Interfaces',     v: 'Builder agents (via capabilities), Guardian (via gate criteria)' },
-          { k: 'Key discipline', v: 'Translating architectural decisions into capability files, not tickets' }
+          { k: 'Accountable for', v: 'Skills Catalog, System Memory conventions, tech constraints' },
+          { k: 'Interfaces',     v: 'Builder agents (via skills), Guardian (via gate criteria)' },
+          { k: 'Key discipline', v: 'Translating architectural decisions into skills, not tickets' }
         ]
       },
       orchestrator: {
@@ -2510,7 +2515,7 @@ Closed by: Product Owner · 2026-04-13</div>
         desc: 'The function responsible for breaking a cycle scope into iteration tasks, routing them to the right executor, and tracking completion. Decomposes the cycle scope into the first Iteration (trigger: initial) containing a sequenced task list. On Gate 2 feedback: creates additional Iterations (trigger: gate-2-feedback) with the feedback text attached.',
         attrs: [
           { k: 'Implementation', v: 'AI orchestrator agent (fully agentic) · human tech lead writing specs (spec-driven) · combination (hybrid)' },
-          { k: 'Reads',          v: 'Intent statement, System Memory, Capability Library' },
+          { k: 'Reads',          v: 'Intent statement, System Memory, Skills Catalog' },
           { k: 'Produces',       v: 'Iteration records (including trigger and feedback fields), task lists, routing decisions, memory updates' },
           { k: 'Fails when',     v: 'Intent is ambiguous — surfaces to PO and waits. Never infers.' }
         ]
@@ -2520,7 +2525,7 @@ Closed by: Product Owner · 2026-04-13</div>
         desc: 'The function responsible for implementing iteration tasks and producing the output. Operates without state between tasks — each task is self-contained. Can be a single agent, a swarm of specialized agents, a human developer, or any combination.',
         attrs: [
           { k: 'Implementation', v: 'AI builder agent (fully agentic) · human developer (spec-driven) · AI-assisted human (hybrid)' },
-          { k: 'Reads',          v: 'Task brief from Iteration record, domain capability file, System Memory' },
+          { k: 'Reads',          v: 'Task brief from Iteration record, domain skill from Skills Catalog, System Memory' },
           { k: 'Produces',       v: 'Code + tests, wrapped in a release switch by default' },
           { k: 'Constraint',     v: 'Stateless — no opinion carried between tasks or cycles' }
         ]
@@ -2638,7 +2643,8 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 
   <div style="margin-top:24px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;max-width:680px;">
-    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Teams often start spec-driven and move toward hybrid or fully agentic as confidence in the tooling grows. IDF doesn't prescribe a starting point — it requires the four functions to be covered and the gates to be honored. The execution model can evolve without changing the framework.</p>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0 0 12px 0;">Teams often start spec-driven and move toward hybrid or fully agentic as confidence in the tooling grows. IDF does not prescribe a starting point — it requires the four functions to be covered and the gates to be honored. The execution model can evolve without changing the framework.</p>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Regardless of execution model, the team's Skills Catalog defines the effective capability of every function. In Fully Agentic, agents invoke skills autonomously as tasks demand. In Hybrid, humans guide skill invocation — choosing when and which skills are applied. In Spec-Driven, skill invocation is constrained to what the spec authorizes. The execution model governs autonomy; the Skills Catalog governs capability. Teams grow their catalog incrementally — harvesting patterns from each cycle — without changing their execution model.</p>
   </div>
 
 </section>
@@ -2738,13 +2744,17 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
 
     <div class="artifact-card">
-      <h3>Capability Library</h3>
-      <p>A collection of domain-specific instruction sets that encode how this team builds things. Without it, agents default to generic patterns — ignoring the conventions, constraints, and decisions the team has made.</p>
+      <h3>Skills Catalog</h3>
+      <p>A dynamic collection of loadable skills — domain-specific instruction sets that agents and team members invoke progressively when relevant. Where System Memory gives agents project context, the Skills Catalog gives them behavioral patterns: how to build, how to review, how to verify in this team's specific context. Skills are not pre-loaded at session start — they are invoked when triggered by relevance, preserving context window capacity for the task at hand. Skills degrade silently if not maintained; an agent invoking a stale skill produces confident output against outdated patterns.</p>
       <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains — one entry per domain</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Domain name and scope · How to build in this domain (patterns, conventions, constraints) · What to avoid and why · Examples of correct output</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains — one skill per domain</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Skill name and scope · Trigger conditions (when this skill is relevant) · Instructions, patterns, and constraints · What to avoid and why · Verification criteria and example correct output · Usage log: last invoked and by which function · Status: active / under review / deprecated</div>
       </div>
-      <div class="artifact-owner">Steward: Tech Lead (governs) · Orchestrator (reads, triggers harvest)</div>
+      <div class="artifact-owner">Steward: Tech Lead (governs, approves activation) · Agents and team members (invoke) · Orchestrator (triggers Skill Capture)</div>
+    </div>
+
+    <div style="grid-column:1/-1;margin-top:8px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;">
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;"><strong style="color:var(--text);">On Plugin configuration:</strong> Teams deploying AI agents typically bundle their Skills Catalog with connectors and agent definitions into a Plugin — a deployable execution configuration. The Plugin is the delivery mechanism; the Skills Catalog is the authoritative content source. IDF governs the catalog's content and lifecycle. IDF does not prescribe a bundling format or platform.</p>
     </div>
 
   </div>
@@ -2795,7 +2805,7 @@ Closed by: Product Owner · 2026-04-13</div>
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Integrity Gate</div></div>
       <div class="ritual-cadence">Per cycle</div>
       <div class="ritual-trigger">Triggered by: cycle start, before Orchestrator begins<br>Participants: Delivery Team</div>
-      <div class="ritual-output">10-minute pre-flight. Delivery Team confirms System Memory and Capability Library reflect current reality. Logged as <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Context check: CLEAN / FLAGGED</span>. FLAGGED triggers a scoped Context Reset before cycle proceeds.</div>
+      <div class="ritual-output">10-minute pre-flight. Delivery Team confirms System Memory and Skills Catalog reflect current reality — active skills reference current patterns, and no deprecated skills remain in active status. Logged as <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Context check: CLEAN / FLAGGED</span>. FLAGGED triggers a scoped Context Reset before the cycle proceeds.</div>
     </div>
 
     <div class="ritual-row">
@@ -2834,7 +2844,7 @@ Closed by: Product Owner · 2026-04-13</div>
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Reset</div></div>
       <div class="ritual-cadence">Event-triggered</div>
       <div class="ritual-trigger">Triggered by: detected context drift or staleness signal<br>Participants: Delivery Team (leads) + PO (acknowledges)</div>
-      <div class="ritual-output">Pruned System Memory with a diff showing what was removed. Confirmed Capability Library accuracy. Dead-OFF release switches identified and removed.</div>
+      <div class="ritual-output">Pruned System Memory with a diff showing what was removed. Confirmed Skills Catalog accuracy. Dead-OFF release switches identified and removed.</div>
     </div>
 
     <div class="ritual-row">
@@ -2845,10 +2855,10 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
 
     <div class="ritual-row">
-      <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Capability Harvest</div></div>
+      <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Skill Capture</div></div>
       <div class="ritual-cadence">When pattern repeats</div>
-      <div class="ritual-trigger">Triggered by: Guardian or Orchestrator detecting a repeated pattern<br>Participants: Delivery Team + Orchestrator</div>
-      <div class="ritual-output">New or updated capability file added to the Capability Library. Reduces re-teaching same conventions each cycle.</div>
+      <div class="ritual-trigger">Triggered by: Guardian, Orchestrator, or any team member detecting a recurring pattern worth encoding<br>Participants: Delivery Team + Tech Lead (approves activation)</div>
+      <div class="ritual-output">New or updated skill defined: trigger conditions, instructions, verification criteria, and example output. Tech Lead approves before the skill becomes active status. Reduces re-teaching same patterns each cycle. If the pattern also requires a new connector or agent configuration, a Plugin update review is initiated.</div>
     </div>
 
     <div class="ritual-row">
@@ -2947,7 +2957,7 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="artifact-card">
       <h3>Gate 2 first-pass rate</h3>
       <span class="artifact-filename">% iterations cleared without rework</span>
-      <p>Tracks how often an Iteration clears Gate 2 on the first pass. A declining rate signals either ambiguous intent or degraded capability files.</p>
+      <p>Tracks how often an Iteration clears Gate 2 on the first pass. A declining rate signals either ambiguous intent or degraded skills.</p>
       <div class="artifact-owner">Target: &gt;80% · Warning: &lt;60%</div>
     </div>
     <div class="artifact-card">
@@ -2969,7 +2979,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s17">
   <div class="section-label">17 — Reference</div>
   <h2>Noise is the primary cause of agent failure</h2>
-  <p style="max-width:680px;font-size:16px;line-height:1.8;">Technical debt accumulates silently and reveals itself as bugs. Context debt accumulates silently and reveals itself as agent confusion — correct behavior executed against the wrong understanding of the system. An agent running against a polluted System Memory does not know it is confused. It produces confident, wrong output.</p>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">Technical debt accumulates silently and reveals itself as bugs. Context debt accumulates silently and reveals itself as agent confusion — correct behavior executed against the wrong understanding of the system. An agent running against a polluted System Memory does not know it is confused. It produces confident, wrong output. The same failure mode applies to the Skills Catalog: an agent invoking a stale or misconfigured skill behaves correctly according to outdated instructions.</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
@@ -2983,12 +2993,14 @@ Closed by: Product Owner · 2026-04-13</div>
       </ul>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
-      <h3 style="font-size:16px;margin-bottom:8px;">Capability Library Staleness</h3>
-      <p style="font-size:13px;line-height:1.6;">Capability files that describe patterns the team no longer uses, or miss patterns the team always uses now. Causes Builders to produce output that passes automated checks but fails Craft Review.</p>
+      <h3 style="font-size:16px;margin-bottom:8px;">Skills Catalog &amp; Plugin Debt</h3>
+      <p style="font-size:13px;line-height:1.6;">Skills that describe patterns the team no longer uses, or miss patterns the team always uses now. Causes agents to produce output that passes automated checks but fails Craft Review. Plugin configuration debt is the second failure mode: connectors or agent definitions that no longer match the team's actual workflow.</p>
       <ul style="list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:10px;">
-        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Patterns superseded but not replaced in the library</span></li>
-        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Capability files with no usage signal in the last N cycles</span></li>
-        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Recurring Craft Review corrections not yet encoded</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Skills superseded but not deprecated in the catalog</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Skills with no usage signal in the last N cycles</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Skills missing trigger conditions — loaded as a batch instead of progressively</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Recurring Craft Review corrections not yet encoded as skills</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Plugin configuration referencing skills not in the active catalog</span></li>
       </ul>
     </div>
   </div>
@@ -3007,12 +3019,21 @@ Closed by: Product Owner · 2026-04-13</div>
       <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Is any Dead-OFF flag still referenced here? Remove the entry — dead features are not context.</span></div>
     </div>
     <div style="background:var(--surface2);padding:14px 24px;border-bottom:1px solid var(--border);">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Capability Library — per file</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Skills Catalog — per skill</span>
+    </div>
+    <div style="background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--border);">
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Has this skill been invoked in the last N cycles? If not, mark under review and consider deprecation.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does this skill's trigger conditions still match how it's actually used?</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does this skill reflect current team patterns? Compare against recent Builder output.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are there recurring Craft Review corrections not yet encoded? Harvest them before closing the reset.</span></div>
+    </div>
+    <div style="background:var(--surface2);padding:14px 24px;border-bottom:1px solid var(--border);">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Plugin Configuration — if applicable</span>
     </div>
     <div style="background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Has this capability been used in the last N cycles?</span></div>
-      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does this capability reflect current patterns? Compare against recent Builder output.</span></div>
-      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are there recurring Craft Review corrections not yet encoded? Harvest them before closing the reset.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does the Plugin reference only active skills? Remove references to deprecated skills.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are configured connectors still in use? Unused connectors are latent noise.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Has the Plugin configuration been validated against current team workflow?</span></div>
     </div>
   </div>
 </section>

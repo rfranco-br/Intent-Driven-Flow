@@ -2,19 +2,14 @@
   {
     "version": "alpha",
     "file": "idf.html",
-    "date": "2026-04-14",
+    "date": "2026-05-01",
     "title": "Alpha",
-    "description": "§01 Core Ideas 4 & 5 made level-agnostic — language updated from cycle-specific to apply equally at iteration and cycle level.",
+    "description": "Skills & Plugins upgrade — Capability Library rearchitected as Skills Catalog with progressive loading model; Skills mindset woven into Roles, Execution Models, Signal Events, and Context Debt; Plugin concept introduced as the team's deployment configuration.",
     "highlights": [
-      "New three-level model: Intent (outcome goal) → Cycle (one flag, one gate sequence) → Iteration (one implementation pass)",
-      "Intent lifecycle extended: open → in-progress → monitoring → completed; monitoring state explicitly separates flag go-live from outcome confirmation",
-      "Gate 2 is now a loop — Guardian presents report, human can approve or request another iteration with written feedback; new iteration spawned with trigger: gate-2-feedback",
-      "Gate 3 closes the cycle, not the intent — intent enters monitoring state after flag flip",
-      "Gate 1 has two modes: first cycle (approve intent + scope) vs. subsequent cycles (scope only)",
-      "Intent Log and Iteration Record gain clearer responsibilities to support multi-cycle intent tracking",
-      "Intent Completion added as a first-class signal event — explicit PO declaration that the outcome signal was observed",
-      "Core idea 4: level-agnostic — 'cycle' replaced with 'attempt'; principle now applies at both iteration and cycle level",
-      "Core idea 5: level-agnostic — 'stopping a cycle' → 'stopping work'; 'blocked cycles' → 'blocked work'; applies at both iteration and cycle level"
+      "Capability Library → Skills Catalog: dynamic, progressive loading model — skills invoked on demand, not pre-loaded at session start",
+      "Skills mindset applied across all roles including governance layer — PO, Stakeholders, and Architects can leverage Skills within their gate-bound functions",
+      "Skill Capture replaces Capability Harvest — Tech Lead approval gate added before a skill becomes active status",
+      "Plugin configuration debt added to Context Debt section — new audit checklist subsection for Plugin Configuration"
     ]
   }
 ]
