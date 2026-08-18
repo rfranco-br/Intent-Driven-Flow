@@ -1543,6 +1543,7 @@
     <a href="#s15" data-section="s15"><span class="snav-num">15</span>Communication</a>
     <a href="#s16" data-section="s16"><span class="snav-num">16</span>Measurement</a>
     <a href="#s17" data-section="s17"><span class="snav-num">17</span>Context Debt</a>
+    <a href="#s18" data-section="s18"><span class="snav-num">18</span>Audit trail</a>
   </div>
 </nav>
 
@@ -1590,7 +1591,12 @@
 
   <p class="s01-closing">Every piece of work is an Intent (the outcome), a Cycle (one delivery unit), or an Iteration (one implementation pass). The sections that follow define each level, each gate, and each role in full.</p>
 
-  <div style="margin-top:24px;padding:16px 20px;border-left:3px solid var(--teal);background:var(--surface);border-radius:0 6px 6px 0;">
+  <div style="margin-top:24px;padding:16px 20px;border-left:3px solid var(--blue);background:var(--surface);border-radius:0 6px 6px 0;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Evidence — why Core idea 3 holds</div>
+    <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">Anthropic's <em>2026 Agentic Coding Trends Report</em> found engineers using AI in roughly <strong style="color:var(--text);">60% of their work</strong> while reporting they can fully delegate only <strong style="color:var(--text);">0–20% of tasks</strong> — the report calls this the collaboration paradox. Delegation of execution is not delegation of judgment. That gap is the space IDF's gates occupy.</p>
+  </div>
+
+  <div style="margin-top:16px;padding:16px 20px;border-left:3px solid var(--teal);background:var(--surface);border-radius:0 6px 6px 0;">
     <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Corporate perspective</div>
     <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0;">IDF governs the delivery layer. For the corporate governance model — True North, the intent cascade from strategy to team, and the agentic org structure — see <a href="idf-corporate.html" style="color:var(--teal2);text-decoration:none;border-bottom:1px solid rgba(91,191,149,0.3);">The Agentic Organization →</a></p>
   </div>
@@ -1849,6 +1855,12 @@
     <div style="margin-top:20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue2);border-radius:8px;padding:18px 24px;">
       <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0;">The release pattern is agreed at Gate 1 — before execution begins. For canary releases, monitoring opens on the subset immediately after Gate 3. For always-on work, Gate 3 authorizes the deployment, not a flag flip. The governance is identical across all three patterns; only the mechanism differs.</p>
     </div>
+
+    <div style="margin-top:16px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:18px 24px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Evidence — why the switch matters</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0 0 10px 0;">The common diagnosis is that AI moved the bottleneck from writing code to reviewing it. Measurement suggests the constraint sits further downstream: research reported by Steve Fenton in <em>The New Stack</em> (2026) found <strong style="color:var(--text);">more than 90% of teams ship in batches</strong> rather than one change at a time — half with 2–10 changes queued, a quarter holding 11–50 changes waiting to deploy. Meanwhile teams with high AI adoption merge substantially more pull requests (Faros AI reported +98%; Cursor's own study +39%), with review time on those changes rising sharply.</p>
+      <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0;">More output arriving at an unchanged release step produces bigger batches, not more value. The release switch is IDF's answer: deployment and exposure are decoupled, so accumulated work sits in production — verified, reversible, invisible — and the batch is drained by a human decision rather than a deploy window.</p>
+    </div>
   </div>
 
 </section>
@@ -1903,6 +1915,12 @@
     <div class="hier-mult" style="margin-top:18px;">A Cycle contains one or more Iterations. The first is always <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">initial</code>. Each rework pass is <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">gate-2-feedback</code> with the specific issue recorded.</div>
   </div>
 
+  <div style="margin-top:24px;padding:18px 24px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--coral);border-radius:8px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">The rework ceiling</div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0 0 10px 0;">The Iteration loop is bounded. After <strong style="color:var(--text);">three consecutive <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">gate-2-feedback</code> iterations</strong>, the Cycle does not produce a fourth — it escalates to Gate 1 for intent review. Repeated failure at the implementation level is evidence of a problem at the intent level.</p>
+    <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0;">Three is the default, not a law — a team may set its own ceiling at Gate 1. What IDF requires is that a ceiling exists. An unbounded rework loop is how an agent-driven team burns a week refining the wrong outcome, each pass individually reasonable.</p>
+  </div>
+
 </section>
 
 <!-- ═══════════════════ FULL PICTURE INTERSTITIAL ═══════════════════ -->
@@ -1929,6 +1947,7 @@ flowchart LR
   IT --> G2{Gate 2}:::gate
   G2 -->|approved| G3{Gate 3}:::gate
   G2 -->|not approved| RI([↺ new Iteration]):::iter
+  G2 -->|rework ceiling| RV
   G3 -->|approved| M[Monitoring]:::monitor
   G3 -->|not approved| RC([↺ new Cycle]):::cycle
   M -->|signal achieved| DONE([completed]):::done
@@ -2138,6 +2157,16 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
 
   </div>
+
+  <div style="margin-top:32px;padding:18px 24px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:8px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Settled at Gate 1, before execution begins</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;">
+      <strong style="color:var(--text);">Release pattern</strong> — toggle, canary, or always-on (§04)<br>
+      <strong style="color:var(--text);">Agent scope</strong> — which functions run on this cycle and what the Agent Registry permits them to touch (§13)<br>
+      <strong style="color:var(--text);">Rework ceiling</strong> — how many Gate 2 failures before the Cycle escalates back here (§05)
+    </div>
+    <p style="font-size:13px;color:var(--text3);line-height:1.7;margin:12px 0 0 0;">All three are cheap to agree in advance and expensive to decide mid-cycle, when the answer is shaped by work already done.</p>
+  </div>
 </section>
 
 <!-- ═══════════════════ §08 — GATE 2 ═══════════════════ -->
@@ -2182,7 +2211,7 @@ Closed by: Product Owner · 2026-04-13</div>
     </div>
 
     <div style="display:flex;justify-content:flex-end;margin-top:6px;padding-right:0;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral2);padding:6px 14px;border:1px dashed rgba(232,115,74,0.35);border-radius:6px;text-align:center;width:48%;">↺ Loop repeats from "Iteration completes" until APPROVED</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--coral2);padding:6px 14px;border:1px dashed rgba(232,115,74,0.35);border-radius:6px;text-align:center;width:48%;">↺ Loop repeats from "Iteration completes" until APPROVED<br><span style="color:var(--text3);">— or until the rework ceiling escalates to Gate 1</span></div>
     </div>
 
   </div><!-- end gate2-loop -->
@@ -2206,6 +2235,10 @@ Closed by: Product Owner · 2026-04-13</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">If requesting another iteration</div>
         <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0 0 10px;">Write: <code style="font-family:'IBM Plex Mono',monospace;color:var(--coral2);">REQUEST ITERATION</code> followed by specific feedback — technical finding or experiential observation, either is valid. The feedback text becomes the <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">feedback</code> field in the new Iteration record. Vague feedback produces vague rework.</p>
         <div style="background:var(--bg);border-radius:4px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;">REQUEST ITERATION<br>Feedback: Keyboard overlaps card input on iOS 15 Safari — add scroll-padding-bottom to the form container.<br><br>REQUEST ITERATION<br>Feedback: The flow requires three taps where one would do. Billing address should default to saved address, not blank.</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--coral);border-radius:6px;padding:16px 20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--coral2);margin-bottom:8px;letter-spacing:0.06em;text-transform:uppercase;">If the loop reaches the ceiling</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;margin:0;">After three consecutive <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber2);">gate-2-feedback</code> iterations, the reviewer does not write a fourth. Write <code style="font-family:'IBM Plex Mono',monospace;color:var(--coral2);">ESCALATE</code> and return the Cycle to Gate 1 with the accumulated feedback attached. Three failed passes on the same scope is not an implementation problem — it means the intent, the mechanism, or the scope boundary is wrong, and no further iteration will find it. Execution is cheap; converging on the wrong outcome is not.</p>
       </div>
     </div>
     <p style="margin-top:16px;font-size:13px;color:var(--text3);max-width:640px;">The PO may join Gate 2 to assess outcome fit or UX concerns — their perspective on whether it serves the client is valid input. Gate 2 decision authority sits with the Delivery Team. The team decides who reviews based on what the iteration needs — a developer for technical output, a UX designer for interaction quality, a BA for domain fit. The release decision belongs to the PO at Gate 3.</p>
@@ -2388,7 +2421,8 @@ Closed by: Product Owner · 2026-04-13</div>
   </div>
 
   <div style="margin-top:24px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;max-width:680px;">
-    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Agents perform execution functions by invoking Skills from the team's Skills Catalog. Skills are loaded progressively as relevant — the Orchestrator invokes a decomposition skill when scope analysis begins; Builders invoke domain skills when implementation starts; the Guardian invokes verification skills when checking gate criteria. The team's Plugin bundles the Skills and connectors available to all functions. Plugin setup happens at team configuration time; skill invocation happens dynamically at execution time.</p>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0 0 12px 0;">Agents perform execution functions by invoking Skills from the team's Skills Catalog. Skills are loaded progressively as relevant — the Orchestrator invokes a decomposition skill when scope analysis begins; Builders invoke domain skills when implementation starts; the Guardian invokes verification skills when checking gate criteria. Skills and connectors are made available to functions through the team's execution configuration; that setup happens at team configuration time, while skill invocation happens dynamically at execution time.</p>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;"><strong style="color:var(--text);">Capability is not authority.</strong> A function's Skills define what it is <em>able</em> to do. What it is <em>permitted</em> to do — which tools it may call, which systems it may write to, which data it may read — is declared separately in the Agent Registry (§13) and is a governance decision, not a configuration detail.</p>
   </div>
 
   <div class="role-map-wrap">
@@ -2647,13 +2681,23 @@ Closed by: Product Owner · 2026-04-13</div>
     <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Regardless of execution model, the team's Skills Catalog defines the effective capability of every function. In Fully Agentic, agents invoke skills autonomously as tasks demand. In Hybrid, humans guide skill invocation — choosing when and which skills are applied. In Spec-Driven, skill invocation is constrained to what the spec authorizes. The execution model governs autonomy; the Skills Catalog governs capability. Teams grow their catalog incrementally — harvesting patterns from each cycle — without changing their execution model.</p>
   </div>
 
+  <div style="margin-top:16px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:6px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">On spec-driven, honestly</div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Spec-driven tooling is not a settled category, and IDF should not imply that it is. Practitioner reviews of the current tools — Kiro, spec-kit, Tessl among them — report that specification overhead scales badly at both ends: a one-line fix acquires a workflow, while a large feature outgrows the template. Reviewing specification documents instead of code can move review burden rather than reduce it, and agents still over-interpret or ignore instructions regardless of how precisely the spec is written. Choose spec-driven where the cost of a wrong implementation is high and the scope is stable. IDF's gates work identically either way — that is the point of being model-agnostic.</p>
+  </div>
+
+  <div style="margin-top:16px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:6px;max-width:680px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Agent teams — a coordination pattern inside Fully Agentic</div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">Where early agentic setups ran one agent at a time, current practice runs several in parallel against a shared task list with dependency tracking, peer messaging, file locking, and per-agent workspace isolation. This does not add a fourth execution model — the four functions and three gates are unchanged. It changes how the Orchestrator works: decomposition must now produce tasks that are genuinely independent, and the Iteration Record becomes the coordination surface rather than a log written after the fact. Parallelism raises throughput and raises the cost of vague scope in exactly the same proportion.</p>
+  </div>
+
 </section>
 
 <!-- ═══════════════════ §13 — ARTIFACTS ═══════════════════ -->
 <section id="s13">
   <div class="section-label">13 — Artifacts</div>
   <h2>Persistent records</h2>
-  <p style="max-width:640px;">The system's memory doesn't live in anyone's head. Some artifacts are governance records — they track what was decided and what happened. Two are specifically about agent continuity — they exist because AI agents have no memory between sessions.</p>
+  <p style="max-width:640px;">The system's memory doesn't live in anyone's head. Some artifacts are governance records — they track what was decided and what happened. Three concern the execution layer directly: two exist because AI agents have no memory between sessions, and one exists because an agent's permissions must be declared before it runs, not discovered afterwards.</p>
 
   <div style="margin-top:12px;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple2);">Framework records — required by IDF regardless of execution model</div>
   <div class="artifacts-grid">
@@ -2701,9 +2745,10 @@ Closed by: Product Owner · 2026-04-13</div>
     <div class="artifact-card">
       <h3>Gate report</h3>
       <p>A structured report produced after each Iteration completes — the Delivery Team reads it alongside hands-on review to make the Gate 2 decision. Without it, Gate 2 decisions are made without evidence; the report also creates an audit trail for every evaluation made during a cycle.</p>
+      <p>When the feature being delivered is itself agentic, tests are not enough. A deterministic suite confirms the code runs; it does not confirm the agent behaves. Those features require an evaluation suite — recorded scenarios with expected outcomes, run per iteration — and its results belong in the gate report. An agentic feature shipped on green tests alone has not been verified, only executed.</p>
       <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.75;">What was built in this iteration · Automated check results (tests, security, performance, cost, client impact) · Recommendation: Approved or Request Iteration with specific reason</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">What was built in this iteration · Automated check results (tests, security, performance, cost, client impact) · Evaluation results, where the delivered feature is itself agentic · Recommendation: Approved or Request Iteration with specific reason</div>
       </div>
       <div class="artifact-owner">Steward: Guardian (produces) · Delivery Team (reviews and decides)</div>
     </div>
@@ -2730,12 +2775,13 @@ Closed by: Product Owner · 2026-04-13</div>
 
   </div>
 
-  <div style="margin-top:32px;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal2);">Execution context — required for AI agents to operate without institutional decay</div>
+  <div style="margin-top:32px;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal2);">Execution context and authority — required for AI agents to operate without institutional decay</div>
   <div class="artifacts-grid">
 
     <div class="artifact-card">
       <h3>System Memory</h3>
       <p>The persistent record every agent reads at the start of every session to reconstruct project context. Without it, agents begin each session with no knowledge of prior decisions — every session is day one.</p>
+      <p>Reading it once is no longer sufficient. Long-running agent sessions compact their working context as they go — summarising, windowing, offloading — and detail is lost at every compaction. System Memory is the durable copy that survives that process: anything an agent must still know after an hour of work belongs here, not in the conversation.</p>
       <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains</div>
         <div style="font-size:12px;color:var(--text2);line-height:1.75;">Tech stack and folder structure · Run and deploy commands · Architectural decisions and their reasons · Conventions the team follows · Running log of what was built and when</div>
@@ -2753,8 +2799,20 @@ Closed by: Product Owner · 2026-04-13</div>
       <div class="artifact-owner">Steward: Tech Lead (governs, approves activation) · Agents and team members (invoke) · Orchestrator (triggers Skill Capture)</div>
     </div>
 
+    <div class="artifact-card">
+      <h3>Agent Registry</h3>
+      <p>The record of what each execution function is permitted to do. Where the Skills Catalog defines capability, the Agent Registry defines authority: which tools an agent may call, which systems it may write to, which data it may read, and who owns it. Without it, "humans govern" is a claim about intent rather than a property of the system — nobody can state the blast radius of a given agent, and no one is accountable when it exceeds it.</p>
+      <p>Every entry names a human owner. Agents run under their own identity, never a shared or inherited credential, so that any action can be traced back to a specific function and a specific person who authorised it. Permissions are scoped to the task, not the team: read access and write access are separate grants, and destructive or irreversible actions sit behind human approval regardless of execution model.</p>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Contains — one entry per execution function</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.75;">Function and identity it runs under · Named human owner · Purpose — what this agent exists to do · Permitted tools and connectors (allowlist, not exclusion list) · Data and repository scope, read vs. write stated separately · Actions requiring human approval before execution · Escalation path when the agent hits its boundary · Review date</div>
+      </div>
+      <div class="artifact-owner">Steward: Architect (defines scope) · Tech Lead (maintains) · PO (approves scope changes affecting client data)</div>
+    </div>
+
     <div style="grid-column:1/-1;margin-top:8px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;">
-      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;"><strong style="color:var(--text);">On Plugin configuration:</strong> Teams deploying AI agents typically bundle their Skills Catalog with connectors and agent definitions into a Plugin — a deployable execution configuration. The Plugin is the delivery mechanism; the Skills Catalog is the authoritative content source. IDF governs the catalog's content and lifecycle. IDF does not prescribe a bundling format or platform.</p>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0 0 12px 0;"><strong style="color:var(--text);">On connectors and tool binding:</strong> Teams deploying AI agents package their Skills Catalog with connectors and agent definitions into some deployable execution configuration — a plugin bundle, a manifest, a set of protocol servers, whatever the platform calls it. The package is the delivery mechanism; the Skills Catalog is the authoritative content source and the Agent Registry is the authoritative permission source. IDF governs the content and lifecycle of both. IDF does not prescribe a bundling format, protocol, or platform — those change faster than any framework should track.</p>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin:0;">What IDF does require is that the binding stays honest: every connector configured is one the team actually uses, every tool an agent can reach is one the Registry grants it, and deprecated protocol surfaces are removed rather than left connected. Reviewed at Context Reset (§17).</p>
     </div>
 
   </div>
@@ -2805,7 +2863,7 @@ Closed by: Product Owner · 2026-04-13</div>
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Integrity Gate</div></div>
       <div class="ritual-cadence">Per cycle</div>
       <div class="ritual-trigger">Triggered by: cycle start, before Orchestrator begins<br>Participants: Delivery Team</div>
-      <div class="ritual-output">10-minute pre-flight. Delivery Team confirms System Memory and Skills Catalog reflect current reality — active skills reference current patterns, and no deprecated skills remain in active status. Logged as <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Context check: CLEAN / FLAGGED</span>. FLAGGED triggers a scoped Context Reset before the cycle proceeds.</div>
+      <div class="ritual-output">10-minute pre-flight. Delivery Team confirms System Memory, Skills Catalog, and Agent Registry reflect current reality — active skills reference current patterns, no deprecated skills remain in active status, and no agent can reach a tool the Registry does not grant. Logged as <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal2);">Context check: CLEAN / FLAGGED</span>. FLAGGED triggers a scoped Context Reset before the cycle proceeds.</div>
     </div>
 
     <div class="ritual-row">
@@ -2844,7 +2902,7 @@ Closed by: Product Owner · 2026-04-13</div>
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Context Reset</div></div>
       <div class="ritual-cadence">Event-triggered</div>
       <div class="ritual-trigger">Triggered by: detected context drift or staleness signal<br>Participants: Delivery Team (leads) + PO (acknowledges)</div>
-      <div class="ritual-output">Pruned System Memory with a diff showing what was removed. Confirmed Skills Catalog accuracy. Dead-OFF release switches identified and removed.</div>
+      <div class="ritual-output">Pruned System Memory with a diff showing what was removed. Confirmed Skills Catalog accuracy. Agent Registry reconciled against live configuration. Dead-OFF release switches identified and removed.</div>
     </div>
 
     <div class="ritual-row">
@@ -2858,7 +2916,7 @@ Closed by: Product Owner · 2026-04-13</div>
       <div><div class="ritual-name"><span class="layer-dot dot-execution"></span>Skill Capture</div></div>
       <div class="ritual-cadence">When pattern repeats</div>
       <div class="ritual-trigger">Triggered by: Guardian, Orchestrator, or any team member detecting a recurring pattern worth encoding<br>Participants: Delivery Team + Tech Lead (approves activation)</div>
-      <div class="ritual-output">New or updated skill defined: trigger conditions, instructions, verification criteria, and example output. Tech Lead approves before the skill becomes active status. Reduces re-teaching same patterns each cycle. If the pattern also requires a new connector or agent configuration, a Plugin update review is initiated.</div>
+      <div class="ritual-output">New or updated skill defined: trigger conditions, instructions, verification criteria, and example output. Tech Lead approves before the skill becomes active status. Reduces re-teaching same patterns each cycle. If the pattern also requires a new connector or a change to what an agent may reach, the Agent Registry entry is updated first — capability follows authority, never the reverse.</div>
     </div>
 
     <div class="ritual-row">
@@ -2972,6 +3030,18 @@ Closed by: Product Owner · 2026-04-13</div>
       <p>The primary outcome signal in IDF. An intent that ships a flag but never reaches completed status means the outcome wasn't confirmed. This is the metric that separates delivery from outcomes.</p>
       <div class="artifact-owner">Target: &gt;70% completed · Review abandoned intents at drift check</div>
     </div>
+    <div class="artifact-card">
+      <h3>Pending-OFF age</h3>
+      <span class="artifact-filename">days a completed switch waits before release</span>
+      <p>How long finished work sits in production unreleased. This is the batch metric — the one that tells you whether the release switch is being used as designed or as a parking lot. Rising age means Gate 3 has become a queue, and the framework's central claim stops being true for your team.</p>
+      <div class="artifact-owner">Target: &lt;5 days median · Warning: any switch &gt;30 days · Source: Feature Governance Registry</div>
+    </div>
+    <div class="artifact-card">
+      <h3>Rework cause mix</h3>
+      <span class="artifact-filename">gate-2-feedback iterations grouped by root cause</span>
+      <p>Not how much rework, but what kind. Ambiguous intent, agent misinterpretation, scope creep, and external change fail for different reasons and have different fixes. Concentration in one cause is actionable; a flat distribution usually means the Drift register isn't being filled in honestly.</p>
+      <div class="artifact-owner">Review: at every drift check · Source: Drift register + Iteration Records</div>
+    </div>
   </div>
 </section>
 
@@ -2979,7 +3049,7 @@ Closed by: Product Owner · 2026-04-13</div>
 <section id="s17">
   <div class="section-label">17 — Reference</div>
   <h2>Noise is the primary cause of agent failure</h2>
-  <p style="max-width:680px;font-size:16px;line-height:1.8;">Technical debt accumulates silently and reveals itself as bugs. Context debt accumulates silently and reveals itself as agent confusion — correct behavior executed against the wrong understanding of the system. An agent running against a polluted System Memory does not know it is confused. It produces confident, wrong output. The same failure mode applies to the Skills Catalog: an agent invoking a stale or misconfigured skill behaves correctly according to outdated instructions.</p>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">Technical debt accumulates silently and reveals itself as bugs. Context debt accumulates silently and reveals itself as agent confusion — correct behavior executed against the wrong understanding of the system. An agent running against a polluted System Memory does not know it is confused. It produces confident, wrong output. The same failure mode applies to the Skills Catalog: an agent invoking a stale or misconfigured skill behaves correctly according to outdated instructions. And the same applies again within a single long session, as context is compacted and detail quietly disappears.</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
@@ -2993,15 +3063,27 @@ Closed by: Product Owner · 2026-04-13</div>
       </ul>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
-      <h3 style="font-size:16px;margin-bottom:8px;">Skills Catalog &amp; Plugin Debt</h3>
-      <p style="font-size:13px;line-height:1.6;">Skills that describe patterns the team no longer uses, or miss patterns the team always uses now. Causes agents to produce output that passes automated checks but fails Craft Review. Plugin configuration debt is the second failure mode: connectors or agent definitions that no longer match the team's actual workflow.</p>
+      <h3 style="font-size:16px;margin-bottom:8px;">Skills Catalog &amp; Configuration Debt</h3>
+      <p style="font-size:13px;line-height:1.6;">Skills that describe patterns the team no longer uses, or miss patterns the team always uses now. Causes agents to produce output that passes automated checks but fails Craft Review. Configuration debt is the second failure mode: connectors, tool bindings, or agent definitions that no longer match the team's actual workflow — or that grant reach the Agent Registry never authorised.</p>
       <ul style="list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:10px;">
         <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Skills superseded but not deprecated in the catalog</span></li>
         <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Skills with no usage signal in the last N cycles</span></li>
         <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Skills missing trigger conditions — loaded as a batch instead of progressively</span></li>
         <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Recurring Craft Review corrections not yet encoded as skills</span></li>
-        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Plugin configuration referencing skills not in the active catalog</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Execution configuration referencing skills not in the active catalog</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--amber2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Tools reachable by an agent that the Agent Registry never granted</span></li>
       </ul>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
+      <h3 style="font-size:16px;margin-bottom:8px;">Compaction Loss</h3>
+      <p style="font-size:13px;line-height:1.6;max-width:820px;">The failure mode inside a single long-running session rather than between sessions. As an agent works past its context limit, earlier turns are summarised, windowed out, or offloaded — and the summary is lossy by construction. What disappears first is exactly what matters: the constraint agreed three hours ago, the approach already tried and rejected, the reason a shortcut was ruled out. The agent does not report the loss. It re-derives a decision that was already made, differently.</p>
+      <ul style="list-style:none;margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--purple2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Decisions made mid-session and never written to System Memory</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--purple2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Rejected approaches re-proposed later in the same iteration</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--purple2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Gate 2 feedback honored at the start of a pass and drifted from by the end</span></li>
+        <li style="font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--purple2);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:2px;flex-shrink:0;">TYPE</span><span>Iteration Records written from a compacted summary rather than the work itself</span></li>
+      </ul>
+      <p style="font-size:13px;line-height:1.6;margin-top:16px;color:var(--text3);max-width:820px;">The mitigation is structural, not clever: durable decisions belong in an artifact, not a conversation. If it must survive the next compaction, it goes in System Memory or the Iteration Record before the session continues.</p>
     </div>
   </div>
 
@@ -3028,13 +3110,68 @@ Closed by: Product Owner · 2026-04-13</div>
       <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are there recurring Craft Review corrections not yet encoded? Harvest them before closing the reset.</span></div>
     </div>
     <div style="background:var(--surface2);padding:14px 24px;border-bottom:1px solid var(--border);">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Plugin Configuration — if applicable</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Connectors &amp; tool binding — if applicable</span>
+    </div>
+    <div style="background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--border);">
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does the execution configuration reference only active skills? Remove references to deprecated skills.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are configured connectors still in use? Unused connectors are latent noise — and latent reach.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Has the configuration been validated against current team workflow?</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Is anything still bound to a deprecated protocol surface or transport? Retire it on the vendor's support window, not after it breaks.</span></div>
+    </div>
+    <div style="background:var(--surface2);padding:14px 24px;border-bottom:1px solid var(--border);">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Agent Registry — per entry</span>
     </div>
     <div style="background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does the Plugin reference only active skills? Remove references to deprecated skills.</span></div>
-      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are configured connectors still in use? Unused connectors are latent noise.</span></div>
-      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Has the Plugin configuration been validated against current team workflow?</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does this agent still have a named, current owner? An entry without an owner is not governed.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Is every granted tool still needed for this function's actual work? Permissions accumulate; they rarely get returned.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Can this agent reach anything the Registry does not list? Reconcile against the live configuration, not the intended one.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Are destructive and irreversible actions still behind human approval? Confirm by attempting one, not by reading the config.</span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text2);"><span style="color:var(--teal2);font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;flex-shrink:0;">CHECK</span><span>Does revocation work? Disable one agent and verify it stops. An untested kill switch is not a control.</span></div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §18 — AUDIT TRAIL ═══════════════════ -->
+<section id="s18">
+  <div class="section-label">18 — Reference</div>
+  <h2>What IDF gives you when someone asks</h2>
+  <p style="max-width:680px;font-size:16px;line-height:1.8;">IDF was not designed as a compliance framework. But a framework that records why work was started, who approved it, what evidence supported the decision, and when it reached users produces most of an audit trail as a by-product. This section maps what already exists to the questions an auditor, a regulator, or an incident review will ask. No new artifacts are required.</p>
+
+  <div style="margin-top:40px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-bottom:1px solid var(--border);">
+      <div style="padding:12px 24px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);border-right:1px solid var(--border);">The question</div>
+      <div style="padding:12px 24px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal2);">Where IDF already answers it</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div style="padding:16px 24px;font-size:13px;color:var(--text);border-right:1px solid var(--border);">Why was this built, and who decided it was worth building?</div>
+      <div style="padding:16px 24px;font-size:13px;color:var(--text2);line-height:1.6;">Intent Log — outcome statement, mechanism, target signal, and the PO who owns it. Traceable upward to Strategic Context.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div style="padding:16px 24px;font-size:13px;color:var(--text);border-right:1px solid var(--border);">What evidence supported the decision to release?</div>
+      <div style="padding:16px 24px;font-size:13px;color:var(--text2);line-height:1.6;">Gate report per Iteration — automated checks, evaluation results, and the named reviewer's recommendation, alongside the record of hands-on review.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div style="padding:16px 24px;font-size:13px;color:var(--text);border-right:1px solid var(--border);">Who authorised exposure to users, and when?</div>
+      <div style="padding:16px 24px;font-size:13px;color:var(--text2);line-height:1.6;">Feature Governance Registry — switch state, activation date, audience scope for canary, and the PO's Gate 3 authorisation. Sole authority, never delegated to an agent.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div style="padding:16px 24px;font-size:13px;color:var(--text);border-right:1px solid var(--border);">What was the agent permitted to do, and under whose authority?</div>
+      <div style="padding:16px 24px;font-size:13px;color:var(--text2);line-height:1.6;">Agent Registry — identity, named owner, tool allowlist, data scope, and which actions required human approval at the time.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div style="padding:16px 24px;font-size:13px;color:var(--text);border-right:1px solid var(--border);">When the system did the wrong thing, was it noticed and corrected?</div>
+      <div style="padding:16px 24px;font-size:13px;color:var(--text2);line-height:1.6;">Drift register — what was intended versus what was built, root cause, correction taken, and whether the pattern has recurred.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--surface);">
+      <div style="padding:16px 24px;font-size:13px;color:var(--text);border-right:1px solid var(--border);">Did a human actually exercise oversight, or just sign off?</div>
+      <div style="padding:16px 24px;font-size:13px;color:var(--text2);line-height:1.6;">Three gates with named owners, each producing a written artifact. Gate 2 requires the reviewer to use the feature, not only read the report. Rework is recorded with its reason rather than absorbed silently.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;padding:18px 24px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;max-width:820px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Regulatory context — as of August 2026</div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0 0 10px 0;">Teams operating in or selling into the EU should note that the AI Act's transparency obligations under Article 50 apply from <strong style="color:var(--text);">2 August 2026</strong>. In outline: people must be informed when they are interacting with an AI system, and generated content must be marked in machine-readable form — with a grace period to 2 December 2026 for marking on systems already in market. Obligations for high-risk systems were deferred by the Digital Omnibus agreement to <strong style="color:var(--text);">2 December 2027</strong> for standalone Annex III systems and <strong style="color:var(--text);">2 August 2028</strong> for AI embedded in regulated products.</p>
+    <p style="font-size:13px;color:var(--text2);line-height:1.75;margin:0;">IDF takes no position on how a team meets these obligations, and this is not legal advice — jurisdictions differ, dates move, and the deferral takes effect on formal adoption. What IDF asserts is narrower: if disclosure or marking is required for a feature, that is a property of the outcome, so it belongs in the Intent and in the Gate 3 release decision — not in a compliance review discovered after the flag is already on.</p>
   </div>
 </section>
 
