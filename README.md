@@ -8,29 +8,20 @@ Traditional agile was built for human bandwidth. IDF is not. Agents handle execu
 
 **[Live site →](https://rfranco-br.github.io/Intent-Driven-Flow/)**
 
-The site hosts every version of the framework. Start with the latest.
-
 ## What's in this repo
 
 | File / Directory | Purpose |
 |---|---|
-| `idf-vN.html` / `idf-vN.M.html` | Self-contained framework versions |
+| `idf.html` | Main framework documentation (self-contained) |
+| `idf-corporate.html` | Corporate-adaptation companion doc (self-contained) |
 | `playbook.html` | Opinionated practices and artifact templates |
-| `index.html` | Version index (landing page) |
+| `flow.html` | End-to-end flow reference diagram |
+| `index.html` | Landing / pitch page |
 | `nav.js` | Shared navigation bar |
-| `versions.json` | Version registry — source of truth for the index |
-| `new-version.sh` | Promotes current version to a new major version |
 
 ## Versioning
 
-IDF uses a two-level version scheme:
-
-- **Major versions** (`v1`, `v2`, … `v7`) — significant structural or conceptual changes
-- **Subversions** (`v7.1`, `v7.11`) — incremental improvements within a major
-
-Each version is a fully self-contained HTML file. All versions remain accessible — nothing is deleted. The `versions.json` registry drives the index page.
-
-Git tags track each framework version: `v1.0`, `v2.0`, `v7.11`, etc.
+Framework docs are edited in place. Git is the only version history — no in-repo archive or registry. Git tags, if used, mark milestone snapshots.
 
 ## Contributing
 
@@ -39,8 +30,6 @@ Contributions are welcome. Please read the framework before proposing changes �
 **Content changes** (framework text, principles, roles, artifacts): open an issue first to discuss. Changes must not contradict existing axioms without explicit intent.
 
 **Technical changes** (HTML, CSS, JS, tooling): PRs welcome. Match the existing code style — no build step, no external dependencies, self-contained pages.
-
-Branch off `develop`, not `main`.
 
 ## License
 

@@ -72,8 +72,9 @@
 │   │   └── qa.md
 │   ├── skills/             — Skill definitions (legacy)
 │   └── commands/           — Slash command definitions
-└── archive/                — Old version files (idf-v1 through idf-v7.11)
 ```
+
+No in-repo version archive or registry — git is the only version history. `archive/`, `versions.json`, and `new-version.sh` were removed 2026-08-18; framework docs (`idf.html`, `idf-corporate.html`, `playbook.html`, `flow.html`) are edited in place.
 
 ---
 
@@ -110,7 +111,7 @@
 - Every HTML page must be fully self-contained (embedded CSS, no external build)
 - Every HTML page must include `<script src="nav.js?v=10"></script>` before `</body>`
 - Google Analytics snippet (`G-MV9XNW7Y6V`) must be in `<head>` of all active pages
-- Do not modify `index.html`, `nav.js`, or `new-version.sh` unless explicitly instructed
+- Do not modify `index.html` or `nav.js` unless explicitly instructed
 - Git branch: `main` is production — all changes commit directly to `main`
 
 ---
@@ -125,6 +126,10 @@
 ---
 
 ## Last Updated
+
+Date: 2026-08-18
+Updated by: Orchestrator (Claude)
+Change: Version-control cleanup — removed `archive/` (23 old version files), `versions.json`, `new-version.sh`, and `.claude/commands/idf-review.md` (all built around the retired multi-file idf-vN.html versioning scheme; git is now the sole version history). Removed `temp/idf-deck.html` (unfinished/unused experiment). Updated dangling references in `CLAUDE.md`, `README.md`, `.claude/skills/builder/SKILL.md`, `.claude/skills/content-reviewer/SKILL.md`, and `.claude/commands/content-reviewer.md` to drop versions.json/new-version.sh/publish-mode mentions. `index.html` needed no change — it was already a standalone landing/pitch page with no versions.json dependency. Note: this file (system_memory.md) itself was flagged as stale before this cycle — its "Current Version" and cycle log sections predate `idf-corporate.html`, the nav presence-indicator work, and the Skills Catalog upgrade (last real content update 2026-04-13); a full refresh is still pending and separate from this cleanup.
 
 Date: 2026-04-13
 Updated by: Fullstack Dev

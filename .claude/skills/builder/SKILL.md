@@ -21,12 +21,13 @@ Static documentation site at:
 **Key files:**
 | File | Purpose |
 |---|---|
-| `idf-vN.html` / `idf-vN.M.html` | Framework version files (self-contained) |
+| `idf.html` | Main framework documentation (self-contained) |
+| `idf-corporate.html` | Corporate-adaptation companion doc (self-contained) |
 | `playbook.html` | Supplementary practices and templates |
-| `index.html` | Version landing page — reads `versions.json` dynamically |
+| `index.html` | Landing / pitch page |
 | `nav.js` | Shared sticky nav bar — injected on all pages |
-| `versions.json` | Version registry — source of truth |
-| `new-version.sh` | Major version promotion script |
+
+There is no in-repo version registry or archive — git is the only version history. Framework docs are edited in place.
 
 **CSS design system:** CSS custom properties in `:root` — `--bg`, `--surface`, `--surface2`, `--border`, `--border2`, `--text`, `--text2`, `--text3`, `--coral`, `--coral2`, `--purple`, `--purple2`, `--teal`, `--teal2`, `--blue`, `--blue2`, `--amber`, `--amber2`. Never hardcode colours.
 
@@ -62,15 +63,6 @@ develop   ← all active work lands here
 git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow add <files>
 git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow commit -m "<short summary>"
 git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow push origin develop
-
-# Publish (major version promotion)
-bash /Users/rfranco/Develop/IDF/Intent-Driven-Flow/new-version.sh "<title>" "<description>"
-git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow tag vN.M -m "IDF vN.M — <title>"
-git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow push origin --tags
-git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow checkout main
-git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow merge develop
-git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow push origin main
-git -C /Users/rfranco/Develop/IDF/Intent-Driven-Flow checkout develop
 ```
 
 ## Handoff protocol — receiving work from /content-reviewer
@@ -99,9 +91,8 @@ When you receive a handoff:
 
 - Before adopting a new library, framework, or external dependency
 - Before restructuring files or directories
-- Before modifying `new-version.sh` logic or `versions.json` schema
 - When a technical change would require content changes — surface to `/content-reviewer` first
-- When the requested change affects all version files — confirm scope
+- When the requested change affects multiple framework docs — confirm scope
 
 ## Quality checklist (run before every commit)
 
