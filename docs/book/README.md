@@ -11,8 +11,8 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 | Chapter map | ✅ 13 chapters, 3 parts — `bible.md` |
 | Language | ✅ English first; translate a stable product later |
 | **Name** | ⏳ open — *The Judgment Layer* recommended |
-| Drafted | ch07, ch08 |
-| Remaining | ch01–06, ch09–13 |
+| Drafted | **Part II complete** — ch05, ch06, ch07, ch08, ch09 |
+| Remaining | Part I (ch01–04), Part III (ch10–13) |
 
 ## Files
 
@@ -20,8 +20,11 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 |---|---|
 | `bible.md` | Thesis, doctrine, voice rules, chapter map. **Everything is written against this.** |
 | `rewrite-plan.md` | Positioning, competitive landscape, product architecture, phasing |
+| `ch05-outcomes-not-output.md` | Draft 1 — the intent as unit of work |
+| `ch06-confirmed-is-done.md` | Draft 1 — delivery and value are two events |
 | `ch07-deploy-is-not-release.md` | Draft 1 — the switch as governance instrument |
 | `ch08-where-judgment-cant-be-delegated.md` | Draft 1 — the doctrinal centre |
+| `ch09-memory-is-capital.md` | Draft 1 — context as an asset that depreciates |
 | `verification.md` | Fact-check trail — every statistic, its source, and its status |
 
 ## Two tracks

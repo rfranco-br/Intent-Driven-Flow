@@ -16,6 +16,8 @@ Status values: `VERIFIED` (checked against primary source) · `SECONDHAND` (repo
 | 8 | Our own dogfooding: 13 logged cycles, 13 PASS, 0 FAIL | ch08, ch13 | `tests/report.md`, this repo | OURS — verified directly |
 | 9 | 208 commits, 205 within a six-week window (Mar–May 2026), peak 49 in one day | ch13 | git history, this repo | OURS — verified directly |
 | 10 | Team Topologies does not prescribe a delivery method | positioning | Team Topologies (Skelton & Pais) | UNVERIFIED — confirm with a citable quote before asserting it in print |
+| 11 | Skelton has extended Team Topologies to cover agents | positioning | QCon London 2026 talk; Conflux AI-native operating models page | SECONDHAND — verified the pages exist; confirm the actual claim being made before characterising it |
+| 12 | The widely-quoted "large fraction of features are never used" figure | ch06 | Standish Group CHAOS (2002) | **DELIBERATELY NOT RELIED ON** — cited in the text only to dismiss it as old and contested. Keep it that way; do not let a later draft start leaning on it. |
 
 ## Standing rules
 
