@@ -14,34 +14,17 @@ Nine months after the AI budget was approved, most CIOs are looking at two numbe
 
 Most organisations assume this is a review problem — AI writes more, review can't keep up, the queue is in code review. That diagnosis is half right, and the half it gets wrong is the expensive half.
 
-### What the measurements say
-
-Faros AI analysed roughly two years of telemetry from **22,000 developers across more than 4,000 teams**. The picture is specific enough to act on.
-
-| What happened | Change |
-|---|---|
-| PR merge rate per developer | +16.2% |
-| Average PR size | **+51.3%** |
-| Median time to first review | **+156.6%** |
-| Median time in review | +441.5% |
-| PRs merged with **no review at all** | **+31.3%** |
-| Deployments per week | **−11%** |
-| Lead time, commit to production | **+480.4%** |
-| Incidents per PR | **+242.7%** |
-
-Read that column twice.
-
-The volume of merged work barely moved — **+16%**. What exploded was the *size* of each change, the time it sits in review, and the share that skips review entirely. Then, at the end of the pipeline, deployments per week actually **fell**, and the time from commit to production went up nearly **fivefold**.
-
 ### The diagnosis that's half right
 
-Review genuinely is under strain — the review numbers are real and they are severe. That half of the conventional diagnosis holds.
+Review genuinely is under strain. Chapter 3 laid out the numbers — median time to first review up **156.6%**, time in review up **441.5%**, and **31.3% more changes merged with no review at all**. That half of the conventional diagnosis holds, and it holds hard.
 
-But the fix everyone reaches for follows from the other half, and the other half is wrong. If review were the whole constraint, clearing it would release the work. It doesn't. **Deployment frequency went down while output went up.** Work that has already cleared review is still not reaching customers.
+But the fix everyone reaches for follows from the other half, and the other half is wrong. If review were the whole constraint, clearing it would release the work.
+
+It doesn't. **Deployments per week fell 11% while output rose, and lead time from commit to production went up 480%.** Work that has already cleared review is still not reaching customers.
 
 Something downstream of review is holding it, and it isn't capacity. **You increased flow into a valve that opens on a fixed schedule, and the queue behind the valve grew.**
 
-That is a plumbing problem, not a code quality problem — and the last row of that table is the bill. Incidents per PR up **243%** is what happens when larger, less-reviewed changes arrive at customers in bigger batches. Batch size and blast radius are the same number viewed from different ends.
+That is a plumbing problem, not a code quality problem. And the bill arrives as **incidents per PR up 242.7%** — what happens when larger, less-scrutinised changes reach customers in bigger bundles.
 
 ### The fusion nobody questions
 

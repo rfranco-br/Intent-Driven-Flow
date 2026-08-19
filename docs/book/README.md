@@ -11,8 +11,9 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 | Chapter map | ✅ 13 chapters, 3 parts — `bible.md` |
 | Language | ✅ English first; translate a stable product later |
 | **Name** | ⏳ open — *The Judgment Layer* recommended |
-| Drafted | **Part II complete** — ch05, ch06, ch07, ch08, ch09 |
-| Remaining | Part I (ch01–04), Part III (ch10–13) |
+| Drafted | **Parts I and II complete** — ch01–ch09 |
+| Remaining | Part III (ch10–13) |
+| Verification | First full pass done 19 Aug 2026 — 2 claims retired, 1 error corrected |
 
 ## Files
 
@@ -20,6 +21,10 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 |---|---|
 | `bible.md` | Thesis, doctrine, voice rules, chapter map. **Everything is written against this.** |
 | `rewrite-plan.md` | Positioning, competitive landscape, product architecture, phasing |
+| `ch01-pilot-never-scaled.md` | Draft 1 — what didn't scale was judgment |
+| `ch02-instruments-went-dark.md` | Draft 1 — bandwidth metrics measuring an abundant resource |
+| `ch03-batch-problem.md` | Draft 1 — deployment frequency *fell*; batch size is blast radius |
+| `ch04-who-approved-this.md` | Draft 1 — governance was a side effect of slowness |
 | `ch05-outcomes-not-output.md` | Draft 1 — the intent as unit of work |
 | `ch06-confirmed-is-done.md` | Draft 1 — delivery and value are two events |
 | `ch07-deploy-is-not-release.md` | Draft 1 — the switch as governance instrument |
