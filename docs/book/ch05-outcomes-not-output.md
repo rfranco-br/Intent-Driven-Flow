@@ -57,7 +57,7 @@ When you say what needs to be true rather than what to build, the execution laye
 "Build the thing" ends when the thing exists. "Make this true for customers" ends when it's true, which might take three attempts or might turn out to be impossible. Both of those are useful to know and neither is visible in a ticket-shaped system.
 
 **3. The ability to kill work honestly.**
-You cannot cancel a ticket without it looking like failure. You can close an intent as *not achieved* and treat it as information, because the intent always contained the possibility of not working. That's a cultural unlock disguised as a formatting change.
+You cannot cancel a ticket without it looking like failure. You can close an intent as *not achieved* and treat it as information, because the intent always contained the possibility of not working. That is a change in what your culture permits, disguised as a change in formatting.
 
 ### What it costs
 
