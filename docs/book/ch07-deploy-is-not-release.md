@@ -8,24 +8,40 @@
 
 Nine months after the AI budget was approved, most CIOs are looking at two numbers that contradict each other.
 
-**Engineering output is up.** Pull requests, commits, merge rates — all climbing.
+**Engineering output is up.** More code, bigger changes, more merged work.
 
-**Customer-visible change is flat.** Nothing has shipped that would explain the first number.
+**Customer-visible change is not.** Nothing is reaching customers at a rate that would explain the first number.
 
-The usual diagnosis is that AI writes mediocre code and review is eating the gains. It's a convenient diagnosis, because it makes the fix somebody else's job. It's also mostly wrong.
+Most organisations assume this is a review problem — AI writes more, review can't keep up, the queue is in code review. That diagnosis is half right, and the half it gets wrong is the expensive half.
 
 ### What the measurements say
 
-| Finding | Number |
+Faros AI analysed roughly two years of telemetry from **22,000 developers across more than 4,000 teams**. The picture is specific enough to act on.
+
+| What happened | Change |
 |---|---|
-| Teams that ship in batches rather than one change at a time | **>90%** |
-| Teams holding 2–10 changes waiting to deploy | ~half |
-| Teams holding 11–50 changes waiting to deploy | ~a quarter |
-| Increase in merged pull requests at high AI adoption | **+39% to +98%** |
+| PR merge rate per developer | +16.2% |
+| Average PR size | **+51.3%** |
+| Median time to first review | **+156.6%** |
+| Median time in review | +441.5% |
+| PRs merged with **no review at all** | **+31.3%** |
+| Deployments per week | **−11%** |
+| Lead time, commit to production | **+480.4%** |
+| Incidents per PR | **+242.7%** |
 
-You didn't remove a constraint. You increased flow into a valve that opens on a fixed schedule. The queue behind it grew.
+Read that column twice.
 
-**This is a plumbing problem, not a code quality problem.**
+The volume of merged work barely moved — **+16%**. What exploded was the *size* of each change, the time it sits in review, and the share that skips review entirely. Then, at the end of the pipeline, deployments per week actually **fell**, and the time from commit to production went up nearly **fivefold**.
+
+### The diagnosis that's half right
+
+Review genuinely is under strain — the review numbers are real and they are severe. That half of the conventional diagnosis holds.
+
+But the fix everyone reaches for follows from the other half, and the other half is wrong. If review were the whole constraint, clearing it would release the work. It doesn't. **Deployment frequency went down while output went up.** Work that has already cleared review is still not reaching customers.
+
+Something downstream of review is holding it, and it isn't capacity. **You increased flow into a valve that opens on a fixed schedule, and the queue behind the valve grew.**
+
+That is a plumbing problem, not a code quality problem — and the last row of that table is the bill. Incidents per PR up **243%** is what happens when larger, less-reviewed changes arrive at customers in bigger batches. Batch size and blast radius are the same number viewed from different ends.
 
 ### The fusion nobody questions
 
@@ -96,4 +112,4 @@ The judgment was never in the deployment. It was always in the exposure. The fus
 
 ---
 
-*Sources to verify before publication: batch-shipping distribution (Fenton, The New Stack, 2026); PR merge-rate increase under AI adoption (Faros AI ~+98%, Cursor ~+39%). See `verification.md`.*
+*Sources: all figures from Faros AI, "The Acceleration Whiplash," AI Engineering Report 2026 — 22,000 developers, 4,000+ teams, ~2 years telemetry, Spearman's rank correlation, p < 0.05. Verified against the primary report. Disclose in the text that Faros sells engineering-intelligence tooling. See `verification.md`.*
