@@ -12,11 +12,27 @@ Updated August 2026 · supersedes the chapter map in the rewrite plan
 
 Every chapter is a consequence of this sentence. If a chapter doesn't trace back to it in one step, it doesn't belong in the book.
 
-## The positioning line
+## The positioning
 
-> **Team Topologies shapes the organisation. This shapes how work moves through it when agents do the building.**
+> **Every delivery framework of the last twenty-five years rations human bandwidth, because bandwidth was the scarce thing. It isn't any more. Judgment is — and nothing in your current operating model governs it.**
 
-Stated once in the introduction, never repeated. Standing beside the incumbent, not fighting it.
+The opponent is a shared **assumption**, not a framework and not a person. Scrum, SAFe, Kanban and Team Topologies all ration work — sprints, WIP limits, cognitive-load boundaries. Different mechanisms, one premise: that people do the executing. When execution stops being scarce, rationing stops being the point.
+
+This is a bigger target than any single framework, it's more honest, it flatters the reader instead of picking a fight, and it lets us name the others respectfully in one sentence without subordinating ourselves to any of them.
+
+**The anchor image is the Driver and the Pilot** — twenty years of mastering when to brake, when to turn, when to accelerate, and then no roads, no air, no friction. Already written, currently stranded on the landing page. It moves into the introduction and carries the whole argument.
+
+### How we treat other frameworks
+
+**No framework is a prerequisite.** This book does not assume you have adopted Scrum, SAFe, Team Topologies, or anything else. Organisations with no named operating model succeed too, and the book says so plainly. Nothing here is built on top of someone else's model.
+
+Others are **referenced where genuinely useful, never used as foundation.** Where an insight survives the shift, cite it and credit it. Where its premise moves, say so — **as an open question, not a verdict.**
+
+**On Team Topologies specifically.** Its durable contribution is real: cognitive load is a genuine constraint and boundaries should respect it. Conway's Law is, if anything, sharper under agents, since agent configurations mirror team boundaries too. What shifts is the *unit* of load — reviewing output you didn't write is a different burden from building a system you did.
+
+Note also that Skelton has already extended Team Topologies to cover agents (QCon London 2026; Conflux's AI-native operating model work). So we cannot claim they haven't considered AI. The defensible claim is narrower and sharper: **extending cognitive-load boundaries to agents preserves the answer without revisiting the question.**
+
+Say it once, respectfully, framed as a question. A first book making a structural claim about an established framework should read as thinking, not as a verdict.
 
 ## The doctrine
 

@@ -26,13 +26,31 @@ I checked, because if someone owns this space the strategy changes. Two findings
 
 **The real one: Matthew Skelton and Conflux.** The *Team Topologies* co-author is moving onto exactly this shelf — an ["AI-native operating models"](https://confluxhq.com/ai-native-operating-models) practice aimed at enterprise executives, a [QCon London 2026 talk](https://qconlondon.com/presentation/mar2026/team-topologies-infrastructure-agency-ai) on Team Topologies as "infrastructure for agency" with AI, Team Topologies 2nd edition, and a vocabulary already forming: *cognitively-scoped stewardship, audit-first design, attestation.* He has the brand, the CIO audience, and a consultancy.
 
-**This is good news, and here is why.** Team Topologies answers *how should we be organised* — team boundaries, cognitive load, interaction modes. It has always been explicit that it does not tell you how to run delivery. That layer is still filled by Scrum and SAFe, both of which are now visibly broken for agentic work. **Nobody on this shelf owns "when is it done, and who decides it ships."** That is precisely what IDF answers, and it has a distinctive answer.
+**This is good news, and here is why.** Team Topologies answers *how should we be organised* — team boundaries, cognitive load, interaction modes. It has always been explicit that it does not tell you how to run delivery. That layer is still filled by Scrum and SAFe, both visibly strained by agentic work. **Nobody on this shelf owns "when is it done, and who decides it ships."** That is precisely what we answer, and we have a distinctive answer.
 
-The positioning line, which I'd put in the introduction and never deviate from:
+### The positioning — against an assumption, not a framework
 
-> **Team Topologies shapes the organisation. IDF governs how work moves through it when agents do the building.**
+An earlier draft of this plan positioned the book as complementary to Team Topologies: *they shape the organisation, we govern how work moves through it.* **That line is withdrawn.** It subordinates the book to someone else's model, it implies their framework is a prerequisite for ours, and it picks a comparison with an established author who would win it on standing alone.
 
-Complementary, not competing. It gives you a giant to stand beside instead of one to fight, and it's true. Two secondary openings: Conflux explicitly targets 1,500–5,000-person enterprises, which leaves the 50–300-engineer CIO underserved; and their angle is structural and static (boundaries, stewardship) where yours is temporal and dynamic (the loop, the decision). Different question, same buyer.
+The replacement aims at the premise all of them share:
+
+> **Every delivery framework of the last twenty-five years rations human bandwidth, because bandwidth was the scarce thing. It isn't any more. Judgment is — and nothing in your current operating model governs it.**
+
+Scrum, SAFe, Kanban, Team Topologies — sprints, WIP limits, cognitive-load boundaries. Different mechanisms, one assumption: that people do the executing. When execution stops being scarce, the rationing logic stops being the point. That's a bigger target, it's more honest, and it lets us name every one of them respectfully without standing under any of them.
+
+**And we already own the image for it.** The Driver and the Pilot — twenty years of mastering when to brake, turn, and accelerate, then no roads, no air, no friction — is exactly this argument, already written, currently stranded on the landing page. It moves into the introduction.
+
+### No framework is a prerequisite
+
+The book does not assume the reader has adopted anything. Organisations with no named operating model succeed too, and we say so. Other frameworks get referenced where useful, never used as foundation.
+
+On Team Topologies specifically: the cognitive-load insight is durable and gets credited. Conway's Law is sharper under agents, not weaker — agent configurations mirror team boundaries too. What shifts is the *unit* of load: reviewing output you didn't write is a different burden from building a system you did.
+
+Worth knowing before writing this section — **Skelton has already extended Team Topologies to agents** (QCon London 2026; Conflux's AI-native operating model work). We cannot claim they haven't considered AI. The defensible claim is narrower: extending cognitive-load boundaries to cover agents preserves the answer without revisiting the question. Stated once, respectfully, as an open question.
+
+**An open thread worth developing** (Roberto's observation, and a genuinely novel one): under agentic execution, a skill or agent is simultaneously a service *and* a demonstration — so the mechanical half of an Enabling team's work gets absorbed into Platform. What remains is teaching *judgment*, which doesn't productise. The sharper formulation is not "Platform and Enabling merge" but **"Platform absorbs everything about Enabling that could be automated, and what's left is the whole job."** Candidate for a sidebar, not a chapter — and it must be framed as a question.
+
+Two secondary market openings remain: Conflux explicitly targets 1,500–5,000-person enterprises, leaving the 50–300-engineer CIO underserved; and their angle is structural and static (boundaries, stewardship) where ours is temporal and dynamic (the loop, the decision). Different question, same buyer.
 
 ---
 
