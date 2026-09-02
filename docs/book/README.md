@@ -11,9 +11,10 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 | Chapter map | ✅ 13 chapters, 3 parts — `bible.md` |
 | Language | ✅ English first; translate a stable product later |
 | **Name** | ⏳ open — *The Judgment Layer* recommended |
-| Drafted | ✅ **Complete first draft** — introduction + 13 chapters, 16,584 words, ~72 min read |
+| Drafted | ✅ **Draft 2** — introduction + 13 chapters, 17,406 words, ~76 min read |
+| Voice | ✅ Draft 2 applied Roberto's Part I review. Em dashes 11.4 → **0.7 per 1,000 words**. American spelling. Effort, not cost. Hypothesis framing throughout. Every source linked. |
 | Verification | First full pass done 19 Aug 2026 — 2 claims retired, 1 error corrected |
-| Next | Roberto's full read. Then: voice/repetition pass, the name, site rebuild. |
+| Next | Roberto reads Parts II and III against the new voice. Then: the name, site rebuild. |
 
 ## Files
 

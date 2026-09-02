@@ -36,11 +36,19 @@ Say it once, respectfully, framed as a question. A first book making a structura
 
 ## The doctrine
 
-Three commitments that separate this from SAFe, from Scrum, and from every consultancy operating model on the shelf:
+Four commitments that separate this from SAFe, from Scrum, and from every consultancy operating model on the shelf:
 
-1. **This is a map, not a procedure.** We identify where human judgment is non-negotiable. Where you place those moments, what you call them, and how many you run is yours. We describe what breaks when a judgment point is missing — we do not tell you to hold a meeting on Thursday.
+1. **This is a map, not a procedure.** We identify where human judgment is non-negotiable. Where you place those moments, what you call them, and how many you run is yours. We describe what breaks when a judgment point is missing, and we do not tell you to hold a meeting on Thursday.
 2. **The costs are stated.** Every practice gets an honest ledger. Admitting what it costs is what makes the benefit believable.
 3. **Uncertainty is admitted.** Where we don't know, we say so. On a shelf full of confident consultancy content, this is the differentiator.
+4. **These are hypotheses, not findings.** *(Roberto, 2 Sept 2026: "I'm not sure I'm right about everything and I'm willing to be wrong or partially right. That should be a mantra for this entire work. I have hypotheses, some of them can be proved, some of them need to be tested.")*
+
+Point 4 is a stance that has to show up in the prose, not just in chapter 13. Practical rules:
+
+- Never write "chapter 7 is the answer." Write "chapter 7 is what I'd try," or "this is the move I think works."
+- Distinguish the three tiers explicitly where it matters: **measured** (the telemetry), **reasoned** (follows from the thesis), **untested** (I believe this and cannot show you).
+- The introduction states the stance once, plainly, so the reader knows how to weigh everything after it.
+- Confidence is still allowed. Hedging every sentence is its own kind of dishonesty. The rule is that certainty must be proportional to evidence, and where it isn't, say which tier you're on.
 
 ---
 
@@ -48,19 +56,51 @@ Three commitments that separate this from SAFe, from Scrum, and from every consu
 
 Chosen from the chapter 7 voice test. The rules, extracted:
 
-**Structure**
-- Subheads every 150–250 words. Sentence case. Declarative, not cute. A reader skimming only the subheads should get the argument.
-- Paragraphs run 1–3 sentences. A four-sentence paragraph needs a reason.
-- Bold the load-bearing sentence in a section — one per section, never two.
-- Tables for numbers. Bullets for mechanics. Prose for reasoning.
+### Rule zero: it must not read as machine-written
 
-**Address**
+*Added 2 Sept 2026 after Roberto's review of Part I. This overrides anything below it that conflicts.*
+
+> "You use it way too much, to the point that it is clear this was rewritten by AI. Please adjust the whole book to make more use of commas and longer paragraphs. Use the em dash only when it is necessary to have a long pause in the reading. The goal is to make this less AI-produced."
+
+Draft 1 measured **190 em dashes in 16,712 words, 11.4 per thousand.** Published nonfiction runs 1 to 3. Combined with very short paragraphs and heavy bolding, that is the standard machine-written signature, and it undermines a book whose entire pitch is honest human judgment.
+
+**Em dashes: budget of 2 per 1,000 words. Roughly two or three per chapter, thirty-five in the book.**
+
+How to remove one:
+- A comma, when the aside is mild. *"The pilot is not the hard part, and it never has been."*
+- A colon, when what follows explains what preceded. *"The reason is simple: nobody decided anything."*
+- A semicolon, for two balanced clauses.
+- A full stop. Two sentences is usually better than one interrupted one.
+- Parentheses, sparingly, for a genuine aside.
+- Best of all, restructure so the interruption isn't needed.
+
+Keep an em dash only where the reader genuinely needs a hard stop and no other mark does the job. If a paragraph has two, one of them is wrong.
+
+**Paragraphs: 3 to 5 sentences is the working range.** Let them breathe and connect. A one-sentence paragraph is an emphasis device, so treat it as rationed: two or three per chapter, no more. Draft 1 had 26% single-sentence paragraphs, which reads as staccato rather than considered.
+
+**Bold: at most one span per section, often none.** Draft 1 bolded so heavily that nothing stood out. Prefer letting a strong sentence carry itself.
+
+### Structure
+
+- Subheads every 200–350 words. Sentence case. Declarative, not cute. A reader skimming only the subheads should get the argument.
+- Tables for numbers. Bullets for mechanics. Prose for reasoning, and prose means actual paragraphs.
+
+### Address
+
 - Second person. "You," "your teams," "your board." The reader is a decision-maker, addressed as one.
-- Never "organisations should." Say "you."
+- Never "organizations should." Say "you."
 
-**Evidence**
-- Numbers get a table and a hedge. "One study put it near double, another closer to forty per cent" beats a false precision.
-- Every chapter contains at least one thing the reader could not have guessed. That's the anti-abstraction rule — this genre dies of vagueness.
+### Spelling and terminology
+
+- **American English.** *(Roberto's edits: "authorised" → "authorized", "theatre" → "theater".)* So organization, behavior, recognize, optimization, defense.
+- **Execution effort collapsed, not execution cost.** *(Roberto: "AI is not cheap unless you use it properly. The immediate impact is time and effort, not cost.")* This is a real precision and the book should hold it. Tokens cost money; what collapsed is the human time and effort a unit of work consumes. Say "effort," "time," "friction," or "human bandwidth." Reserve "cheap" and "cost" for actual money, and say plainly somewhere in Part I that AI is not cheap.
+- The thesis keeps "when execution becomes free" because free there means free of human effort, and the introduction makes that explicit.
+
+### Evidence
+
+- Numbers get a table and a hedge. "One study put it near double, another closer to forty percent" beats a false precision.
+- **Every source gets a link.** *(Roberto: "we must add a link for each reference.")* Inline markdown link on first mention in each chapter, plus a sources line at the chapter foot.
+- Every chapter contains at least one thing the reader could not have guessed. That is the anti-abstraction rule, and this genre dies of vagueness.
 
 **Chapter shape**
 1. A concrete opening tension — two things that don't reconcile

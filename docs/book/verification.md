@@ -52,6 +52,8 @@ Status values: `VERIFIED` (checked against primary source) · `SECONDHAND` (repo
 
 ## Standing rules
 
+- **Every source carries a link.** *(Roberto, 2 Sept 2026: "we must add a link for each reference.")* Inline markdown link on first mention in each chapter, plus a sources line at the chapter foot. Applied in draft 2.
+
 - **Vendor data gets disclosed as vendor data, in the text.** Faros sells engineering-intelligence tooling and has an interest in these numbers being dramatic. The methodology is strong and the sample is large — say both things.
 - **Quote the caveat with the number.** Deployment frequency and lead time come from 10% of the dataset. If we quote them, we quote that.
 - **Regulatory claims carry a date stamp.** "As of August 2026." Dates move; the Omnibus moved twice.
