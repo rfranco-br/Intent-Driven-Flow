@@ -1,6 +1,6 @@
 # Chapter 1: The Pilot That Never Scaled
 
-*Draft 3 · stop-slop pass*
+*Stop-slop trial · rewritten from Draft 2*
 
 ---
 
@@ -38,7 +38,7 @@ Judgment failed to scale: the ability to apply it at the moments that matter, by
 
 That explains why AI programs feel hollow from the inside. You did the visible work. You procured tools and trained people, and you measured adoption. You delivered every input, and the output you paid for, value reaching customers at a rate that matches the investment, never arrived. None of those inputs touched the constraint.
 
-The argument of this book follows from that: when execution becomes free, judgment becomes the bottleneck, so govern the judgment.
+> **When execution becomes free, judgment becomes the bottleneck, so govern the judgment.**
 
 ### "Free" means free of human effort
 
@@ -68,9 +68,9 @@ You will have to let some work be abandoned in public. Once you confirm outcomes
 
 And you will have to give someone authority they may not want, because several judgments in this book need a named person rather than a committee.
 
-This book doesn't prescribe a reorganization, new roles or a change program. Some organizations will find they need one or more of them to make the change hold, and that is a fair consequence of taking the argument seriously. Either way, you will need to decide things you have so far left undecided.
+You won't need a reorganization, new roles or a change program. You will need to decide things you have so far left undecided.
 
-### Why this chapter is here
+### This chapter's place in the book
 
 You are living the demo-to-scale gap, and the diagnoses on offer point at the wrong layer. Better models won't close it. Neither will more training or a platform team.
 

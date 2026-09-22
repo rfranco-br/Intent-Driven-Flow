@@ -1,6 +1,6 @@
 # Chapter 2: Your Instruments Went Dark
 
-*Draft 3 · stop-slop pass*
+*Stop-slop trial · rewritten from Draft 2*
 
 ---
 
@@ -56,7 +56,7 @@ Outcome measures arrive later and flatter less. Bandwidth metrics update each we
 
 Some teams will read the change as an attack. People built careers on improving these numbers, in good faith, and they were right to do it at the time. The instruments stopped working and the people did nothing wrong. Say so, more than once, or you'll meet resistance and mistake it for skepticism.
 
-### Why this chapter is here
+### This chapter's place in the book
 
 Chapter 1 argued that judgment is the constraint. This chapter argues that you can't see it.
 

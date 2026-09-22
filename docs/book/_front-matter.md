@@ -2,34 +2,34 @@
 
 ### Governing delivery when execution is free
 
-*Working title — the name is still open.*
+*Working title. The name is still open.*
 
-Roberto Pillon Franco · Draft 1 · August 2026
+Roberto Pillon Franco · Draft 3 · September 2026
 
 ---
 
-> **When execution becomes free, judgment becomes the bottleneck — so govern the judgment.**
+*When execution becomes free, judgment becomes the bottleneck, so govern the judgment.*
 
 ---
 
 ## Contents
 
-**Introduction** — The Driver and the Pilot
+**Introduction:** The Driver and the Pilot
 
-**Part I — The ground moved**
+**Part I: The ground moved**
 1. The Pilot That Never Scaled
 2. Your Instruments Went Dark
 3. The Batch Problem
 4. "Who Approved This?"
 
-**Part II — What actually generates value**
+**Part II: What generates value**
 5. Outcomes, Not Output
 6. Shipping Is Not Done. Confirmed Is Done.
 7. Deploy Is Not Release
 8. Where Judgment Can't Be Delegated
 9. Your System's Memory Is Capital
 
-**Part III — Leading the change**
+**Part III: Leading the change**
 10. From Demo to Scale
 11. How You'll Know It's Working
 12. What It Costs
@@ -37,8 +37,9 @@ Roberto Pillon Franco · Draft 1 · August 2026
 
 ---
 
-*Status: complete first draft, unreviewed. All statistics verified against primary
-sources on 19 August 2026 — see `verification.md`. Two claims were retired during
-that pass and one factual error corrected.*
+*Status: Draft 3, the stop-slop pass (22 September 2026). Same argument, facts and sources as
+Draft 2; the prose was rewritten against the stop-slop rules. Draft 2 is kept in
+`drafts/draft-2/` for comparison. Statistics verified against primary sources on
+19 August 2026, see `verification.md`.*
 
 ---

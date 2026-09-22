@@ -1,6 +1,6 @@
 # Chapter 4: "Who Approved This?"
 
-*Draft 3 · stop-slop pass*
+*Stop-slop trial · rewritten from Draft 2*
 
 ---
 
@@ -73,7 +73,7 @@ You may build theater instead. That failure looks like a complete audit trail of
 
 And someone has to accept being named. Attributable decisions put a person's name on an outcome that might go badly. That is a real ask, and it needs cover from above. Back them when a decision they owned goes wrong, or you'll get decisions owned by committees, which means owned by nobody.
 
-### Why this chapter is here
+### This chapter's place in the book
 
 Part I ends here, and this chapter makes the rest of the book urgent.
 

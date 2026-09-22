@@ -1,28 +1,26 @@
-# Chapter 9 — Your System's Memory Is Capital
+# Chapter 9: Your System's Memory Is Capital
 
-*Draft 2 · Register B · ~1,300 words*
+*Draft 3 · stop-slop pass*
 
 ---
 
 ### An old problem and a new one
 
-The old problem is that your best engineer resigns and takes with them the reasons behind a hundred decisions nobody wrote down. Every organization knows this one, and most have made peace with it.
+You know the old problem. Your best engineer resigns and takes with her the reasons behind a hundred decisions nobody wrote down. Most organizations have made peace with it.
 
-The new problem is stranger. Your agents start every session knowing nothing, and what they read to recover is a document with no owner, last corrected by someone who has since left, describing an architecture you replaced in March. They will not tell you it's stale. They will read it, believe it, and produce work that is internally consistent and wrong.
+The new problem is stranger. Your agents start each session knowing nothing, and to catch up they read a document with no owner, last corrected by someone who has since left, describing an architecture you replaced in March. They won't tell you it's stale. They will read it, believe it, and produce work that is consistent with itself and wrong.
 
 ### Culture used to transmit itself
 
-Here is what quietly broke.
-
-Organizational knowledge has always existed in two forms. A small amount is written down, and the overwhelming majority is tacit, carried in people's heads and transmitted by proximity. New engineers absorbed it by sitting near old engineers, having work corrected, overhearing arguments, and noticing what got approved. Nobody planned this. It happened as a by-product of people working together, and it took no effort at all.
+Organizational knowledge has always come in two forms. People write a small amount down. They carry the great majority in their heads and pass it on by proximity. New engineers absorbed it by sitting near experienced ones, having their work corrected, overhearing arguments and noticing what got approved. Nobody planned it. It came as a by-product of people working together, and it took no effort.
 
 Agents don't absorb culture. They read files.
 
-Whatever is not written down does not exist for the majority of your executors. This is the single most under-discussed consequence of agentic delivery, and it lands on organizations as an unfunded mandate: for the first time, your tacit knowledge has to become explicit in order to function at all. That is real work, it is not on anyone's roadmap, and it is the hidden cost inside every AI adoption program that gets reported as a tooling budget.
+If you haven't written something down, it doesn't exist for most of your executors. Few people discuss this consequence of agentic delivery, and it lands on you as an unfunded mandate: for the first time, your tacit knowledge has to become explicit before it can work at all. That is real work, it sits on nobody's roadmap, and it is the hidden cost inside each AI adoption program you see reported as a tooling budget.
 
 ### Three assets, one balance sheet
 
-Think of it as capital, because it behaves like capital. It accrues with maintenance, depreciates without, and determines what your organization can do next.
+Treat it as capital, because it behaves like capital. It grows when you maintain it, it depreciates when you don't, and it decides what your organization can do next.
 
 | Asset | What it holds | What it looks like when it fails |
 |---|---|---|
@@ -32,51 +30,49 @@ Think of it as capital, because it behaves like capital. It accrues with mainten
 
 Most organizations have some version of the first, an accidental version of the second, and none of the third.
 
-### It depreciates silently, and that's what makes it dangerous
+### It depreciates in silence
 
-Technical debt announces itself. It shows up as bugs, incidents, and slow builds: noisy, visible, and eventually undeniable.
+Technical debt announces itself. You see it in bugs, incidents and slow builds, and eventually nobody can deny it.
 
-Context debt is silent by construction. A stale document doesn't throw an error, an out-of-date convention doesn't fail a test, and an agent reading a wrong fact doesn't hesitate or flag uncertainty or ask a colleague. It proceeds, confidently, and produces work that is coherent, well-formed, and built on something that stopped being true two quarters ago.
+Context debt makes no noise. A stale document throws no error, and an out-of-date convention fails no test. An agent reading a wrong fact doesn't hesitate, flag uncertainty or ask a colleague. It proceeds with confidence and produces work that is coherent, well-formed, and built on something that stopped being true two quarters ago.
 
-The failure mode is not incorrect output. It is correct behavior executed against the wrong understanding of the world, which is far harder to catch because everything about it looks right.
+The output looks correct, because the agent behaved correctly against a wrong picture of the world. You will struggle to catch that, because everything about it looks right.
 
-There is a second, faster version of the same problem inside a single working session. Long agent sessions compact their own context as they run, summarizing and dropping detail to make room, and what disappears first is exactly what mattered: the constraint agreed three hours ago, the approach already tried and rejected, the reason a shortcut was ruled out. The rule that follows is unglamorous and absolute. If a decision has to survive, it goes in the artifact, not the conversation.
+A second, faster version of the problem happens inside a single working session. Long agent sessions compact their own context as they run, summarizing and dropping detail to make room, and they drop the details that mattered first: the constraint you agreed three hours ago, the approach you already tried and rejected, the reason you ruled out a shortcut. The rule that follows is unglamorous and absolute. If a decision has to survive, write it into the artifact. The conversation won't keep it.
 
-### The part that matters for your strategy
+### The argument for your next vendor conversation
 
-Here's the argument to take into your next vendor conversation.
+Your choice of model is temporary, and your captured context lasts.
 
-Your model choice is temporary, and your captured context is not.
+The models will change. They changed twice while you read about them. The tooling will change, and the vendor you standardize on this year may not be the obvious choice in eighteen months. The prompts, configurations and platform-specific scaffolding you build around them have a short, unsentimental half-life.
 
-The models will change, and they've changed twice while you've been reading about them. The tooling will change. The vendor you standardize on this year may not be the obvious choice in eighteen months, and the prompts, configurations, and platform-specific scaffolding you build around them have a short and unsentimental half-life.
+The written-down knowledge of how your systems work, what your organization means by good, and who may touch what survives each of those transitions. You can carry it across models, vendors and generations of tooling.
 
-What survives every one of those transitions is the written-down knowledge of how your systems work, what your organization means by good, and who is allowed to touch what. That asset is portable across models, vendors, and generations of tooling.
-
-So when the budget conversation comes, and it will be framed as a tooling conversation, the useful reframe is that tooling spend is an operating expense while context capture is an investment. One of those you will repeat annually forever. The other compounds.
+So when the budget conversation comes, someone will frame it as a tooling conversation. Reframe it: tooling spend is an operating expense, and context capture is an investment. You will repeat the first each year. The second compounds.
 
 ### What it costs
 
-Writing it down is work nobody wants and everybody deprioritizes. It competes directly with delivery, it is invisible when done well, and it has no natural champion. Left to organic prioritization it will lose every single time, in every team, permanently.
+Writing it down is work nobody wants, and teams push it down the list. It competes with delivery, nobody sees it when it's done well, and it has no natural champion. Leave it to each team's priorities and it will lose.
 
-There is no natural moment to maintain it, so you must manufacture one. Documentation decays because nothing triggers its correction, and something has to: an event, a checkpoint, a named obligation attached to the work itself. If maintaining it depends on someone remembering, it will not be maintained.
+It has no natural moment for maintenance, so you have to create one. Documentation decays because nothing triggers a correction. You need a trigger: an event, a checkpoint, or a named obligation attached to the work. If maintenance depends on someone remembering, nobody will maintain it.
 
-Over-documentation is a failure mode rather than a safe direction. A two-hundred-page context document is as useless as none and more expensive, because now it's stale in ways nobody can find. The goal is the smallest set of things that must be true, ruthlessly pruned. Adding is easy and feels productive, while removing is the discipline that actually keeps it alive.
+Over-documentation is a failure mode, and it only looks safe. A two-hundred-page context document is as useless as none and costs more, because now it's stale in ways nobody can find. Aim for the smallest set of things that must be true, and prune hard. Adding feels productive and takes no discipline. Removing is the discipline that keeps the document alive.
 
-If everyone owns it, nobody does. This needs a named owner with the authority to delete things other people wrote, which is a genuinely unpopular job and will not be volunteered for.
+If everyone owns it, nobody does. You need a named owner with the authority to delete what other people wrote. The job is unpopular, and nobody will volunteer for it.
 
-And you will not get the authority register for free. Permissions accumulate, because every agent gains access it needed once and never returns it, and nobody notices because nothing breaks. Reconciling what agents *can* reach against what they were *granted* is a periodic obligation, and the first time you run it, expect the gap to be uncomfortable.
+And the authority register won't come for free. Permissions accumulate: an agent gains access it needed once and never gives it back, and nobody notices because nothing breaks. Someone has to reconcile what agents can reach against what you granted them, on a schedule. Expect the gap to be uncomfortable the first time.
 
 ### Why this chapter is here
 
-Chapters 5 through 8 described the loop: state an outcome, execute it, judge it, confirm it.
+Chapters 5 to 8 described the loop: state an outcome, execute it, judge it, confirm it.
 
-This chapter is about what makes the loop repeatable. An organization can run that loop once through sheer effort and attention. Running it fifty times, across teams, with people joining and leaving, without the quality degrading, depends entirely on whether the system remembers anything between cycles.
+This chapter covers what makes the loop repeatable. You can run the loop once through effort and attention. To run it fifty times, across teams, with people joining and leaving, without the quality degrading, your system has to remember what happened between cycles.
 
-It is also the bridge to Part III. My reading of why most AI pilots don't scale is not that the loop is hard. It is that the pilot ran on the founding team's shared memory, which was never written down and could not be handed to anybody else.
+It also bridges to Part III. My reading of why most AI pilots don't scale: the pilot ran on the founding team's shared memory, which nobody wrote down, so nobody could hand it to anyone else. The loop itself is not the hard part.
 
-### What to ask your teams this week
+### Questions for your teams this week
 
 - If we changed model vendors next month, what would we lose and what would survive?
-- Who owns the document our agents read first? When was it last *corrected* rather than added to?
+- Who owns the document our agents read first? When did someone last correct it, as opposed to adding to it?
 - What can our agents reach today that nobody has reviewed this year?
-- Name one thing every experienced person here knows that a new joiner, or an agent, has no way to find out.
+- Name one thing our experienced people know that a new joiner, or an agent, has no way to find out.

@@ -1,6 +1,6 @@
 # Chapter 3: The Batch Problem
 
-*Draft 3 · stop-slop pass*
+*Stop-slop trial · rewritten from Draft 2*
 
 ---
 
@@ -55,7 +55,7 @@ The finding will also sting people who did their jobs well. Conscientious people
 
 Knowing, on its own, fixes nothing. This chapter gives you a diagnosis, and if you stop here you have acquired an uncomfortable fact.
 
-### Why this chapter is here
+### This chapter's place in the book
 
 Chapter 1 said judgment is the constraint, and chapter 2 said your instruments can't see it. Here the cost turns concrete: a 480% increase in the time between building something and a customer being able to use it, inside organizations that spent heavily to go faster.
 

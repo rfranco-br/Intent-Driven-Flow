@@ -11,10 +11,10 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 | Chapter map | ✅ 13 chapters, 3 parts — `bible.md` |
 | Language | ✅ English first; translate a stable product later |
 | **Name** | ⏳ open — *The Judgment Layer* recommended |
-| Drafted | ✅ **Draft 2** — introduction + 13 chapters, 17,406 words, ~76 min read |
+| Drafted | ✅ **Draft 3** (22 Sept 2026) — stop-slop pass over introduction + 13 chapters, ~16,400 words, ~71 min read. Draft 2 archived in `drafts/draft-2/`. |
 | Voice | ✅ Draft 2 applied Roberto's Part I review. Em dashes 11.4 → **0.7 per 1,000 words**. American spelling. Effort, not cost. Hypothesis framing throughout. Every source linked. |
 | Verification | First full pass done 19 Aug 2026 — 2 claims retired, 1 error corrected |
-| Next | Roberto reads Parts II and III against the new voice. Then: the name, site rebuild. |
+| Next | Roberto reads Draft 3 end to end against Draft 2 (and Draft 1 in Drive), then decides whether to retire the old drafts. Then: the name, site rebuild. |
 
 ## Files
 
@@ -23,21 +23,23 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 | `bible.md` | Thesis, doctrine, voice rules, chapter map. **Everything is written against this.** |
 | `rewrite-plan.md` | Positioning, competitive landscape, product architecture, phasing |
 | **`MANUSCRIPT.md`** | **The whole book assembled in order — read this one.** Regenerate with `assemble.py` after chapter edits. |
-| `ch00-introduction.md` | Draft 1 — the Driver and the Pilot; the shared assumption |
-| `ch01-pilot-never-scaled.md` | Draft 1 — what didn't scale was judgment |
-| `ch02-instruments-went-dark.md` | Draft 1 — bandwidth metrics measuring an abundant resource |
-| `ch03-batch-problem.md` | Draft 1 — deployment frequency *fell*; batch size is blast radius |
-| `ch04-who-approved-this.md` | Draft 1 — governance was a side effect of slowness |
-| `ch05-outcomes-not-output.md` | Draft 1 — the intent as unit of work |
-| `ch06-confirmed-is-done.md` | Draft 1 — delivery and value are two events |
-| `ch07-deploy-is-not-release.md` | Draft 1 — the switch as governance instrument |
-| `ch08-where-judgment-cant-be-delegated.md` | Draft 1 — the doctrinal centre |
-| `ch09-memory-is-capital.md` | Draft 1 — context as an asset that depreciates |
-| `ch10-from-demo-to-scale.md` | Draft 1 — the maturity model, promoted from playbook P3 |
-| `ch11-how-youll-know.md` | Draft 1 — six metrics, and how each gets faked |
-| `ch12-what-it-costs.md` | Draft 1 — the consolidated ledger; who shouldn't do this |
-| `ch13-where-to-start.md` | Draft 1 — one move, and what we don't know |
+| `ch00-introduction.md` | the Driver and the Pilot; the shared assumption |
+| `ch01-pilot-never-scaled.md` | what didn't scale was judgment |
+| `ch02-instruments-went-dark.md` | bandwidth metrics measuring an abundant resource |
+| `ch03-batch-problem.md` | deployment frequency *fell*; batch size is blast radius |
+| `ch04-who-approved-this.md` | governance was a side effect of slowness |
+| `ch05-outcomes-not-output.md` | the intent as unit of work |
+| `ch06-confirmed-is-done.md` | delivery and value are two events |
+| `ch07-deploy-is-not-release.md` | the switch as governance instrument |
+| `ch08-where-judgment-cant-be-delegated.md` | the doctrinal centre |
+| `ch09-memory-is-capital.md` | context as an asset that depreciates |
+| `ch10-from-demo-to-scale.md` | the maturity model, promoted from playbook P3 |
+| `ch11-how-youll-know.md` | six metrics, and how each gets faked |
+| `ch12-what-it-costs.md` | the consolidated ledger; who shouldn't do this |
+| `ch13-where-to-start.md` | one move, and what we don't know |
 | `verification.md` | Fact-check trail — every statistic, its source, and its status |
+| `drafts/draft-2/` | Draft 2 as it stood on 2 Sept 2026, kept for comparison until Roberto retires it |
+| `drafts/stop-slop-trial-part1/` | The first stop-slop trial on Part I (superseded by Draft 3) |
 
 ## Two tracks
 

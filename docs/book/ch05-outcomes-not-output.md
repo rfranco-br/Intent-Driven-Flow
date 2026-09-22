@@ -1,77 +1,77 @@
-# Chapter 5 — Outcomes, Not Output
+# Chapter 5: Outcomes, Not Output
 
-*Draft 2 · Register B · ~1,250 words*
+*Draft 3 · stop-slop pass*
 
 ---
 
 ### The roadmap that describes itself
 
-Open your roadmap, pick any item, and ask what it's *for*.
+Open your roadmap, pick any item, and ask what it's for.
 
-In most organizations the answer is a restatement of the item. "Saved payment methods" is for "letting customers save payment methods." Push once more, asking what changes for a customer and how you would know, and you get either a shrug or a story that was invented in the last four seconds.
+In most organizations you'll hear the item restated. "Saved payment methods" is for "letting customers save payment methods." Push once more, and ask what changes for a customer and how you would know, and you'll get a shrug or a story someone invented four seconds ago.
 
-This is not incompetence. It is the format working exactly as designed.
+Your people are competent. The format produces this answer by design.
 
 ### The ticket was built for a scarce executor
 
-A ticket is a work allocation instrument. It exists to tell one person what to do next, precisely enough that they can start without asking. Every feature of its design follows from a single assumption, which is that the expensive, scarce thing in the system is the person who will execute it.
+A ticket allocates work. It tells one person what to do next, with enough precision that they can start without asking. Its whole design follows from one assumption: the person who will execute it is the expensive, scarce part of the system.
 
-That assumption held for fifty years. It doesn't hold now.
+That assumption held for fifty years, and it doesn't hold now.
 
-Precise instruction has become the fast part. An agent will decompose a goal into tasks more quickly and more thoroughly than your best analyst, and it will do it again differently if you don't like the first attempt. What has not become easier, and what has become the entire job, is knowing whether the goal was worth pursuing. You have automated the production of the artifact your process is organized around, and the process hasn't noticed.
+Precise instruction has become the fast part. An agent will break a goal into tasks faster and in more detail than your best analyst, and it will do it again another way if you don't like the first attempt. The hard part, and now the whole job, is knowing whether the goal was worth pursuing. You have automated the production of the artifact your process is organized around, and your process still runs as if you hadn't.
 
-### What an intent is
+### Intents
 
-An intent states two things and nothing else. First, what needs to be true for a customer that isn't true today. Second, how you will know it happened.
+An intent states two things. First, what needs to be true for a customer that isn't true today. Second, how you will know it happened.
 
-It does not say what to build. That is deliberate, and it is the part that makes people uncomfortable.
+It leaves out what to build, on purpose, and that omission makes people uncomfortable.
 
 | | |
 |---|---|
 | **Ticket** | Add a saved-address field to the checkout form. |
 | **Intent** | Returning customers can complete checkout without re-entering information they've already given us. We'll know it worked when repeat-checkout completion rises and support contacts about re-entering details fall. |
 
-The second one is longer. It is also the only one of the two that can be wrong in a way anybody would notice.
+The intent runs longer. It is also the only one of the two that can be wrong in a way anybody would notice.
 
-### Why this gets more important as execution gets easier, not less
+### The intent matters more as execution gets easier
 
-The intuition runs the other way. If building takes no effort, who cares what we build, since we can always build something else.
+The intuition runs the other way: if building takes no effort, you can build something else when you get it wrong.
 
-The arithmetic disagrees. The effort of building the wrong thing fell, so the volume of wrong things built rises. You are no longer protected by how much work it used to take.
+The arithmetic disagrees. When the effort of building the wrong thing falls, you build more wrong things. The work it used to take no longer protects you.
 
-Under the old economics, bad ideas died in estimation. Someone said "that's six weeks," and the room quietly reconsidered. That filter is gone. Six weeks became an afternoon, and an afternoon doesn't trigger anyone's scrutiny reflex. The organization loses its cheapest defense against building things nobody needed, at exactly the moment its capacity to build them multiplies.
+Under the old economics, you killed bad ideas in estimation. Someone said "that's six weeks," and the room reconsidered. That filter is gone. Six weeks became an afternoon, and an afternoon doesn't trigger anyone's scrutiny. You lose your cheapest defense against building things nobody needed at the moment your capacity to build them multiplies.
 
-Nothing replaces that filter automatically. You have to put one back deliberately, and it has to sit at the point where the outcome is stated rather than at the point where the work is estimated, because nobody estimates any more.
+Nothing replaces that filter on its own. You have to put one back on purpose, and you have to place it where someone states the outcome, because estimation no longer catches anything.
 
 ### What this buys you
 
-**Better solutions than the one you'd have specified.** When you say what needs to be true rather than what to build, the execution layer can find approaches you didn't consider. Half the time the saved-address field isn't the answer, and the answer is not asking for the address twice. A ticket forecloses that possibility, and an intent doesn't.
+**Better solutions than the one you'd have specified.** When you say what needs to be true instead of what to build, the agents and engineers doing the work can find approaches you didn't consider. Half the time the saved-address field is the wrong answer, and the right one is to stop asking for the address twice. A ticket rules that out. An intent leaves it open.
 
-**A stopping condition.** "Build the thing" ends when the thing exists. "Make this true for customers" ends when it's true, which might take three attempts or might turn out to be impossible. Both of those are useful to know, and neither is visible in a ticket-shaped system.
+**A stopping condition.** "Build the thing" ends when the thing exists. "Make this true for customers" ends when it's true, which might take three attempts or might prove impossible. You want to know both, and a ticket-shaped system shows you neither.
 
-**The ability to kill work honestly.** You cannot cancel a ticket without it looking like failure. You can close an intent as not achieved and treat it as information, because the intent always contained the possibility of not working. That is a change in what your culture permits, disguised as a change in formatting.
+**The ability to kill work honestly.** Cancel a ticket and it looks like failure. Close an intent as not achieved and you can treat it as information, because the intent always allowed that it might not work. By changing a format, you change what your culture permits.
 
 ### What it costs
 
-Writing a good intent is harder than writing a ticket, and nobody in your organization has been trained to do it. It requires knowing what customers actually need and being willing to commit to a measurable claim about it in writing. Many excellent backlog managers are not good at this, and finding out is uncomfortable for everyone.
+Writing a good intent is harder than writing a ticket, and you have probably trained nobody to do it. It requires knowing what customers need and committing to a measurable claim about it in writing. Many excellent backlog managers struggle with this, and finding out makes everyone uncomfortable.
 
-It also exposes work that has no reason. Some of what's on your roadmap is there because an executive asked, or because it was on last year's roadmap, or because a competitor has it. Forcing an outcome statement onto that work reveals the absence, in writing, in front of people. Expect resistance that has nothing to do with the format.
+It also exposes work with no reason behind it. Some items sit on your roadmap because an executive asked, because they sat on last year's roadmap, or because a competitor has them. When you force an outcome statement onto that work, the missing reason shows up in writing, in front of people. Expect resistance that has nothing to do with the format.
 
-Not all work has a customer outcome, and pretending otherwise produces fiction. A compliance mandate, a certificate rotation, a database migration ahead of end-of-life: these are genuinely obligations rather than outcomes. Forcing them into an intent template generates exactly the kind of ceremonial nonsense that discredits a framework. Say plainly which work is outcome-driven and which is obligation, govern them differently, and don't let anyone dress up the second as the first.
+Some work has no customer outcome, and if you pretend otherwise you produce fiction. A compliance mandate, a certificate rotation and a database migration ahead of end-of-life are obligations. Force them into an intent template and you generate the ceremonial nonsense that discredits a framework. Say which work serves an outcome and which meets an obligation, govern the two differently, and don't let anyone dress the second up as the first.
 
-Finally, it slows the front of the process down, deliberately. The time you spend deciding whether something is worth doing is time nobody is building, and in an organization newly impressed by how fast agents produce things, that will feel like regression. It isn't, but you'll be arguing about it for a while.
+It also slows the front of the process down, on purpose. While you decide whether something is worth doing, nobody builds, and in an organization newly impressed by how fast agents produce things, that will feel like regression. You'll spend a while arguing that it isn't.
 
 ### Why this chapter is here
 
 Chapter 4 asked who approved the work and found that nobody could answer.
 
-Part of the reason is that there was nothing to approve. You cannot meaningfully approve "add a saved-address field," and you can only confirm that it sounds reasonable. You can approve a claim about the world: this will become true for customers, and here's how we'll know. That is a proposition somebody can accept, reject, or be accountable for.
+Part of the reason is that you had nothing to approve. You can't approve "add a saved-address field" in any meaningful way. You can only confirm that it sounds reasonable. You can approve a claim about the world: this will become true for customers, and here's how we'll know. Somebody can accept that claim, reject it, or answer for it.
 
-Everything in the rest of this book depends on there being something at the top of the loop worth governing.
+The rest of this book depends on having something at the top of the loop worth governing.
 
-### What to ask your teams this week
+### Questions for your teams this week
 
-- Take three items from the current roadmap. For each: what has to change for a customer, and how would we know it happened?
-- When did we last stop work because the outcome wasn't materializing, rather than because priorities shifted?
-- Who writes our intents, and has anyone ever taught them how?
-- How much of the current roadmap is obligation rather than outcome? Are we governing those the same way?
+- Take three items from the current roadmap. For each, what has to change for a customer, and how would we know it happened?
+- When did we last stop work because the outcome wasn't materializing, as opposed to because priorities shifted?
+- Who writes our intents, and has anyone taught them how?
+- How much of the current roadmap is obligation and how much is outcome? Do we govern the two the same way?

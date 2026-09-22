@@ -1,6 +1,6 @@
 # Introduction
 
-*Draft 2 · Register B · ~1,050 words*
+*Draft 3 · stop-slop pass*
 
 ---
 
@@ -18,56 +18,52 @@ The Pilot looked up at the black expanse of the stars and shook his head.
 
 ---
 
-The Driver isn't wrong about anything, and that is what makes the story useful. Twenty years of hard-won judgment about when to accelerate and when to brake, all of it real, all of it earned, and all of it an answer to conditions that no longer apply. The skill isn't obsolete because it was bad. It's obsolete because it was about friction, and there isn't any.
+The Driver is right about everything he says, and that makes the story useful. He spent twenty years learning when to accelerate and when to brake, and he earned every bit of it. All of it answers conditions that no longer apply. His skill was good, it was about friction, and where he is going there is none.
 
 ### The assumption underneath everything you've adopted
 
 Every delivery framework of the last twenty-five years shares one premise: human bandwidth is the scarce resource.
 
-It's why they all ration. Sprints ration work into what a team can absorb. WIP limits ration how much can be in flight. Cognitive-load boundaries ration how much system a group can hold. Estimation exists to predict how much human effort something will consume. The mechanisms differ, but the assumption underneath them is identical, and it is that the expensive, limited thing is people doing the work.
+That premise explains why they all ration. Sprints ration work into what a team can absorb, and WIP limits ration how much can be in flight. Cognitive-load boundaries ration how much of a system a group can hold, and estimation predicts how much human effort a piece of work will consume. The mechanisms differ. Underneath them sits one assumption, that the people doing the work are the expensive, limited part.
 
-That assumption held for the entire history of the practice. It doesn't hold now. When execution stops being scarce, rationing it stops being the point, and every instrument you have for managing delivery is a rationing instrument.
+That assumption held for the whole history of the practice, and it doesn't hold now. Once execution stops being scarce, rationing it loses its purpose, and each instrument you have for managing delivery rations something.
 
-### What this book argues
+### The argument
 
-> **When execution becomes free, judgment becomes the bottleneck, so govern the judgment.**
+This book argues one thing: when execution becomes free, judgment becomes the bottleneck, so govern the judgment.
 
-One clarification before we go further, because the word "free" is doing precise work. It does not mean cheap in money. AI is not cheap, and used carelessly it is expensive in ways that show up on an invoice. What collapsed is the *human effort and time* a unit of work consumes. That collapse is what changes the shape of an organization, and it is what this book is about.
+"Free" needs a precise reading. It does not mean cheap. AI is not cheap, and if you use it carelessly you will see the expense on an invoice. The human effort and time a unit of work consumes collapsed, and that collapse changes the shape of an organization. This book is about that change.
 
-Everything in these thirteen chapters follows from that sentence. Part I describes what broke: pilots that succeed and never scale, measurement that went dark without ever failing, work piling up behind a release step that didn't change, and a governance model that turns out to have been a side effect of people working slowly. Part II is the useful half, covering what actually generates value once effort is no longer the constraint. Part III is about leading the change, including how autonomy gets earned, what to measure, what it costs, and where to start on Monday.
+The thirteen chapters follow from that sentence. Part I describes what broke: pilots that succeed and never scale, measurement that went dark without failing, work piling up behind a release step nobody changed, and a governance model that turns out to have been a side effect of slow work. Part II covers what generates value once effort stops being the constraint. Part III covers leading the change: how teams earn autonomy, what to measure, what it costs, and where to start on Monday.
 
-### How certain any of this is
+### How sure I am
 
-This matters enough to say before you read a single chapter.
+Read this before any chapter.
 
-I am not sure I am right about everything, and I am willing to be wrong or partially right. Some of what follows is measured, some of it is reasoned, and some of it is a hypothesis I believe and cannot yet prove. Where the difference matters, I've tried to say which is which.
+I am not sure I am right about everything, and I am willing to be wrong or partly right. Some of what follows is measured, some is reasoned, and some is a hypothesis I believe and cannot yet prove. Where the difference matters, I say which is which.
 
-The measured parts are cited, with links, and you should check them. The reasoned parts follow from the thesis, and if you reject the thesis they don't survive either. The untested parts are the ones I'd most like someone to disprove, and chapter 13 lists them explicitly, including a failure in our own use of this framework that we only found because we went looking.
+I cite the measured parts, with links, and you should check them. The reasoned parts follow from the thesis, and if you reject the thesis they fall with it. I would most like someone to disprove the untested parts. Chapter 13 lists them, including a failure in our own use of this framework that we found only because we went looking.
 
-There is no controlled study behind this book. There isn't one behind anything competing with it either, because in 2026 that evidence does not exist yet for anybody. Read the argument, check the numbers, and treat confident phrasing as shorthand rather than proof.
+No controlled study stands behind this book. None stands behind its competitors either, because in 2026 nobody has that evidence yet. Read the argument, check the numbers, and treat confident phrasing as shorthand for a claim, never as proof.
 
-### What this book is not
+### The book's limits
 
-**It is not a methodology.** There is no ceremony to adopt, no meeting to schedule, no certification. What follows is a map of where human judgment is non-negotiable and what breaks when it's missing. Where you place those moments, what you call them, and how formal you make them is yours, and it should look different in a regulated bank and a twelve-person product team.
+It is a map of where human judgment is non-negotiable and what breaks when it's missing. You won't find a ceremony to adopt or a certification. You decide where to place those moments, what to call them and how formal to make them, and your answers should differ between a regulated bank and a twelve-person product team.
 
-**It does not require you to have adopted anything else.** Not Scrum, not SAFe, not Team Topologies. Organizations with no named operating model succeed too. Nothing here is built on top of someone else's framework, and where I reference one, it is a reference rather than a foundation.
+It stands on its own. You don't need Scrum, SAFe or Team Topologies in place first, and organizations with no named operating model succeed too. I reference other frameworks where they help, and I build on none of them.
 
-**It is not a book about AI only.** There is not much here about models, prompts, or tooling, and what little there is will probably date badly. The subject is what happens to an organization's decisions when the effort of producing work collapses, and that question outlives any particular technology.
+It covers more than AI. It says little about models, prompts or tooling, and what it does say will probably date badly. The subject is what happens to an organization's decisions when the effort of producing work collapses, and that question will outlive any particular technology.
 
 ### Who this is for
 
-The person who can change how an organization decides things: a CIO, a transformation lead, an engineering executive. Someone who has already bought the tooling, already seen the demos work, and is quietly aware that the operating model underneath hasn't moved.
+You, if you can change how an organization decides things: a CIO, a transformation lead, an engineering executive. You have bought the tooling and seen the demos work, and you suspect the operating model underneath hasn't moved.
 
-It is not a recipe for a delivery team, though the team will recognize everything in it. There is a companion body of work for people who want to implement this in detail, and it's referenced at the end of each part.
+A delivery team will recognize everything here, but the book gives them no recipe. A companion body of work covers implementation in detail, and each part ends with a pointer to it.
 
-### How to read it
+### Reading it
 
-It takes about ninety minutes end to end, and it's built to be read in order. Each chapter earns the next, and every chapter in Part I has its answer later in the book.
+The book takes about ninety minutes, and it works best in order. Each chapter sets up the next, and each chapter in Part I gets its answer later in the book.
 
-Every chapter ends with what it costs, and with four questions to ask your teams. The questions are the point. They are designed so that asking them produces information you don't currently have, whether or not you adopt anything else here.
+Each chapter ends with what it costs and with a few questions for your teams. The questions matter most. Asking them gets you information you don't have today, whether or not you adopt anything else here.
 
-If you only read two chapters, read 5 and 6. Everything between them is optimization, and those two are the loop.
-
----
-
-*The Driver's instincts were excellent. They were also a complete description of a world with roads in it.*
+If you read only two chapters, read 5 and 6. They form the loop, and the chapters between them refine it.

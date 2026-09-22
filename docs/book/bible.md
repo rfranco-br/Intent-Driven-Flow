@@ -80,6 +80,24 @@ Keep an em dash only where the reader genuinely needs a hard stop and no other m
 
 **Bold: at most one span per section, often none.** Draft 1 bolded so heavily that nothing stood out. Prefer letting a strong sentence carry itself.
 
+### Rule one: the stop-slop pass
+
+*Added 22 Sept 2026. Draft 3 was rewritten against the `stop-slop` skill (Hardik Pandya, MIT, installed at `.claude/skills/stop-slop/`). Read that skill before writing or editing any chapter. It sits under rule zero and above everything else here.*
+
+The rules that did the most work, in order:
+
+- **No adverbs as emphasis.** "Genuinely", "actually", "simply", "almost certainly", "deliberately", "fundamentally": delete, or say the specific thing.
+- **No binary contrasts.** "Not X. It's Y." / "This is not X, it is Y." State Y.
+- **No negative listing.** "Not the models. Not the tooling. Judgment." State the point.
+- **Name the actor.** Passive voice and false agency ("the decision emerges", "the bill arrives") become a person doing something, usually *you*.
+- **No throat-clearing.** "Here is the…", "This is why…", "Worth being clear about…". Cut to the point.
+- **No invented pull-quotes.** Don't coin a quotable line to explain an idea ("An instrument that fails silently gets trusted"). Make the argument in plain sentences. **Keep external quotes verbatim** (sources, dialogue in the Driver and Pilot parable, the question "Who approved this?").
+- **Varied rhythm.** No stacks of short punchy sentences; paragraphs don't all end on a one-liner.
+
+**Headings.** Declarative, and avoid Wh- openers where a better one exists. Two fixed headings stay by decision: **"Why this chapter is here"** (Roberto, 22 Sept) and **"Questions for your teams this week"** (replaces "What to ask your teams this week"). The thesis appears as a plain sentence, never as a bold blockquote.
+
+**Open comment carried into Draft 3.** Roberto on ch01 (Drive, 3 Sept): the book must not claim that no reorganization, new roles or transformation program is needed. *"There is no improvement without change. We are not suggesting reorg, new roles, transformation agenda, but it may be necessary for some companies."* Draft 3 says the book doesn't prescribe them and that some organizations will need them (ch01, ch07, ch12, ch13).
+
 ### Structure
 
 - Subheads every 200–350 words. Sentence case. Declarative, not cute. A reader skimming only the subheads should get the argument.
@@ -110,7 +128,7 @@ Keep an em dash only where the reader genuinely needs a hard stop and no other m
 5. What it buys — numbered, 2–4 items
 6. **What it costs** — blunt, named, non-optional
 7. Why this chapter sits here
-8. **What to ask your teams this week** — 3–5 questions
+8. **Questions for your teams this week** — 3–5 questions
 
 Item 6 is mandatory. Item 8 is the reader's takeaway and the most-screenshotted part of the book.
 
