@@ -10,517 +10,327 @@
   gtag('config', 'G-MV9XNW7Y6V');
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Agentic Organization — IDF Corporate</title>
+<title>IDF for Leaders · Intent Driven Flow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0c0c14;
-    --surface: #13131e;
-    --surface2: #1a1a2a;
-    --border: #2a2a3a;
-    --border2: #3a3a50;
-    --text: #f0ede8;
-    --text2: #a8a6b4;
-    --text3: #8a8898;
-    --coral: #e8734a;
-    --coral2: #f0956e;
-    --purple: #7c5cbf;
-    --purple2: #9b7fd4;
-    --teal: #3a9e78;
-    --teal2: #5bbf95;
-    --blue: #4a7abf;
-    --blue2: #6b99d4;
-    --amber: #bf8f3a;
-    --amber2: #d4a85b;
-    --green: #5a9e4a;
+    --bg: #0c0c14; --surface: #13131e; --surface2: #1a1a2a;
+    --border: #2a2a3a; --border2: #3a3a50;
+    --text: #f0ede8; --text2: #a8a6b4; --text3: #8a8898;
+    --coral: #e8734a; --coral2: #f0956e;
+    --purple: #7c5cbf; --purple2: #9b7fd4;
+    --teal: #3a9e78; --teal2: #5bbf95;
+    --blue: #4a7abf; --blue2: #6b99d4;
+    --amber: #bf8f3a; --amber2: #d4a85b;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+  a { color: var(--coral2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  em.book { font-style: italic; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-  }
+  /* moment colors */
+  .m-dir  { --c: var(--purple); --c2: var(--purple2); }
+  .m-fit  { --c: var(--teal);   --c2: var(--teal2); }
+  .m-exp  { --c: var(--coral);  --c2: var(--coral2); }
+  .m-conf { --c: var(--amber);  --c2: var(--amber2); }
+  .m-none { --c: var(--border2); --c2: var(--text2); }
 
   /* ── COVER ── */
-  .cover {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .cover::before {
-    content: '';
-    position: absolute;
-    top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(58,158,120,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .cover::after {
-    content: '';
-    position: absolute;
-    bottom: -100px; left: -100px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(74,122,191,0.06) 0%, transparent 70%);
-    pointer-events: none;
+  .cover { padding: 96px 64px 72px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(232,115,74,0.07) 0%, transparent 70%); pointer-events: none; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 14px; font: 12px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 40px; }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .cover h1 { font: 700 64px/1.05 'Playfair Display', serif; letter-spacing: -.02em; margin-bottom: 24px; }
+  .cover h1 span { color: var(--coral); }
+  .tagline { font-size: 18px; color: var(--text2); max-width: 560px; margin-bottom: 48px; }
+  .cover-meta { display: flex; flex-wrap: wrap; gap: 20px 48px; border-top: 1px solid var(--border); padding-top: 28px; }
+  .cover-meta label { display: block; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+  .cover-meta span { font-size: 14px; color: var(--text2); }
+
+  /* ── SIDEBAR ── */
+  #section-nav { position: fixed; top: 48px; left: 0; width: 200px; height: calc(100vh - 48px); overflow-y: auto; background: var(--bg); border-right: 1px solid var(--border); padding: 28px 0 48px; z-index: 100; }
+  .snav-group-label { display: block; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); padding: 12px 20px 4px; }
+  #section-nav a { display: block; font: 11px/1.4 'IBM Plex Mono', monospace; color: var(--text3); padding: 5px 16px 5px 18px; border-left: 2px solid transparent; text-decoration: none; }
+  #section-nav a:hover { color: var(--text2); background: var(--surface); }
+  #section-nav a.is-active { color: var(--coral); border-left-color: var(--coral); background: rgba(232,115,74,0.07); }
+  .snav-num { font-size: 9px; margin-right: 5px; opacity: .6; }
+  .cover, main { margin-left: 200px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 72px 64px; border-bottom: 1px solid var(--border); scroll-margin-top: 48px; }
+  .inner { max-width: 1000px; }
+  .eyebrow { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+  h2 { font: 600 36px/1.15 'Playfair Display', serif; letter-spacing: -.01em; margin-bottom: 14px; max-width: 780px; }
+  .lede { font-size: 17px; color: var(--text2); max-width: 680px; margin-bottom: 40px; }
+  .sub { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--text3); margin: 48px 0 16px; }
+  .caption { font-size: 14px; color: var(--text3); margin-top: 14px; max-width: 720px; }
+  .rule { font-size: 15px; color: var(--text); margin-top: 22px; padding-left: 14px; border-left: 2px solid var(--c, var(--coral)); max-width: 720px; }
+
+  .grid { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+  .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 16px; }
+  .tile.top { border-top: 3px solid var(--c, var(--border2)); }
+  .tile h4 { font: 600 15px 'IBM Plex Sans', sans-serif; margin-bottom: 6px; color: var(--c2, var(--text)); }
+  .tile p { font-size: 14px; color: var(--text2); }
+  .tile .n { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); display: block; margin-bottom: 8px; }
+  .tile .tell { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text3); }
+  .tile .tell b { color: var(--coral2); font-weight: 500; }
+
+  .chip { display: inline-block; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); border: 1px solid var(--border2); border-radius: 100px; padding: 2px 10px; }
+  .chip.c { color: var(--c2); border-color: var(--c); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* flows */
+  .flow { display: flex; align-items: stretch; flex-wrap: nowrap; }
+  .node { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-radius: 10px; padding: 12px 10px; min-width: 0; }
+  .work { background: var(--surface); border: 1px dashed var(--border2); color: var(--text3); font: 12px 'IBM Plex Mono', monospace; padding: 12px 14px; }
+  .moment { background: color-mix(in srgb, var(--c) 14%, var(--surface)); border: 1px solid var(--c); flex: 1 1 0; }
+  .moment b { font: 600 14px 'IBM Plex Sans', sans-serif; color: var(--c2); }
+  .moment i { font: italic 13px/1.3 'Playfair Display', serif; color: var(--text); margin-top: 2px; }
+  .arrow { flex: 0 0 22px; display: flex; align-items: center; justify-content: center; color: var(--border2); }
+
+  /* two flows */
+  .lanes { display: grid; gap: 12px; }
+  .lane { display: grid; grid-template-columns: 170px 1fr; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .lane-name b { display: block; font: 600 15px 'IBM Plex Sans', sans-serif; }
+  .lane-name span { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .lane .flow .work, .lane .flow .moment { flex: 1 1 0; }
+
+
+  /* ── RAILS (direction down, signals up) ── */
+  .ladder { display: grid; grid-template-columns: 30px minmax(0, 1fr) 30px; gap: 12px; }
+  .rail { position: relative; display: flex; align-items: center; justify-content: center; --rc: var(--purple2); }
+  .rail.up { --rc: var(--amber2); }
+  .rail::before { content: ''; position: absolute; left: 50%; width: 2px; margin-left: -1px; top: 6px; bottom: 6px; background: linear-gradient(var(--rc), var(--rc)); opacity: .55; }
+  .rail.down::before { bottom: 14px; } .rail.up::before { top: 14px; }
+  .rail::after { content: ''; position: absolute; left: 50%; margin-left: -7px; border: 7px solid transparent; }
+  .rail.down::after { bottom: 0; border-top: 12px solid var(--rc); border-bottom: 0; }
+  .rail.up::after { top: 0; border-bottom: 12px solid var(--rc); border-top: 0; }
+  .rail span { position: relative; z-index: 1; writing-mode: vertical-rl; background: var(--bg); padding: 10px 0; font: 10px 'IBM Plex Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--rc); white-space: nowrap; }
+  .rail.up span { transform: rotate(180deg); }
+  .hop { text-align: center; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); padding: 2px 0; }
+  .hop b { color: var(--purple2); font-weight: 400; }
+  .hop.c b { color: var(--amber2); }
+  @media (max-width: 820px) {
+    .ladder { grid-template-columns: minmax(0, 1fr); }
+    .rail { justify-content: flex-start; }
+    .rail::before, .rail::after { display: none; }
+    .rail span { writing-mode: horizontal-tb; transform: none !important; padding: 4px 0; }
+    .rail.down span::before { content: '▼ '; } .rail.up span::before { content: '▲ '; }
   }
 
-  .version-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--text2);
-    letter-spacing: 0.05em;
-    margin-bottom: 48px;
-    width: fit-content;
+  /* stats */
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .stat .v { font: 600 32px/1.1 'Playfair Display', serif; color: var(--text); }
+  .stat .l { font-size: 13px; color: var(--text2); margin-top: 6px; }
+
+  /* intent template */
+  .tmpl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--border2); border-radius: 12px; overflow: hidden; }
+  .tmpl > div { padding: 20px; background: var(--surface); }
+  .tmpl > div + div { border-left: 1px solid var(--border2); }
+  .tmpl .k { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--coral2); margin-bottom: 8px; }
+  .tmpl .ex { font: italic 17px/1.35 'Playfair Display', serif; color: var(--text); margin-bottom: 12px; }
+  .tmpl p { font-size: 13px; color: var(--text3); }
+
+  /* lifecycle */
+  .life { display: flex; align-items: center; flex-wrap: wrap; }
+  .state { font: 13px 'IBM Plex Mono', monospace; background: var(--surface2); border: 1px solid var(--border2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+  .state.done { border-color: var(--teal); color: var(--teal2); }
+  .state.ab { color: var(--text3); border-style: dashed; }
+  .trans { display: flex; flex-direction: column; align-items: center; padding: 0 10px; min-width: 104px; }
+  .trans span { font: 11px 'IBM Plex Mono', monospace; color: var(--c2); }
+  .trans em { font-style: normal; color: var(--border2); }
+  .ends { display: flex; flex-direction: column; gap: 8px; }
+
+  /* nested cycles */
+  .nest { border: 1px solid var(--border2); border-radius: 14px; padding: 16px; background: var(--surface); }
+  .nest-h { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+  .nest-h b { color: var(--text); text-transform: none; letter-spacing: 0; font: 500 14px 'IBM Plex Sans', sans-serif; margin-left: 6px; }
+  .cycles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .cyc { border: 1px solid var(--border); border-radius: 10px; padding: 12px; background: var(--bg); }
+  .cyc-h { font: 11px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 10px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .its { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .it { font: 12px 'IBM Plex Mono', monospace; border-radius: 8px; padding: 8px 10px; border: 1px dashed var(--border2); color: var(--text2); background: var(--surface); }
+  .it .ok { color: var(--teal2); } .it .no { color: var(--coral2); }
+  .live { font: 11px 'IBM Plex Mono', monospace; color: var(--coral2); }
+
+  /* moment cards */
+  .mloop { margin: 8px 0 48px; display: flex; align-items: stretch; }
+  .mloop .moment { cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .mloop .moment:hover, .mloop .moment.on { transform: translateY(-2px); box-shadow: 0 6px 24px color-mix(in srgb, var(--c) 30%, transparent); }
+  .cyclebox { flex: 2 1 0; border: 1px solid var(--border2); border-radius: 14px; padding: 22px 10px 10px; position: relative; display: flex; align-items: stretch; }
+  .cyclebox .work { flex: 0 0 auto; }
+  .cb-label { position: absolute; top: 5px; left: 12px; font: 10px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); }
+  .cb-loop { position: absolute; bottom: -22px; left: 0; right: 0; text-align: center; font: 11px 'IBM Plex Mono', monospace; color: var(--teal2); }
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--c); border-radius: 12px; padding: 26px 26px 22px; transition: opacity .2s; scroll-margin-top: 80px; }
+  .cards.focus .card:not(.on) { opacity: .35; }
+  .card-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .num { font: 12px 'IBM Plex Mono', monospace; color: var(--c2); }
+  .card h3 { font: 600 20px 'IBM Plex Sans', sans-serif; color: var(--c2); }
+  .q { font: italic 22px/1.3 'Playfair Display', serif; margin-bottom: 18px; }
+  .who { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 14px; background: var(--surface2); border-radius: 8px; margin-bottom: 18px; font-size: 14px; }
+  .who strong { font-weight: 500; }
+  .rows { display: grid; grid-template-columns: 54px 1fr; gap: 9px 12px; font-size: 14px; color: var(--text2); margin-bottom: 18px; }
+  .k { font: 11px/1.9 'IBM Plex Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+  .k.yes { color: var(--teal2); } .k.no { color: var(--coral2); }
+  .card-rule { border-top: 1px solid var(--border); padding-top: 14px; font-size: 14px; }
+  .card-rule::before { content: '◆ '; color: var(--c2); }
+  .note { margin-top: 10px; font-size: 13px; color: var(--text3); }
+
+  /* tables */
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; font-size: 14px; }
+  .tbl th { text-align: left; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); padding: 12px 16px; font-weight: 400; }
+  .tbl td { padding: 13px 16px; border-top: 1px solid var(--border); color: var(--text2); vertical-align: top; background: var(--surface); }
+  .tbl td:first-child { color: var(--text); }
+  .tbl .mcell { border-left: 3px solid var(--c); color: var(--c2); font-weight: 600; white-space: nowrap; }
+  .tbl-wrap { overflow-x: auto; }
+
+  /* layers */
+  .layers { display: grid; gap: 10px; }
+  .layer { display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .layer-name b { display: block; font: 600 15px 'IBM Plex Sans', sans-serif; }
+  .layer-name span { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .units { display: flex; flex-wrap: wrap; gap: 8px; }
+  .unit { background: var(--surface2); border: 1px solid var(--border2); border-radius: 8px; padding: 8px 12px; font-size: 13px; color: var(--text2); }
+  .unit b { display: block; color: var(--text); font-weight: 500; font-size: 14px; }
+  .layer-arrow { text-align: center; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); }
+
+  /* timeline */
+  .story { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; align-items: start; }
+  .tl { list-style: none; position: relative; }
+  .tl::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border2); }
+  .tl li { position: relative; padding: 0 0 16px 32px; }
+  .tl li::before { content: ''; position: absolute; left: 0; top: 5px; width: 15px; height: 15px; border-radius: 50%; background: var(--bg); border: 2px solid var(--c, var(--border2)); }
+  .tl .t { font: 600 14px 'IBM Plex Sans', sans-serif; color: var(--c2, var(--text)); }
+  .tl .t span { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); font-weight: 400; margin-left: 6px; }
+  .tl p { font-size: 14px; color: var(--text2); }
+  .chart { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; position: sticky; top: 72px; }
+  .chart h4 { font: 600 14px 'IBM Plex Sans', sans-serif; margin-bottom: 2px; }
+  .chart .s { font-size: 12px; color: var(--text3); margin-bottom: 8px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart .pt { cursor: default; }
+  .chart .pt:hover circle { r: 7; }
+  .totals { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+  /* spectrum */
+  .spectrum { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 8px; }
+  .spectrum div { font: 600 14px 'IBM Plex Sans', sans-serif; text-align: center; }
+  .spectrum div:first-child { text-align: left; } .spectrum div:last-child { text-align: right; }
+  .bar { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--blue) 0%, var(--purple) 100%); margin-bottom: 6px; }
+  .bar-l { display: flex; justify-content: space-between; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 24px; }
+
+  /* records by moment */
+  .writes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .writes > div { border-top: 3px solid var(--c); background: var(--surface); border-radius: 10px; padding: 14px; }
+  .writes b { color: var(--c2); font: 600 14px 'IBM Plex Sans', sans-serif; display: block; margin-bottom: 8px; }
+  .writes span { display: block; font: 12px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 4px; }
+
+  /* events */
+  .lanes4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .ev-col h4 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; font-weight: 400; }
+  .ev { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--c, var(--border2)); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+  .ev b { display: block; font: 500 14px 'IBM Plex Sans', sans-serif; }
+  .ev span { font-size: 13px; color: var(--text3); }
+
+  /* switch off */
+  .off { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--surface); border: 1px dashed var(--border2); border-radius: 12px; padding: 14px 18px; margin-bottom: 8px; }
+  .off .lbl { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; color: var(--coral2); margin-right: 6px; }
+  .off s { color: var(--text3); font-size: 14px; }
+
+  .callout { background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; padding: 20px 22px; margin-top: 24px; }
+  .callout h4 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--coral2); margin-bottom: 8px; font-weight: 400; }
+  .callout p { font-size: 14px; color: var(--text2); }
+  .callout p + p { margin-top: 8px; }
+
+  details { margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+  summary { cursor: pointer; font: 500 14px 'IBM Plex Sans', sans-serif; }
+  details .grid { margin-top: 16px; }
+  details h5 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; font-weight: 400; }
+  details ul { list-style: none; font-size: 13px; color: var(--text2); }
+  details li { padding: 4px 0 4px 18px; position: relative; }
+  details li::before { content: '☐'; position: absolute; left: 0; color: var(--text3); }
+
+  .debt li { font-size: 13px; color: var(--text2); list-style: none; padding: 3px 0 3px 14px; position: relative; }
+  .debt li::before { content: '·'; position: absolute; left: 2px; color: var(--c2); }
+  .debt ul { margin-top: 10px; }
+
+  @media (max-width: 1100px) {
+    .g5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .story { grid-template-columns: minmax(0, 1fr); }
+    .chart { position: static; max-width: 480px; }
   }
-  .version-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--teal);
+  @media (max-width: 960px) {
+    #section-nav { display: none; }
+    .cover, main, .foot { margin-left: 0; }
+  }
+  @media (max-width: 820px) {
+    .cover { padding: 64px 16px 48px; }
+    .cover h1 { font-size: 46px; }
+    section { padding: 48px 16px; }
+    h2 { font-size: 28px; }
+    .g2, .g3, .g4, .g5, .cards, .cycles, .tmpl, .writes, .lanes4 { grid-template-columns: minmax(0, 1fr); }
+    .tmpl > div + div { border-left: 0; border-top: 1px solid var(--border2); }
+    .lane, .layer { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .flow, .mloop { flex-direction: column; }
+    .arrow { transform: rotate(90deg); flex-basis: 22px; }
+    .cyclebox { flex-direction: column; padding: 26px 10px 30px; }
+    .cb-loop { bottom: 6px; }
+    .life { flex-direction: column; align-items: flex-start; }
+    .trans { flex-direction: row; gap: 8px; padding: 6px 0 6px 14px; min-width: 0; }
+    .trans em { transform: rotate(90deg); }
+    .card { padding: 22px 18px 18px; }
+    .chip { white-space: normal; }
+    .tbl { font-size: 13px; }
+    .tbl th, .tbl td { padding: 10px 10px; }
+    .tbl .mcell { white-space: normal; }
   }
 
-  .cover-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 72px;
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    max-width: 700px;
-    margin-bottom: 32px;
-  }
-  .cover-title span { color: var(--teal); }
-
-  .cover-tagline {
-    font-size: 18px;
-    color: var(--text2);
-    max-width: 520px;
-    line-height: 1.6;
-    margin-bottom: 64px;
-  }
-
-  .cover-meta {
-    display: flex;
-    gap: 48px;
-    border-top: 1px solid var(--border);
-    padding-top: 32px;
-  }
-  .cover-meta-item label {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text3);
-    display: block;
-    margin-bottom: 4px;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-  .cover-meta-item span { font-size: 14px; color: var(--text2); }
-
-  /* ── LAYOUT ── */
-  section {
-    padding: 80px 80px;
-    border-bottom: 1px solid var(--border);
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 16px;
-  }
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    margin-bottom: 24px;
-  }
-  h3 {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
-  h4 {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 16px;
-  }
-
-  p { color: var(--text2); margin-bottom: 16px; }
-  p:last-child { margin-bottom: 0; }
-
-  /* ── DUAL CARDS ── */
-  .dual-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 32px 0;
-  }
-  .dual-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px 28px;
-  }
-  .dual-card-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .dual-card ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .dual-card li {
-    font-size: 14px;
-    color: var(--text2);
-    line-height: 1.5;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .dual-card li::before {
-    content: '—';
-    color: var(--text3);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  /* ── CORP TABLE ── */
-  .corp-table-wrap {
-    margin: 32px 0;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .corp-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .corp-table thead tr {
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border2);
-  }
-  .corp-table th {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text3);
-    padding: 12px 20px;
-    text-align: left;
-    font-weight: 400;
-  }
-  .corp-table td {
-    font-size: 13px;
-    color: var(--text2);
-    padding: 14px 20px;
-    vertical-align: top;
-    line-height: 1.5;
-    border-bottom: 1px solid var(--border);
-  }
-  .corp-table tbody tr:last-child td { border-bottom: none; }
-  .corp-table tbody tr { transition: background 0.1s; }
-  .corp-table tbody tr:hover { background: var(--surface); }
-
-  /* ── CASCADE TABLE (4-tier) ── */
-  .cascade-wrap {
-    margin: 32px 0;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .cascade-row {
-    display: grid;
-    grid-template-columns: 28px 180px 140px 120px 1fr;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    align-items: stretch;
-  }
-  .cascade-row:last-child { border-bottom: none; }
-  .cascade-row.header {
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border2);
-  }
-  .cascade-row.header .cascade-cell {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text3);
-    padding: 12px 16px;
-    font-weight: 400;
-  }
-  .cascade-accent { width: 4px; flex-shrink: 0; }
-  .cascade-cell {
-    font-size: 13px;
-    color: var(--text2);
-    padding: 16px;
-    line-height: 1.5;
-  }
-  .cascade-tier {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-  }
-  .cascade-example {
-    font-size: 12px;
-    color: var(--text3);
-    font-style: italic;
-  }
-
-  /* ── CALLOUT BLOCK ── */
-  .callout {
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin: 24px 0;
-    border: 1px solid var(--border);
-  }
-  .callout-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .callout ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .callout li {
-    font-size: 14px;
-    color: var(--text2);
-    line-height: 1.6;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .callout li::before {
-    content: '—';
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  /* ── FOOTER LINK BLOCK ── */
-  .link-block {
-    margin-top: 32px;
-    padding: 20px 24px;
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--teal);
-    border-radius: 8px;
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-  .link-block-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--teal2);
-    margin-bottom: 6px;
-  }
-  .link-block p { font-size: 14px; color: var(--text2); margin: 0; }
-  .link-block a {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--teal2);
-    text-decoration: none;
-    white-space: nowrap;
-    padding: 8px 16px;
-    border: 1px solid var(--teal);
-    border-radius: 6px;
-    transition: background 0.15s, color 0.15s;
-    flex-shrink: 0;
-  }
-  .link-block a:hover { background: rgba(58,158,120,0.1); color: var(--teal2); }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 40px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  footer span {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-  }
-
-  /* ── CASCADE TREE ── */
-  .ct-layout {
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 32px;
-    margin-top: 40px;
-    align-items: start;
-  }
-  .ct-tree-col { min-width: 0; }
-  .ct-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 18px;
-  }
-  .ct-badge {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 3px;
-    margin-bottom: 8px;
-  }
-  .ct-card-tn { border-left: 3px solid var(--blue); }
-  .ct-card-si { border-left: 3px solid var(--purple); }
-  .ct-card-di { border-left: 3px solid var(--teal); }
-  .ct-card-ti { border-left: 3px solid var(--coral); }
-  .ct-badge-tn { background: rgba(74,122,191,0.15);  color: var(--blue2); }
-  .ct-badge-si { background: rgba(124,92,191,0.15);  color: var(--purple2); }
-  .ct-badge-di { background: rgba(58,158,120,0.15);  color: var(--teal2); }
-  .ct-badge-ti { background: rgba(232,115,74,0.15);  color: var(--coral2); }
-  .ct-outcome {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    line-height: 1.5;
-    margin-bottom: 6px;
-  }
-  .ct-signal {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    line-height: 1.5;
-  }
-  .ct-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 8px;
-    margin-left: 18px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--text3);
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 4px 10px;
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
-    user-select: none;
-  }
-  .ct-btn:hover { color: var(--text2); border-color: var(--border2); }
-  .ct-btn-icon { font-size: 14px; line-height: 1; font-weight: 300; }
-  .ct-children {
-    display: none;
-    margin-left: 22px;
-    padding-left: 24px;
-    border-left: 1px dashed var(--border2);
-    margin-top: 4px;
-  }
-  .ct-children.is-open { display: block; }
-  .ct-child {
-    position: relative;
-    padding-top: 12px;
-  }
-  .ct-child::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 24px;
-    width: 24px;
-    height: 1px;
-    background: var(--border2);
-  }
-  .ct-aside {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px 22px;
-    position: sticky;
-    top: 64px;
-  }
-  .ct-aside-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 16px;
-  }
-  .ct-aside-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 14px;
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--text2);
-  }
-  .ct-aside-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .cover { padding: 48px 24px; }
-    .cover-title { font-size: 48px; }
-    section { padding: 48px 24px; }
-    .dual-cards { grid-template-columns: 1fr; }
-    .cascade-row { grid-template-columns: 4px 1fr 1fr; }
-    .cascade-row .cascade-cell:nth-child(3),
-    .cascade-row .cascade-cell:nth-child(4) { display: none; }
-    .cover-meta { flex-direction: column; gap: 16px; }
-    .link-block { flex-direction: column; align-items: flex-start; }
-    footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
-    .ct-layout { grid-template-columns: 1fr; }
-    .ct-aside { position: static; }
+  /* ── LEADERS ── */
+  .subtitle { font: italic 400 28px/1.2 'Playfair Display', serif; color: var(--text2); margin: -8px 0 20px; }
+  .bands { margin-top: 28px; }
+  .xlist, .olist { list-style: none; margin-top: 8px; }
+  .xlist li, .olist li { font-size: 14px; padding: 4px 0 4px 18px; position: relative; color: var(--text2); }
+  .xlist li { color: var(--text3); text-decoration: line-through; text-decoration-color: var(--border2); }
+  .xlist li::before { content: '×'; position: absolute; left: 0; color: var(--text3); }
+  .olist li::before { content: '◆'; position: absolute; left: 0; font-size: 10px; top: 8px; color: var(--c2); }
+  .tiers { display: grid; gap: 8px; }
+  .tier { display: grid; grid-template-columns: 170px 150px minmax(0, 1fr); gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; }
+  .tier:nth-child(2) { margin-left: 24px; } .tier:nth-child(3) { margin-left: 48px; } .tier:nth-child(4) { margin-left: 72px; } .tier.disc .tn { color: var(--text2); }
+  .tier.team { border-color: var(--coral); }
+  .tier.disc { border-style: dashed; background: transparent; }
+  .tier:nth-child(5) { margin-left: 96px; }
+  .tn { font: 600 15px 'IBM Plex Sans', sans-serif; }
+  .to { font-size: 13px; color: var(--text2); } .to span { display: block; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .tx { font-size: 14px; color: var(--text2); } .tx b { color: var(--amber2); font-weight: 500; }
+  .tree { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .tree-root { text-align: center; font-size: 14px; color: var(--text2); padding: 10px; border: 1px solid var(--border2); border-radius: 10px; background: var(--surface2); margin-bottom: 14px; }
+  .tree-root b, .tnode b { display: block; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); font-weight: 400; }
+  .tree-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .tree-col { border-left: 1px solid var(--border2); padding-left: 14px; display: grid; gap: 6px; align-content: start; }
+  .tnode { font-size: 14px; padding: 8px 12px; border-radius: 8px; background: var(--surface2); }
+  .tnode.s { border-left: 3px solid var(--purple); }
+  .tnode.d { margin-left: 18px; border-left: 3px solid var(--blue); }
+  .tleaf { margin-left: 36px; font-size: 13px; color: var(--text2); padding: 6px 12px; border: 1px dashed var(--coral); border-radius: 8px; }
+  .shift { font-size: 14px; color: var(--text2); padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .shift:last-child { border-bottom: 0; }
+  .shift span { display: block; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+  .bands { display: grid; gap: 0; }
+  .band { background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .band b { font-weight: 500; font-size: 15px; flex: 1 1 300px; }
+  .handoff { text-align: center; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--coral2); padding: 12px 0; }
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; max-width: 1128px; margin-left: 200px; padding: 32px 64px; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); }
+  @media (max-width: 820px) {
+    .ladder { grid-template-columns: minmax(0, 1fr); }
+      .tier { grid-template-columns: minmax(0, 1fr); gap: 4px; margin-left: 0 !important; }
+    .tree-cols { grid-template-columns: minmax(0, 1fr); }
+    .foot { padding: 24px 16px; margin-left: 0; }
   }
 </style>
 </head>
@@ -528,491 +338,198 @@
 
 <!-- ═══════════════════ COVER ═══════════════════ -->
 <div class="cover">
-  <div class="version-badge">IDF · Corporate · 2026</div>
-  <h1 class="cover-title">The<br>Agentic<br><span>Organization</span></h1>
-  <p class="cover-tagline">When execution is fast, governance becomes the constraint.</p>
+  <div class="badge">IDF · Leaders · 2026</div>
+  <h1>IDF<br>for <span>Leaders</span></h1>
+  <p class="tagline">When execution becomes free, judgment becomes the bottleneck, so govern the judgment.</p>
   <div class="cover-meta">
-    <div class="cover-meta-item"><label>Scope</label><span>Corporate governance layer above IDF delivery</span></div>
-    <div class="cover-meta-item"><label>Entry point</label><span>True North — the handoff from strategy to delivery</span></div>
-    <div class="cover-meta-item"><label>Audience</label><span>C-Suite, VPs, Business Unit leads</span></div>
+    <div><label>Scope</label><span>The leadership layer above IDF for Teams</span></div>
+    <div><label>Handoff</label><span>Business outcomes, where leaders hand off to teams</span></div>
+    <div><label>Audience</label><span>C-suite, VPs, business unit leads</span></div>
   </div>
 </div>
 
-<!-- ═══════════════════ §C01 — THE SHIFT ═══════════════════ -->
-<section id="sc01">
-  <div class="section-label">C01 — The Shift</div>
-  <h2>Traditional management was built to govern execution. That's no longer the bottleneck.</h2>
-  <p style="font-size:16px;line-height:1.8;">Traditional org hierarchies exist because human execution is expensive and finite. Management's job has been to prioritize, sequence, and coordinate that effort — deciding what gets built and by whom. In an agentic world, execution effort collapses. The bottleneck shifts: from "can we build it?" to "should we build it?" From execution management to outcome governance.</p>
+<!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+<nav id="section-nav">
+  <span class="snav-group-label">The case</span>
+  <a href="#sc01" data-section="sc01"><span class="snav-num">01</span>The shift</a>
+  <span class="snav-group-label">The structure</span>
+  <a href="#sc02" data-section="sc02"><span class="snav-num">02</span>Strategy to intent</a>
+  <a href="#sc03" data-section="sc03"><span class="snav-num">03</span>The org model</a>
+  <span class="snav-group-label">Running it</span>
+  <a href="#sc04" data-section="sc04"><span class="snav-num">04</span>Information layer</a>
+  <a href="#sc05" data-section="sc05"><span class="snav-num">05</span>Where IDF fits</a>
+</nav>
 
-  <div class="dual-cards">
-    <div class="dual-card" style="border-left:3px solid var(--coral);">
-      <div class="dual-card-label" style="color:var(--coral2);">What breaks</div>
-      <ul>
-        <li>Hierarchy built on task routing</li>
-        <li>Middle management as coordination layer</li>
-        <li>Sequential approval chains</li>
-        <li>Specialist silos as execution gatekeepers</li>
-        <li>Status reporting as information infrastructure</li>
-      </ul>
-    </div>
-    <div class="dual-card" style="border-left:3px solid var(--teal);">
-      <div class="dual-card-label" style="color:var(--teal2);">What doesn't break</div>
-      <ul>
-        <li>Outcome ownership</li>
-        <li>Strategic direction</li>
-        <li>Human judgment at irreversible decision points</li>
-        <li>Accountability for results</li>
-        <li>The governance layer — it gets more important, not less</li>
-      </ul>
-    </div>
+<main>
+
+<!-- ═══════════════════ C01 ═══════════════════ -->
+<section id="sc01"><div class="inner">
+  <div class="eyebrow">01 · The shift</div>
+  <h2>Your frameworks rationed effort. Judgment is now the scarce part.</h2>
+  <p class="lede">Sprints, WIP limits and estimation all assumed people&rsquo;s effort was the limit. AI collapsed that effort. The question moves from &ldquo;can we build it?&rdquo; to &ldquo;is it worth building, and did it work?&rdquo;</p>
+
+  <div class="grid g2">
+    <div class="tile top m-none"><h4>What breaks</h4>
+      <ul class="xlist"><li>Hierarchy built on task routing</li><li>Middle management as a coordination layer</li><li>Sequential approval chains</li><li>Estimation as the filter for bad ideas</li><li>Silos that control access to execution</li><li>Status reporting as infrastructure</li></ul></div>
+    <div class="tile top m-exp"><h4>What gets scarcer</h4>
+      <ul class="olist"><li>Outcome ownership</li><li>Strategic direction</li><li>Judgment at the four moments</li><li>Accountability held by a named person</li><li>Governance, which gains weight as execution speeds up</li></ul></div>
   </div>
 
-  <p style="font-size:18px;line-height:1.8;border-left:3px solid var(--teal);padding-left:24px;margin:40px 0;color:var(--text);">AI can prepare every input. It cannot sign. Accountability — legal, moral, organizational — cannot be delegated to an agent. This is not a capability constraint. It is a structural one.</p>
+  <p class="sub">The four moments you govern</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th>Moment</th><th>The question</th><th>Without it</th></tr>
+    <tr class="m-dir"><td class="mcell">Direction</td><td>Is this worth doing?</td><td>The wrong thing, built perfectly, fast</td></tr>
+    <tr class="m-fit"><td class="mcell">Fitness</td><td>Does it solve the problem we stated?</td><td>Passing tests, failing customers</td></tr>
+    <tr class="m-exp"><td class="mcell">Exposure</td><td>Should customers see it now?</td><td>Risk arrives on someone else&rsquo;s schedule</td></tr>
+    <tr class="m-conf"><td class="mcell">Confirmation</td><td>Did it work?</td><td>Output counted as outcome, forever</td></tr>
+  </table></div>
+  <p class="caption">You decide where to place them and how formal to make them; a regulated bank answers differently from a twelve-person team. Four has held up in the scenarios tested so far, which keeps it a working hypothesis.</p>
+  <p class="rule">Your old governance was partly a side effect of slowness. Someone read the diff because reading took forty minutes. Agents removed that friction, and the evidence it left.</p>
+</div></section>
 
-  <p>Orgs that keep their execution-management structures in an agentic world will optimize for the wrong constraint. The coordination overhead that was justified by execution scarcity becomes friction.</p>
-</section>
+<!-- ═══════════════════ C02 ═══════════════════ -->
+<section id="sc02"><div class="inner">
+  <div class="eyebrow">02 · From strategy to intent</div>
+  <h2>Strategy without a signal is a wish.</h2>
+  <p class="lede">Leaders own three levels: strategy, objectives and business outcomes. Keep the format you already use; OKRs work. IDF asks only that each level is written down, has an observable signal and a named owner.</p>
 
-<!-- ═══════════════════ §C02 — TRUE NORTH & THE INTENT CASCADE ═══════════════════ -->
-<section id="sc02">
-  <div class="section-label">C02 — True North &amp; the Intent Cascade</div>
-  <h2>Strategy without a signal is a wish. True North is where direction becomes obligation.</h2>
-  <p style="font-size:16px;line-height:1.8;">IDF's delivery framework references True North but does not define it. This is where it lives.</p>
-  <p>True North is the organization's formal encoding of strategic direction: the outcomes the company has committed to pursuing, the constraints it operates within, and the signals that will confirm the strategy is working. It may be expressed as OKRs, a Balanced Scorecard, or a strategic narrative — the format is not prescribed. What is prescribed: it must be written, it must define observable signals, and it must have an owner.</p>
-  <p>True North is not a mission statement. It is a time-bound commitment to specific, measurable outcomes.</p>
-
-  <div class="cascade-wrap">
-    <div class="cascade-row header">
-      <div class="cascade-cell" style="padding:12px 0;"></div><!-- accent spacer -->
-      <div class="cascade-cell">Tier</div>
-      <div class="cascade-cell">Owner</div>
-      <div class="cascade-cell">Horizon</div>
-      <div class="cascade-cell">Example signal / outcome</div>
+  <div class="ladder">
+    <div class="rail down"><span>direction flows down</span></div>
+    <div class="tiers">
+      <div class="tier"><div class="tn">Strategy</div><div class="to">Board · C-suite<span>years</span></div><div class="tx">Be the default payment layer for LATAM SMBs</div></div>
+      <div class="tier"><div class="tn">Objectives</div><div class="to">C-suite<span>6&ndash;12 months</span></div><div class="tx">Grow active LATAM merchants by 20% · <b>above 12,000</b></div></div>
+      <div class="tier"><div class="tn">Business outcomes</div><div class="to">VP · BU lead<span>a quarter</span></div><div class="tx">Cut onboarding drop-off by 40% · <b>completion above 65%</b></div></div>
+      <div class="tier disc"><div class="tn">Discovery</div><div class="to">Outcome owner + team<span>ongoing</span></div><div class="tx">Customer signals and ideas become candidate intents</div></div>
+      <div class="tier team"><div class="tn">Intent</div><div class="to">Outcome owner<span>weeks</span></div><div class="tx">Pre-fill saved payment details · <b>abandonment below 12%</b></div></div>
     </div>
-    <div class="cascade-row" style="background:rgba(74,122,191,0.04);">
-      <div class="cascade-accent" style="background:var(--blue);"></div>
-      <div class="cascade-cell"><span class="cascade-tier">True North</span></div>
-      <div class="cascade-cell">Board / C-Suite</div>
-      <div class="cascade-cell">Annual / multi-year</div>
-      <div class="cascade-cell"><span class="cascade-example">"Become the default payment layer for LATAM SMBs"</span></div>
-    </div>
-    <div class="cascade-row" style="background:rgba(124,92,191,0.04);">
-      <div class="cascade-accent" style="background:var(--purple);"></div>
-      <div class="cascade-cell"><span class="cascade-tier">Strategic Intent</span></div>
-      <div class="cascade-cell">C-Suite</div>
-      <div class="cascade-cell">6–12 months</div>
-      <div class="cascade-cell"><span class="cascade-example">"Grow LATAM active merchants by 20%"</span></div>
-    </div>
-    <div class="cascade-row" style="background:rgba(58,158,120,0.04);">
-      <div class="cascade-accent" style="background:var(--teal);"></div>
-      <div class="cascade-cell"><span class="cascade-tier">Domain Intent</span></div>
-      <div class="cascade-cell">VP / Business Unit Lead</div>
-      <div class="cascade-cell">1–3 months</div>
-      <div class="cascade-cell"><span class="cascade-example">"Reduce LATAM onboarding drop-off by 40%"</span></div>
-    </div>
-    <div class="cascade-row" style="background:rgba(232,115,74,0.04);">
-      <div class="cascade-accent" style="background:var(--coral);"></div>
-      <div class="cascade-cell"><span class="cascade-tier">Team Intent</span></div>
-      <div class="cascade-cell">Product Owner</div>
-      <div class="cascade-cell">Days to weeks</div>
-      <div class="cascade-cell"><span class="cascade-example">"Abandonment rate below 12% at payment step"</span></div>
-    </div>
+    <div class="rail up"><span>signals flow up</span></div>
   </div>
+  <p class="caption">Only the Intent adds a mechanism, and only intents run IDF&rsquo;s cycles and judgment moments. Direction is where a team&rsquo;s intent meets a leader&rsquo;s outcome. <a href="idf.html#s02">How an Intent works →</a></p>
 
-  <p>The cascade works downward: direction → commitments → focus → delivery. The signal works upward: team signals → domain confirmation → strategic validation → True North review. Budget is allocated to intents, not to teams or headcount. A funded intent has an owner, a signal, and a measurement window.</p>
-
-  <p>Strategic and Domain Intents share the same foundation as Team Intents: a named outcome, a measurable signal, and a named owner. Two differences matter. First, they do not require a mechanism — they set direction without prescribing how. A single Domain Intent may be served by multiple Team Intents, each testing a different hypothesis. Second, only Team Intents are governed by IDF's delivery mechanics — cycles, gates, and the monitoring lifecycle.</p>
-
-  <div class="corp-table-wrap" style="margin-top:24px;">
-    <table class="corp-table">
-      <thead>
-        <tr>
-          <th style="width:140px;">Tier</th>
-          <th>Template</th>
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:rgba(74,122,191,0.04);">
-          <td style="border-left:3px solid var(--blue);font-weight:500;color:var(--blue2);">True North</td>
-          <td style="font-size:13px;color:var(--text3);">Company-defined — OKRs, Balanced Scorecard, or strategic narrative. No template prescribed.</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);">"Become the default payment layer for LATAM SMBs"</td>
-        </tr>
-        <tr style="background:rgba(124,92,191,0.04);">
-          <td style="border-left:3px solid var(--purple);font-weight:500;color:var(--purple2);">Strategic Intent</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">[Outcome] <span style="color:var(--text3);">·</span> measured by [Signal]</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);">"Grow active LATAM merchant base by 20%" · active merchant count above 12,000</td>
-        </tr>
-        <tr style="background:rgba(58,158,120,0.04);">
-          <td style="border-left:3px solid var(--teal);font-weight:500;color:var(--teal2);">Domain Intent</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">[Outcome] <span style="color:var(--text3);">·</span> measured by [Signal]</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);">"Reduce onboarding drop-off by 40%" · onboarding completion rate above 65%</td>
-        </tr>
-        <tr style="background:rgba(232,115,74,0.04);">
-          <td style="border-left:3px solid var(--coral);font-weight:500;color:var(--coral2);">Team Intent</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">[Outcome] <span style="color:var(--text3);">·</span> <span style="color:var(--amber2);">by [Mechanism]</span> <span style="color:var(--text3);">·</span> measured by [Signal]</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);">"Reduce checkout abandonment by pre-filling saved payment details" · abandonment rate below 12%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout" style="border-left:3px solid var(--amber);background:rgba(191,143,58,0.04);">
-    <div class="callout-label" style="color:var(--amber2);">Portfolio hygiene</div>
-    <ul>
-      <li style="color:var(--amber2);">A Strategic or Domain Intent that consistently fails to move its signal within its expected horizon is a candidate for abandonment or re-scoping.</li>
-      <li style="color:var(--amber2);">Conflicting intents must be resolved at the domain level before team-level delivery begins.</li>
-      <li style="color:var(--amber2);">The portfolio is not a backlog. It's a live ledger of funded commitments, each with a signal target and a closure date.</li>
-    </ul>
-  </div>
-
-  <p><strong style="color:var(--text);">How do you know you're spending money in the right place?</strong> Every funded intent traces to a Domain Intent. Every Domain Intent traces to a Strategic Intent. Every Strategic Intent traces to True North. If a team intent can't be traced upward to True North, it shouldn't be funded. If a signal hasn't moved after two cycles, the intent needs review — not more execution.</p>
-
-  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-top:48px;margin-bottom:4px;">The cascade in practice</div>
-  <p style="font-size:13px;color:var(--text2);margin-bottom:0;">Expand each layer to see how a single True North becomes team-level delivery.</p>
-
-  <div class="ct-layout">
-    <!-- ── TREE ── -->
-    <div class="ct-tree-col">
-
-      <!-- True North -->
-      <div class="ct-card ct-card-tn">
-        <span class="ct-badge ct-badge-tn">True North</span>
-        <div class="ct-outcome">Become the default payment layer for LATAM SMBs</div>
-        <div class="ct-signal">Signal: 40% of LATAM SMBs with under 50 employees as active merchants</div>
+  <p class="sub">One strategy, many bets</p>
+  <div class="tree">
+    <div class="tree-root"><b>Strategy</b>Default payment layer for LATAM SMBs</div>
+    <div class="tree-cols">
+      <div class="tree-col">
+        <div class="tnode s"><b>Objective</b>Grow active merchants 20%</div>
+        <div class="tnode d"><b>Business outcome</b>Cut onboarding drop-off 40%</div>
+        <div class="tleaf">Pre-fill saved payment details</div>
+        <div class="tleaf">Camera capture for KYC on mobile</div>
+        <div class="tnode d"><b>Business outcome · Sales</b>40% of activations via partners</div>
+        <div class="tleaf">Partner program for aggregators</div>
+        <div class="tnode d"><b>Business outcome</b>Launch in two new markets</div>
+        <div class="tleaf">Brazilian Portuguese onboarding</div>
       </div>
-      <button class="ct-btn is-open" data-target="ct-si" aria-expanded="true">
-        <span class="ct-btn-icon">−</span>
-        <span class="ct-btn-label">2 Strategic Intents</span>
-      </button>
-
-      <div id="ct-si" class="ct-children is-open">
-
-        <!-- SI 1 -->
-        <div class="ct-child">
-          <div class="ct-card ct-card-si">
-            <span class="ct-badge ct-badge-si">Strategic Intent</span>
-            <div class="ct-outcome">Grow active LATAM merchant base by 20% this year</div>
-            <div class="ct-signal">Signal: active merchant count above 12,000</div>
-          </div>
-          <button class="ct-btn" data-target="ct-di-1" aria-expanded="false">
-            <span class="ct-btn-icon">+</span>
-            <span class="ct-btn-label">3 Domain Intents</span>
-          </button>
-          <div id="ct-di-1" class="ct-children">
-
-            <!-- DI 1.1 -->
-            <div class="ct-child">
-              <div class="ct-card ct-card-di">
-                <span class="ct-badge ct-badge-di">Domain Intent</span>
-                <div class="ct-outcome">Reduce merchant onboarding drop-off by 40%</div>
-                <div class="ct-signal">Signal: onboarding completion rate above 65%</div>
-              </div>
-              <button class="ct-btn" data-target="ct-ti-1-1" aria-expanded="false">
-                <span class="ct-btn-icon">+</span>
-                <span class="ct-btn-label">2 Team Intents</span>
-              </button>
-              <div id="ct-ti-1-1" class="ct-children">
-                <div class="ct-child">
-                  <div class="ct-card ct-card-ti">
-                    <span class="ct-badge ct-badge-ti">Team Intent</span>
-                    <div class="ct-outcome">Reduce checkout abandonment at the payment step by pre-filling saved payment details for returning customers</div>
-                    <div class="ct-signal">Signal: abandonment rate below 12% (currently 22%)</div>
-                  </div>
-                </div>
-                <div class="ct-child">
-                  <div class="ct-card ct-card-ti">
-                    <span class="ct-badge ct-badge-ti">Team Intent</span>
-                    <div class="ct-outcome">Simplify KYC document upload on mobile by replacing file picker with camera capture</div>
-                    <div class="ct-signal">Signal: KYC completion rate on mobile above 80% (currently 54%)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- DI 1.2 — non-software domain (Sales / Partnerships) -->
-            <div class="ct-child">
-              <div class="ct-card ct-card-di">
-                <span class="ct-badge ct-badge-di">Domain Intent · Sales</span>
-                <div class="ct-outcome">Grow merchant acquisition through regional reseller partnerships</div>
-                <div class="ct-signal">Signal: 40% of new merchant activations sourced through partner channel (currently 12%)</div>
-              </div>
-              <button class="ct-btn" data-target="ct-ti-1-2" aria-expanded="false">
-                <span class="ct-btn-icon">+</span>
-                <span class="ct-btn-label">1 Team Intent</span>
-              </button>
-              <div id="ct-ti-1-2" class="ct-children">
-                <div class="ct-child">
-                  <div class="ct-card ct-card-ti">
-                    <span class="ct-badge ct-badge-ti">Team Intent</span>
-                    <div class="ct-outcome">Launch partner program for regional payment aggregators by establishing a tiered commission structure</div>
-                    <div class="ct-signal">Signal: 3 signed agreements with aggregators each serving 500+ SMBs within 90 days</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- DI 1.3 -->
-            <div class="ct-child">
-              <div class="ct-card ct-card-di">
-                <span class="ct-badge ct-badge-di">Domain Intent</span>
-                <div class="ct-outcome">Launch in two new LATAM markets</div>
-                <div class="ct-signal">Signal: 500 active merchants per new market within 90 days of launch</div>
-              </div>
-              <button class="ct-btn" data-target="ct-ti-1-3" aria-expanded="false">
-                <span class="ct-btn-icon">+</span>
-                <span class="ct-btn-label">1 Team Intent</span>
-              </button>
-              <div id="ct-ti-1-3" class="ct-children">
-                <div class="ct-child">
-                  <div class="ct-card ct-card-ti">
-                    <span class="ct-badge ct-badge-ti">Team Intent</span>
-                    <div class="ct-outcome">Launch Brazilian Portuguese onboarding flow by translating and adapting all onboarding screens</div>
-                    <div class="ct-signal">Signal: BR onboarding completion rate above 60% within 30 days of launch</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- SI 2 -->
-        <div class="ct-child">
-          <div class="ct-card ct-card-si">
-            <span class="ct-badge ct-badge-si">Strategic Intent</span>
-            <div class="ct-outcome">Reduce annual merchant churn below 3%</div>
-            <div class="ct-signal">Signal: annual churn rate below 3%</div>
-          </div>
-          <button class="ct-btn" data-target="ct-di-2" aria-expanded="false">
-            <span class="ct-btn-icon">+</span>
-            <span class="ct-btn-label">1 Domain Intent</span>
-          </button>
-          <div id="ct-di-2" class="ct-children">
-
-            <!-- DI 2.1 -->
-            <div class="ct-child">
-              <div class="ct-card ct-card-di">
-                <span class="ct-badge ct-badge-di">Domain Intent</span>
-                <div class="ct-outcome">Improve first-month merchant activation rate</div>
-                <div class="ct-signal">Signal: 70% of new merchants complete first transaction within 7 days</div>
-              </div>
-              <button class="ct-btn" data-target="ct-ti-2-1" aria-expanded="false">
-                <span class="ct-btn-icon">+</span>
-                <span class="ct-btn-label">1 Team Intent</span>
-              </button>
-              <div id="ct-ti-2-1" class="ct-children">
-                <div class="ct-child">
-                  <div class="ct-card ct-card-ti">
-                    <span class="ct-badge ct-badge-ti">Team Intent</span>
-                    <div class="ct-outcome">Reduce time to first transaction by pre-populating merchant profile from registration data</div>
-                    <div class="ct-signal">Signal: median time from activation to first transaction below 4 hours (currently 11 hours)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── ASIDE ── -->
-    <div class="ct-aside">
-      <div class="ct-aside-label">Signal flow</div>
-      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:20px;">Every intent at every layer carries a signal. Signals travel upward — when a team signal achieves target, the domain layer observes it. When the domain signal validates, the strategic layer observes.</p>
-      <div class="ct-aside-item">
-        <span class="ct-aside-dot" style="background:var(--blue);"></span>
-        <span>True North is reviewed when Strategic Intent signal cohorts close.</span>
-      </div>
-      <div class="ct-aside-item">
-        <span class="ct-aside-dot" style="background:var(--purple);"></span>
-        <span>Strategic Intents close when their own signal validates.</span>
-      </div>
-      <div class="ct-aside-item">
-        <span class="ct-aside-dot" style="background:var(--teal);"></span>
-        <span>Domain Intents close when team signal movement confirms direction.</span>
-      </div>
-      <div class="ct-aside-item">
-        <span class="ct-aside-dot" style="background:var(--coral);"></span>
-        <span>Team Intents are governed by IDF delivery mechanics — cycles, gates, monitoring.</span>
+      <div class="tree-col">
+        <div class="tnode s"><b>Objective</b>Annual churn below 3%</div>
+        <div class="tnode d"><b>Business outcome</b>70% transact within 7 days</div>
+        <div class="tleaf">Pre-populate merchant profile</div>
       </div>
     </div>
   </div>
+  <p class="caption">Leaders set the levels above the dashed boxes. Each dashed box is an intent, and several can serve one business outcome, each testing a different bet.</p>
 
-</section>
+  <p class="sub">Portfolio rules</p>
+  <div class="grid g4">
+    <div class="tile"><h4>Fund intents</h4><p>Teams and headcount follow. A funded intent has an owner, a signal and a window.</p></div>
+    <div class="tile"><h4>Trace or don&rsquo;t fund</h4><p>If an intent doesn&rsquo;t trace up to a business outcome, don&rsquo;t fund it.</p></div>
+    <div class="tile"><h4>Two cycles, no movement</h4><p>The intent gets a Direction review before more execution.</p></div>
+    <div class="tile"><h4>Abandon in public</h4><p>Resolve conflicts between outcomes before teams start. Expect some intents to close as abandoned.</p></div>
+  </div>
+</div></section>
 
-<!-- ═══════════════════ §C03 — THE ORG MODEL ═══════════════════ -->
-<section id="sc03">
-  <div class="section-label">C03 — The Org Model</div>
-  <h2>Every function runs cycles. The execution layer is no longer only engineering.</h2>
-  <p style="font-size:16px;line-height:1.8;">In a fully agentic organization, every function that produces outcomes operates under the same governance model. Finance, Marketing, HR, Operations, Customer Success — not only product engineering.</p>
+<!-- ═══════════════════ C03 ═══════════════════ -->
+<section id="sc03"><div class="inner">
+  <div class="eyebrow">03 · The org model</div>
+  <h2>Any function can run on intents.</h2>
+  <p class="lede">That is IDF&rsquo;s working hypothesis. The evidence so far comes from software delivery, so treat it as untested outside it.</p>
 
-  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Team Intent examples — outcome · mechanism · signal</div>
-  <div class="corp-table-wrap">
-    <table class="corp-table">
-      <thead>
-        <tr>
-          <th>Function</th>
-          <th>Outcome</th>
-          <th>Mechanism</th>
-          <th>Signal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Marketing</td>
-          <td>Increase trial-to-paid conversion</td>
-          <td style="color:var(--text3);">by redesigning the upgrade flow</td>
-          <td>Conversion rate above 8%</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">HR</td>
-          <td>Reduce time-to-hire for engineering roles</td>
-          <td style="color:var(--text3);">by automating screening and scheduling</td>
-          <td>Median days-to-offer below 21</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Finance</td>
-          <td>Close monthly books with zero manual corrections</td>
-          <td style="color:var(--text3);">by automating journal entry reconciliation</td>
-          <td>0 manual journal entries in close process</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Operations</td>
-          <td>Reduce support ticket resolution time</td>
-          <td style="color:var(--text3);">by implementing priority-based routing</td>
-          <td>90th percentile under 4 hours</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th>Function</th><th>Outcome</th><th>by Mechanism</th><th>measured by Signal</th></tr>
+    <tr><td>Marketing</td><td>Raise trial-to-paid conversion</td><td>Redesign the upgrade flow</td><td>Conversion above 8%</td></tr>
+    <tr><td>HR</td><td>Hire engineers faster</td><td>Automate screening and scheduling</td><td>Median days-to-offer below 21</td></tr>
+    <tr><td>Finance</td><td>Close the books cleanly</td><td>Automate reconciliation</td><td>Zero manual journal entries</td></tr>
+    <tr><td>Operations</td><td>Resolve tickets faster</td><td>Priority-based routing</td><td>90th percentile under 4 hours</td></tr>
+  </table></div>
+
+  <div class="grid g3" style="margin-top:24px">
+    <div class="tile top m-dir"><h4>What transforms</h4>
+      <div class="shift"><span>Managers</span>task routing → owning outcomes and closing intents</div>
+      <div class="shift"><span>Specialists</span>doing every instance → writing the standard agents read</div></div>
+    <div class="tile top m-fit"><h4>What shifts</h4>
+      <div class="shift"><span>Meetings</span>status → decision</div>
+      <div class="shift"><span>Reporting</span>assembly → consumption</div>
+      <div class="shift"><span>Approval</span>milestones → judgment moments</div></div>
+    <div class="tile top m-exp"><h4>What it costs</h4>
+      <ul class="olist"><li>Senior attention, permanently. Judgment doesn&rsquo;t scale.</li><li>Cover for people who reject finished work.</li><li>Friction you paid to remove, added back by choice.</li><li>Seeing which work didn&rsquo;t work, without softening it.</li></ul></div>
+  </div>
+</div></section>
+
+<!-- ═══════════════════ C04 ═══════════════════ -->
+<section id="sc04"><div class="inner">
+  <div class="eyebrow">04 · The information layer</div>
+  <h2>Keep the ceremonies. Change what you bring.</h2>
+  <p class="lede">Signals and delivery records accumulate as a by-product of execution. Nobody assembles them the week before a meeting.</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th>Who</th><th>Reads</th><th>When</th></tr>
+    <tr><td>Board · C-suite</td><td>Objectives and their signals</td><td>Quarterly, or when an objective closes</td></tr>
+    <tr><td>VP · BU lead</td><td>Business outcomes and the intents serving them</td><td>Each cycle</td></tr>
+    <tr><td>Outcome owner</td><td>Intent Log, review reports, Confirmation signals</td><td>Continuously</td></tr>
+    <tr><td>Delivery Team</td><td>Review reports, Iteration Records</td><td>Each iteration</td></tr>
+  </table></div>
+
+  <p class="sub">What each ceremony becomes</p>
+  <div class="grid g5">
+    <div class="tile"><h4>QBR</h4><p>Decide which intents continue, change or close.</p></div>
+    <div class="tile"><h4>Sprint review</h4><p>A Fitness review: someone uses the work as a customer would.</p></div>
+    <div class="tile"><h4>All-hands</h4><p>Context and narrative on data people have already seen.</p></div>
+    <div class="tile"><h4>Board deck</h4><p>Compiled from signals. Less assembly, same responsibility.</p></div>
+    <div class="tile"><h4>Retrospective</h4><p>Decide what to change; the data is already there.</p></div>
   </div>
 
-  <h3 style="margin-top:48px;margin-bottom:16px;">What transforms</h3>
-  <p>Middle management shifts from task routing to intent ownership and signal observation. Their job is not "make sure people are working." It's "own the outcome and close the intent when the signal lands."</p>
-  <p>Specialist silos shift from "we control this capability" to "we govern this capability" — encoding the standard, not executing every instance.</p>
-
-  <h3 style="margin-top:40px;margin-bottom:16px;">What shifts</h3>
-  <p><strong style="color:var(--text);font-weight:500;">Meetings shift from status to decision.</strong> When progress is tracked continuously through artifacts, the reason to convene is human judgment — not information transfer.</p>
-  <p><strong style="color:var(--text);font-weight:500;">Reporting shifts from assembly to consumption.</strong> The data exists continuously; humans no longer assemble it from scratch. The cadence and format may still be required by governance or regulation — what changes is the source.</p>
-  <p><strong style="color:var(--text);font-weight:500;">Approval authority shifts from milestones to outcomes.</strong> Decisions are tied to signal observations, not to project phases or calendar dates.</p>
-</section>
-
-<!-- ═══════════════════ §C04 — THE INFORMATION LAYER ═══════════════════ -->
-<section id="sc04">
-  <div class="section-label">C04 — The Information Layer</div>
-  <h2>Signals are produced continuously. How your organization consumes them is yours to decide.</h2>
-  <p style="font-size:16px;line-height:1.8;">In an agentic organization, delivery artifacts and intent signals accumulate as a byproduct of execution — not assembled on demand when a meeting approaches. This changes the nature of governance ceremonies, not necessarily their existence. A QBR may still be the right venue for the Board to review strategic intent performance. What changes is what gets presented: live signal data, not a deck assembled from scratch the week before.</p>
-
-  <div class="corp-table-wrap" style="margin-bottom:24px;">
-    <table class="corp-table">
-      <thead>
-        <tr>
-          <th>Role</th>
-          <th>What they read</th>
-          <th>Cadence</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Board / C-Suite</td>
-          <td>Strategic Intent statuses + signals achieved</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);">Event-triggered (signal cohort closes)</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">VP / Business Unit</td>
-          <td>Domain Intent log + team intent portfolio</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);">Per cycle completion</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Product Owner</td>
-          <td>Intent log + gate reports + monitoring signal</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);">Continuous</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Delivery Team</td>
-          <td>Gate reports + iteration records</td>
-          <td style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);">Per iteration</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="callout">
+    <h4>Regulated environments</h4>
+    <p>Some ceremonies exist because the law requires a human signature. A change advisory board may still be mandatory. AI prepares the evidence, a named person accepts the liability, and the ceremony stays.</p>
   </div>
+</div></section>
 
-  <div class="corp-table-wrap">
-    <table class="corp-table">
-      <thead>
-        <tr>
-          <th>Ceremony</th>
-          <th>What the content becomes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">QBR</td>
-          <td>Populated from Strategic Intent signals and completion data. The conversation shifts from "what happened" to "which intents to continue, adjust, or close."</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Sprint review / demo</td>
-          <td>Delivery evidence lives in gate artifacts. The review confirms signal movement against the Intent, not just feature completion.</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">All-hands / status update</td>
-          <td>Portfolio Intent status is available continuously. The all-hands adds narrative and context to data that's already visible — not the first time most people see it.</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Board deck</td>
-          <td>Compiled from Strategic Intent signals and observations. Assembly effort shrinks; governance responsibility doesn't.</td>
-        </tr>
-        <tr>
-          <td style="font-weight:500;color:var(--text);">Retrospective</td>
-          <td>Cycle data is available for pattern analysis continuously. The session becomes a decision point, not an information gathering event.</td>
-        </tr>
-      </tbody>
-    </table>
+<!-- ═══════════════════ C05 ═══════════════════ -->
+<section id="sc05"><div class="inner">
+  <div class="eyebrow">05 · Where IDF fits</div>
+  <h2>Leaders set the outcomes. Teams deliver against them.</h2>
+
+  <div class="bands">
+    <div class="band"><span class="chip">This page</span><b>Strategy, objectives, business outcomes, the org model, the information layer</b></div>
+    <div class="handoff">Business outcome → Intent · the handoff</div>
+    <div class="band"><span class="chip">IDF for Teams</span><b>Intents, cycles, the four judgment moments, release switches, Confirmation</b><a href="idf.html">Open the framework →</a></div>
   </div>
+  <p class="caption">If an intent can&rsquo;t be traced to a business outcome, the work is unfunded in the strategic sense, even if it has budget.</p>
 
-  <p>The question isn't whether to hold the ceremony. It's what you bring to it.</p>
-
-  <div class="callout" style="border-left-color:var(--amber);margin-top:32px;">
-    <div class="callout-label" style="color:var(--amber2);">Regulated environments</div>
-    <p>Some ceremonies exist because a human signature is legally required — not because the analysis needs a human. In regulated industries, a CAB meeting may be mandatory not to verify technical quality but to confirm no compliance policy was missed and to assign legal accountability to a named individual. AI can prepare the evidence; it cannot accept the liability. In these contexts, the ceremony doesn't change — the preparation does.</p>
+  <div class="callout">
+    <h4>Read this as hypotheses</h4>
+    <p>Building IDF with IDF exposed a failure: a review function logged 13 passes in 13 cycles and caught nothing, because it had no independence. No controlled study stands behind the ladder or the four moments, and nobody has tested them at enterprise scale. Check each claim against your own organization.</p>
+    <p>The full argument, with its sources, costs and open questions, is in <em class="book">The Judgment Layer</em>. IDF&rsquo;s author has worked at CI&amp;T since 2007 and built IDF to test these ideas in use. You don&rsquo;t need IDF to use them.</p>
   </div>
-</section>
+</div></section>
 
-<!-- ═══════════════════ §C05 — WHERE IDF FITS ═══════════════════ -->
-<section id="sc05">
-  <div class="section-label">C05 — Where IDF Fits</div>
-  <h2>IDF governs from True North down. This document governs True North itself.</h2>
-  <p style="font-size:16px;line-height:1.8;">IDF's delivery framework begins at True North and governs everything below it: how Team Intents are executed, how gates work, how releases are controlled, how signals are observed and intents are closed.</p>
-  <p>This document governs what True North is, how it cascades into the intent hierarchy, what the org model looks like at each tier, and how information flows without status meetings.</p>
-  <p>The handoff point is True North. The corporate layer produces it. The delivery framework consumes it. A Team Intent in IDF must be traceable to a Domain Intent, which must trace to True North. If the trace breaks, the work is unfunded in the strategic sense — even if it has budget.</p>
+</main>
 
-  <div class="link-block">
-    <div>
-      <div class="link-block-label">Delivery framework</div>
-      <p>Read the IDF delivery mechanics — Intent, Cycle, Iteration, Gates, and Monitoring.</p>
-    </div>
-    <a href="idf.html">Intent Driven Flow →</a>
-  </div>
-</section>
+<footer class="foot"><span>IDF · Leaders · 2026</span><span>CC BY 4.0 · Roberto Pillon Franco</span></footer>
 
-<footer>
-  <span>IDF · Corporate · 2026</span>
-  <span>CC BY 4.0 · Roberto Pillon Franco</span>
-</footer>
-
-<script src="nav.js?v=13"></script>
 <script>
-  document.querySelectorAll('.ct-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var targetId = btn.dataset.target;
-      var wrap = document.getElementById(targetId);
-      if (!wrap) return;
-      var isOpen = wrap.classList.toggle('is-open');
-      btn.querySelector('.ct-btn-icon').textContent = isOpen ? '−' : '+';
-      btn.setAttribute('aria-expanded', isOpen);
-    });
-  });
+(function () {
+  var links = document.querySelectorAll('#section-nav a');
+  function setActive(id) {
+    links.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('data-section') === id); });
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) { if (entry.isIntersecting) setActive(entry.target.id); });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+  document.querySelectorAll('main section').forEach(function (s) { observer.observe(s); });
+  setActive(window.location.hash ? window.location.hash.slice(1) : 'sc01');
+})();
 </script>
+<script src="nav.js?v=14"></script>
 </body>
 </html>

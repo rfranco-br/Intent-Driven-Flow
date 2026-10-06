@@ -112,7 +112,7 @@
   const pages = [
     { file: 'index.html',          label: 'Overview' },
     { file: 'idf.html',            label: 'Framework' },
-    { file: 'idf-corporate.html',  label: 'Corporate' },
+    { file: 'idf-corporate.html',  label: 'Leaders' },
   ];
 
   const pills = pages.map(p => {
