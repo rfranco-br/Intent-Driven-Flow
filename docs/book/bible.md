@@ -141,43 +141,51 @@ Item 6 is mandatory. Item 8 is the reader's takeaway and the most-screenshotted 
 
 ---
 
-## Chapter map — revised
+## Chapter map — Draft 5 (6 Oct 2026)
 
-Two changes from the last version, both from your answers.
-
-**Ch 1 is now the demo-to-scale gap.** "Anyone can make an isolated cool demo with AI, most can't replicate the success at large scale with multiple dependencies" is a more visceral door than "the bottleneck moved." It's the reader's lived experience, and the thesis explains it.
-
-**Ch 8 is now judgment points, not gates.** Your answer — gates are a reference, not mandatory; the goal is to point out when humans must interact with the process — moves this from procedure to map. This is the doctrinal centre of the book.
+**Problem and solution side by side, in dependency order.** Roberto may publish the book as a series of standalone articles, so each part carries a full arc: a problem, then what we'd do about it. Each part should be readable on its own.
 
 ### Part I — The ground moved
 
 | # | Chapter | The one idea |
 |---|---|---|
-| 1 | **The pilot that never scaled** | Forty successful demos, nothing in production. What didn't scale was judgment. |
-| 2 | **Your instruments went dark** | Velocity and story points measured human bandwidth. Agents absorbed it. Output doubled and the dashboard stopped meaning anything in the same quarter. |
-| 3 | **The batch problem** | >90% ship in batches; AI-heavy teams merge ~2× the PRs. More flow into a fixed-frequency valve makes queues, not value. |
-| 4 | **"Who approved this?"** | The governance vacuum. What an auditor asks, what the EU AI Act requires, what happens when the board asks first. |
+| 1 | **The pilot that never scaled** | Forty successful demos, nothing in production. What didn't scale was judgment. The thesis chapter. |
 
-### Part II — What actually generates value
+### Part II — Decide what's worth building
 
 | # | Chapter | The one idea |
 |---|---|---|
-| 5 | **Outcomes, not output** | The intent as unit of work. A ticket is now the wrong container. |
-| 6 | **Shipping is not done. Confirmed is done.** | Delivery and value are two events. Only one is on your roadmap. |
-| 7 | **Deploy is not release** | ✅ *drafted* — the switch as governance instrument. Answers ch 3. |
-| 8 | **Where judgment can't be delegated** | The map of non-negotiable judgment moments, what breaks at each, and why you choose the placement. **The doctrinal centre.** |
-| 9 | **Your system's memory is capital** | Context, skills, and agent authority as assets that depreciate silently. |
+| 2 | **Outcomes, not output** | The intent as unit of work. Obligations and enablers are governed differently; an enabler borrows its direction and confirmation from the intents it serves. |
+| 3 | **Shipping is not done. Confirmed is done.** | Delivery and value are two events. Abandoned is a legitimate outcome. |
 
-### Part III — Leading the change
+### Part III — Ship without batching
 
 | # | Chapter | The one idea |
 |---|---|---|
-| 10 | **From demo to scale** | The maturity model — Structured → Calibrated → Autonomous — with real graduation criteria. Answers ch 1. **Promoted from playbook P3.** |
-| 11 | **How you'll know it's working** | The instruments that survive, and the ones to switch off. |
+| 4 | **The batch problem** | More flow into a fixed-frequency valve makes queues, not value. DORA research: throughput and stability move together. |
+| 5 | **Deploy is not release** | The switch as governance instrument. Answers ch 4. |
+
+### Part IV — Govern the judgment
+
+| # | Chapter | The one idea |
+|---|---|---|
+| 6 | **"Who approved this?"** | The governance vacuum: governance was a side effect of slow work. |
+| 7 | **Where judgment can't be delegated** | The four moments: direction (is this worth doing?), fitness (does it solve the problem we stated?), exposure, confirmation. **The doctrinal centre.** Answers ch 6. |
+| 8 | **Your system's memory is capital** | Context, practice and agent authority as assets that depreciate silently. |
+
+### Part V — Lead the change
+
+| # | Chapter | The one idea |
+|---|---|---|
+| 9 | **Your instruments went dark** | Velocity measured human bandwidth; some metrics improve as things get worse. |
+| 10 | **How you'll know it's working** | Six metrics and how each gets faked; BCP as the unit finance can trust; DORA for work no customer sees. Answers ch 9. |
+| 11 | **From demo to scale** | The maturity model, Structured → Calibrated → Autonomous. Answers ch 1. |
 | 12 | **What it costs** | The honest ledger. Who shouldn't do this. |
-| 13 | **Where to start, and what we don't know** | One first move, not a programme. Then admitted uncertainty — including our own 13-out-of-13 problem. |
+| 13 | **Where to start, and what we don't know** | One first move, then admitted uncertainty, including our own 13-out-of-13 problem and the Bitter Lesson counter-argument. |
 
-**Structural symmetry to preserve:** ch 3 poses the batch problem and ch 7 answers it. Ch 1 poses the scale problem and ch 10 answers it. Ch 4 poses the governance vacuum and ch 8 answers it. Every chapter in Part I has a partner later in the book — that's what makes it feel constructed rather than assembled.
+**Structural symmetry to preserve:** every problem sits next to its answer (4→5, 6→7, 9→10). Ch 1's scale problem is answered by ch 11. Chapter cross-references must stay true if the parts are published separately.
+
+**Disclosure:** the introduction's "Where I'm writing from" states Roberto's CI&T role since 2007 and names IDF as the framework the book's ideas come from (built with itself; not a prerequisite).
 
 ---
 

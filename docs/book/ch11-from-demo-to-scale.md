@@ -1,22 +1,20 @@
-# Chapter 10: From Demo to Scale
+# **Chapter 11:** From Demo to Scale
 
-*Draft 3 · stop-slop pass*
-
----
+*Draft 5 · problem-and-solution order*
 
 ### The question you'll hear within a quarter
 
-Once the judgment moments from chapter 8 are in place and working, someone will ask the obvious question.
+Once the judgment moments from chapter 7 are in place and working, someone will ask the obvious question, and you may be the person asking it.
 
 "When can we take the humans out?"
 
-They will ask in good faith. It is usually someone competent who has watched the gates pass cleanly for two months and has correctly identified them as overhead. Most organizations answer that governance requires the gates and so they are permanent. That answer is wrong, and it will lose. It treats each judgment moment as equally permanent and defends them all with the same weak argument.
+They will ask in good faith. It is usually someone competent who has watched the gates pass cleanly for two months and has correctly identified them as overhead. Most organizations answer that governance requires the gates and so they are permanent. I think that answer is wrong, and it will lose. It treats each judgment moment as equally permanent and defends them all with the same weak argument.
 
-A better answer: some of them graduate on evidence, some never graduate, and you should be able to say which is which in advance, before anyone asks.
+The better answer, I think: some of them graduate on evidence, some never graduate, and you should be able to say which is which in advance, before anyone asks.
 
 ### Three stages, earned on evidence
 
-| Stage | Name | What's true |
+| **Stage** | **Name** | **What's true** |
 |---|---|---|
 | 1 | **Structured** | Each judgment moment runs at full intensity. Teams start here, and a team returns here after a failure. |
 | 2 | **Calibrated** | At least one judgment moment has met its evidence threshold and been formally relaxed. The rest still run in full. |
@@ -30,7 +28,7 @@ And stage is a live reading. You don't climb a ladder and stay on it. The stage 
 
 ### Graduation is a decision
 
-This part separates a maturity model from a compliance checklist, and it's worth defending.
+I think this part separates a maturity model from a compliance checklist, and I'll defend it.
 
 Crossing a threshold makes a team eligible, and graduates nothing by itself. Two people then have to agree to graduate it, and either one can decline even when the number is met.
 
@@ -56,7 +54,7 @@ Four things stay at every stage, however good the numbers get. The list is short
 
 **The escalation obligation.** An agent that hits its boundary must be able to reach a person, and that person must answer. Reducing gate overhead never reduces the duty to respond when something asks for help.
 
-**The mechanism check.** The check asks whether the output matches how you said you would achieve the outcome, which is a different question from whether it passed its tests. The reasoning here generalizes, so it's worth following. Coverage is a metric you can measure, and anything you can measure you can eventually automate. Whether a solution matches its intent is a comparison between a thing and a purpose, and the code doesn't contain the purpose. No automated system can make that comparison for you.
+**The mechanism check.** The check asks whether the output matches how you said you would achieve the outcome, which is a different question from whether it passed its tests. The reasoning here generalizes, so it's worth following. Coverage is a metric you can measure, and anything you can measure you can eventually automate. Whether a solution matches its intent is a comparison between a thing and a purpose, and the code doesn't contain the purpose. I don't believe any automated system can make that comparison for you.
 
 **The trigger for a deep context audit.** The routine pre-flight check can fade into the background. The audit itself stays, and when something structural changes, you run it regardless of stage.
 
@@ -78,7 +76,7 @@ Someone must count. Graduating on remembered impressions means graduating on opt
 
 Regression will hurt at the worst moment. A gate comes back right after a failure, when the team is under pressure and least wants more process. At that moment the rule earns its keep, and people will argue against it most persuasively. Decide now, while things are calm, that you'll hold it.
 
-And Stage 3 is not the goal, an unfashionable thing to say. A team can sit at Stage 2 for years because its domain carries high consequences, and nothing is wrong with that. If you set Autonomous as a target, teams will graduate on thin evidence to satisfy a roadmap.
+And Stage 3 is not the goal, which I know is an unfashionable thing to say. A team can sit at Stage 2 for years because its domain carries high consequences, and nothing is wrong with that. If you set Autonomous as a target, teams will graduate on thin evidence to satisfy a roadmap.
 
 ### Why this chapter is here
 

@@ -1,6 +1,6 @@
 # Chapter 8: Where Judgment Can't Be Delegated
 
-*Draft 3 · stop-slop pass*
+*Draft 4 · light voice pass*
 
 ---
 
@@ -20,7 +20,7 @@ This chapter gives you no meeting to schedule, no ceremony to adopt and no RACI 
 
 It gives you a map of the moments where I believe human judgment is non-negotiable: the places where, if you leave judgment out, you get a specific and predictable failure. You decide where to place those moments in your delivery flow, what to call them, how formal to make them and how many to run. A regulated bank and a twelve-person product team should decide differently.
 
-I am describing what must be true, and your calendar stays yours. The distinction matters. Organizations adopted the frameworks that dictated every step as theater and dropped them as overhead. The frameworks people still use twenty years later named the thing that mattered and left the implementation alone.
+I am describing what I believe must be true, and your calendar stays yours. The distinction matters. Organizations adopted the frameworks that dictated every step as theater and dropped them as overhead. The frameworks people still use twenty years later named the thing that mattered and left the implementation alone.
 
 ### The four moments
 
@@ -33,23 +33,23 @@ I am describing what must be true, and your calendar stays yours. The distinctio
 
 You met two of these already, exposure in chapter 7 and confirmation in chapter 6. The other two are where most organizations have no cover today.
 
-The status of this list needs stating. Four is the number that held up across each scenario I tested it against, and that doesn't prove four is complete. Chapter 13 says more.
+The status of this list needs stating. Four is the number that held up across each scenario I tested it against. That doesn't prove four is complete, and I'm willing to be wrong or partially right about it. Chapter 13 says more.
 
 ### Direction: is this worth doing?
 
 This one runs against intuition.
 
-The instinct says that when building takes no effort, deciding what to build matters less, because you can build something else. The arithmetic says the opposite. The effort of building the wrong thing fell, so you build more wrong things. Difficulty no longer protects you.
+It is a fair instinct to think that when building takes no effort, deciding what to build matters less, because you can build something else. The arithmetic says the opposite. The effort of building the wrong thing fell, so you build more wrong things. Difficulty no longer protects you.
 
-Under the old economics, you killed a bad idea in estimation. Someone said "that's six weeks," and the room reconsidered. That filter is gone. Six weeks became an afternoon, and an afternoon doesn't trigger anyone's scrutiny.
+Under the old economics, you killed a bad idea in estimation. You have probably been in the room when someone said "that's six weeks" and everyone reconsidered. That filter is gone. Six weeks became an afternoon, and an afternoon doesn't trigger anyone's scrutiny.
 
-Without this judgment, the failure looks like productivity. Teams are busy, output is high, features ship, and none of it moves anything. That makes it the most expensive failure mode in the book: you can't see it as a failure.
+Without this judgment, the failure looks like productivity. Teams are busy, output is high, features ship, and none of it moves anything. I think that makes it the most expensive failure mode in the book: you can't see it as a failure.
 
 Agents will tell you whether something is technically feasible. The judgment you need asks whether the work changes anything that matters to a customer, and how you would know. That question needs someone who owns the outcome. Someone who owns the backlog can't answer it.
 
 ### Fitness: is this good?
 
-This trap catches sophisticated organizations more often than naive ones.
+I suspect this trap catches sophisticated organizations more often than naive ones.
 
 Automated verification has become excellent. Tests pass, security scans clear, performance stays within budget, coverage goes up. The dashboard shows green, and the feature is wrong in a way no instrument could detect, because the instruments check whether the code does what it says. None of them checks whether what it says is worth doing.
 
@@ -63,7 +63,7 @@ The obvious efficiency is to have an agent review the agent. It works up to a po
 
 I can be specific, because we ran the experiment on ourselves. We built this framework using this framework, with agents executing, judgment moments in place, and a QA function reviewing each cycle and logging the result. We logged thirteen cycles, and thirteen out of thirteen passed.
 
-That result tells you the review function had no incentive, no independence and no standing to fail anything. The reviewer and the reviewed sat inside the same system, optimizing for the same completion signal. It caught nothing because it was never going to catch anything.
+I read that result as a sign that the review function had no incentive, no independence and no standing to fail anything. The reviewer and the reviewed sat inside the same system, optimizing for the same completion signal. It caught nothing because it was never going to catch anything.
 
 Automated review multiplies the volume of things you can check. I don't think it replaces the moment when someone whose judgment is independent of the work looks at the work and is willing to say no. A gate that has never failed anything is only recording what passed through it. If your automated review pass rate sits near a hundred percent, treat that as a finding, and don't celebrate it.
 

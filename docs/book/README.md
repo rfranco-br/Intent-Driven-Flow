@@ -8,13 +8,13 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 |---|---|
 | Thesis | ✅ *When execution becomes free, judgment becomes the bottleneck — so govern the judgment.* |
 | Voice | ✅ Register B ("The Operator") — rules in `bible.md` |
-| Chapter map | ✅ 13 chapters, 3 parts — `bible.md` |
+| Chapter map | ✅ 13 chapters, 5 parts, problem next to solution — `bible.md` |
 | Language | ✅ English first; translate a stable product later |
 | **Name** | ⏳ open — *The Judgment Layer* recommended |
-| Drafted | ✅ **Draft 3** (22 Sept 2026) — stop-slop pass over introduction + 13 chapters, ~16,400 words, ~71 min read. Draft 2 archived in `drafts/draft-2/`. |
+| Drafted | ✅ **Draft 5** (6 Oct 2026): problem-and-solution order, Roberto's full review, light voice pass (`beto-voice` skill). Drafts 2 and 4 kept in `drafts/`. Review doc in Drive: IDF — Book / Draft 5. |
 | Voice | ✅ Draft 2 applied Roberto's Part I review. Em dashes 11.4 → **0.7 per 1,000 words**. American spelling. Effort, not cost. Hypothesis framing throughout. Every source linked. |
 | Verification | First full pass done 19 Aug 2026 — 2 claims retired, 1 error corrected |
-| Next | Roberto reads Draft 3 end to end against Draft 2 (and Draft 1 in Drive), then decides whether to retire the old drafts. Then: the name, site rebuild. |
+| Next | The name; decide book vs. article series (each part stands alone); site rebuild around the book. |
 
 ## Files
 
@@ -23,21 +23,22 @@ Working drafts for the leadership-facing book. **This folder is the source of tr
 | `bible.md` | Thesis, doctrine, voice rules, chapter map. **Everything is written against this.** |
 | `rewrite-plan.md` | Positioning, competitive landscape, product architecture, phasing |
 | **`MANUSCRIPT.md`** | **The whole book assembled in order — read this one.** Regenerate with `assemble.py` after chapter edits. |
-| `ch00-introduction.md` | the Driver and the Pilot; the shared assumption |
-| `ch01-pilot-never-scaled.md` | what didn't scale was judgment |
-| `ch02-instruments-went-dark.md` | bandwidth metrics measuring an abundant resource |
-| `ch03-batch-problem.md` | deployment frequency *fell*; batch size is blast radius |
-| `ch04-who-approved-this.md` | governance was a side effect of slowness |
-| `ch05-outcomes-not-output.md` | the intent as unit of work |
-| `ch06-confirmed-is-done.md` | delivery and value are two events |
-| `ch07-deploy-is-not-release.md` | the switch as governance instrument |
-| `ch08-where-judgment-cant-be-delegated.md` | the doctrinal centre |
-| `ch09-memory-is-capital.md` | context as an asset that depreciates |
-| `ch10-from-demo-to-scale.md` | the maturity model, promoted from playbook P3 |
-| `ch11-how-youll-know.md` | six metrics, and how each gets faked |
-| `ch12-what-it-costs.md` | the consolidated ledger; who shouldn't do this |
-| `ch13-where-to-start.md` | one move, and what we don't know |
+| `ch00-introduction.md` | the Driver and the Pilot; the shared assumption; where I'm writing from (CI&T, IDF) |
+| `ch01-the-pilot-that-never-scaled.md` | Part I: what didn't scale was judgment |
+| `ch02-outcomes-not-output.md` | Part II: the intent as unit of work; obligations and enablers |
+| `ch03-shipping-is-not-done-confirmed-is-done.md` | Part II: delivery and value are two events |
+| `ch04-the-batch-problem.md` | Part III: batch size is blast radius |
+| `ch05-deploy-is-not-release.md` | Part III: the switch as governance instrument |
+| `ch06-who-approved-this.md` | Part IV: governance was a side effect of slowness |
+| `ch07-where-judgment-can-t-be-delegated.md` | Part IV: the four moments, the doctrinal centre |
+| `ch08-your-system-s-memory-is-capital.md` | Part IV: context as an asset that depreciates |
+| `ch09-your-instruments-went-dark.md` | Part V: bandwidth metrics measuring an abundant resource |
+| `ch10-how-you-ll-know-it-s-working.md` | Part V: six metrics, BCP, DORA for work no customer sees |
+| `ch11-from-demo-to-scale.md` | Part V: the maturity model |
+| `ch12-what-it-costs.md` | Part V: the consolidated ledger; who shouldn't do this |
+| `ch13-where-to-start-and-what-we-don-t-know.md` | Part V: one move, and what we don't know |
 | `verification.md` | Fact-check trail — every statistic, its source, and its status |
+| `drafts/draft-4/`, `drafts/draft-5/`, `drafts/voice-trial/` | Draft 4 (voice pass), Draft 5 export, and the ch 1 voice trials |
 | `drafts/draft-2/` | Draft 2 as it stood on 2 Sept 2026, kept for comparison until Roberto retires it |
 | `drafts/stop-slop-trial-part1/` | The first stop-slop trial on Part I (superseded by Draft 3) |
 

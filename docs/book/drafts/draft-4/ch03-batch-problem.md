@@ -1,12 +1,12 @@
 # Chapter 3: The Batch Problem
 
-*Draft 3 · stop-slop pass*
+*Draft 4 · light voice pass*
 
 ---
 
 ### More went in, less came out
 
-The current data holds one finding that runs against intuition, and it may explain why your AI investment hasn't shown up in anything a customer noticed.
+The current data holds one finding that runs against intuition, and I suspect it explains why your AI investment hasn't shown up in anything a customer noticed.
 
 Deployment frequency went down. In organizations where engineering output rose, the rate at which changes reached production fell by 11%, and the time from commit to live rose by 480%.
 
@@ -23,7 +23,7 @@ On this evidence, your AI program slowed the rate at which change reached custom
 | Shipping | Deployments per week −11% · lead time commit to production +480.4% |
 | Consequences | Bugs per developer +54% · incidents per PR +242.7% · monthly incidents +57.9% |
 
-Follow one change through the four rows. An engineer writes it faster, and larger. It waits much longer for review and stands a higher chance of getting none. Then it waits again, longer still, to deploy. When it ships, it ships inside a bigger bundle that fewer people scrutinized, and the incident rate per change has more than tripled.
+Follow one change through the four rows. An engineer writes it faster, and makes it larger. It waits much longer for review and stands a higher chance of getting none. Then it waits again, longer still, to deploy. When it ships, it ships inside a bigger bundle that fewer people scrutinized, and the incident rate per change has more than tripled.
 
 ### The loop behind batching
 
@@ -43,17 +43,17 @@ With AI tooling you poured more work into the top of a system already running th
 
 A batch of forty changes delivers one event, carrying the combined risk of forty changes released at once. When it fails, you struggle to find the cause, because forty things changed together.
 
-The 242.7% rise in incidents per PR measures what that costs. Bugs per PR rose 28.7%, a real increase and a far smaller one, so code quality explains only part of it. The gap between the two figures is the batching effect: changes land in conditions that make failure more likely and diagnosis harder, over and above any drop in the quality of the code.
+The 242.7% rise in incidents per PR measures what that costs. Bugs per PR rose 28.7%, a real increase and a far smaller one, so code quality explains only part of it. I read the gap between the two figures as the batching effect: changes land in conditions that make failure more likely and diagnosis harder, over and above any drop in the quality of the code.
 
-That changes your risk conversation. Your organization probably treats release frequency as the risk to manage. The data suggests that release size carries the risk and that frequency is the lever that controls size. If that reading holds, you have pulled the lever the wrong way, with care, for years.
+That changes your risk conversation. Your organization probably treats release frequency as the risk to manage. My reading of the data is that release size carries the risk and that frequency is the lever that controls size. If that reading holds, you have pulled the lever the wrong way, with care, for years.
 
 ### The cost of seeing it
 
 You probably can't measure your own batch size today. Most organizations track deployment frequency and lead time. Few track how much finished work sits undeployed at a given moment, because a standard toolchain doesn't produce that number. To get it you usually have to instrument something new, and the first reading tends to be worse than anyone expected.
 
-The finding will also sting people who did their jobs well. Conscientious people built the change advisory board and the release calendar to manage real risk with the tools they had. If you present this data as evidence of failure, you lose the cooperation of the people you need most. Present it as a change in what the evidence supports, with no one on trial.
+The finding will also sting people who did their jobs well. Conscientious people built the change advisory board and the release calendar to manage real risk with the tools they had. If you present this data as evidence of failure, you lose the cooperation of the people you need most. I would present it as a change in what the evidence supports, with no one on trial.
 
-Knowing, on its own, fixes nothing. This chapter gives you a diagnosis, and if you stop here you have acquired an uncomfortable fact.
+Knowing this fixes nothing on its own. This chapter gives you a diagnosis, and if you stop here you have acquired an uncomfortable fact.
 
 ### Why this chapter is here
 

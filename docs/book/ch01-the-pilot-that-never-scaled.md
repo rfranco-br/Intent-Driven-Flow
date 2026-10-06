@@ -1,8 +1,6 @@
-# Chapter 1: The Pilot That Never Scaled
+# **Chapter 1:** The Pilot That Never Scaled
 
-*Draft 3 · stop-slop pass*
-
----
+*Draft 5 · problem-and-solution order*
 
 ### Everything worked, and nothing changed
 
@@ -10,7 +8,7 @@ Your organization has run AI pilots, and most of them succeeded.
 
 A small team built in two weeks something you had budgeted a quarter for. Someone demoed a workflow and the room went quiet. A staff engineer showed you a feature she had built in an afternoon, and you thought, correctly, that this would change how your company builds software. Then you tried to make it the way your whole engineering organization works, and the results stopped resembling the demo.
 
-You have heard the standard explanations. The models need another generation, the codebase is a mess, the people need training. Each holds some truth, and none of them explains the gap, because you ran the pilot with the same models and the same people.
+You have heard the standard explanations, and you have probably given a few of them yourself. The models need another generation, the codebase is a mess, the people need training. Each holds some truth, and none of them explains the gap, because you ran the pilot with the same models and the same people.
 
 ### Take a pilot apart
 
@@ -26,13 +24,13 @@ Anthropic measured the shape of this in its [2026 Agentic Coding Trends Report](
 
 Engineers in the report say they use AI in about 60% of their work. Asked what they can fully delegate, meaning hand over and walk away from, they put the figure at 0 to 20% of tasks. The report calls this the collaboration paradox and resolves it in one line: effective AI collaboration requires active human participation. Engineers delegate the work they can verify with ease and the work with low stakes. They keep high-level design and anything that needs organizational context.
 
-Read that as an operating constraint. Sixty percent of your engineers' work now runs through a system in which a human has to stay in the loop for four-fifths of it, and the work does not finish without that person's judgment.
+Those numbers are measured, and I read them as an operating constraint. Sixty percent of your engineers' work now runs through a system in which a human has to stay in the loop for four-fifths of it, and the work does not finish without that person's judgment.
 
 Your pilot had one of those people, with nothing else on their plate. Your organization has a few hundred pieces of work in flight and the same small supply of people who know what good looks like.
 
 ### Judgment is the part that didn't scale
 
-The models worked in the demo and they work now. You bought the tooling and deployed it, and adoption is probably fine.
+The models worked in the demo and they work now. You bought the tooling and deployed it, and adoption is probably fine. If you audited every input to your AI program, I suspect most of them would pass.
 
 Judgment failed to scale: the ability to apply it at the moments that matter, by people who weren't in the room when someone set the standard.
 
@@ -58,17 +56,17 @@ The same fact hides the problem from you. The dashboards you receive measure inp
 
 ### The price, up front
 
-The full ledger comes in chapter 12. You should know the short version now.
+The full ledger comes in chapter 12, but I would rather you see the short version now than find it later.
 
 You will have to slow something down on purpose. Each proposal in this book puts back a constraint your tooling investment removed, and people will ask you why, more than once. They will have good reason to ask.
 
-You will have to make tacit things explicit. Standards, decisions and permissions that lived in people's heads have to go into writing, because agents read files and don't absorb culture.
+You will have to make tacit things explicit. Standards, decisions and permissions that live in people's heads have to go into writing, because **agents read files and don't absorb culture**.
 
 You will have to let some work be abandoned in public. Once you confirm outcomes, you will see that some of what you built didn't work. You want to see that, and it will still sting in a specific and personal way.
 
 And you will have to give someone authority they may not want, because several judgments in this book need a named person rather than a committee.
 
-This book doesn't prescribe a reorganization, new roles or a change program. Some organizations will find they need one or more of them to make the change hold, and that is a fair consequence of taking the argument seriously. Either way, you will need to decide things you have so far left undecided.
+I'm not prescribing a reorganization, new roles or a change program. Some organizations will find they need one or more of them to make the change hold, and I think that is a fair consequence of taking the argument seriously, since there is no improvement without change. Either way, you will need to decide things you have so far left undecided.
 
 ### Why this chapter is here
 
@@ -83,6 +81,4 @@ Your pilot ran on a supply of judgment that cost nothing and that nobody could s
 - What have we bought, deployed or trained in the last year that changed how we make decisions, as opposed to how we produce work?
 - If a new team wanted to reproduce our best pilot next month, what would we have to tell them that nobody has written down?
 
----
-
-*Source: Anthropic, [2026 Agentic Coding Trends Report](https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf).*
+*Source: Anthropic, **[2026 Agentic Coding Trends Report](https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf)**.*

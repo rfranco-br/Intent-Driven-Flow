@@ -1,6 +1,8 @@
-# **Chapter 12:** What It Costs
+# Chapter 12: What It Costs
 
-*Draft 5 · problem-and-solution order*
+*Draft 4 · light voice pass*
+
+---
 
 ### The chapter most books leave out
 
@@ -37,7 +39,7 @@ The technical costs come early and end. The cultural costs stay. My strong impre
 
 This list is shorter than an ideal-fit list and more useful.
 
-**Organizations that can't expose work incrementally and won't invest to.** If your architecture forces all-or-nothing releases and nobody wants to change that, you can't use chapter 5, which I think is the cheapest and highest-return idea here. Much of the rest still works, and the strongest part doesn't. Be honest about that before you start.
+**Organizations that can't expose work incrementally and won't invest to.** If your architecture forces all-or-nothing releases and nobody wants to change that, you can't use chapter 7, which I think is the cheapest and highest-return idea here. Much of the rest still works, and the strongest part doesn't. Be honest about that before you start.
 
 **Organizations where saying no limits careers.** If you can't name someone who rejected finished work in the last six months and is doing fine, you have your answer. Fix that first. It is a prerequisite, and it won't fix itself along the way.
 

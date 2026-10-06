@@ -1,8 +1,6 @@
-# Chapter 2: Your Instruments Went Dark
+# **Chapter 9:** Your Instruments Went Dark
 
-*Draft 3 · stop-slop pass*
-
----
+*Draft 5 · problem-and-solution order*
 
 ### The dashboard still updates
 
@@ -26,7 +24,7 @@ That is worse than measuring nothing.
 
 Faros AI studied [telemetry from 22,000 developers](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf) and more than 4,000 teams. Faros sells engineering-intelligence tooling, so weigh that when you read their numbers. The method holds up well: about two years of data, with statistical significance at p < 0.05.
 
-| On your dashboard | Underneath |
+| **On your dashboard** | **Underneath** |
 |---|---|
 | PR merge rate per developer +16.2% | Average PR size +51.3%, so each unit carries more change |
 | Throughput looks healthy | Median time to first review +156.6% |
@@ -42,15 +40,15 @@ Sit with *merged without review*. On a throughput dashboard, a PR merged without
 
 The numbers moved in the direction that reassures. You don't escalate a metric that is improving. If velocity had collapsed you would have called a war room by Wednesday.
 
-The people who could see the problem weren't asked. Your engineers know that review has turned into a formality in places. The reporting line carries the metric to you and leaves the meaning behind.
+The people who could see the problem weren't asked. I suspect your engineers know that review has turned into a formality in places. The reporting line carries the metric to you and leaves the meaning behind.
 
 And you have no meeting built for noticing. Your governance calendar has forums for reviewing performance against the metrics, and none for asking whether the metrics still refer to anything.
 
 ### The cost of fixing it
 
-You will have a gap. If you switch off velocity before your outcome measures work, you will have less reporting than you have now for a while, and someone will ask you to justify that. You can answer that you'd rather fly with fewer instruments than wrong ones. The answer is correct, and it won't satisfy every stakeholder.
+You will have a gap. If you switch off velocity before your outcome measures work, you will have less reporting than you have now for a while, and someone will ask you to justify that. You can answer that you'd rather fly with fewer instruments than wrong ones. I think the answer is correct, and it won't satisfy every stakeholder.
 
-Velocity also carries political weight. Engineering has used it for twenty years to justify headcount to finance, and if you remove it without a replacement you remove a shared language between two functions that have few others. Have the replacement ready, and expect the conversation to turn on trust more than on measurement.
+Velocity also carries political weight. Engineering has used it for twenty years to justify headcount to finance, and if you remove it without a replacement you remove a shared language between two functions that have few others. Have the replacement ready, and expect the conversation to turn on trust more than on measurement. Units that size the work itself, rather than the effort a person put into it, survive the shift, and chapter 10 names one.
 
 Outcome measures arrive later and flatter less. Bandwidth metrics update each week and mostly go up. You confirm an outcome as fast as your customers respond, and a fair share of the confirmations will come back negative. You are trading prompt, meaningless numbers for honest, late ones.
 
@@ -58,11 +56,11 @@ Some teams will read the change as an attack. People built careers on improving 
 
 ### Why this chapter is here
 
-Chapter 1 argued that judgment is the constraint. This chapter argues that you can't see it.
+Chapter 1 argued that judgment is the constraint, and the chapters since have shown where it has to act. This chapter argues that your current reporting can't see any of it.
 
-Put the two together and you get the real danger. An organization with a real bottleneck and no instrument pointed at it accelerates in a direction nobody has checked, with a weekly report saying all is well.
+Put the two together and you get the danger I worry about most. An organization with a real bottleneck and no instrument pointed at it accelerates in a direction nobody has checked, with a weekly report saying all is well.
 
-Chapter 11 covers what to measure instead. It sits far from here on purpose, since the replacements make sense only after you've seen the rest of the loop. For now, accept that the reporting you trust describes a system you no longer run.
+Chapter 10, next, covers what to measure instead. The replacements make sense now that you've seen the whole loop. For now, accept that the reporting you trust describes a system you no longer run.
 
 ### Questions for your teams this week
 
@@ -71,6 +69,4 @@ Chapter 11 covers what to measure instead. It sits far from here on purpose, sin
 - Did our bug rate or incident rate move in the same period our productivity metrics improved? Has anyone put those two charts side by side?
 - When did we last check whether a metric still means what it meant when we adopted it?
 
----
-
-*Source: Faros AI, [The Acceleration Whiplash: AI Engineering Report 2026](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf).*
+*Source: Faros AI, **[The Acceleration Whiplash: AI Engineering Report 2026](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf)**.*

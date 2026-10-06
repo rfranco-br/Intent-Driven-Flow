@@ -1,12 +1,12 @@
 # Chapter 13: Where to Start, and What We Don't Know
 
-*Draft 3 · stop-slop pass*
+*Draft 4 · light voice pass*
 
 ---
 
 ### One move, not a program
 
-After a book like this you will want to design an adoption plan. Resist it. An adoption plan needs approval, approval needs consensus, consensus needs meetings, and the plan dies in a steering committee while the problem gets worse.
+After a book like this you will want to design an adoption plan, and that instinct has served you well before. I'd resist it this time. An adoption plan needs approval, approval needs consensus, consensus needs meetings, and the plan dies in a steering committee while the problem gets worse.
 
 Do one thing this week. It needs no permission and no budget.
 
@@ -14,7 +14,7 @@ Do one thing this week. It needs no permission and no budget.
 
 Leave aside how fast you build and how many changes you merge. Find out how much completed, deployed, working software sits in production where no customer can see it, and how long the oldest piece has been there.
 
-Most organizations can't produce this number, and that inability is the first finding. A standard toolchain doesn't report it, because people built the toolchain on the assumption that deploying and releasing are the same event. Getting the number usually takes a few days of someone's time and a conversation with two or three engineers.
+I suspect most organizations can't produce this number, and I'd count that inability as the first finding. A standard toolchain doesn't report it, because people built the toolchain on the assumption that deploying and releasing are the same event. Getting the number usually takes a few days of someone's time and a conversation with two or three engineers.
 
 Do this first, for four reasons.
 
@@ -34,9 +34,9 @@ Once you have the number and it has had its effect, run one intent end to end.
 
 Pick something small and real. Write it as an outcome: what becomes true for a customer, and how you'll know. Name a person for each of the four judgment moments. Deploy behind a switch. Have someone use it before customers do. Let a named person authorize exposure. Then, weeks later, go back and confirm whether the outcome happened.
 
-Run one intent, with no pilot program and no team-wide rollout. You are looking for where it breaks. It will break somewhere specific to your organization, usually at confirmation, because by then nobody remembers the intent.
+Run one intent, with no pilot program and no team-wide rollout. You are looking for where it breaks. It will break somewhere specific to your organization, and I'd bet on confirmation, because by then nobody remembers the intent.
 
-That breakage is the most valuable result of the exercise. It tells you which chapter of this book describes your problem.
+I think that breakage is the most valuable result of the exercise. It tells you which chapter of this book describes your problem.
 
 ### What we don't know
 
@@ -48,7 +48,7 @@ I am not sure I'm right about everything here, and I am willing to be wrong or p
 
 **We don't know if the four judgment moments are the right four.** Direction, fitness, exposure and confirmation held up across each scenario we tested them against, and that doesn't make the list complete. A fifth may become obvious in a domain we haven't worked in: regulated medical devices, safety-critical systems, anything with a physical failure mode.
 
-**We don't know how much of the current data is transitional.** The telemetry showing review times exploding and incidents tripling describes organizations mid-adoption, using tooling that changed twice while they used it. Part of that is a structural effect, and part is the friction of transition, which will fade. We can't separate the two yet, and anyone who claims to is guessing.
+**We don't know how much of the current data is transitional.** The telemetry showing review times exploding and incidents tripling describes organizations mid-adoption, using tooling that changed twice while they used it. Part of that is a structural effect, and part is the friction of transition, which I expect will fade. We can't separate the two yet, and anyone who claims to is guessing.
 
 **We don't know the size ceiling.** The reasoning here concerns decision rights and information flow, which tend to degrade with scale in ways you can't see until they break. Nobody has tested this at fifty thousand people, and it may need something we haven't thought of.
 

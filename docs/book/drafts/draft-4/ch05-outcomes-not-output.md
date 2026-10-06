@@ -1,6 +1,6 @@
 # Chapter 5: Outcomes, Not Output
 
-*Draft 3 · stop-slop pass*
+*Draft 4 · light voice pass*
 
 ---
 
@@ -10,13 +10,13 @@ Open your roadmap, pick any item, and ask what it's for.
 
 In most organizations you'll hear the item restated. "Saved payment methods" is for "letting customers save payment methods." Push once more, and ask what changes for a customer and how you would know, and you'll get a shrug or a story someone invented four seconds ago.
 
-Your people are competent. The format produces this answer by design.
+Your people are competent, and I'd blame the format: it produces this answer by design.
 
 ### The ticket was built for a scarce executor
 
 A ticket allocates work. It tells one person what to do next, with enough precision that they can start without asking. Its whole design follows from one assumption: the person who will execute it is the expensive, scarce part of the system.
 
-That assumption held for fifty years, and it doesn't hold now.
+That assumption held for fifty years, and I don't think it holds now.
 
 Precise instruction has become the fast part. An agent will break a goal into tasks faster and in more detail than your best analyst, and it will do it again another way if you don't like the first attempt. The hard part, and now the whole job, is knowing whether the goal was worth pursuing. You have automated the production of the artifact your process is organized around, and your process still runs as if you hadn't.
 
@@ -35,17 +35,17 @@ The intent runs longer. It is also the only one of the two that can be wrong in 
 
 ### The intent matters more as execution gets easier
 
-The intuition runs the other way: if building takes no effort, you can build something else when you get it wrong.
+The intuition runs the other way, and it is a reasonable one: if building takes no effort, you can build something else when you get it wrong.
 
 The arithmetic disagrees. When the effort of building the wrong thing falls, you build more wrong things. The work it used to take no longer protects you.
 
 Under the old economics, you killed bad ideas in estimation. Someone said "that's six weeks," and the room reconsidered. That filter is gone. Six weeks became an afternoon, and an afternoon doesn't trigger anyone's scrutiny. You lose your cheapest defense against building things nobody needed at the moment your capacity to build them multiplies.
 
-Nothing replaces that filter on its own. You have to put one back on purpose, and you have to place it where someone states the outcome, because estimation no longer catches anything.
+I don't see anything that replaces that filter on its own. You have to put one back on purpose, and you have to place it where someone states the outcome, because estimation no longer catches anything.
 
 ### What this buys you
 
-**Better solutions than the one you'd have specified.** When you say what needs to be true instead of what to build, the agents and engineers doing the work can find approaches you didn't consider. Half the time the saved-address field is the wrong answer, and the right one is to stop asking for the address twice. A ticket rules that out. An intent leaves it open.
+**Better solutions than the one you'd have specified.** When you say what needs to be true instead of what to build, the agents and engineers doing the work can find approaches you didn't consider. I suspect the saved-address field is often the wrong answer, and the right one is to stop asking for the address twice. A ticket rules that out. An intent leaves it open.
 
 **A stopping condition.** "Build the thing" ends when the thing exists. "Make this true for customers" ends when it's true, which might take three attempts or might prove impossible. You want to know both, and a ticket-shaped system shows you neither.
 

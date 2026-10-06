@@ -2,13 +2,15 @@
 
 ### Governing delivery when execution is free
 
+*Review note: Draft 5 reorders the book so each problem sits next to its answer, in five parts that can each be read on their own. Text highlighted in green was changed for the new order. Yellow (the Draft 4 voice pass) and blue (new additions) are carried over from Draft 4 for your review.*
+
 *Working title. The name is still open.*
 
 Roberto Pillon Franco · Draft 5 · October 2026
 
 *When execution becomes free, judgment becomes the bottleneck, so govern the judgment.*
 
-## Contents
+## **Contents**
 
 **Introduction:** The Driver and the Pilot
 
@@ -48,13 +50,13 @@ Roberto Pillon Franco · Draft 5 · October 2026
 
 13. Where to Start, and What We Don't Know
 
-*Status: Draft 5 (6 October 2026). The book is reordered into five parts, each a problem followed by its answer, and carries Roberto's full review of Drafts 4 and 5 plus new material on BCP, DORA, enablers, the IDF disclosure and the swarm counter-argument. Statistics verified against primary sources on 19 August 2026, see verification.md; sources added in October are linked in each chapter.*
+*Status: Draft 5, the problem-and-solution reorder (5 October 2026). Same text as Draft 4, including Roberto's review edits, with chapters regrouped into five parts and cross-references updated. Statistics verified against primary sources on 19 August 2026, see verification.md.*
 
 ---
 
-
 # Introduction
 
+*Draft 5 · problem-and-solution order*
 
 ### The Driver and the Pilot
 
@@ -126,18 +128,16 @@ Each chapter ends with what it costs and with a few questions for your teams. I 
 
 If you read only one part, read Part II. Its two chapters form the loop the rest of the book builds on: say what should become true for a customer, then check whether it did.
 
+
 ---
-
-
-<br>
 
 # PART I: THE GROUND MOVED
 
 ---
 
-
 # **Chapter 1:** The Pilot That Never Scaled
 
+*Draft 5 · problem-and-solution order*
 
 ### Everything worked, and nothing changed
 
@@ -220,18 +220,16 @@ Your pilot ran on a supply of judgment that cost nothing and that nobody could s
 
 *Source: Anthropic, **[2026 Agentic Coding Trends Report](https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf)**.*
 
+
 ---
-
-
-<br>
 
 # PART II: DECIDE WHAT'S WORTH BUILDING
 
 ---
 
-
 # **Chapter 2:** Outcomes, Not Output
 
+*Draft 5 · problem-and-solution order*
 
 ### The roadmap that describes itself
 
@@ -306,11 +304,12 @@ The rest of this book depends on having something at the top of the loop worth g
 - Who writes our intents, and has anyone taught them how?
 - How much of the current roadmap is obligation and how much is outcome? Do we govern the two the same way?
 
----
 
+---
 
 # **Chapter 3:** Shipping Is Not Done. Confirmed Is Done.
 
+*Draft 5 · problem-and-solution order*
 
 ### The question that ends the meeting
 
@@ -383,18 +382,16 @@ Everything else sits between the two: the execution, the judgment moments, the r
 - Who checks whether a feature worked, and how long after release?
 - For our last three releases, can we observe the thing we said we'd measure?
 
+
 ---
-
-
-<br>
 
 # PART III: SHIP WITHOUT BATCHING
 
 ---
 
-
 # **Chapter 4:** The Batch Problem
 
+*Draft 5 · problem-and-solution order*
 
 ### More went in, less came out
 
@@ -462,11 +459,12 @@ It also sets up what I think is the cheapest intervention in the book. Your team
 
 *Sources: Faros AI, **[The Acceleration Whiplash: AI Engineering Report 2026](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf)** · CD Foundation, **[DORA's 5 metrics (2025)](https://cd.foundation/blog/2025/10/16/dora-5-metrics/)** · DORA, **[research program](https://dora.dev/research/)**.*
 
----
 
+---
 
 # **Chapter 5:** Deploy Is Not Release
 
+*Draft 5 · problem-and-solution order*
 
 ### The two dashboards that don't agree
 
@@ -537,18 +535,16 @@ The judgment always sat in the exposure, never in the deployment. The fused mode
 
 *Source: Faros AI, **[The Acceleration Whiplash: AI Engineering Report 2026](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf)**. Faros sells engineering-intelligence tooling.*
 
+
 ---
-
-
-<br>
 
 # PART IV: GOVERN THE JUDGMENT
 
 ---
 
-
 # **Chapter 6:** "Who Approved This?"
 
+*Draft 5 · problem-and-solution order*
 
 ### The question after an incident
 
@@ -636,11 +632,12 @@ Chapter 7, next, is my answer: a map of where the question is legitimate and who
 
 *Sources: Faros AI, **[The Acceleration Whiplash](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf)** · **[EU AI Act Article 50 transparency rules](https://artificialintelligenceact.eu/transparency-rules-article-50/)** · Gibson Dunn, **[EU AI Act Omnibus Agreement](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/)**.*
 
----
 
+---
 
 # **Chapter 7:** Where Judgment Can't Be Delegated
 
+*Draft 5 · problem-and-solution order*
 
 ### The question that has no owner
 
@@ -739,11 +736,12 @@ Much of this book follows from the map. Outcomes over output is a direction judg
 
 *Source: Ethan Mollick, **[The Dot and the Swarm](https://www.oneusefulthing.org/p/the-dot-and-the-swarm)** (One Useful Thing, 1 October 2026).*
 
----
 
+---
 
 # **Chapter 8:** Your System's Memory Is Capital
 
+*Draft 5 · problem-and-solution order*
 
 ### An old problem and a new one
 
@@ -818,18 +816,16 @@ It also bridges to Part V. My reading of why most AI pilots don't scale: the pil
 - What can our agents reach today that nobody has reviewed this year?
 - Name one thing our experienced people know that a new joiner, or an agent, has no way to find out.
 
+
 ---
-
-
-<br>
 
 # PART V: LEAD THE CHANGE
 
 ---
 
-
 # **Chapter 9:** Your Instruments Went Dark
 
+*Draft 5 · problem-and-solution order*
 
 ### The dashboard still updates
 
@@ -900,11 +896,12 @@ Chapter 10, next, covers what to measure instead. The replacements make sense no
 
 *Source: Faros AI, **[The Acceleration Whiplash: AI Engineering Report 2026](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf)**.*
 
----
 
+---
 
 # **Chapter 10:** How You'll Know It's Working
 
+*Draft 5 · problem-and-solution order*
 
 ### Six numbers, and how each one gets faked
 
@@ -1009,11 +1006,12 @@ If judgment is the constraint, and I think it is, these are the instruments poin
 - What is the first-pass rate at each judgment moment, and has any of them ever rejected anything?
 - Which of our current metrics would still make sense if agents did all the execution?
 
----
 
+---
 
 # **Chapter 11:** From Demo to Scale
 
+*Draft 5 · problem-and-solution order*
 
 ### The question you'll hear within a quarter
 
@@ -1106,11 +1104,12 @@ It also answers the demo problem. The pilot failed to scale because nobody could
 - When a gate has passed cleanly for two months, do we relax it informally, or decide on purpose?
 - After our last significant failure, did any oversight come back, or did we write a post-mortem and carry on?
 
----
 
+---
 
 # **Chapter 12:** What It Costs
 
+*Draft 5 · problem-and-solution order*
 
 ### The chapter most books leave out
 
@@ -1192,11 +1191,12 @@ There's a smaller reason too. When a framework states its costs, you can check i
 - What share of our delivery surface can we expose incrementally today?
 - Do I want the governance story, or do I want to change who decides what? The first costs less, and I should be honest with myself about which one I'm buying.
 
----
 
+---
 
 # **Chapter 13:** Where to Start, and What We Don't Know
 
+*Draft 5 · problem-and-solution order*
 
 ### One move, not a program
 
@@ -1280,5 +1280,3 @@ Your organization has spent the last two years making execution take less effort
 - Am I prepared to find out that some of what we shipped last year did nothing?
 
 *Sources: Ethan Mollick, **[The Dot and the Swarm](https://www.oneusefulthing.org/p/the-dot-and-the-swarm)** · Tufts Daily, **[Mathematicians still checking the Navier-Stokes proof](https://www.tuftsdaily.com/article/2026/09/mathematicians-still-checking-the-navier-stokes-proof-that-openai-claims-to-have-solved)** · Cloud Security Alliance, **[OpenAI shelves GPT-6.1 Astra](https://labs.cloudsecurityalliance.org/research/csa-research-note-gpt61-astra-deception-shelving-20260930-cs/)**.*
-
----

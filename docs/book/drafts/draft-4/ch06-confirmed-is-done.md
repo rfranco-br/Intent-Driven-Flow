@@ -1,6 +1,6 @@
 # Chapter 6: Shipping Is Not Done. Confirmed Is Done.
 
-*Draft 3 · stop-slop pass*
+*Draft 4 · light voice pass*
 
 ---
 
@@ -26,7 +26,7 @@ Under human execution, teams shipped slowly enough that the unvalidated pile gre
 
 Agents changed one side of that equation. Your teams ship faster, and they confirm at the same rate as before. Confirmation depends on customer behavior, which takes as long as it always did, and on someone choosing to look, which nobody has time for.
 
-So the gap between what you built and what you know about it widens each quarter, faster than before. You feel it as a leadership team losing touch with whether any of it works.
+The gap between what you built and what you know about it widens each quarter, faster than before. You feel it as a leadership team losing touch with whether any of it works.
 
 ### The change
 
@@ -40,13 +40,13 @@ Delivery becomes the middle of the story. The feature shipping is an event on th
 
 This part needs leadership air cover, so I'll be blunt.
 
-A portfolio with no abandoned intents is a dishonest portfolio. If everything you attempt succeeds, your success criteria can't fail, or you set your targets where you already were, or somebody decides what "moved" means after seeing the data.
+I read a portfolio with no abandoned intents as a dishonest portfolio. If everything you attempt succeeds, your success criteria can't fail, or you set your targets where you already were, or somebody decides what "moved" means after seeing the data.
 
 People have to survive abandonment, professionally, socially and in performance reviews. If closing an intent as not achieved costs someone their credibility, you will never see one, and within a quarter the confirmation loop turns into theater. You get the behavior you make safe.
 
 ### What this buys you
 
-**A number you have never had.** The share of stated intentions that came true, which tells you what fraction of what you built did anything. Delivery velocity and satisfaction scores can't tell you that. Of the metrics in this book, only this one answers the question your board is asking.
+**A number you have never had.** The share of stated intentions that came true, which tells you what fraction of what you built did anything. Delivery velocity and satisfaction scores can't tell you that. Of the metrics in this book, I think only this one answers the question your board is asking.
 
 **Compounding judgment.** Confirmation gives an organization its only way to learn which of its beliefs about customers are correct. Without it, twenty years of experience is one year repeated twenty times, with better tooling each cycle.
 
@@ -60,13 +60,13 @@ Someone must own the question weeks after everyone has moved on. Confirmation ru
 
 You also need instrumentation you may not have. "How would we know" is easy to write and hard to answer if the product doesn't emit the data. Some intents will show you that you can't observe your own customers well enough to tell whether you helped them. You want that finding, and you pay for it early.
 
-And attribution is hard, with a strong temptation to cheat. The signal moved, but did you move it, or did the season, the pricing change or the competitor's outage? Real attribution requires holdouts and patience, and most organizations have neither. State your confidence level and resist claiming causation you can't support. A confirmation culture that credits itself for every improvement does more harm than having none, because it manufactures false certainty.
+And attribution is hard, with a strong temptation to cheat. The signal moved, but did you move it, or did the season, the pricing change or the competitor's outage? Real attribution requires holdouts and patience, and most organizations have neither. State your confidence level and resist claiming causation you can't support. I think a confirmation culture that credits itself for every improvement does more harm than having none, because it manufactures false certainty.
 
 ### Why this chapter is here
 
 Chapter 5 gave you something worth aiming at. This chapter covers the other end of the same arc, where you find out whether the aim was any good.
 
-Everything else sits between the two: the execution, the judgment moments, the release switch. All of it moves work from a stated intention to a confirmed one. If you adopt two ideas from this book, adopt these two. They form the loop, and the rest refines it.
+Everything else sits between the two: the execution, the judgment moments, the release switch. All of it moves work from a stated intention to a confirmed one. If you adopt two ideas from this book, I'd make it these two. They form the loop, and the rest refines it.
 
 ### Questions for your teams this week
 
