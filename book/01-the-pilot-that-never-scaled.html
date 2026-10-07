@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MV9XNW7Y6V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MV9XNW7Y6V');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pilot That Never Scaled · The Judgment Layer</title>
+<meta name="description" content="A small team built in two weeks something you had budgeted a quarter for. Someone demoed a workflow and the room went quiet. A staff engineer showed you a feature she had built in an…">
+<meta name="author" content="Roberto Pillon Franco">
+<link rel="canonical" href="https://rfranco-br.github.io/Intent-Driven-Flow/book/01-the-pilot-that-never-scaled.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Intent Driven Flow">
+<meta property="og:title" content="The Pilot That Never Scaled · The Judgment Layer">
+<meta property="og:description" content="A small team built in two weeks something you had budgeted a quarter for. Someone demoed a workflow and the room went quiet. A staff engineer showed you a feature she had built in an…">
+<meta property="og:url" content="https://rfranco-br.github.io/Intent-Driven-Flow/book/01-the-pilot-that-never-scaled.html">
+<meta property="og:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-01-the-pilot-that-never-scaled.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Pilot That Never Scaled · The Judgment Layer">
+<meta name="twitter:description" content="A small team built in two weeks something you had budgeted a quarter for. Someone demoed a workflow and the room went quiet. A staff engineer showed you a feature she had built in an…">
+<meta name="twitter:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-01-the-pilot-that-never-scaled.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c14; --surface: #13131e; --surface2: #1a1a2a;
+    --border: #2a2a3a; --border2: #3a3a50;
+    --text: #f0ede8; --text2: #a8a6b4; --text3: #8a8898;
+    --coral: #e8734a; --coral2: #f0956e;
+    --purple: #7c5cbf; --purple2: #9b7fd4;
+    --teal: #3a9e78; --teal2: #5bbf95;
+    --amber: #bf8f3a; --amber2: #d4a85b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+  a { color: var(--coral2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 14px; font: 12px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 32px; }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .eyebrow { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+
+  /* sidebar */
+  #section-nav { position: fixed; top: 48px; left: 0; width: 240px; height: calc(100vh - 48px); overflow-y: auto; background: var(--bg); border-right: 1px solid var(--border); padding: 24px 0 48px; z-index: 100; }
+  #section-nav .book-link { display: block; font: 600 14px 'Playfair Display', serif; color: var(--text); padding: 0 20px 12px; }
+  .snav-group-label { display: block; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); padding: 12px 20px 4px; }
+  #section-nav a.ch { display: block; font: 12px/1.4 'IBM Plex Sans', sans-serif; color: var(--text3); padding: 5px 16px 5px 18px; border-left: 2px solid transparent; }
+  #section-nav a.ch:hover { color: var(--text2); background: var(--surface); text-decoration: none; }
+  #section-nav a.ch.is-active { color: var(--coral); border-left-color: var(--coral); background: rgba(232,115,74,0.07); }
+  .snav-num { font: 10px 'IBM Plex Mono', monospace; margin-right: 6px; opacity: .6; }
+  main, .foot { margin-left: 240px; }
+
+  /* progress */
+  #progress { position: fixed; top: 48px; left: 0; height: 2px; background: var(--coral); width: 0; z-index: 200; }
+
+  /* reader */
+  .reader { padding: 64px 48px 48px; }
+  .col { max-width: 700px; margin: 0 auto; }
+  .ch-head { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+  .ch-num { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 10px; }
+  .ch-head h1 { font: 700 44px/1.12 'Playfair Display', serif; letter-spacing: -.01em; margin-bottom: 16px; }
+  .ch-meta { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .prose { font-size: 18px; line-height: 1.75; color: #e4e1dc; }
+  .prose p { margin: 0 0 1.15em; }
+  .prose h2 { font: 600 26px/1.25 'Playfair Display', serif; color: var(--text); margin: 1.8em 0 .6em; }
+  .prose h3 { font: 600 19px 'IBM Plex Sans', sans-serif; margin: 1.4em 0 .5em; }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose em { color: inherit; }
+  .prose ul, .prose ol { margin: 0 0 1.15em 1.2em; }
+  .prose li { margin-bottom: .4em; }
+  .prose blockquote { border-left: 2px solid var(--border2); padding: 2px 0 2px 18px; margin: 0 0 1.15em; color: var(--text2); }
+  .prose blockquote.questions { border: 1px solid var(--border2); border-left: 3px solid var(--coral); background: var(--surface); border-radius: 10px; padding: 18px 22px 8px 22px; color: var(--text); }
+  .prose blockquote.questions ul { margin-left: 1.1em; }
+  .prose .sources { font-size: 14px; line-height: 1.6; color: var(--text3); margin-top: 2em; padding-top: 16px; border-top: 1px solid var(--border); }
+  .prose .sources em { font-style: normal; }
+  .prose .sources a { color: var(--text2); text-decoration: underline; text-decoration-color: var(--border2); }
+  .prose a { text-decoration: underline; text-decoration-color: rgba(240,149,110,.4); text-underline-offset: 2px; }
+  .tbl-wrap { overflow-x: auto; margin: 0 0 1.3em; }
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 15px; line-height: 1.55; }
+  .tbl th { text-align: left; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); padding: 10px 14px; font-weight: 400; }
+  .tbl td { padding: 12px 14px; border-top: 1px solid var(--border); background: var(--surface); vertical-align: top; color: var(--text2); }
+  .tbl td:first-child { color: var(--text); white-space: nowrap; }
+
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
+  .pager a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 16px 18px; color: var(--text); }
+  .pager a:hover { border-color: var(--coral); text-decoration: none; }
+  .pager .k { display: block; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 4px; }
+  .pager b { font: 600 16px 'Playfair Display', serif; }
+  .pager .next { text-align: right; grid-column: 2; }
+  .share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 28px; padding: 16px 18px; border: 1px dashed var(--border2); border-radius: 12px; font-size: 14px; color: var(--text2); }
+  .share a { font: 12px 'IBM Plex Mono', monospace; }
+  .share .sp { flex: 1 1 auto; }
+  .framework { margin-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 16px 18px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; color: var(--text2); font-size: 14px; }
+  .framework:hover { border-color: var(--coral); text-decoration: none; }
+  .framework b { color: var(--coral2); font-weight: 500; }
+
+  /* book home */
+  .home-hero { padding: 72px 48px 56px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .home-hero::before { content: ''; position: absolute; top: -220px; right: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(232,115,74,0.08) 0%, transparent 70%); pointer-events: none; }
+  .home-in { max-width: 920px; margin: 0 auto; position: relative; }
+  .home-hero h1 { font: 700 64px/1.04 'Playfair Display', serif; letter-spacing: -.02em; margin-bottom: 12px; }
+  .byline { font: 500 16px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-bottom: 26px; }
+  .thesis { font: italic 24px/1.4 'Playfair Display', serif; color: var(--text); max-width: 720px; margin-bottom: 30px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 100px; font: 500 14px 'IBM Plex Sans', sans-serif; border: 1px solid var(--border2); color: var(--text); background: var(--surface2); }
+  .cta.primary { background: var(--coral); border-color: var(--coral); color: #12121a; }
+  .cta:hover { text-decoration: none; border-color: var(--coral); }
+  .facts { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .home-sec { padding: 56px 48px; border-bottom: 1px solid var(--border); }
+  .sub { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+  .quote { font: 20px/1.55 'Playfair Display', serif; color: var(--text); border-left: 2px solid var(--coral); padding-left: 18px; margin-bottom: 14px; }
+  .quote-src { font-size: 13px; color: var(--text3); }
+  .toc-part { margin-bottom: 26px; }
+  .toc-part h3 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--coral2); margin-bottom: 10px; font-weight: 400; }
+  .toc-list { display: grid; gap: 8px; }
+  .toc-item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); }
+  .toc-item:hover { border-color: var(--coral); text-decoration: none; }
+  .toc-item .n { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .toc-item .t { font: 600 17px 'Playfair Display', serif; }
+  .toc-item .d { display: block; font: 400 14px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-top: 4px; }
+  .toc-item .m { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); white-space: nowrap; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pair a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; padding: 22px; color: var(--text2); font-size: 14px; }
+  .pair a:hover { border-color: var(--coral); text-decoration: none; }
+  .pair .k { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .pair h4 { font: 600 20px 'Playfair Display', serif; color: var(--text); margin-bottom: 6px; }
+  .pair b { display: inline-block; margin-top: 10px; color: var(--coral2); font-weight: 500; }
+  .home .main-only { margin-left: 0; }
+
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 48px; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); border-top: 1px solid var(--border); }
+
+  @media (max-width: 960px) {
+    #section-nav { display: none; }
+    main, .foot { margin-left: 0; }
+  }
+  @media (max-width: 720px) {
+    .reader { padding: 40px 16px 32px; }
+    .ch-head h1 { font-size: 32px; }
+    .prose { font-size: 17px; }
+    .prose h2 { font-size: 22px; }
+    .pager { grid-template-columns: 1fr; }
+    .pager .next { grid-column: 1; }
+    .home-hero { padding: 48px 16px 40px; }
+    .home-hero h1 { font-size: 44px; }
+    .thesis { font-size: 20px; }
+    .home-sec { padding: 40px 16px; }
+    .toc-item { grid-template-columns: 34px 1fr; }
+    .toc-item .m { grid-column: 2; }
+    .pair { grid-template-columns: 1fr; }
+    .foot { padding: 24px 16px; }
+    .tbl td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav id="section-nav">
+<a class="book-link" href="index.html">The Judgment Layer</a>
+<a class="ch" href="introduction.html"><span class="snav-num">00</span>Introduction</a>
+<span class="snav-group-label">Part I · The ground moved</span>
+<a class="ch is-active" href="01-the-pilot-that-never-scaled.html"><span class="snav-num">01</span>The Pilot That Never Scaled</a>
+<span class="snav-group-label">Part II · Decide what&#x27;s worth building</span>
+<a class="ch" href="02-outcomes-not-output.html"><span class="snav-num">02</span>Outcomes, Not Output</a>
+<a class="ch" href="03-shipping-is-not-done-confirmed-is-done.html"><span class="snav-num">03</span>Shipping Is Not Done. Confirmed Is Done.</a>
+<span class="snav-group-label">Part III · Ship without batching</span>
+<a class="ch" href="04-the-batch-problem.html"><span class="snav-num">04</span>The Batch Problem</a>
+<a class="ch" href="05-deploy-is-not-release.html"><span class="snav-num">05</span>Deploy Is Not Release</a>
+<span class="snav-group-label">Part IV · Govern the judgment</span>
+<a class="ch" href="06-who-approved-this.html"><span class="snav-num">06</span>“Who Approved This?”</a>
+<a class="ch" href="07-where-judgment-cant-be-delegated.html"><span class="snav-num">07</span>Where Judgment Can’t Be Delegated</a>
+<a class="ch" href="08-your-systems-memory-is-capital.html"><span class="snav-num">08</span>Your System’s Memory Is Capital</a>
+<span class="snav-group-label">Part V · Lead the change</span>
+<a class="ch" href="09-your-instruments-went-dark.html"><span class="snav-num">09</span>Your Instruments Went Dark</a>
+<a class="ch" href="10-how-youll-know-its-working.html"><span class="snav-num">10</span>How You’ll Know It’s Working</a>
+<a class="ch" href="11-from-demo-to-scale.html"><span class="snav-num">11</span>From Demo to Scale</a>
+<a class="ch" href="12-what-it-costs.html"><span class="snav-num">12</span>What It Costs</a>
+<a class="ch" href="13-where-to-start-and-what-we-dont-know.html"><span class="snav-num">13</span>Where to Start, and What We Don’t Know</a>
+</nav>
+<main class="reader"><div class="col">
+  <header class="ch-head">
+    <div class="eyebrow">Part I · The ground moved</div>
+    <div class="ch-num">Chapter 1</div>
+    <h1>The Pilot That Never Scaled</h1>
+    <div class="ch-meta">7 min read · <a href="index.html">The Judgment Layer</a> · Roberto Pillon Franco</div>
+  </header>
+  <article class="prose">
+<h2 id="everything-worked-and-nothing-changed">Everything worked, and nothing changed</h2>
+<p>Your organization has run AI pilots, and most of them succeeded.</p>
+<p>A small team built in two weeks something you had budgeted a quarter for. Someone demoed a workflow and the room went quiet. A staff engineer showed you a feature she had built in an afternoon, and you thought, correctly, that this would change how your company builds software. Then you tried to make it the way your whole engineering organization works, and the results stopped resembling the demo.</p>
+<p>You have heard the standard explanations, and you have probably given a few of them yourself. The models need another generation, the codebase is a mess, the people need training. Each holds some truth, and none of them explains the gap, because you ran the pilot with the same models and the same people.</p>
+<h2 id="take-a-pilot-apart">Take a pilot apart</h2>
+<p>Strip a successful pilot down and list what it had. One person, or a group of three or four. The whole context in one head. No dependency on another team’s roadmap and no compliance review. And one condition you rarely hear named: the person building it also knew what good looked like.</p>
+<p>That last condition carries more weight than the others combined. In a pilot you get judgment for free, because it sits in the room with the work. The builder acts as reviewer, domain expert and customer proxy at once, and pays no coordination cost, since the whole exchange happens inside one skull. The builder never has to explain the standard to anyone else.</p>
+<p>Scale the pilot and you invert those conditions. The people executing no longer know what good looks like. Context has to cross a boundary between teams, and someone has to write the standard down instead of carrying it. Judgment cost the builder no effort in the demo. At scale it becomes the most expensive thing you run.</p>
+<h2 id="the-paradox-in-the-data">The paradox in the data</h2>
+<p>Anthropic measured the shape of this in its <a href="https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf" target="_blank" rel="noopener">2026 Agentic Coding Trends Report</a>.</p>
+<p>Engineers in the report say they use AI in about 60% of their work. Asked what they can fully delegate, meaning hand over and walk away from, they put the figure at 0 to 20% of tasks. The report calls this the collaboration paradox and resolves it in one line: effective AI collaboration requires active human participation. Engineers delegate the work they can verify with ease and the work with low stakes. They keep high-level design and anything that needs organizational context.</p>
+<p>Those numbers are measured, and I read them as an operating constraint. Sixty percent of your engineers’ work now runs through a system in which a human has to stay in the loop for four-fifths of it, and the work does not finish without that person’s judgment.</p>
+<p>Your pilot had one of those people, with nothing else on their plate. Your organization has a few hundred pieces of work in flight and the same small supply of people who know what good looks like.</p>
+<h2 id="judgment-is-the-part-that-didnt-scale">Judgment is the part that didn’t scale</h2>
+<p>The models worked in the demo and they work now. You bought the tooling and deployed it, and adoption is probably fine. If you audited every input to your AI program, I suspect most of them would pass.</p>
+<p>Judgment failed to scale: the ability to apply it at the moments that matter, by people who weren’t in the room when someone set the standard.</p>
+<p>That explains why AI programs feel hollow from the inside. You did the visible work. You procured tools and trained people, and you measured adoption. You delivered every input, and the output you paid for, value reaching customers at a rate that matches the investment, never arrived. None of those inputs touched the constraint.</p>
+<p>The argument of this book follows from that: when execution becomes free, judgment becomes the bottleneck, so govern the judgment.</p>
+<h2 id="free-means-free-of-human-effort">“Free” means free of human effort</h2>
+<p>AI is not cheap. Used carelessly it costs a lot, and your vendor bills you every month whether or not the work was any good. Several organizations have found that an agent left to iterate without a stopping condition can burn a startling amount of money producing something nobody wanted.</p>
+<p>In this book, free means free of human effort and time. A change that used to take three days of a senior engineer’s attention now takes twenty minutes of it. You built your operating model to ration that engineer’s attention, and the demand on it is what collapsed.</p>
+<p>The distinction has practical consequences. If you believe AI made building cheap, you will try to buy your way through the constraint and wonder why the numbers don’t move. If you see that AI made building fast and left judgment as slow as it was, you are looking at the right problem.</p>
+<h2 id="a-leadership-problem">A leadership problem</h2>
+<p>If the constraint were technical, your engineers would have solved it by now. They’re good, they have the tools, and they have every incentive.</p>
+<p>Judgment lives in people, and spreading it across an organization comes down to decision rights and to what people write down. Those belong to you. Engineering excellence can’t make up for an organization in which nobody can say who decides what, at which moment, on what basis.</p>
+<p>The same fact hides the problem from you. The dashboards you receive measure inputs: adoption, spend, output volume. None of them tells you whether anyone applied judgment where the work needed it.</p>
+<h2 id="the-price-up-front">The price, up front</h2>
+<p>The full ledger comes in chapter 12, but I would rather you see the short version now than find it later.</p>
+<p>You will have to slow something down on purpose. Each proposal in this book puts back a constraint your tooling investment removed, and people will ask you why, more than once. They will have good reason to ask.</p>
+<p>You will have to make tacit things explicit. Standards, decisions and permissions that live in people’s heads have to go into writing, because <strong>agents read files and don’t absorb culture</strong>.</p>
+<p>You will have to let some work be abandoned in public. Once you confirm outcomes, you will see that some of what you built didn’t work. You want to see that, and it will still sting in a specific and personal way.</p>
+<p>And you will have to give someone authority they may not want, because several judgments in this book need a named person rather than a committee.</p>
+<p>I’m not prescribing a reorganization, new roles or a change program. Some organizations will find they need one or more of them to make the change hold, and I think that is a fair consequence of taking the argument seriously, since there is no improvement without change. Either way, you will need to decide things you have so far left undecided.</p>
+<h2 id="why-this-chapter-is-here">Why this chapter is here</h2>
+<p>You are living the demo-to-scale gap, and the diagnoses on offer point at the wrong layer. Better models won’t close it. Neither will more training or a platform team.</p>
+<p>Your pilot ran on a supply of judgment that cost nothing and that nobody could see. To scale, you have to pay for that judgment on purpose, for the first time, at the moment when everything around it stopped taking effort.</p>
+<h2 id="questions-for-your-teams-this-week">Questions for your teams this week</h2>
+<blockquote class="questions">
+<ul>
+<li>Name our three most successful AI pilots. For each, what held true that doesn’t hold for the wider organization?<br />
+</li>
+<li>In those pilots, who decided the output was good? Was it the person who built it?<br />
+</li>
+<li>What have we bought, deployed or trained in the last year that changed how we make decisions, as opposed to how we produce work?<br />
+</li>
+<li>If a new team wanted to reproduce our best pilot next month, what would we have to tell them that nobody has written down?</li>
+</ul>
+</blockquote>
+<p class="sources"><em>Source: Anthropic, <a href="https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf" target="_blank" rel="noopener">2026 Agentic Coding Trends Report</a>.</em></p>
+
+  </article>
+  <div class="pager"><a class="prev" href="introduction.html"><span class="k">← Introduction</span><b>Introduction</b></a><a class="next" href="02-outcomes-not-output.html"><span class="k">Chapter 2 →</span><b>Outcomes, Not Output</b></a></div>
+  <div class="share"><span class="sp">Free to read, download and share under CC BY 4.0.</span><span>Full book: <a href="the-judgment-layer.pdf" download>PDF</a> · <a href="the-judgment-layer.epub" download>EPUB</a></span></div>
+  <a class="framework" href="../idf.html"><span>IDF is the framework behind this book, for the teams who run it.</span><b>Open the framework →</b></a>
+</div></main>
+<footer class="foot"><span>The Judgment Layer · 2026</span><span>CC BY 4.0 · Roberto Pillon Franco</span></footer>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  function upd() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', upd, { passive: true }); upd();
+})();
+</script>
+<script src="../nav.js?v=15"></script>
+</body>
+</html>

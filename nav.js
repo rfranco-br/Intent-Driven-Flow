@@ -102,21 +102,27 @@
 
   const inner = nav.querySelector('.nav-inner');
 
-  // ── Detect current page ────────────────────────────────────────────────────
-  const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+  // ── Resolve the site root from this script's own URL, so the nav works
+  //    from subfolders (e.g. book/) as well as the root ────────────────────
+  const me = document.currentScript && document.currentScript.src;
+  const basePath = me ? me.replace(/nav\.js(\?.*)?$/, '') : window.location.href.replace(/[^/]*$/, '');
 
-  // ── Resolve base path so nav works in subdirectories too ──────────────────
-  const basePath = window.location.pathname.replace(/[^/]*$/, '');
+  // ── Detect current page, relative to the site root ────────────────────────
+  const here = window.location.href.split('#')[0].split('?')[0];
+  const currentFile = (here.indexOf(basePath) === 0 ? here.slice(basePath.length) : here.split('/').pop()) || 'index.html';
 
   // ── Render nav ─────────────────────────────────────────────────────────────
   const pages = [
     { file: 'index.html',          label: 'Overview' },
     { file: 'idf.html',            label: 'Framework' },
     { file: 'idf-corporate.html',  label: 'Leaders' },
+    { file: 'book/',               label: 'Book', section: 'book/' },
   ];
 
   const pills = pages.map(p => {
-    const active = (currentFile === p.file || (currentFile === '' && p.file === 'index.html'))
+    const active = (currentFile === p.file
+      || (p.section && currentFile.indexOf(p.section) === 0)
+      || (currentFile === 'book/index.html' && p.file === 'book/'))
       ? ' is-active' : '';
     return `<a href="${basePath}${p.file}" class="nav-pill${active}">${p.label}</a>`;
   }).join('');

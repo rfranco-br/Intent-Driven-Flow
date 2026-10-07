@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MV9XNW7Y6V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MV9XNW7Y6V');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your System’s Memory Is Capital · The Judgment Layer</title>
+<meta name="description" content="You know the old problem. Your best engineer resigns and takes with them the reasons behind a hundred decisions nobody wrote down. Most organizations have made peace with it, and you may…">
+<meta name="author" content="Roberto Pillon Franco">
+<link rel="canonical" href="https://rfranco-br.github.io/Intent-Driven-Flow/book/08-your-systems-memory-is-capital.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Intent Driven Flow">
+<meta property="og:title" content="Your System’s Memory Is Capital · The Judgment Layer">
+<meta property="og:description" content="You know the old problem. Your best engineer resigns and takes with them the reasons behind a hundred decisions nobody wrote down. Most organizations have made peace with it, and you may…">
+<meta property="og:url" content="https://rfranco-br.github.io/Intent-Driven-Flow/book/08-your-systems-memory-is-capital.html">
+<meta property="og:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-08-your-systems-memory-is-capital.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your System’s Memory Is Capital · The Judgment Layer">
+<meta name="twitter:description" content="You know the old problem. Your best engineer resigns and takes with them the reasons behind a hundred decisions nobody wrote down. Most organizations have made peace with it, and you may…">
+<meta name="twitter:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-08-your-systems-memory-is-capital.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c14; --surface: #13131e; --surface2: #1a1a2a;
+    --border: #2a2a3a; --border2: #3a3a50;
+    --text: #f0ede8; --text2: #a8a6b4; --text3: #8a8898;
+    --coral: #e8734a; --coral2: #f0956e;
+    --purple: #7c5cbf; --purple2: #9b7fd4;
+    --teal: #3a9e78; --teal2: #5bbf95;
+    --amber: #bf8f3a; --amber2: #d4a85b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+  a { color: var(--coral2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 14px; font: 12px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 32px; }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .eyebrow { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+
+  /* sidebar */
+  #section-nav { position: fixed; top: 48px; left: 0; width: 240px; height: calc(100vh - 48px); overflow-y: auto; background: var(--bg); border-right: 1px solid var(--border); padding: 24px 0 48px; z-index: 100; }
+  #section-nav .book-link { display: block; font: 600 14px 'Playfair Display', serif; color: var(--text); padding: 0 20px 12px; }
+  .snav-group-label { display: block; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); padding: 12px 20px 4px; }
+  #section-nav a.ch { display: block; font: 12px/1.4 'IBM Plex Sans', sans-serif; color: var(--text3); padding: 5px 16px 5px 18px; border-left: 2px solid transparent; }
+  #section-nav a.ch:hover { color: var(--text2); background: var(--surface); text-decoration: none; }
+  #section-nav a.ch.is-active { color: var(--coral); border-left-color: var(--coral); background: rgba(232,115,74,0.07); }
+  .snav-num { font: 10px 'IBM Plex Mono', monospace; margin-right: 6px; opacity: .6; }
+  main, .foot { margin-left: 240px; }
+
+  /* progress */
+  #progress { position: fixed; top: 48px; left: 0; height: 2px; background: var(--coral); width: 0; z-index: 200; }
+
+  /* reader */
+  .reader { padding: 64px 48px 48px; }
+  .col { max-width: 700px; margin: 0 auto; }
+  .ch-head { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+  .ch-num { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 10px; }
+  .ch-head h1 { font: 700 44px/1.12 'Playfair Display', serif; letter-spacing: -.01em; margin-bottom: 16px; }
+  .ch-meta { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .prose { font-size: 18px; line-height: 1.75; color: #e4e1dc; }
+  .prose p { margin: 0 0 1.15em; }
+  .prose h2 { font: 600 26px/1.25 'Playfair Display', serif; color: var(--text); margin: 1.8em 0 .6em; }
+  .prose h3 { font: 600 19px 'IBM Plex Sans', sans-serif; margin: 1.4em 0 .5em; }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose em { color: inherit; }
+  .prose ul, .prose ol { margin: 0 0 1.15em 1.2em; }
+  .prose li { margin-bottom: .4em; }
+  .prose blockquote { border-left: 2px solid var(--border2); padding: 2px 0 2px 18px; margin: 0 0 1.15em; color: var(--text2); }
+  .prose blockquote.questions { border: 1px solid var(--border2); border-left: 3px solid var(--coral); background: var(--surface); border-radius: 10px; padding: 18px 22px 8px 22px; color: var(--text); }
+  .prose blockquote.questions ul { margin-left: 1.1em; }
+  .prose .sources { font-size: 14px; line-height: 1.6; color: var(--text3); margin-top: 2em; padding-top: 16px; border-top: 1px solid var(--border); }
+  .prose .sources em { font-style: normal; }
+  .prose .sources a { color: var(--text2); text-decoration: underline; text-decoration-color: var(--border2); }
+  .prose a { text-decoration: underline; text-decoration-color: rgba(240,149,110,.4); text-underline-offset: 2px; }
+  .tbl-wrap { overflow-x: auto; margin: 0 0 1.3em; }
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 15px; line-height: 1.55; }
+  .tbl th { text-align: left; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); padding: 10px 14px; font-weight: 400; }
+  .tbl td { padding: 12px 14px; border-top: 1px solid var(--border); background: var(--surface); vertical-align: top; color: var(--text2); }
+  .tbl td:first-child { color: var(--text); white-space: nowrap; }
+
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
+  .pager a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 16px 18px; color: var(--text); }
+  .pager a:hover { border-color: var(--coral); text-decoration: none; }
+  .pager .k { display: block; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 4px; }
+  .pager b { font: 600 16px 'Playfair Display', serif; }
+  .pager .next { text-align: right; grid-column: 2; }
+  .share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 28px; padding: 16px 18px; border: 1px dashed var(--border2); border-radius: 12px; font-size: 14px; color: var(--text2); }
+  .share a { font: 12px 'IBM Plex Mono', monospace; }
+  .share .sp { flex: 1 1 auto; }
+  .framework { margin-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 16px 18px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; color: var(--text2); font-size: 14px; }
+  .framework:hover { border-color: var(--coral); text-decoration: none; }
+  .framework b { color: var(--coral2); font-weight: 500; }
+
+  /* book home */
+  .home-hero { padding: 72px 48px 56px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .home-hero::before { content: ''; position: absolute; top: -220px; right: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(232,115,74,0.08) 0%, transparent 70%); pointer-events: none; }
+  .home-in { max-width: 920px; margin: 0 auto; position: relative; }
+  .home-hero h1 { font: 700 64px/1.04 'Playfair Display', serif; letter-spacing: -.02em; margin-bottom: 12px; }
+  .byline { font: 500 16px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-bottom: 26px; }
+  .thesis { font: italic 24px/1.4 'Playfair Display', serif; color: var(--text); max-width: 720px; margin-bottom: 30px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 100px; font: 500 14px 'IBM Plex Sans', sans-serif; border: 1px solid var(--border2); color: var(--text); background: var(--surface2); }
+  .cta.primary { background: var(--coral); border-color: var(--coral); color: #12121a; }
+  .cta:hover { text-decoration: none; border-color: var(--coral); }
+  .facts { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .home-sec { padding: 56px 48px; border-bottom: 1px solid var(--border); }
+  .sub { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+  .quote { font: 20px/1.55 'Playfair Display', serif; color: var(--text); border-left: 2px solid var(--coral); padding-left: 18px; margin-bottom: 14px; }
+  .quote-src { font-size: 13px; color: var(--text3); }
+  .toc-part { margin-bottom: 26px; }
+  .toc-part h3 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--coral2); margin-bottom: 10px; font-weight: 400; }
+  .toc-list { display: grid; gap: 8px; }
+  .toc-item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); }
+  .toc-item:hover { border-color: var(--coral); text-decoration: none; }
+  .toc-item .n { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .toc-item .t { font: 600 17px 'Playfair Display', serif; }
+  .toc-item .d { display: block; font: 400 14px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-top: 4px; }
+  .toc-item .m { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); white-space: nowrap; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pair a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; padding: 22px; color: var(--text2); font-size: 14px; }
+  .pair a:hover { border-color: var(--coral); text-decoration: none; }
+  .pair .k { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .pair h4 { font: 600 20px 'Playfair Display', serif; color: var(--text); margin-bottom: 6px; }
+  .pair b { display: inline-block; margin-top: 10px; color: var(--coral2); font-weight: 500; }
+  .home .main-only { margin-left: 0; }
+
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 48px; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); border-top: 1px solid var(--border); }
+
+  @media (max-width: 960px) {
+    #section-nav { display: none; }
+    main, .foot { margin-left: 0; }
+  }
+  @media (max-width: 720px) {
+    .reader { padding: 40px 16px 32px; }
+    .ch-head h1 { font-size: 32px; }
+    .prose { font-size: 17px; }
+    .prose h2 { font-size: 22px; }
+    .pager { grid-template-columns: 1fr; }
+    .pager .next { grid-column: 1; }
+    .home-hero { padding: 48px 16px 40px; }
+    .home-hero h1 { font-size: 44px; }
+    .thesis { font-size: 20px; }
+    .home-sec { padding: 40px 16px; }
+    .toc-item { grid-template-columns: 34px 1fr; }
+    .toc-item .m { grid-column: 2; }
+    .pair { grid-template-columns: 1fr; }
+    .foot { padding: 24px 16px; }
+    .tbl td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav id="section-nav">
+<a class="book-link" href="index.html">The Judgment Layer</a>
+<a class="ch" href="introduction.html"><span class="snav-num">00</span>Introduction</a>
+<span class="snav-group-label">Part I · The ground moved</span>
+<a class="ch" href="01-the-pilot-that-never-scaled.html"><span class="snav-num">01</span>The Pilot That Never Scaled</a>
+<span class="snav-group-label">Part II · Decide what&#x27;s worth building</span>
+<a class="ch" href="02-outcomes-not-output.html"><span class="snav-num">02</span>Outcomes, Not Output</a>
+<a class="ch" href="03-shipping-is-not-done-confirmed-is-done.html"><span class="snav-num">03</span>Shipping Is Not Done. Confirmed Is Done.</a>
+<span class="snav-group-label">Part III · Ship without batching</span>
+<a class="ch" href="04-the-batch-problem.html"><span class="snav-num">04</span>The Batch Problem</a>
+<a class="ch" href="05-deploy-is-not-release.html"><span class="snav-num">05</span>Deploy Is Not Release</a>
+<span class="snav-group-label">Part IV · Govern the judgment</span>
+<a class="ch" href="06-who-approved-this.html"><span class="snav-num">06</span>“Who Approved This?”</a>
+<a class="ch" href="07-where-judgment-cant-be-delegated.html"><span class="snav-num">07</span>Where Judgment Can’t Be Delegated</a>
+<a class="ch is-active" href="08-your-systems-memory-is-capital.html"><span class="snav-num">08</span>Your System’s Memory Is Capital</a>
+<span class="snav-group-label">Part V · Lead the change</span>
+<a class="ch" href="09-your-instruments-went-dark.html"><span class="snav-num">09</span>Your Instruments Went Dark</a>
+<a class="ch" href="10-how-youll-know-its-working.html"><span class="snav-num">10</span>How You’ll Know It’s Working</a>
+<a class="ch" href="11-from-demo-to-scale.html"><span class="snav-num">11</span>From Demo to Scale</a>
+<a class="ch" href="12-what-it-costs.html"><span class="snav-num">12</span>What It Costs</a>
+<a class="ch" href="13-where-to-start-and-what-we-dont-know.html"><span class="snav-num">13</span>Where to Start, and What We Don’t Know</a>
+</nav>
+<main class="reader"><div class="col">
+  <header class="ch-head">
+    <div class="eyebrow">Part IV · Govern the judgment</div>
+    <div class="ch-num">Chapter 8</div>
+    <h1>Your System’s Memory Is Capital</h1>
+    <div class="ch-meta">6 min read · <a href="index.html">The Judgment Layer</a> · Roberto Pillon Franco</div>
+  </header>
+  <article class="prose">
+<h2 id="an-old-problem-and-a-new-one">An old problem and a new one</h2>
+<p>You know the old problem. Your best engineer resigns and takes with them the reasons behind a hundred decisions nobody wrote down. Most organizations have made peace with it, and you may have too.</p>
+<p>The new problem is stranger. Your agents start each session knowing nothing, and to catch up they read a document with no owner, last corrected by someone who has since left, describing an architecture you replaced in March. They won’t tell you it’s stale. They will read it, believe it, and produce work that is consistent with itself and wrong.</p>
+<h2 id="culture-used-to-transmit-itself">Culture used to transmit itself</h2>
+<p>Organizational knowledge has always come in two forms. People write a small amount down. They carry the great majority in their heads and pass it on by proximity. New engineers absorbed it by sitting near experienced ones, having their work corrected, overhearing arguments and noticing what got approved. Nobody planned it. It came as a by-product of people working together, and it took no effort.</p>
+<p>Agents don’t absorb culture. They read files.</p>
+<p>If you haven’t written something down, it doesn’t exist for most of your executors. Few people discuss this consequence of agentic delivery, and it lands on you as an unfunded mandate: for the first time, your tacit knowledge has to become explicit before it can work at all. That is real work, it sits on nobody’s roadmap, and I think it is the hidden cost inside each AI adoption program you see reported as a tooling budget.</p>
+<h2 id="three-assets-one-balance-sheet">Three assets, one balance sheet</h2>
+<p>I’d treat it as capital, because it behaves like capital. It grows when you maintain it, it depreciates when you don’t, and it decides what your organization can do next.</p>
+<div class="tbl-wrap"><table class="tbl">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Asset</th>
+<th>What it holds</th>
+<th>What it looks like when it fails</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>System memory</strong></td>
+<td>What is true about this system: architecture, decisions, conventions, and the reasons behind them</td>
+<td>Confident work built on an architecture you no longer run</td>
+</tr>
+<tr class="even">
+<td><strong>Practice</strong></td>
+<td>How things are done here: patterns, standards, what “good” looks like in your context</td>
+<td>Output that passes every check and fails review</td>
+</tr>
+<tr class="odd">
+<td><strong>Authority</strong></td>
+<td>What each agent may touch: tools, data, systems, and who owns that grant</td>
+<td>Nobody can state the blast radius of anything</td>
+</tr>
+</tbody>
+</table></div>
+<p>I suspect most organizations have some version of the first, an accidental version of the second, and none of the third.</p>
+<h2 id="it-depreciates-in-silence">It depreciates in silence</h2>
+<p>Technical debt announces itself. You see it in bugs, incidents and slow builds, and eventually nobody can deny it.</p>
+<p>Context debt makes no noise. A stale document throws no error, and an out-of-date convention fails no test. An agent reading a wrong fact doesn’t hesitate, flag uncertainty or ask a colleague. It proceeds with confidence and produces work that is coherent, well-formed, and built on something that stopped being true two quarters ago.</p>
+<p>The output looks correct, because the agent behaved correctly against a wrong picture of the world. You will struggle to catch that, because everything about it looks right.</p>
+<p>A second, faster version of the problem happens inside a single working session. Long agent sessions compact their own context as they run, summarizing and dropping detail to make room, and they drop the details that mattered first: the constraint you agreed three hours ago, the approach you already tried and rejected, the reason you ruled out a shortcut. The rule I’d draw from this is unglamorous and absolute. If a decision has to survive, write it into the artifact. The conversation won’t keep it.</p>
+<h2 id="the-argument-for-your-next-vendor-conversation">The argument for your next vendor conversation</h2>
+<p>Your choice of model is temporary, and your captured context lasts.</p>
+<p>The models will change. They changed twice while you read about them. The tooling will change, and the vendor you standardize on this year may not be the obvious choice in eighteen months. The prompts, configurations and platform-specific scaffolding you build around them have a short, unsentimental half-life.</p>
+<p>The written-down knowledge of how your systems work, what your organization means by good, and who may touch what survives each of those transitions. You can carry it across models, vendors and generations of tooling.</p>
+<p>The next time the budget comes up, someone will frame it as a tooling conversation, which is a fair starting point. I’d reframe it: tooling spend is an operating expense, and context capture is an investment. You will repeat the first each year. The second compounds.</p>
+<h2 id="what-it-costs">What it costs</h2>
+<p>Writing it down is work nobody wants, and teams push it down the list. It competes with delivery, nobody sees it when it’s done well, and it has no natural champion. Leave it to each team’s priorities and it will lose.</p>
+<p>It has no natural moment for maintenance, so you have to create one. Documentation decays because nothing triggers a correction. You need a trigger: an event, a checkpoint, or a named obligation attached to the work. If maintenance depends on someone remembering, nobody will maintain it.</p>
+<p>Over-documentation is a failure mode, and it only looks safe. A two-hundred-page context document is as useless as none and costs more, because now it’s stale in ways nobody can find. Aim for the smallest set of things that must be true, and prune hard. Adding feels productive and takes no discipline. Removing is the discipline that keeps the document alive.</p>
+<p>If everyone owns it, nobody does. You need a named owner with the authority to delete what other people wrote. The job is unpopular, and nobody will volunteer for it.</p>
+<p>And the authority register won’t come for free. Permissions accumulate: an agent gains access it needed once and never gives it back, and nobody notices because nothing breaks. Someone has to reconcile what agents can reach against what you granted them, on a schedule. Expect the gap to be uncomfortable the first time.</p>
+<h2 id="why-this-chapter-is-here">Why this chapter is here</h2>
+<p>Chapters 2 to 7 described the loop: state an outcome, execute it, judge it, confirm it.</p>
+<p>This chapter covers what makes the loop repeatable. You can run the loop once through effort and attention. To run it fifty times, across teams, with people joining and leaving, without the quality degrading, your system has to remember what happened between cycles.</p>
+<p>It also bridges to Part V. My reading of why most AI pilots don’t scale: the pilot ran on the founding team’s shared memory, which nobody wrote down, so nobody could hand it to anyone else. The loop itself is not the hard part.</p>
+<h2 id="questions-for-your-teams-this-week">Questions for your teams this week</h2>
+<blockquote class="questions">
+<ul>
+<li>If we changed model vendors next month, what would we lose and what would survive?<br />
+</li>
+<li>Who owns the document our agents read first? When did someone last correct it, as opposed to adding to it?<br />
+</li>
+<li>What can our agents reach today that nobody has reviewed this year?<br />
+</li>
+<li>Name one thing our experienced people know that a new joiner, or an agent, has no way to find out.</li>
+</ul>
+</blockquote>
+
+  </article>
+  <div class="pager"><a class="prev" href="07-where-judgment-cant-be-delegated.html"><span class="k">← Chapter 7</span><b>Where Judgment Can’t Be Delegated</b></a><a class="next" href="09-your-instruments-went-dark.html"><span class="k">Chapter 9 →</span><b>Your Instruments Went Dark</b></a></div>
+  <div class="share"><span class="sp">Free to read, download and share under CC BY 4.0.</span><span>Full book: <a href="the-judgment-layer.pdf" download>PDF</a> · <a href="the-judgment-layer.epub" download>EPUB</a></span></div>
+  <a class="framework" href="../idf.html"><span>IDF is the framework behind this book, for the teams who run it.</span><b>Open the framework →</b></a>
+</div></main>
+<footer class="foot"><span>The Judgment Layer · 2026</span><span>CC BY 4.0 · Roberto Pillon Franco</span></footer>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  function upd() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', upd, { passive: true }); upd();
+})();
+</script>
+<script src="../nav.js?v=15"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MV9XNW7Y6V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MV9XNW7Y6V');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What It Costs · The Judgment Layer</title>
+<meta name="description" content="Each chapter so far has ended with a cost section. This chapter collects them, because you can survive each cost on its own, and the total decides whether you should do this.">
+<meta name="author" content="Roberto Pillon Franco">
+<link rel="canonical" href="https://rfranco-br.github.io/Intent-Driven-Flow/book/12-what-it-costs.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Intent Driven Flow">
+<meta property="og:title" content="What It Costs · The Judgment Layer">
+<meta property="og:description" content="Each chapter so far has ended with a cost section. This chapter collects them, because you can survive each cost on its own, and the total decides whether you should do this.">
+<meta property="og:url" content="https://rfranco-br.github.io/Intent-Driven-Flow/book/12-what-it-costs.html">
+<meta property="og:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-12-what-it-costs.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What It Costs · The Judgment Layer">
+<meta name="twitter:description" content="Each chapter so far has ended with a cost section. This chapter collects them, because you can survive each cost on its own, and the total decides whether you should do this.">
+<meta name="twitter:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-12-what-it-costs.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c14; --surface: #13131e; --surface2: #1a1a2a;
+    --border: #2a2a3a; --border2: #3a3a50;
+    --text: #f0ede8; --text2: #a8a6b4; --text3: #8a8898;
+    --coral: #e8734a; --coral2: #f0956e;
+    --purple: #7c5cbf; --purple2: #9b7fd4;
+    --teal: #3a9e78; --teal2: #5bbf95;
+    --amber: #bf8f3a; --amber2: #d4a85b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+  a { color: var(--coral2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 14px; font: 12px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 32px; }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .eyebrow { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+
+  /* sidebar */
+  #section-nav { position: fixed; top: 48px; left: 0; width: 240px; height: calc(100vh - 48px); overflow-y: auto; background: var(--bg); border-right: 1px solid var(--border); padding: 24px 0 48px; z-index: 100; }
+  #section-nav .book-link { display: block; font: 600 14px 'Playfair Display', serif; color: var(--text); padding: 0 20px 12px; }
+  .snav-group-label { display: block; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); padding: 12px 20px 4px; }
+  #section-nav a.ch { display: block; font: 12px/1.4 'IBM Plex Sans', sans-serif; color: var(--text3); padding: 5px 16px 5px 18px; border-left: 2px solid transparent; }
+  #section-nav a.ch:hover { color: var(--text2); background: var(--surface); text-decoration: none; }
+  #section-nav a.ch.is-active { color: var(--coral); border-left-color: var(--coral); background: rgba(232,115,74,0.07); }
+  .snav-num { font: 10px 'IBM Plex Mono', monospace; margin-right: 6px; opacity: .6; }
+  main, .foot { margin-left: 240px; }
+
+  /* progress */
+  #progress { position: fixed; top: 48px; left: 0; height: 2px; background: var(--coral); width: 0; z-index: 200; }
+
+  /* reader */
+  .reader { padding: 64px 48px 48px; }
+  .col { max-width: 700px; margin: 0 auto; }
+  .ch-head { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+  .ch-num { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 10px; }
+  .ch-head h1 { font: 700 44px/1.12 'Playfair Display', serif; letter-spacing: -.01em; margin-bottom: 16px; }
+  .ch-meta { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .prose { font-size: 18px; line-height: 1.75; color: #e4e1dc; }
+  .prose p { margin: 0 0 1.15em; }
+  .prose h2 { font: 600 26px/1.25 'Playfair Display', serif; color: var(--text); margin: 1.8em 0 .6em; }
+  .prose h3 { font: 600 19px 'IBM Plex Sans', sans-serif; margin: 1.4em 0 .5em; }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose em { color: inherit; }
+  .prose ul, .prose ol { margin: 0 0 1.15em 1.2em; }
+  .prose li { margin-bottom: .4em; }
+  .prose blockquote { border-left: 2px solid var(--border2); padding: 2px 0 2px 18px; margin: 0 0 1.15em; color: var(--text2); }
+  .prose blockquote.questions { border: 1px solid var(--border2); border-left: 3px solid var(--coral); background: var(--surface); border-radius: 10px; padding: 18px 22px 8px 22px; color: var(--text); }
+  .prose blockquote.questions ul { margin-left: 1.1em; }
+  .prose .sources { font-size: 14px; line-height: 1.6; color: var(--text3); margin-top: 2em; padding-top: 16px; border-top: 1px solid var(--border); }
+  .prose .sources em { font-style: normal; }
+  .prose .sources a { color: var(--text2); text-decoration: underline; text-decoration-color: var(--border2); }
+  .prose a { text-decoration: underline; text-decoration-color: rgba(240,149,110,.4); text-underline-offset: 2px; }
+  .tbl-wrap { overflow-x: auto; margin: 0 0 1.3em; }
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 15px; line-height: 1.55; }
+  .tbl th { text-align: left; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); padding: 10px 14px; font-weight: 400; }
+  .tbl td { padding: 12px 14px; border-top: 1px solid var(--border); background: var(--surface); vertical-align: top; color: var(--text2); }
+  .tbl td:first-child { color: var(--text); white-space: nowrap; }
+
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
+  .pager a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 16px 18px; color: var(--text); }
+  .pager a:hover { border-color: var(--coral); text-decoration: none; }
+  .pager .k { display: block; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 4px; }
+  .pager b { font: 600 16px 'Playfair Display', serif; }
+  .pager .next { text-align: right; grid-column: 2; }
+  .share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 28px; padding: 16px 18px; border: 1px dashed var(--border2); border-radius: 12px; font-size: 14px; color: var(--text2); }
+  .share a { font: 12px 'IBM Plex Mono', monospace; }
+  .share .sp { flex: 1 1 auto; }
+  .framework { margin-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 16px 18px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; color: var(--text2); font-size: 14px; }
+  .framework:hover { border-color: var(--coral); text-decoration: none; }
+  .framework b { color: var(--coral2); font-weight: 500; }
+
+  /* book home */
+  .home-hero { padding: 72px 48px 56px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .home-hero::before { content: ''; position: absolute; top: -220px; right: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(232,115,74,0.08) 0%, transparent 70%); pointer-events: none; }
+  .home-in { max-width: 920px; margin: 0 auto; position: relative; }
+  .home-hero h1 { font: 700 64px/1.04 'Playfair Display', serif; letter-spacing: -.02em; margin-bottom: 12px; }
+  .byline { font: 500 16px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-bottom: 26px; }
+  .thesis { font: italic 24px/1.4 'Playfair Display', serif; color: var(--text); max-width: 720px; margin-bottom: 30px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 100px; font: 500 14px 'IBM Plex Sans', sans-serif; border: 1px solid var(--border2); color: var(--text); background: var(--surface2); }
+  .cta.primary { background: var(--coral); border-color: var(--coral); color: #12121a; }
+  .cta:hover { text-decoration: none; border-color: var(--coral); }
+  .facts { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .home-sec { padding: 56px 48px; border-bottom: 1px solid var(--border); }
+  .sub { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+  .quote { font: 20px/1.55 'Playfair Display', serif; color: var(--text); border-left: 2px solid var(--coral); padding-left: 18px; margin-bottom: 14px; }
+  .quote-src { font-size: 13px; color: var(--text3); }
+  .toc-part { margin-bottom: 26px; }
+  .toc-part h3 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--coral2); margin-bottom: 10px; font-weight: 400; }
+  .toc-list { display: grid; gap: 8px; }
+  .toc-item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); }
+  .toc-item:hover { border-color: var(--coral); text-decoration: none; }
+  .toc-item .n { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .toc-item .t { font: 600 17px 'Playfair Display', serif; }
+  .toc-item .d { display: block; font: 400 14px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-top: 4px; }
+  .toc-item .m { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); white-space: nowrap; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pair a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; padding: 22px; color: var(--text2); font-size: 14px; }
+  .pair a:hover { border-color: var(--coral); text-decoration: none; }
+  .pair .k { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .pair h4 { font: 600 20px 'Playfair Display', serif; color: var(--text); margin-bottom: 6px; }
+  .pair b { display: inline-block; margin-top: 10px; color: var(--coral2); font-weight: 500; }
+  .home .main-only { margin-left: 0; }
+
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 48px; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); border-top: 1px solid var(--border); }
+
+  @media (max-width: 960px) {
+    #section-nav { display: none; }
+    main, .foot { margin-left: 0; }
+  }
+  @media (max-width: 720px) {
+    .reader { padding: 40px 16px 32px; }
+    .ch-head h1 { font-size: 32px; }
+    .prose { font-size: 17px; }
+    .prose h2 { font-size: 22px; }
+    .pager { grid-template-columns: 1fr; }
+    .pager .next { grid-column: 1; }
+    .home-hero { padding: 48px 16px 40px; }
+    .home-hero h1 { font-size: 44px; }
+    .thesis { font-size: 20px; }
+    .home-sec { padding: 40px 16px; }
+    .toc-item { grid-template-columns: 34px 1fr; }
+    .toc-item .m { grid-column: 2; }
+    .pair { grid-template-columns: 1fr; }
+    .foot { padding: 24px 16px; }
+    .tbl td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav id="section-nav">
+<a class="book-link" href="index.html">The Judgment Layer</a>
+<a class="ch" href="introduction.html"><span class="snav-num">00</span>Introduction</a>
+<span class="snav-group-label">Part I · The ground moved</span>
+<a class="ch" href="01-the-pilot-that-never-scaled.html"><span class="snav-num">01</span>The Pilot That Never Scaled</a>
+<span class="snav-group-label">Part II · Decide what&#x27;s worth building</span>
+<a class="ch" href="02-outcomes-not-output.html"><span class="snav-num">02</span>Outcomes, Not Output</a>
+<a class="ch" href="03-shipping-is-not-done-confirmed-is-done.html"><span class="snav-num">03</span>Shipping Is Not Done. Confirmed Is Done.</a>
+<span class="snav-group-label">Part III · Ship without batching</span>
+<a class="ch" href="04-the-batch-problem.html"><span class="snav-num">04</span>The Batch Problem</a>
+<a class="ch" href="05-deploy-is-not-release.html"><span class="snav-num">05</span>Deploy Is Not Release</a>
+<span class="snav-group-label">Part IV · Govern the judgment</span>
+<a class="ch" href="06-who-approved-this.html"><span class="snav-num">06</span>“Who Approved This?”</a>
+<a class="ch" href="07-where-judgment-cant-be-delegated.html"><span class="snav-num">07</span>Where Judgment Can’t Be Delegated</a>
+<a class="ch" href="08-your-systems-memory-is-capital.html"><span class="snav-num">08</span>Your System’s Memory Is Capital</a>
+<span class="snav-group-label">Part V · Lead the change</span>
+<a class="ch" href="09-your-instruments-went-dark.html"><span class="snav-num">09</span>Your Instruments Went Dark</a>
+<a class="ch" href="10-how-youll-know-its-working.html"><span class="snav-num">10</span>How You’ll Know It’s Working</a>
+<a class="ch" href="11-from-demo-to-scale.html"><span class="snav-num">11</span>From Demo to Scale</a>
+<a class="ch is-active" href="12-what-it-costs.html"><span class="snav-num">12</span>What It Costs</a>
+<a class="ch" href="13-where-to-start-and-what-we-dont-know.html"><span class="snav-num">13</span>Where to Start, and What We Don’t Know</a>
+</nav>
+<main class="reader"><div class="col">
+  <header class="ch-head">
+    <div class="eyebrow">Part V · Lead the change</div>
+    <div class="ch-num">Chapter 12</div>
+    <h1>What It Costs</h1>
+    <div class="ch-meta">7 min read · <a href="index.html">The Judgment Layer</a> · Roberto Pillon Franco</div>
+  </header>
+  <article class="prose">
+<h2 id="the-chapter-most-books-leave-out">The chapter most books leave out</h2>
+<p>Each chapter so far has ended with a cost section. This chapter collects them, because you can survive each cost on its own, and the total decides whether you should do this.</p>
+<p>I would rather you decided against this on accurate information than adopted it on a favorable summary and abandoned it in month four. An abandoned change costs more than one you never attempted, because it burns the credibility you’ll need for the next one.</p>
+<h2 id="the-four-costs-that-matter">The four costs that matter</h2>
+<p>The rest is detail.</p>
+<p><strong>Judgment doesn’t scale.</strong> The rest of your delivery system now scales with compute. This part scales with attention, which is finite and expensive and belongs to your most senior people. I don’t think you’ll find efficiency here, and a plan that claims to find some is a plan to remove the judgment. Budget for it as a permanent cost.</p>
+<p><strong>Somebody has to be willing to be unpopular, more than once.</strong> A judgment moment that never rejects anything is decoration. To make it real, people have to say no to work their colleagues have finished, in public, more than once. If your culture punishes that, and most cultures do it quietly through who gets promoted, no framework survives the contact. I’d bet on this failure mode above all others.</p>
+<p><strong>You are putting back friction you just paid to remove.</strong> Twelve months after an AI investment you justified on speed, you will be adding constraints, and people will ask you why. They’ll be right to ask. The friction you removed was an accident and the friction you’re adding is a choice. That answer is correct, and you’ll be repeating it for a year.</p>
+<p><strong>You will see that some of your work didn’t work.</strong> When you confirm outcomes, you discover that things you shipped, announced and celebrated moved nothing. Senior people, and maybe you, will want to soften that right away. If they win, you get confirmation theater, which does more harm than no confirmation at all because it manufactures false certainty.</p>
+<h2 id="the-costs-by-stage">The costs by stage</h2>
+<p>Roughly what to expect, and when.</p>
+<div class="tbl-wrap"><table class="tbl">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Timing</th>
+<th style="text-align: left;">What it costs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Immediately</strong></td>
+<td style="text-align: left;">Writing intents properly, a skill nobody has been trained in. Slower decisions at the front of the process. Instrumentation gaps become visible.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>First quarter</strong></td>
+<td style="text-align: left;">Metrics look worse before they get honest. Reporting volume drops. The first uncomfortable confirmation results arrive.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>First year</strong></td>
+<td style="text-align: left;">Switch hygiene becomes a real maintenance burden. Someone must own system memory and delete other people’s writing. Permission reconciliation reveals an uncomfortable gap.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Permanent</strong></td>
+<td style="text-align: left;">Senior attention on judgment moments. The willingness to reject finished work. Holding the permanent floor when someone argues it’s overhead.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The technical costs come early and end. The cultural costs stay. My strong impression is that people blame most adoption failures on the first kind, when the second kind caused them.</p>
+<h2 id="who-should-not-do-this">Who should not do this</h2>
+<p>This list is shorter than an ideal-fit list and more useful.</p>
+<p><strong>Organizations that can’t expose work incrementally and won’t invest to.</strong> If your architecture forces all-or-nothing releases and nobody wants to change that, you can’t use chapter 5, which I think is the cheapest and highest-return idea here. Much of the rest still works, and the strongest part doesn’t. Be honest about that before you start.</p>
+<p><strong>Organizations where saying no limits careers.</strong> If you can’t name someone who rejected finished work in the last six months and is doing fine, you have your answer. Fix that first. It is a prerequisite, and it won’t fix itself along the way.</p>
+<p><strong>Organizations in crisis.</strong> You need slack to install this. A team fighting for survival this quarter should fight for survival this quarter and come back when there’s air.</p>
+<p><strong>Leadership that wants the numbers without the accountability.</strong> If the appeal here is a governance story for the board, and you don’t intend to change who decides what, you will build the artifacts, skip the judgment, and end up with more process and no more control. I think that leaves you worse off than you are now.</p>
+<p><strong>Small teams still working like the pilot.</strong> If you’re five people in one room and judgment lives in the room, everyone knows what good looks like and nothing crosses a boundary. You have the conditions chapter 1 described, and formalizing them adds cost for no return. You’ll know when that stops being true: someone ships something that surprises everyone else. Adopt this when ambient judgment stops working, and not because someone calls it best practice.</p>
+<h2 id="what-the-book-doesnt-prescribe">What the book doesn’t prescribe</h2>
+<p>Change programs accumulate requirements nobody asked for, so I’ll be explicit.</p>
+<p>The book doesn’t prescribe a reorganization or new roles. The judgment moments need named people, and they don’t need new job titles or reporting lines. That said, change is the point of the book. Some organizations will find that making the judgment moments real means changing team shapes, creating roles, or running a formal change program, and when that happens it is a legitimate consequence of the argument. I leave that call with you.</p>
+<p>It doesn’t require another framework. You don’t need Scrum, SAFe, Team Topologies or anything else in place, and organizations with no named operating model succeed too. You don’t have to adopt it all at once: chapter 13 argues for one move, and several of the parts work alone. And you don’t need to buy tooling, because you can implement each idea here with what you already own. If someone tells you otherwise, they are selling something.</p>
+<h2 id="the-honest-summary">The honest summary</h2>
+<p><strong>What you give up:</strong> the comfort of estimates, the appearance of predictability, a weekly dashboard that always improves, and the option of not knowing whether your work matters.</p>
+<p><strong>What it costs to start:</strong> learning to write outcomes instead of tasks, instrumenting a few things you haven’t measured, and a quarter of worse-looking numbers.</p>
+<p><strong>What it costs for good:</strong> senior attention on judgment, and a culture where people survive rejecting finished work.</p>
+<p><strong>What you get:</strong> work reaching customers at a rate that reflects what you spend, a defensible answer to who decided what, and the return that compounds, knowing which of your beliefs about customers are true.</p>
+<p><strong>When it pays back:</strong> the release switch pays within a quarter and costs the least. The judgment moments pay the first time they catch something, which you can’t predict, and I suspect it comes sooner than you’d expect. Outcome confirmation pays over a year and gives the slowest and largest return, because it changes what you decide to build next. I reasoned my way to those estimates, no study produced them, and you should weigh them that way.</p>
+<h2 id="why-this-chapter-is-here">Why this chapter is here</h2>
+<p>It sits near the end so you can weigh the costs against the whole argument instead of one piece of it.</p>
+<p>If, having read this, you conclude the cost is too high for your organization right now, that is a legitimate result of reading the book. I’d rather you reach it here than in month four with your credibility sunk.</p>
+<p>There’s a smaller reason too. When a framework states its costs, you can check its honesty. If the costs listed here turn out to be roughly what you experience, the rest of the argument earns some trust. If they don’t, discount the rest accordingly.</p>
+<h2 id="questions-to-ask-yourself-this-week">Questions to ask yourself this week</h2>
+<blockquote class="questions">
+<ul>
+<li>Can I name someone here who rejected finished work in the last six months? What happened to them?<br />
+</li>
+<li>Am I prepared to defend a quarter of worse-looking metrics to my own leadership?<br />
+</li>
+<li>What share of our delivery surface can we expose incrementally today?<br />
+</li>
+<li>Do I want the governance story, or do I want to change who decides what? The first costs less, and I should be honest with myself about which one I’m buying.</li>
+</ul>
+</blockquote>
+
+  </article>
+  <div class="pager"><a class="prev" href="11-from-demo-to-scale.html"><span class="k">← Chapter 11</span><b>From Demo to Scale</b></a><a class="next" href="13-where-to-start-and-what-we-dont-know.html"><span class="k">Chapter 13 →</span><b>Where to Start, and What We Don’t Know</b></a></div>
+  <div class="share"><span class="sp">Free to read, download and share under CC BY 4.0.</span><span>Full book: <a href="the-judgment-layer.pdf" download>PDF</a> · <a href="the-judgment-layer.epub" download>EPUB</a></span></div>
+  <a class="framework" href="../idf.html"><span>IDF is the framework behind this book, for the teams who run it.</span><b>Open the framework →</b></a>
+</div></main>
+<footer class="foot"><span>The Judgment Layer · 2026</span><span>CC BY 4.0 · Roberto Pillon Franco</span></footer>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  function upd() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', upd, { passive: true }); upd();
+})();
+</script>
+<script src="../nav.js?v=15"></script>
+</body>
+</html>

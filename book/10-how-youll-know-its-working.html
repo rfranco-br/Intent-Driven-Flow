@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MV9XNW7Y6V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MV9XNW7Y6V');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How You’ll Know It’s Working · The Judgment Layer</title>
+<meta name="description" content="Chapter 9 argued that your instruments went dark. This chapter gives you replacements, along with how people will game each one, because an organization that would rather look good can make…">
+<meta name="author" content="Roberto Pillon Franco">
+<link rel="canonical" href="https://rfranco-br.github.io/Intent-Driven-Flow/book/10-how-youll-know-its-working.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Intent Driven Flow">
+<meta property="og:title" content="How You’ll Know It’s Working · The Judgment Layer">
+<meta property="og:description" content="Chapter 9 argued that your instruments went dark. This chapter gives you replacements, along with how people will game each one, because an organization that would rather look good can make…">
+<meta property="og:url" content="https://rfranco-br.github.io/Intent-Driven-Flow/book/10-how-youll-know-its-working.html">
+<meta property="og:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-10-how-youll-know-its-working.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How You’ll Know It’s Working · The Judgment Layer">
+<meta name="twitter:description" content="Chapter 9 argued that your instruments went dark. This chapter gives you replacements, along with how people will game each one, because an organization that would rather look good can make…">
+<meta name="twitter:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-10-how-youll-know-its-working.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c14; --surface: #13131e; --surface2: #1a1a2a;
+    --border: #2a2a3a; --border2: #3a3a50;
+    --text: #f0ede8; --text2: #a8a6b4; --text3: #8a8898;
+    --coral: #e8734a; --coral2: #f0956e;
+    --purple: #7c5cbf; --purple2: #9b7fd4;
+    --teal: #3a9e78; --teal2: #5bbf95;
+    --amber: #bf8f3a; --amber2: #d4a85b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+  a { color: var(--coral2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 14px; font: 12px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 32px; }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .eyebrow { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+
+  /* sidebar */
+  #section-nav { position: fixed; top: 48px; left: 0; width: 240px; height: calc(100vh - 48px); overflow-y: auto; background: var(--bg); border-right: 1px solid var(--border); padding: 24px 0 48px; z-index: 100; }
+  #section-nav .book-link { display: block; font: 600 14px 'Playfair Display', serif; color: var(--text); padding: 0 20px 12px; }
+  .snav-group-label { display: block; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); padding: 12px 20px 4px; }
+  #section-nav a.ch { display: block; font: 12px/1.4 'IBM Plex Sans', sans-serif; color: var(--text3); padding: 5px 16px 5px 18px; border-left: 2px solid transparent; }
+  #section-nav a.ch:hover { color: var(--text2); background: var(--surface); text-decoration: none; }
+  #section-nav a.ch.is-active { color: var(--coral); border-left-color: var(--coral); background: rgba(232,115,74,0.07); }
+  .snav-num { font: 10px 'IBM Plex Mono', monospace; margin-right: 6px; opacity: .6; }
+  main, .foot { margin-left: 240px; }
+
+  /* progress */
+  #progress { position: fixed; top: 48px; left: 0; height: 2px; background: var(--coral); width: 0; z-index: 200; }
+
+  /* reader */
+  .reader { padding: 64px 48px 48px; }
+  .col { max-width: 700px; margin: 0 auto; }
+  .ch-head { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+  .ch-num { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 10px; }
+  .ch-head h1 { font: 700 44px/1.12 'Playfair Display', serif; letter-spacing: -.01em; margin-bottom: 16px; }
+  .ch-meta { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .prose { font-size: 18px; line-height: 1.75; color: #e4e1dc; }
+  .prose p { margin: 0 0 1.15em; }
+  .prose h2 { font: 600 26px/1.25 'Playfair Display', serif; color: var(--text); margin: 1.8em 0 .6em; }
+  .prose h3 { font: 600 19px 'IBM Plex Sans', sans-serif; margin: 1.4em 0 .5em; }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose em { color: inherit; }
+  .prose ul, .prose ol { margin: 0 0 1.15em 1.2em; }
+  .prose li { margin-bottom: .4em; }
+  .prose blockquote { border-left: 2px solid var(--border2); padding: 2px 0 2px 18px; margin: 0 0 1.15em; color: var(--text2); }
+  .prose blockquote.questions { border: 1px solid var(--border2); border-left: 3px solid var(--coral); background: var(--surface); border-radius: 10px; padding: 18px 22px 8px 22px; color: var(--text); }
+  .prose blockquote.questions ul { margin-left: 1.1em; }
+  .prose .sources { font-size: 14px; line-height: 1.6; color: var(--text3); margin-top: 2em; padding-top: 16px; border-top: 1px solid var(--border); }
+  .prose .sources em { font-style: normal; }
+  .prose .sources a { color: var(--text2); text-decoration: underline; text-decoration-color: var(--border2); }
+  .prose a { text-decoration: underline; text-decoration-color: rgba(240,149,110,.4); text-underline-offset: 2px; }
+  .tbl-wrap { overflow-x: auto; margin: 0 0 1.3em; }
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 15px; line-height: 1.55; }
+  .tbl th { text-align: left; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); padding: 10px 14px; font-weight: 400; }
+  .tbl td { padding: 12px 14px; border-top: 1px solid var(--border); background: var(--surface); vertical-align: top; color: var(--text2); }
+  .tbl td:first-child { color: var(--text); white-space: nowrap; }
+
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
+  .pager a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 16px 18px; color: var(--text); }
+  .pager a:hover { border-color: var(--coral); text-decoration: none; }
+  .pager .k { display: block; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 4px; }
+  .pager b { font: 600 16px 'Playfair Display', serif; }
+  .pager .next { text-align: right; grid-column: 2; }
+  .share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 28px; padding: 16px 18px; border: 1px dashed var(--border2); border-radius: 12px; font-size: 14px; color: var(--text2); }
+  .share a { font: 12px 'IBM Plex Mono', monospace; }
+  .share .sp { flex: 1 1 auto; }
+  .framework { margin-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 16px 18px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; color: var(--text2); font-size: 14px; }
+  .framework:hover { border-color: var(--coral); text-decoration: none; }
+  .framework b { color: var(--coral2); font-weight: 500; }
+
+  /* book home */
+  .home-hero { padding: 72px 48px 56px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .home-hero::before { content: ''; position: absolute; top: -220px; right: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(232,115,74,0.08) 0%, transparent 70%); pointer-events: none; }
+  .home-in { max-width: 920px; margin: 0 auto; position: relative; }
+  .home-hero h1 { font: 700 64px/1.04 'Playfair Display', serif; letter-spacing: -.02em; margin-bottom: 12px; }
+  .byline { font: 500 16px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-bottom: 26px; }
+  .thesis { font: italic 24px/1.4 'Playfair Display', serif; color: var(--text); max-width: 720px; margin-bottom: 30px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 100px; font: 500 14px 'IBM Plex Sans', sans-serif; border: 1px solid var(--border2); color: var(--text); background: var(--surface2); }
+  .cta.primary { background: var(--coral); border-color: var(--coral); color: #12121a; }
+  .cta:hover { text-decoration: none; border-color: var(--coral); }
+  .facts { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .home-sec { padding: 56px 48px; border-bottom: 1px solid var(--border); }
+  .sub { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+  .quote { font: 20px/1.55 'Playfair Display', serif; color: var(--text); border-left: 2px solid var(--coral); padding-left: 18px; margin-bottom: 14px; }
+  .quote-src { font-size: 13px; color: var(--text3); }
+  .toc-part { margin-bottom: 26px; }
+  .toc-part h3 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--coral2); margin-bottom: 10px; font-weight: 400; }
+  .toc-list { display: grid; gap: 8px; }
+  .toc-item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); }
+  .toc-item:hover { border-color: var(--coral); text-decoration: none; }
+  .toc-item .n { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .toc-item .t { font: 600 17px 'Playfair Display', serif; }
+  .toc-item .d { display: block; font: 400 14px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-top: 4px; }
+  .toc-item .m { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); white-space: nowrap; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pair a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; padding: 22px; color: var(--text2); font-size: 14px; }
+  .pair a:hover { border-color: var(--coral); text-decoration: none; }
+  .pair .k { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .pair h4 { font: 600 20px 'Playfair Display', serif; color: var(--text); margin-bottom: 6px; }
+  .pair b { display: inline-block; margin-top: 10px; color: var(--coral2); font-weight: 500; }
+  .home .main-only { margin-left: 0; }
+
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 48px; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); border-top: 1px solid var(--border); }
+
+  @media (max-width: 960px) {
+    #section-nav { display: none; }
+    main, .foot { margin-left: 0; }
+  }
+  @media (max-width: 720px) {
+    .reader { padding: 40px 16px 32px; }
+    .ch-head h1 { font-size: 32px; }
+    .prose { font-size: 17px; }
+    .prose h2 { font-size: 22px; }
+    .pager { grid-template-columns: 1fr; }
+    .pager .next { grid-column: 1; }
+    .home-hero { padding: 48px 16px 40px; }
+    .home-hero h1 { font-size: 44px; }
+    .thesis { font-size: 20px; }
+    .home-sec { padding: 40px 16px; }
+    .toc-item { grid-template-columns: 34px 1fr; }
+    .toc-item .m { grid-column: 2; }
+    .pair { grid-template-columns: 1fr; }
+    .foot { padding: 24px 16px; }
+    .tbl td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav id="section-nav">
+<a class="book-link" href="index.html">The Judgment Layer</a>
+<a class="ch" href="introduction.html"><span class="snav-num">00</span>Introduction</a>
+<span class="snav-group-label">Part I · The ground moved</span>
+<a class="ch" href="01-the-pilot-that-never-scaled.html"><span class="snav-num">01</span>The Pilot That Never Scaled</a>
+<span class="snav-group-label">Part II · Decide what&#x27;s worth building</span>
+<a class="ch" href="02-outcomes-not-output.html"><span class="snav-num">02</span>Outcomes, Not Output</a>
+<a class="ch" href="03-shipping-is-not-done-confirmed-is-done.html"><span class="snav-num">03</span>Shipping Is Not Done. Confirmed Is Done.</a>
+<span class="snav-group-label">Part III · Ship without batching</span>
+<a class="ch" href="04-the-batch-problem.html"><span class="snav-num">04</span>The Batch Problem</a>
+<a class="ch" href="05-deploy-is-not-release.html"><span class="snav-num">05</span>Deploy Is Not Release</a>
+<span class="snav-group-label">Part IV · Govern the judgment</span>
+<a class="ch" href="06-who-approved-this.html"><span class="snav-num">06</span>“Who Approved This?”</a>
+<a class="ch" href="07-where-judgment-cant-be-delegated.html"><span class="snav-num">07</span>Where Judgment Can’t Be Delegated</a>
+<a class="ch" href="08-your-systems-memory-is-capital.html"><span class="snav-num">08</span>Your System’s Memory Is Capital</a>
+<span class="snav-group-label">Part V · Lead the change</span>
+<a class="ch" href="09-your-instruments-went-dark.html"><span class="snav-num">09</span>Your Instruments Went Dark</a>
+<a class="ch is-active" href="10-how-youll-know-its-working.html"><span class="snav-num">10</span>How You’ll Know It’s Working</a>
+<a class="ch" href="11-from-demo-to-scale.html"><span class="snav-num">11</span>From Demo to Scale</a>
+<a class="ch" href="12-what-it-costs.html"><span class="snav-num">12</span>What It Costs</a>
+<a class="ch" href="13-where-to-start-and-what-we-dont-know.html"><span class="snav-num">13</span>Where to Start, and What We Don’t Know</a>
+</nav>
+<main class="reader"><div class="col">
+  <header class="ch-head">
+    <div class="eyebrow">Part V · Lead the change</div>
+    <div class="ch-num">Chapter 10</div>
+    <h1>How You’ll Know It’s Working</h1>
+    <div class="ch-meta">9 min read · <a href="index.html">The Judgment Layer</a> · Roberto Pillon Franco</div>
+  </header>
+  <article class="prose">
+<h2 id="six-numbers-and-how-each-one-gets-faked">Six numbers, and how each one gets faked</h2>
+<p>Chapter 9 argued that your instruments went dark. This chapter gives you replacements, along with how people will game each one, because an organization that would rather look good can make each of these metrics look good.</p>
+<p>I give you the gaming method with each metric for a practical reason. If you can’t describe how a metric fails, you can’t trust it, and the people who show you these numbers will have an interest in them.</p>
+<h2 id="intent-completion-rate">1. Intent completion rate</h2>
+<p><strong>What it is:</strong> of the outcomes you set out to achieve, the share you confirmed as achieved, against the share you abandoned. This is the primary signal, and the only one that answers the question your board is asking. The other five diagnose.</p>
+<p><strong>How it gets faked:</strong> teams set intents whose success is already assured, or they write the success criterion so vaguely that almost anything satisfies it. I read a completion rate near 100% as a target-setting problem. I’d expect an organization that is attempting hard things to land somewhere between 60% and 80%.</p>
+<p><strong>The tell:</strong> ask to see the abandoned ones. If there aren’t any, you have your answer.</p>
+<h2 id="pending-off-age">2. Pending-off age</h2>
+<p><strong>What it is:</strong> how long finished, deployed work waits before customers can see it, measured as a median plus the age of the oldest item. This is the batch metric and the direct answer to chapter 4. It tells you whether your people use the release switch as a governance instrument or as a parking lot. When the age rises, the exposure decision has turned into a queue.</p>
+<p><strong>How it gets faked:</strong> teams release trivial items fast to hold the median down while the significant work sits. Watch the maximum as well as the median.</p>
+<p><strong>The tell:</strong> ask for the oldest item by name. Somebody will know which one it is and why it’s stuck.</p>
+<h2 id="time-from-intent-to-customer">3. Time from intent to customer</h2>
+<p><strong>What it is:</strong> the interval from agreeing an outcome to a customer being able to experience it. It replaces lead time and measures a longer arc on purpose, because it includes the decision-making at the front. Conventional delivery metrics leave that part out, since nobody controls it.</p>
+<p><strong>How it gets faked:</strong> teams log the intent late. If people write intents the day before work starts, the clock skips the deliberation, and the number ends up measuring typing speed.</p>
+<p><strong>The tell:</strong> compare intent creation dates against when the conversation started. If they always fall on the same day, the clock starts in the wrong place.</p>
+<h2 id="first-pass-rate-at-each-judgment-moment">4. First-pass rate at each judgment moment</h2>
+<p><strong>What it is:</strong> how often work clears a judgment moment without rework, tracked per moment. A falling first-pass rate on direction means your intents are ambiguous. A falling rate on fitness means the standards of the agents and engineers doing the work have drifted. The number has the same shape in both cases and calls for a different diagnosis, so if you aggregate them you destroy the signal.</p>
+<p><strong>How it gets faked:</strong> nobody needs to fake it, because it fakes itself. A first-pass rate near 100% means the gate has stopped working, and I think this failure shows up more than any other in the book. Our own project ran thirteen cycles with a thirteen-out-of-thirteen pass rate, which told us only that the reviewer had no standing to fail anything.</p>
+<p><strong>The tell:</strong> if a judgment moment has never rejected anything, it is recording, and it controls nothing.</p>
+<h2 id="rework-cause-mix">5. Rework cause mix</h2>
+<p><strong>What it is:</strong> the kind of rework, grouped by root cause: ambiguous intent, misreading by the agents doing the work, scope change, external change. The volume of rework tells you little, since agents make rework easy and a healthy team reworks all the time. The distribution carries the signal. A concentration in one cause gives you something to act on, because ambiguous intent is a product problem, misreading is a context problem, and scope change is a governance problem. The three share a symptom and nothing else.</p>
+<p><strong>How it gets faked:</strong> teams file everything under “scope change,” which is nobody’s fault and requires no action.</p>
+<p><strong>The tell:</strong> a suspiciously flat distribution usually means nobody is categorizing honestly.</p>
+<h2 id="escape-rate">6. Escape rate</h2>
+<p><strong>What it is:</strong> the share of things released to customers that you had to withdraw. This quality signal survives the shift, and it pairs with pending-off age. Together they detect two opposite failures. If you release too cautiously, age climbs and escapes sit near zero. If you release too carelessly, age stays low and escapes climb.</p>
+<p><strong>How it gets faked:</strong> teams leave something visibly broken instead of withdrawing it and admitting a mistake. A low escape rate can mean good judgment, or an unwillingness to reverse.</p>
+<p><strong>The tell:</strong> ask how long it took from knowing about a problem to switching it off. If the answer is in days, the escape rate is fiction.</p>
+<h2 id="work-no-customer-sees">Work no customer sees</h2>
+<p>Obligations and enablers don’t fit the six numbers above, because neither has a customer outcome of its own. For both, the DORA metrics from chapter 4 still do the job. Lead time, change failure rate and recovery time tell you whether the delivery system handles this work safely and on time, and for work like this that is the right question.</p>
+<p>Enablers need two more rules. First, an intent’s time to customer includes the enablers it waited for. If the checkout intent sat eight weeks behind a new platform, the clock shows eight weeks, because hiding that wait is how platform work escapes scrutiny. Second, an enabler counts as confirmed only when the intents it was built for are confirmed, as chapter 2 sets out.</p>
+<p><strong>The tell:</strong> a growing share of enabling work that no named intent depends on. It usually means a platform team is building for its own roadmap, which is the busy-but-moving-nothing failure chapter 7 describes for direction.</p>
+<h2 id="what-to-switch-off">What to switch off</h2>
+<p>I’ll say this once, because the argument turns on trust more than on measurement.</p>
+<p>Velocity, story points, burndown, estimation accuracy and capacity utilization served you well while people did the executing. They all measure human bandwidth, which agents absorbed. They will keep producing plausible numbers for as long as you run them, and that makes them dangerous as well as useless.</p>
+<p>The resistance you meet will turn on something other than measurement quality. Engineering has used velocity for twenty years to justify headcount to finance, and you may have made that case yourself. Removing it takes away a shared language between functions that have no other one. Put the replacement in place before you remove it, and expect the conversation to turn on trust.</p>
+<h2 id="a-unit-finance-can-still-trust">A unit finance can still trust</h2>
+<p>Switching off velocity leaves finance without the number it used to plan headcount, and that conversation needs an answer. I’d use a unit that sizes the work and ignores who did it. <a href="https://ciandt.com/au/en-au/complexitypoints" target="_blank" rel="noopener">Business Complexity Points</a> (BCP) is the one I know best: it scores a piece of work by its business rules, user interface elements, business entities and the interfaces between them, each on a five-step scale from extra small to extra large. CI&amp;T created it in 2015, and CI&amp;T and Itaú Unibanco released it as open source under the MIT License in May 2026.</p>
+<p>A story sized at 12 BCPs stays at 12 whether a person or an agent builds it, which is the property story points lost. Divide the hours or the cost you spend by the points you deliver and you get a production-side ratio you can compare across teams, vendors and tools.</p>
+<p>BCP measures how much complexity you built. It says nothing about whether any of it worked, and if you report it as value you repeat the mistake chapter 3 warns about. The combination I’d try, is the share of delivered points that sits inside confirmed intents against the share inside abandoned ones. That tells you how much of the complexity you paid for produced an outcome.</p>
+<h2 id="what-it-costs">What it costs</h2>
+<p>You will report less, and later. Six numbers, several of which update on customer timescales, replace a weekly dashboard that always had something to say. You lose real reporting comfort, and you feel the loss more than your teams do.</p>
+<p>Several of these need instrumentation you don’t have. Pending-off age needs a switch registry, and rework cause mix needs someone categorizing honestly. None of it costs much, and none of it is free.</p>
+<p>The new numbers will also look worse than the old ones. Your performance hasn’t declined. The old metrics measured something that always went up. Your first quarter of honest measurement will look like a regression, and it won’t be one. If you can’t hold that line with your own leadership, don’t start, because my guess is that someone will push to bring back a flattering metric within about six weeks.</p>
+<p>And people can game each of these. Knowing the methods won’t stop them. Asking for the tell, and not only the number, will.</p>
+<h2 id="why-this-chapter-is-here">Why this chapter is here</h2>
+<p>Chapter 9 took your instruments away, and this chapter gives them back: fewer, slower, harder to fake, and pointed at the thing that constrains you.</p>
+<p>Each metric here measures a judgment. Completion rate asks whether you decided the right thing. Intent to customer asks whether you decided it promptly. First-pass rate asks whether your judgment moments work. Pending-off age and escape rate ask whether you expose work on purpose. The rework mix shows where your judgment fails.</p>
+<p>If judgment is the constraint, and I think it is, these are the instruments pointed at it.</p>
+<h2 id="questions-for-your-teams-this-week">Questions for your teams this week</h2>
+<blockquote class="questions">
+<ul>
+<li>What is our intent completion rate, and how many intents have we abandoned this year?<br />
+</li>
+<li>What is the oldest piece of finished work sitting unreleased right now, and why?<br />
+</li>
+<li>What is the first-pass rate at each judgment moment, and has any of them ever rejected anything?<br />
+</li>
+<li>Which of our current metrics would still make sense if agents did all the execution?</li>
+</ul>
+</blockquote>
+
+  </article>
+  <div class="pager"><a class="prev" href="09-your-instruments-went-dark.html"><span class="k">← Chapter 9</span><b>Your Instruments Went Dark</b></a><a class="next" href="11-from-demo-to-scale.html"><span class="k">Chapter 11 →</span><b>From Demo to Scale</b></a></div>
+  <div class="share"><span class="sp">Free to read, download and share under CC BY 4.0.</span><span>Full book: <a href="the-judgment-layer.pdf" download>PDF</a> · <a href="the-judgment-layer.epub" download>EPUB</a></span></div>
+  <a class="framework" href="../idf.html"><span>IDF is the framework behind this book, for the teams who run it.</span><b>Open the framework →</b></a>
+</div></main>
+<footer class="foot"><span>The Judgment Layer · 2026</span><span>CC BY 4.0 · Roberto Pillon Franco</span></footer>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  function upd() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', upd, { passive: true }); upd();
+})();
+</script>
+<script src="../nav.js?v=15"></script>
+</body>
+</html>

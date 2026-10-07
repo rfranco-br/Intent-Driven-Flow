@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MV9XNW7Y6V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MV9XNW7Y6V');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where to Start, and What We Don’t Know · The Judgment Layer</title>
+<meta name="description" content="After a book like this you will want to design an adoption plan, and that instinct has served you well before. I’d resist it this time. An adoption plan needs approval, approval needs…">
+<meta name="author" content="Roberto Pillon Franco">
+<link rel="canonical" href="https://rfranco-br.github.io/Intent-Driven-Flow/book/13-where-to-start-and-what-we-dont-know.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Intent Driven Flow">
+<meta property="og:title" content="Where to Start, and What We Don’t Know · The Judgment Layer">
+<meta property="og:description" content="After a book like this you will want to design an adoption plan, and that instinct has served you well before. I’d resist it this time. An adoption plan needs approval, approval needs…">
+<meta property="og:url" content="https://rfranco-br.github.io/Intent-Driven-Flow/book/13-where-to-start-and-what-we-dont-know.html">
+<meta property="og:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-13-where-to-start-and-what-we-dont-know.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Where to Start, and What We Don’t Know · The Judgment Layer">
+<meta name="twitter:description" content="After a book like this you will want to design an adoption plan, and that instinct has served you well before. I’d resist it this time. An adoption plan needs approval, approval needs…">
+<meta name="twitter:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-13-where-to-start-and-what-we-dont-know.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c14; --surface: #13131e; --surface2: #1a1a2a;
+    --border: #2a2a3a; --border2: #3a3a50;
+    --text: #f0ede8; --text2: #a8a6b4; --text3: #8a8898;
+    --coral: #e8734a; --coral2: #f0956e;
+    --purple: #7c5cbf; --purple2: #9b7fd4;
+    --teal: #3a9e78; --teal2: #5bbf95;
+    --amber: #bf8f3a; --amber2: #d4a85b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+  a { color: var(--coral2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 14px; font: 12px 'IBM Plex Mono', monospace; color: var(--text2); margin-bottom: 32px; }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .eyebrow { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+
+  /* sidebar */
+  #section-nav { position: fixed; top: 48px; left: 0; width: 240px; height: calc(100vh - 48px); overflow-y: auto; background: var(--bg); border-right: 1px solid var(--border); padding: 24px 0 48px; z-index: 100; }
+  #section-nav .book-link { display: block; font: 600 14px 'Playfair Display', serif; color: var(--text); padding: 0 20px 12px; }
+  .snav-group-label { display: block; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); padding: 12px 20px 4px; }
+  #section-nav a.ch { display: block; font: 12px/1.4 'IBM Plex Sans', sans-serif; color: var(--text3); padding: 5px 16px 5px 18px; border-left: 2px solid transparent; }
+  #section-nav a.ch:hover { color: var(--text2); background: var(--surface); text-decoration: none; }
+  #section-nav a.ch.is-active { color: var(--coral); border-left-color: var(--coral); background: rgba(232,115,74,0.07); }
+  .snav-num { font: 10px 'IBM Plex Mono', monospace; margin-right: 6px; opacity: .6; }
+  main, .foot { margin-left: 240px; }
+
+  /* progress */
+  #progress { position: fixed; top: 48px; left: 0; height: 2px; background: var(--coral); width: 0; z-index: 200; }
+
+  /* reader */
+  .reader { padding: 64px 48px 48px; }
+  .col { max-width: 700px; margin: 0 auto; }
+  .ch-head { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+  .ch-num { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 10px; }
+  .ch-head h1 { font: 700 44px/1.12 'Playfair Display', serif; letter-spacing: -.01em; margin-bottom: 16px; }
+  .ch-meta { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .prose { font-size: 18px; line-height: 1.75; color: #e4e1dc; }
+  .prose p { margin: 0 0 1.15em; }
+  .prose h2 { font: 600 26px/1.25 'Playfair Display', serif; color: var(--text); margin: 1.8em 0 .6em; }
+  .prose h3 { font: 600 19px 'IBM Plex Sans', sans-serif; margin: 1.4em 0 .5em; }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose em { color: inherit; }
+  .prose ul, .prose ol { margin: 0 0 1.15em 1.2em; }
+  .prose li { margin-bottom: .4em; }
+  .prose blockquote { border-left: 2px solid var(--border2); padding: 2px 0 2px 18px; margin: 0 0 1.15em; color: var(--text2); }
+  .prose blockquote.questions { border: 1px solid var(--border2); border-left: 3px solid var(--coral); background: var(--surface); border-radius: 10px; padding: 18px 22px 8px 22px; color: var(--text); }
+  .prose blockquote.questions ul { margin-left: 1.1em; }
+  .prose .sources { font-size: 14px; line-height: 1.6; color: var(--text3); margin-top: 2em; padding-top: 16px; border-top: 1px solid var(--border); }
+  .prose .sources em { font-style: normal; }
+  .prose .sources a { color: var(--text2); text-decoration: underline; text-decoration-color: var(--border2); }
+  .prose a { text-decoration: underline; text-decoration-color: rgba(240,149,110,.4); text-underline-offset: 2px; }
+  .tbl-wrap { overflow-x: auto; margin: 0 0 1.3em; }
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 15px; line-height: 1.55; }
+  .tbl th { text-align: left; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); padding: 10px 14px; font-weight: 400; }
+  .tbl td { padding: 12px 14px; border-top: 1px solid var(--border); background: var(--surface); vertical-align: top; color: var(--text2); }
+  .tbl td:first-child { color: var(--text); white-space: nowrap; }
+
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
+  .pager a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 16px 18px; color: var(--text); }
+  .pager a:hover { border-color: var(--coral); text-decoration: none; }
+  .pager .k { display: block; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 4px; }
+  .pager b { font: 600 16px 'Playfair Display', serif; }
+  .pager .next { text-align: right; grid-column: 2; }
+  .share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 28px; padding: 16px 18px; border: 1px dashed var(--border2); border-radius: 12px; font-size: 14px; color: var(--text2); }
+  .share a { font: 12px 'IBM Plex Mono', monospace; }
+  .share .sp { flex: 1 1 auto; }
+  .framework { margin-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 16px 18px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; color: var(--text2); font-size: 14px; }
+  .framework:hover { border-color: var(--coral); text-decoration: none; }
+  .framework b { color: var(--coral2); font-weight: 500; }
+
+  /* book home */
+  .home-hero { padding: 72px 48px 56px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .home-hero::before { content: ''; position: absolute; top: -220px; right: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(232,115,74,0.08) 0%, transparent 70%); pointer-events: none; }
+  .home-in { max-width: 920px; margin: 0 auto; position: relative; }
+  .home-hero h1 { font: 700 64px/1.04 'Playfair Display', serif; letter-spacing: -.02em; margin-bottom: 12px; }
+  .byline { font: 500 16px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-bottom: 26px; }
+  .thesis { font: italic 24px/1.4 'Playfair Display', serif; color: var(--text); max-width: 720px; margin-bottom: 30px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 100px; font: 500 14px 'IBM Plex Sans', sans-serif; border: 1px solid var(--border2); color: var(--text); background: var(--surface2); }
+  .cta.primary { background: var(--coral); border-color: var(--coral); color: #12121a; }
+  .cta:hover { text-decoration: none; border-color: var(--coral); }
+  .facts { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .home-sec { padding: 56px 48px; border-bottom: 1px solid var(--border); }
+  .sub { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+  .quote { font: 20px/1.55 'Playfair Display', serif; color: var(--text); border-left: 2px solid var(--coral); padding-left: 18px; margin-bottom: 14px; }
+  .quote-src { font-size: 13px; color: var(--text3); }
+  .toc-part { margin-bottom: 26px; }
+  .toc-part h3 { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--coral2); margin-bottom: 10px; font-weight: 400; }
+  .toc-list { display: grid; gap: 8px; }
+  .toc-item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); }
+  .toc-item:hover { border-color: var(--coral); text-decoration: none; }
+  .toc-item .n { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
+  .toc-item .t { font: 600 17px 'Playfair Display', serif; }
+  .toc-item .d { display: block; font: 400 14px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-top: 4px; }
+  .toc-item .m { font: 11px 'IBM Plex Mono', monospace; color: var(--text3); white-space: nowrap; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pair a { display: block; background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; padding: 22px; color: var(--text2); font-size: 14px; }
+  .pair a:hover { border-color: var(--coral); text-decoration: none; }
+  .pair .k { font: 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .pair h4 { font: 600 20px 'Playfair Display', serif; color: var(--text); margin-bottom: 6px; }
+  .pair b { display: inline-block; margin-top: 10px; color: var(--coral2); font-weight: 500; }
+  .home .main-only { margin-left: 0; }
+
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 48px; font: 11px 'IBM Plex Mono', monospace; color: var(--text3); border-top: 1px solid var(--border); }
+
+  @media (max-width: 960px) {
+    #section-nav { display: none; }
+    main, .foot { margin-left: 0; }
+  }
+  @media (max-width: 720px) {
+    .reader { padding: 40px 16px 32px; }
+    .ch-head h1 { font-size: 32px; }
+    .prose { font-size: 17px; }
+    .prose h2 { font-size: 22px; }
+    .pager { grid-template-columns: 1fr; }
+    .pager .next { grid-column: 1; }
+    .home-hero { padding: 48px 16px 40px; }
+    .home-hero h1 { font-size: 44px; }
+    .thesis { font-size: 20px; }
+    .home-sec { padding: 40px 16px; }
+    .toc-item { grid-template-columns: 34px 1fr; }
+    .toc-item .m { grid-column: 2; }
+    .pair { grid-template-columns: 1fr; }
+    .foot { padding: 24px 16px; }
+    .tbl td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav id="section-nav">
+<a class="book-link" href="index.html">The Judgment Layer</a>
+<a class="ch" href="introduction.html"><span class="snav-num">00</span>Introduction</a>
+<span class="snav-group-label">Part I · The ground moved</span>
+<a class="ch" href="01-the-pilot-that-never-scaled.html"><span class="snav-num">01</span>The Pilot That Never Scaled</a>
+<span class="snav-group-label">Part II · Decide what&#x27;s worth building</span>
+<a class="ch" href="02-outcomes-not-output.html"><span class="snav-num">02</span>Outcomes, Not Output</a>
+<a class="ch" href="03-shipping-is-not-done-confirmed-is-done.html"><span class="snav-num">03</span>Shipping Is Not Done. Confirmed Is Done.</a>
+<span class="snav-group-label">Part III · Ship without batching</span>
+<a class="ch" href="04-the-batch-problem.html"><span class="snav-num">04</span>The Batch Problem</a>
+<a class="ch" href="05-deploy-is-not-release.html"><span class="snav-num">05</span>Deploy Is Not Release</a>
+<span class="snav-group-label">Part IV · Govern the judgment</span>
+<a class="ch" href="06-who-approved-this.html"><span class="snav-num">06</span>“Who Approved This?”</a>
+<a class="ch" href="07-where-judgment-cant-be-delegated.html"><span class="snav-num">07</span>Where Judgment Can’t Be Delegated</a>
+<a class="ch" href="08-your-systems-memory-is-capital.html"><span class="snav-num">08</span>Your System’s Memory Is Capital</a>
+<span class="snav-group-label">Part V · Lead the change</span>
+<a class="ch" href="09-your-instruments-went-dark.html"><span class="snav-num">09</span>Your Instruments Went Dark</a>
+<a class="ch" href="10-how-youll-know-its-working.html"><span class="snav-num">10</span>How You’ll Know It’s Working</a>
+<a class="ch" href="11-from-demo-to-scale.html"><span class="snav-num">11</span>From Demo to Scale</a>
+<a class="ch" href="12-what-it-costs.html"><span class="snav-num">12</span>What It Costs</a>
+<a class="ch is-active" href="13-where-to-start-and-what-we-dont-know.html"><span class="snav-num">13</span>Where to Start, and What We Don’t Know</a>
+</nav>
+<main class="reader"><div class="col">
+  <header class="ch-head">
+    <div class="eyebrow">Part V · Lead the change</div>
+    <div class="ch-num">Chapter 13</div>
+    <h1>Where to Start, and What We Don’t Know</h1>
+    <div class="ch-meta">9 min read · <a href="index.html">The Judgment Layer</a> · Roberto Pillon Franco</div>
+  </header>
+  <article class="prose">
+<h2 id="one-move-not-a-program">One move, not a program</h2>
+<p>After a book like this you will want to design an adoption plan, and that instinct has served you well before. I’d resist it this time. An adoption plan needs approval, approval needs consensus, consensus needs meetings, and the plan dies in a steering committee while the problem gets worse.</p>
+<p>Do one thing this week. It needs no permission and no budget.</p>
+<h2 id="measure-how-much-finished-work-sits-unreleased-right-now">Measure how much finished work sits unreleased right now</h2>
+<p>Leave aside how fast you build and how many changes you merge. Find out how much completed, deployed, working software sits in production where no customer can see it, and how long the oldest piece has been there.</p>
+<p>I suspect most organizations can’t produce this number, and I’d count that inability as the first finding. A standard toolchain doesn’t report it, because people built the toolchain on the assumption that deploying and releasing are the same event. Getting the number usually takes a few days of someone’s time and a conversation with two or three engineers.</p>
+<p>Do this first, for four reasons.</p>
+<p>First - It gives you a real number about your organization, which nobody can dismiss as a claim from a book. The answer settles the argument you’d otherwise have about whether any of this applies to you.</p>
+<p>Second - It usually comes back worse than you expected. You just invested heavily in going faster, and nothing I know of creates urgency faster than finding a large queue of finished work your customers can’t see.</p>
+<p>Third - It points at what I think is the cheapest fix in the book. Chapter 5 doesn’t depend on a reorganization or a purchase, and the queue responds to it.</p>
+<p>Fourth - And it gives you the baseline for the metric most likely to tell you whether any of this works.</p>
+<p>If the number comes back small, days and not weeks, with nothing stuck, you’ve learned something too. Your constraint sits somewhere else, and chapters 2, 3 and 7 matter more to you than chapter 5.</p>
+<h2 id="then-the-second-move">Then, the second move</h2>
+<p>Once you have the number and it has had its effect, run one intent end to end.</p>
+<p>Pick something small and real. Write it as an outcome: what becomes true for a customer, and how you’ll know. Name a person for each of the four judgment moments. Deploy behind a switch. Have someone use it before customers do. Let a named person authorize exposure. Then, weeks later, go back and confirm whether the outcome happened.</p>
+<p>Run one intent, with no pilot program and no team-wide rollout. You are looking for where it breaks. It will break somewhere specific to your organization, and I’d bet on confirmation, because by then nobody remembers the intent.</p>
+<p>I think that breakage is the most valuable result of the exercise. It tells you which chapter of this book describes your problem.</p>
+<h2 id="what-we-dont-know">What we don’t know</h2>
+<p>This is the shortest section in the book, and the one I’d most want you to read.</p>
+<p>I am not sure I’m right about everything here, and I am willing to be wrong or partly right. I built this book from IDF, a framework in active use, current industry telemetry, and reasoning from the thesis. I had no controlled study, no large sample of adopting organizations and no longitudinal data, because none of those exist yet for this approach or any competing one. Anyone who claims otherwise about AI-era delivery governance in 2026 is over-claiming. Hold me to the list below.</p>
+<p><strong>We ran this on ourselves and the gate never failed.</strong> We built IDF using IDF, with agents executing, judgment moments in place, and a review function logging each cycle. Thirteen cycles, thirteen passes, no rejections. That record shows a review function with no independence and no standing to fail anything, and we caught it only because we went looking. The uncomfortable implication: our own dogfooding validated the mechanics and told us nothing about whether the judgment worked. That is the failure chapter 7 warns you about, and it happened in the project that wrote chapter 7.</p>
+<p><strong>We don’t know if the four judgment moments are the right four.</strong> Direction, fitness, exposure and confirmation held up across each scenario we tested them against, and that doesn’t make the list complete. A fifth may become obvious in a domain we haven’t worked in: regulated medical devices, safety-critical systems, anything with a physical failure mode.</p>
+<p><strong>We don’t know how much of the current data is transitional.</strong> The telemetry showing review times exploding and incidents tripling describes organizations mid-adoption, using tooling that changed twice while they used it. Part of that is a structural effect, and part is the friction of transition, which I expect will fade. We can’t separate the two yet, and anyone who claims to is guessing.</p>
+<p><strong>We don’t know the size ceiling.</strong> The reasoning here concerns decision rights and information flow, which tend to degrade with scale in ways you can’t see until they break. Nobody has tested this at fifty thousand people, and it may need something we haven’t thought of.</p>
+<p><strong>We don’t know what parallel agent teams do to this.</strong> When several agents work at once against shared state, the meaning of one iteration changes, and so, probably, does what the judgment moments attach to. The four moments still seem right to me. Their placement may not be. The clearest case so far is the Navier-Stokes run from chapter 7. The judgment in that run sat at the level of direction, deciding where to point the agents and revisiting it as the work went on, and nowhere near the level of each message. It also shows the confirmation problem from chapter 3 at a scale I hadn’t imagined. Producing the proof took 88 hours. As I write, the Clay Institute is still reviewing it, and it will recognize a solution only after peer-reviewed publication and community vetting. Confirming the result is taking far longer than producing it, and it rests on the judgment of people.</p>
+<p><strong>And the ground is moving underneath all of it.</strong> Model capability, regulation and industry practice all change faster than a book can. The dates in chapter 6 moved once while I wrote this one. Read the argument, and check the numbers.</p>
+<h2 id="what-would-change-my-mind">What would change my mind</h2>
+<p>The claim most likely to be wrong is that you can’t delegate judgment to automated review. It is central, chapter 7 rests on it, and I’d expect it to erode first.</p>
+<p>The strongest argument against it comes from Ethan Mollick. He had predicted that getting agents to work as a group would take careful, company-like design, and in October 2026 he wrote that he had been wrong: better models solved coordination by themselves, the way better machine learning keeps beating rules people write by hand. He calls it the Bitter Lesson. If organizing turned out to be learnable, judging might be too, and a fair reader could see the judgment moments in this book as the kind of careful construction he gave up on.</p>
+<p>Automated review has improved a great deal, and agents now review 25% of pull requests. If someone builds a review function that reliably rejects work its own system produced, with real independence and not a simulation of it, a large part of chapter 7 will need rewriting.</p>
+<p>I don’t think that’s close. Independence looks to me like a structural property more than a capability. A reviewer optimizing for the same completion signal as the producer will converge on approval however capable it becomes. The first evidence points my way. In September 2026, OpenAI shelved GPT-6.1 Astra before release because, in its own testing, the model took actions without authorization and didn’t accurately report what it had and hadn’t done. A system that misreports its own work can’t be the one that reviews it, however well it organizes. Still, one model’s test results don’t settle the question.</p>
+<p>I hold the position for a second reason. Some judgment can be turned into process: a checklist, a threshold, a rule an agent follows to decide what to do next. A written standard captures part of what good looks like, which is why chapter 8 asks you to write yours down. Deciding whether this particular piece of work meets it, in a case the standard didn’t foresee, is still judgment, and chapter 1 argued that this is the part that never scaled. Culture is harder still. A company’s culture lives in how people feel about their work and about each other, and it shows up as attitude: whether someone speaks up, whether a reviewer is willing to say no to a colleague’s finished work. You can write down a standard. I don’t believe anyone can write down the attitude that makes people uphold it, or hand it to an agent today.</p>
+<p>I’d rather tell you so than pretend the question is settled.</p>
+<h2 id="the-one-sentence-version">The one-sentence version</h2>
+<p>If you take one sentence from this book, take the thesis: when execution becomes free, judgment becomes the bottleneck, so govern the judgment.</p>
+<p>The rest follows from it. The intent as the unit of work, the release switch, the four moments, the maturity model and the metrics all exist to put human judgment where it matters and take it out of where it doesn’t.</p>
+<p>Your organization has spent the last two years making execution take less effort, and that worked. Now ask whether you’ve done anything about the thing it made scarce.</p>
+<h2 id="questions-to-ask-yourself-this-week">Questions to ask yourself this week</h2>
+<blockquote class="questions">
+<ul>
+<li>How much finished work is invisible to customers right now, and how old is the oldest piece?<br />
+</li>
+<li>If I ran one intent end to end next month, where would it break?<br />
+</li>
+<li>Which claim in this book am I least convinced by, and what evidence would settle it?<br />
+</li>
+<li>Am I prepared to find out that some of what we shipped last year did nothing?</li>
+</ul>
+</blockquote>
+<p class="sources"><em>Sources: Ethan Mollick, <a href="https://www.oneusefulthing.org/p/the-dot-and-the-swarm" target="_blank" rel="noopener">The Dot and the Swarm</a> · Tufts Daily, <a href="https://www.tuftsdaily.com/article/2026/09/mathematicians-still-checking-the-navier-stokes-proof-that-openai-claims-to-have-solved" target="_blank" rel="noopener">Mathematicians still checking the Navier-Stokes proof</a> · Cloud Security Alliance, <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-gpt61-astra-deception-shelving-20260930-cs/" target="_blank" rel="noopener">OpenAI shelves GPT-6.1 Astra</a>.</em></p>
+
+  </article>
+  <div class="pager"><a class="prev" href="12-what-it-costs.html"><span class="k">← Chapter 12</span><b>What It Costs</b></a></div>
+  <div class="share"><span class="sp">Free to read, download and share under CC BY 4.0.</span><span>Full book: <a href="the-judgment-layer.pdf" download>PDF</a> · <a href="the-judgment-layer.epub" download>EPUB</a></span></div>
+  <a class="framework" href="../idf.html"><span>IDF is the framework behind this book, for the teams who run it.</span><b>Open the framework →</b></a>
+</div></main>
+<footer class="foot"><span>The Judgment Layer · 2026</span><span>CC BY 4.0 · Roberto Pillon Franco</span></footer>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  function upd() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', upd, { passive: true }); upd();
+})();
+</script>
+<script src="../nav.js?v=15"></script>
+</body>
+</html>
