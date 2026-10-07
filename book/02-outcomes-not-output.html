@@ -26,6 +26,7 @@
 <meta name="twitter:title" content="Outcomes, Not Output · The Judgment Layer">
 <meta name="twitter:description" content="Open your roadmap, pick any item, and ask what it’s for. In most organizations you’ll hear the item restated.">
 <meta name="twitter:image" content="https://rfranco-br.github.io/Intent-Driven-Flow/og/book-02-outcomes-not-output.png">
+<script>(function(){var t='light';try{t=localStorage.getItem('idf-book-theme')||'light';}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -37,7 +38,31 @@
     --purple: #7c5cbf; --purple2: #9b7fd4;
     --teal: #3a9e78; --teal2: #5bbf95;
     --amber: #bf8f3a; --amber2: #d4a85b;
+    --prose: #e4e1dc; --on-accent: #12121a; --glow: rgba(232,115,74,0.08);
   }
+  :root[data-theme="light"] {
+    --bg: #faf8f4; --surface: #f3f0ea; --surface2: #ece8e1;
+    --border: #e3ded5; --border2: #cdc6ba;
+    --text: #1d1b22; --text2: #46434f; --text3: #6e6a77;
+    --coral: #c4552c; --coral2: #b04d28;
+    --purple: #6a4bb0; --purple2: #5d41a0;
+    --teal: #2e8564; --teal2: #276f54;
+    --amber: #a7781f; --amber2: #8e6619;
+    --prose: #26232c; --on-accent: #ffffff; --glow: rgba(196,85,44,0.06);
+  }
+  :root[data-theme="light"] #idf-nav { background: rgba(250,248,244,0.94); border-bottom-color: #e3ded5; }
+  :root[data-theme="light"] #idf-nav .nav-brand { border-right-color: #e3ded5; }
+  :root[data-theme="light"] #idf-nav .nav-brand .brand-id { color: #c4552c; }
+  :root[data-theme="light"] #idf-nav .nav-brand .brand-sub { color: #9a95a3; }
+  :root[data-theme="light"] #idf-nav .nav-pill { color: #6e6a77; }
+  :root[data-theme="light"] #idf-nav .nav-pill:hover { color: #1d1b22; background: #ece8e1; }
+  :root[data-theme="light"] #idf-nav .nav-pill.is-active { color: #c4552c; background: rgba(196,85,44,0.1); }
+  body { transition: background .2s, color .2s; }
+
+  /* theme toggle */
+  .theme-toggle { position: fixed; top: 62px; right: 18px; z-index: 300; display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 100px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); font: 12px 'IBM Plex Mono', monospace; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+  .theme-toggle:hover { color: var(--text); border-color: var(--coral); }
+  .theme-toggle .ic { font-size: 14px; line-height: 1; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.6; }
   a { color: var(--coral2); text-decoration: none; }
@@ -66,7 +91,7 @@
   .ch-num { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); margin-bottom: 10px; }
   .ch-head h1 { font: 700 44px/1.12 'Playfair Display', serif; letter-spacing: -.01em; margin-bottom: 16px; }
   .ch-meta { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
-  .prose { font-size: 18px; line-height: 1.75; color: #e4e1dc; }
+  .prose { font-size: 18px; line-height: 1.75; color: var(--prose); }
   .prose p { margin: 0 0 1.15em; }
   .prose h2 { font: 600 26px/1.25 'Playfair Display', serif; color: var(--text); margin: 1.8em 0 .6em; }
   .prose h3 { font: 600 19px 'IBM Plex Sans', sans-serif; margin: 1.4em 0 .5em; }
@@ -80,7 +105,7 @@
   .prose .sources { font-size: 14px; line-height: 1.6; color: var(--text3); margin-top: 2em; padding-top: 16px; border-top: 1px solid var(--border); }
   .prose .sources em { font-style: normal; }
   .prose .sources a { color: var(--text2); text-decoration: underline; text-decoration-color: var(--border2); }
-  .prose a { text-decoration: underline; text-decoration-color: rgba(240,149,110,.4); text-underline-offset: 2px; }
+  .prose a { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--coral2) 45%, transparent); text-underline-offset: 2px; }
   .tbl-wrap { overflow-x: auto; margin: 0 0 1.3em; }
   .tbl { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 15px; line-height: 1.55; }
   .tbl th { text-align: left; font: 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); padding: 10px 14px; font-weight: 400; }
@@ -102,14 +127,14 @@
 
   /* book home */
   .home-hero { padding: 72px 48px 56px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-  .home-hero::before { content: ''; position: absolute; top: -220px; right: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(232,115,74,0.08) 0%, transparent 70%); pointer-events: none; }
+  .home-hero::before { content: ''; position: absolute; top: -220px; right: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, var(--glow) 0%, transparent 70%); pointer-events: none; }
   .home-in { max-width: 920px; margin: 0 auto; position: relative; }
   .home-hero h1 { font: 700 64px/1.04 'Playfair Display', serif; letter-spacing: -.02em; margin-bottom: 12px; }
   .byline { font: 500 16px 'IBM Plex Sans', sans-serif; color: var(--text2); margin-bottom: 26px; }
   .thesis { font: italic 24px/1.4 'Playfair Display', serif; color: var(--text); max-width: 720px; margin-bottom: 30px; }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
   .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 100px; font: 500 14px 'IBM Plex Sans', sans-serif; border: 1px solid var(--border2); color: var(--text); background: var(--surface2); }
-  .cta.primary { background: var(--coral); border-color: var(--coral); color: #12121a; }
+  .cta.primary { background: var(--coral); border-color: var(--coral); color: var(--on-accent); }
   .cta:hover { text-decoration: none; border-color: var(--coral); }
   .facts { font: 12px 'IBM Plex Mono', monospace; color: var(--text3); }
   .home-sec { padding: 56px 48px; border-bottom: 1px solid var(--border); }
@@ -155,6 +180,8 @@
     .pair { grid-template-columns: 1fr; }
     .foot { padding: 24px 16px; }
     .tbl td:first-child { white-space: normal; }
+    .theme-toggle { top: auto; bottom: 16px; right: 16px; }
+    .theme-toggle .lbl { display: none; }
   }
 </style>
 </head>
@@ -265,6 +292,24 @@
     bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
   }
   window.addEventListener('scroll', upd, { passive: true }); upd();
+})();
+</script>
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark mode"><span class="ic" id="theme-ic">☾</span><span class="lbl" id="theme-lbl">Dark</span></button>
+<script>
+(function () {
+  var root = document.documentElement, ic = document.getElementById('theme-ic'), lbl = document.getElementById('theme-lbl');
+  function paint() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    ic.textContent = dark ? '☀' : '☾';
+    lbl.textContent = dark ? 'Light' : 'Dark';
+  }
+  document.getElementById('theme-toggle').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('idf-book-theme', next); } catch (e) {}
+    paint();
+  });
+  paint();
 })();
 </script>
 <script src="../nav.js?v=15"></script>
