@@ -209,7 +209,7 @@
 <a class="ch" href="12-what-it-costs.html"><span class="snav-num">12</span>What It Costs</a>
 <a class="ch" href="13-where-to-start-and-what-we-dont-know.html"><span class="snav-num">13</span>Where to Start, and What We Don’t Know</a>
 </nav>
-<main class="reader"><div class="col">
+<main class="reader" data-chapter="06-who-approved-this" data-title="“Who Approved This?”"><div class="col">
   <header class="ch-head">
     <div class="eyebrow">Part IV · Govern the judgment</div>
     <div class="ch-num">Chapter 6</div>
@@ -331,6 +331,67 @@
     paint();
   });
   paint();
+})();
+</script>
+<script>
+/* Book analytics: GA4 events (no personal data). */
+(function () {
+  function send(name, params) {
+    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
+  }
+  var main = document.querySelector('main');
+  var chapter = (main && main.getAttribute('data-chapter')) || 'book-home';
+  var title = (main && main.getAttribute('data-title')) || 'The Judgment Layer';
+  var base = { chapter: chapter, chapter_title: title };
+  function withBase(extra) { var o = {}; for (var k in base) o[k] = base[k]; for (var j in extra) o[j] = extra[j]; return o; }
+
+  // Clicks: downloads, navigation, framework links, theme
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a, button');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/\.(pdf|epub)(\?|$)/i.test(href)) {
+      send('book_download', withBase({ format: href.match(/\.(pdf|epub)/i)[1].toLowerCase(), location: chapter === 'book-home' ? 'book_home' : 'chapter_page' }));
+    } else if (a.closest('.pager')) {
+      send('book_nav', withBase({ nav_type: a.classList.contains('next') ? 'next' : 'previous', target: href }));
+    } else if (a.closest('#section-nav')) {
+      send('book_nav', withBase({ nav_type: 'sidebar', target: href }));
+    } else if (a.closest('.toc-item')) {
+      send('book_nav', withBase({ nav_type: 'contents', target: href }));
+    } else if (a.classList.contains('cta') && a.classList.contains('primary')) {
+      send('book_nav', withBase({ nav_type: 'start_reading', target: href }));
+    } else if (/idf(-corporate)?\.html/.test(href)) {
+      send('book_to_framework', withBase({ target: /corporate/.test(href) ? 'leaders' : 'framework' }));
+    } else if (a.id === 'theme-toggle') {
+      var cur = document.documentElement.getAttribute('data-theme');
+      send('theme_change', withBase({ theme: cur === 'dark' ? 'light' : 'dark' }));
+    }
+  }, true);
+
+  // Reading progress and completion (chapter pages only)
+  var article = document.querySelector('.prose');
+  if (!article) return;
+  var marks = [25, 50, 75, 100], sent = {};
+  function progress() {
+    var r = article.getBoundingClientRect();
+    var seen = (window.innerHeight - r.top) / r.height;
+    var pct = Math.max(0, Math.min(100, Math.round(seen * 100)));
+    marks.forEach(function (m) {
+      if (pct >= m && !sent[m]) { sent[m] = 1; send('chapter_progress', withBase({ percent: m })); }
+    });
+  }
+  window.addEventListener('scroll', progress, { passive: true });
+  progress();
+
+  var done = false;
+  function complete(how) { if (done) return; done = true; send('chapter_complete', withBase({ trigger: how })); }
+  var q = Array.prototype.filter.call(article.querySelectorAll('h2'), function (h) { return /^Questions/.test(h.textContent.trim()); })[0];
+  if (q && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es, obs) {
+      es.forEach(function (e) { if (e.isIntersecting) { complete('questions_section'); obs.disconnect(); } });
+    }, { threshold: 0.5 }).observe(q);
+  }
+  window.addEventListener('scroll', function () { if (sent[100]) complete('end_of_text'); }, { passive: true });
 })();
 </script>
 <script src="../nav.js?v=15"></script>
